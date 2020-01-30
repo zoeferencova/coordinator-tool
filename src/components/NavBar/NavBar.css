@@ -43,17 +43,19 @@ nav {
     padding: 0;
     margin-left: 20px;
     line-height: normal;
-    font-size: 14px;
+    font-size: 14px;;
 }
 
-.inactive {
-    color: rgb(171, 171, 171)
+
+.tab i {
+    font-size: 20px;;
 }
 
 .active {
-    color: white;
+    color: white !important;
 }
 
-nav i {
-    font-size: 20px;
+li a {
+    color: gray;
 }
+

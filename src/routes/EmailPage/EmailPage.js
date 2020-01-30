@@ -1,13 +1,49 @@
 import React from 'react';
 import NavBar from '../../components/NavBar/NavBar';
+import EmailTemplate from '../../components/EmailTemplate/EmailTemplate'
 import './EmailPage.css'
 
+const dummyTemplates = [
+    {
+        id: 1,
+        template_name: 'Template Name',
+        template_subject: 'Hello There!',
+        template_body: 'To whom this may concern, Blah blah blah'
+    },
+    {
+        id: 2,
+        template_name: 'Template Name',
+        template_subject: 'Hello There!',
+        template_body: 'To whom this may concern, Blah blah blah'
+    },
+    {
+        id: 3,
+        template_name: 'Template Name',
+        template_subject: 'Hello There!',
+        template_body: 'To whom this may concern, Blah blah blah'
+    },
+]
+
 export default class EmailPage extends React.Component {
+    renderTemplates() {
+        return dummyTemplates.map(template => 
+            <EmailTemplate
+                key={template.id}
+                template_name={template.template_name}
+                template_subject={template.template_subject}
+                template_body={template.template_body}
+            />
+        )
+    }
+    
     render() {
         return (
             <div className="container">
                 <main className="content">
                     <h1>Email Templates</h1>
+                    {this.renderTemplates()}
+                    <button>New Template</button>
+                    
                 </main>
                 <NavBar className="nav" />
             </div>

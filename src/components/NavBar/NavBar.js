@@ -3,6 +3,7 @@ import { NavLink } from 'react-router-dom';
 import './NavBar.css'
 
 export default class NavBar extends React.Component {
+    
     render() {
         return (      
             <nav role="navigation">
@@ -10,38 +11,38 @@ export default class NavBar extends React.Component {
                 <ul className="tab-list">
                     <li className="tab">
                         <NavLink to="/main">
-                            <i className="fas fa-list-alt active"></i>
-                            <span className="tab-title active">List</span>
+                            <i className="fas fa-list-alt"></i>
+                            <span className="tab-title">List</span>
                         </NavLink>
                     </li>
                     <li className="tab">
                         <NavLink to="/completed">
-                            <i className="fas fa-check-square inactive"></i>
-                            <span className="tab-title inactive">Completed</span>
+                            <i className="fas fa-check-square"></i>
+                            <span className="tab-title">Completed</span>
                         </NavLink>
                     </li>
                     <li className="tab">
                         <NavLink to="/archive">
-                            <i className="fas fa-archive inactive"></i>
-                            <span className="tab-title inactive">Archive</span>
+                            <i className="fas fa-archive"></i>
+                            <span className="tab-title">Archive</span>
                         </NavLink>
                     </li>
                     <li className="tab">
                         <NavLink to="/dashboard">
-                            <i className="fas fa-chart-pie inactive"></i>
-                            <span className="tab-title inactive">Dashboard</span>
+                            <i className="fas fa-chart-pie"></i>
+                            <span className="tab-title">Dashboard</span>
                         </NavLink>
                     </li>
                     <li className="tab">
                         <NavLink to="email">
-                            <i className="fas fa-envelope inactive"></i>
-                            <span className="tab-title inactive">Templates</span>
+                            <i className="fas fa-envelope"></i>
+                            <span className="tab-title">Templates</span>
                         </NavLink>
                     </li>
                     <li className="tab">
                         <NavLink to="account">
-                            <i className="fas fa-user-circle inactive"></i>
-                            <span className="tab-title inactive">Account</span>
+                            <i className="fas fa-user-circle"></i>
+                            <span className="tab-title">Account</span>
                         </NavLink>
                     </li>
                 </ul>
