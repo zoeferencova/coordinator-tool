@@ -33,6 +33,46 @@ const dummyData = [
         date: new Date().toLocaleDateString(),
         notes: 'Consectetur adipiscing'
     },
+    {
+        id: 3,
+        checked: false,
+        status: 'none',
+        project: 'Fake Project',
+        advisor: 'Robin Hurst',
+        pm: 3,
+        date: new Date().toLocaleDateString(),
+        notes: 'Consectetur adipiscing'
+    },
+    {
+        id: 4,
+        checked: false,
+        status: 'none',
+        project: 'Super Fake Project',
+        advisor: 'Sara Waldman',
+        pm: 3,
+        date: new Date().toLocaleDateString(),
+        notes: 'Consectetur adipiscing'
+    },
+    {
+        id: 5,
+        checked: false,
+        status: 'none',
+        project: 'Not Real Project',
+        advisor: 'Marnie Hurst',
+        pm: 2,
+        date: new Date().toLocaleDateString(),
+        notes: 'Consectetur adipiscing'
+    },
+    {
+        id: 6,
+        checked: false,
+        status: 'none',
+        project: 'Another Fake Project',
+        advisor: 'Daniela Narvaez',
+        pm: 1,
+        date: new Date().toLocaleDateString(),
+        notes: 'Consectetur adipiscing'
+    },
 ]
 
 export default class MainListBody extends React.Component {   

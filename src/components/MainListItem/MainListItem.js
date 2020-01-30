@@ -5,7 +5,7 @@ export default class MainListItem extends React.Component {
     
     render() {
         return (
-            <div className="table-row">
+            <div className="table-row row">
                 <div className="table-body-cell"><input type="checkbox"></input></div>
                 <div className="table-body-cell">
                     <select name="status" id="status">

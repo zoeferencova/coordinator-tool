@@ -1,4 +1,9 @@
 .table-row i {
     font-size: 17px;
     margin: 0 7px;
+    color: gray;
+}
+
+.row {
+    padding: 10px;
 }

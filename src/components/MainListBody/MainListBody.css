@@ -5,10 +5,17 @@
     margin: 0 auto;
 }
 
+.table div {
+    padding: 8px 0;
+}
+
 .table-header {
     display: table-header-group;
-    background-color: grey;
     font-weight: bold;
+}
+
+.table-header div {
+    background-color: lightgray;
 }
 
 .table-header-cell {
@@ -24,12 +31,10 @@
 
 .table-row {
     display: table-row;
-    height: 30px;
 }
 
 .table-body-cell {
     display: table-cell;
-    padding: 3px 0;
 }
 
 .table-body-cell button {
