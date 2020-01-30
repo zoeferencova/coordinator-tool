@@ -1,9 +1,3 @@
-.container {
-    display: flex;
-    flex-direction: row-reverse;
-    justify-content: center;
-    margin-left: 180px;
-}
 
 .pm-list {
     list-style: none;
