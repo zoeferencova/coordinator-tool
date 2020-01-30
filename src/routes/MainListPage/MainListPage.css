@@ -18,3 +18,24 @@
         margin-left: -32px;
     }
 }
+
+h2 {
+    font-size: 20px;
+}
+
+.mobile-list-container {
+    display: none;
+}
+
+@media only screen and (max-width: 768px) {
+    .mobile-list-container {
+        display: block;
+    }
+    .main-list-container {
+        display: none;
+    }
+    
+    .content {
+        width: 100%;
+    }
+}

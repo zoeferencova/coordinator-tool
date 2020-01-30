@@ -2,6 +2,7 @@ import React from 'react';
 import './MainListPage.css'
 import MainListTools from '../../components/MainListTools/MainListTools';
 import MainListBody from '../../components/MainListBody/MainListBody';
+import MobileListBody from '../../components/MobileListBody/MobileListBody';
 import NavBar from '../../components/NavBar/NavBar'
 import Header from '../../components/Header/Header';
 
@@ -16,7 +17,13 @@ export default class MainListPage extends React.Component {
                     <Header title={title} />
                     <MainListTools />
                     <br></br>
-                    <MainListBody />
+                    <div className='mobile-list-container'>
+                        <MobileListBody />
+                    </div>
+                    <div className='main-list-container'>
+                        <MainListBody />
+                    </div>
+                    
                 </main>
                 <NavBar />
             </div>

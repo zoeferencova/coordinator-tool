@@ -1,6 +1,6 @@
 import React from 'react';
-import './MainListBody.css'
-import MainListItem from '../MainListItem/MainListItem';
+import './MobileListBody.css'
+import MobileListItem from '../MobileListItem/MobileListItem';
 
 const dummyData = [
     {
@@ -75,10 +75,10 @@ const dummyData = [
     },
 ]
 
-export default class MainListBody extends React.Component {   
-    renderRows() {
+export default class MobileListBody extends React.Component {   
+    renderMobileRows() {
         return dummyData.map(row => 
-            <MainListItem
+            <MobileListItem
                 key={row.id}
                 checked={row.checked}
                 status={row.status}
@@ -99,12 +99,9 @@ export default class MainListBody extends React.Component {
                     <div className="table-header-cell">Status</div>
                     <div className="table-header-cell">Project</div>
                     <div className="table-header-cell">Advisor</div>
-                    <div className="table-header-cell">PM</div>
-                    <div className="table-header-cell">Date</div>
-                    <div className="table-header-cell">Notes</div>
                     <div className="table-header-cell">Actions</div>
                 </div>
-                {this.renderRows()}
+                {this.renderMobileRows()}
             </div>
             
         ) 

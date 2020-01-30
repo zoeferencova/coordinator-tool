@@ -7,15 +7,16 @@
 
 .table div {
     padding: 8px 0;
+    font-size: 14px;
 }
 
 .table-header {
     display: table-header-group;
-    font-weight: bold;
 }
 
 .table-header div {
     background-color: lightgray;
+    font-weight: bold;
 }
 
 .table-header-cell {
