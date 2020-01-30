@@ -1,6 +1,7 @@
 import React from 'react';
 import NavBar from '../../components/NavBar/NavBar';
 import EmailTemplate from '../../components/EmailTemplate/EmailTemplate'
+import Header from '../../components/Header/Header'
 import './EmailPage.css'
 
 const dummyTemplates = [
@@ -40,7 +41,7 @@ export default class EmailPage extends React.Component {
         return (
             <div className="container">
                 <main className="content">
-                    <h1>Email Templates</h1>
+                    <Header title={'Email Templates'} />
                     {this.renderTemplates()}
                     <button>New Template</button>
                     

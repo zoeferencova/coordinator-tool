@@ -1,5 +1,6 @@
 import React from 'react';
 import NavBar from '../../components/NavBar/NavBar';
+import Header from '../../components/Header/Header'
 import './ArchivePage.css'
 import ArchiveItem from '../../components/ArchiveItem/ArchiveItem';
 
@@ -41,7 +42,7 @@ export default class ArchivePage extends React.Component {
         return (
             <div className="container">
                 <main className="content">
-                    <h1>Archive</h1>
+                    <Header title={'Archive'} />
                     {this.renderArchiveItems()}
                 </main>
                 <NavBar className="nav" />

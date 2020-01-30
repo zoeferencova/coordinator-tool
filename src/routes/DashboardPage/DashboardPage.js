@@ -1,5 +1,7 @@
 import React from 'react';
 import NavBar from '../../components/NavBar/NavBar';
+import Header from '../../components/Header/Header'
+
 import './DashboardPage.css'
 
 export default class DashboardPage extends React.Component {
@@ -7,7 +9,7 @@ export default class DashboardPage extends React.Component {
         return (
             <div className="container">
                 <main className="content">
-                    <h1>Dashboard</h1>
+                    <Header title={'Dashboard'} />
                     <section>
                         <h2>Total requests</h2>
                         <div><em>[ Placeholder for total request graph ]</em></div>

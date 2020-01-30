@@ -7,7 +7,7 @@
     position: fixed;
     background-color: #202421;
     height: 100%;
-    width: 190px;
+    width: 220px;
     left: 0;
     top: 0;
     bottom: 0;
@@ -16,6 +16,7 @@
 .NavBar__logo {
     color: white;
     font-weight: normal;
+    margin-bottom: 50px;
 }
 
 .tab-list {
@@ -31,7 +32,7 @@
 }
 
 .tab {
-    padding: 18px 30px;
+    padding: 20px 35px;
     margin: 0 auto;
     width: 100%;
     text-align: left;
@@ -44,14 +45,14 @@
 .tab-title {
     display: inline-block;
     padding: 0;
-    margin-left: 14px;
+    margin-left: 18px;
     line-height: normal;
-    font-size: 14px;;
+    font-size: 15px;;
 }
 
 
 .tab i {
-    font-size: 17px;
+    font-size: 18px;
 }
 
 .active > .tab-content {
@@ -112,7 +113,7 @@
         height: 100%;
         position: fixed;
         top: 0;
-        left: 190px;
+        left: 220px;
     }
 }
 

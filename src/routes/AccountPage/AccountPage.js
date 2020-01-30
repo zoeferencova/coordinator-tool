@@ -1,4 +1,5 @@
 import React from 'react';
+import Header from '../../components/Header/Header'
 import './AccountPage.css'
 import NavBar from '../../components/NavBar/NavBar';
 
@@ -36,7 +37,7 @@ export default class AccountPage extends React.Component {
         return (
             <div className="container">
                 <main className="content">
-                    <h1>Account</h1>
+                    <Header title={'Account'} />
                     <section>
                         <h2>Account Info</h2>
                         <p><strong>Name:</strong> {dummyAccount.name}</p>
