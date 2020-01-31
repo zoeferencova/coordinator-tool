@@ -2,7 +2,7 @@ import React from 'react';
 import './MainListBody.css'
 import MainListItem from '../MainListItem/MainListItem';
 
-const dateOptions = { month: 'numeric', day: 'numeric' }
+const dateOptions = { month: 'short', day: 'numeric' }
 
 const dummyData = [
     {

@@ -9,11 +9,16 @@
 }
 
 .proj-cell, .adv-cell, .notes-cell {
-    max-width: 150px;
+    max-width: 136px;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
 }
+
+div .notes-cell, div .adv-cell, div .proj-cell {
+    padding: 0 10px;
+}
+
 
 
 

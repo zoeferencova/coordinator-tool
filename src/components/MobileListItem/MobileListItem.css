@@ -3,8 +3,7 @@
         font-size: 14px;
     }
 
-    .proj-cell, .adv-cell {
-        
+    .proj-cell, .adv-cell {        
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
