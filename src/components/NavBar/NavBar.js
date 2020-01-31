@@ -8,7 +8,7 @@ export default class NavBar extends React.Component {
     }
 
     showMobile() {
-        if (window.innerWidth >= 970) {
+        if (window.innerWidth >= 945) {
             if (this.state.expanded) {
                 return 'show'
             } else {
@@ -36,13 +36,7 @@ export default class NavBar extends React.Component {
                                 <i className="fas fa-check-square"></i>
                                 <span className="tab-title">Completed</span>
                             </li>
-                        </NavLink>
-                        <NavLink to="/archive" className="tab">
-                            <li className="tab-content">
-                                <i className="fas fa-archive"></i>
-                                <span className="tab-title">Archive</span>
-                            </li>
-                        </NavLink>                                       
+                        </NavLink>                                  
                         <NavLink to="/dashboard" className="tab">
                             <li className="tab-content">
                                 <i className="fas fa-chart-pie"></i>

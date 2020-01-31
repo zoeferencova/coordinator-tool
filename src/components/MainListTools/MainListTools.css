@@ -3,7 +3,7 @@
     justify-content: space-evenly;
 }
 
-@media only screen and (max-width: 970px) {
+@media only screen and (max-width: 945px) {
     .tools {
         flex-direction: column;
     }

@@ -52,6 +52,16 @@ div .notes-cell, div .adv-cell, div .proj-cell {
     border-bottom: none;
 }
 
+.status-icon:hover, .icon-list:hover {
+    cursor: pointer;
+}
+
+@media only screen and (max-width: 1020px) {
+    .table-row i {
+        margin: 0 1px;
+    }
+}
+
 
 
 

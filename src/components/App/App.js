@@ -45,10 +45,6 @@ export default class App extends React.Component {
             component={CompletedListPage}
           />
           <Route
-            path={'/archive'}
-            component={ArchivePage}
-          />
-          <Route
             path={'/dashboard'}
             component={DashboardPage}
           />
