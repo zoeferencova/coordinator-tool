@@ -1,5 +1,6 @@
 import React from 'react';
 import './MainListTools.css'
+import { Link } from 'react-router-dom';
 
 export default class MainListTools extends React.Component {
     render() {
@@ -35,7 +36,7 @@ export default class MainListTools extends React.Component {
                 <div>
                     <button>Reset</button>
                     <button>Send Update</button>
-                    <button>Add Item</button>
+                    <Link to='/add-item'><button>Add Item</button></Link>
                 </div>
                 
             </div>

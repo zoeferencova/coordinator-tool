@@ -2,6 +2,7 @@ import React from 'react';
 import NavBar from '../../components/NavBar/NavBar';
 import EmailTemplate from '../../components/EmailTemplate/EmailTemplate'
 import Header from '../../components/Header/Header'
+import { Link } from 'react-router-dom';
 import './EmailPage.css'
 
 const dummyTemplates = [
@@ -43,7 +44,7 @@ export default class EmailPage extends React.Component {
                 <main className="content">
                     <Header title={'Email Templates'} />
                     {this.renderTemplates()}<br></br>
-                    <button>New Template</button>
+                    <Link to='/new-template'><button>New Template</button></Link>
                     
                 </main>
                 <NavBar className="nav" />

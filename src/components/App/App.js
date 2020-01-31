@@ -9,6 +9,7 @@ import ArchivePage from '../../routes/ArchivePage/ArchivePage';
 import DashboardPage from '../../routes/DashboardPage/DashboardPage';
 import AccountPage from '../../routes/AccountPage/AccountPage';
 import AddItemPage from '../../routes/AddItemPage/AddItemPage';
+import NewTemplatePage from '../../routes/NewTemplatePage/NewTemplatePage';
 import EmailPage from '../../routes/EmailPage/EmailPage';
 import NotFoundPage from '../../routes/NotFoundPage/NotFoundPage';
 import './App.css';
@@ -58,6 +59,10 @@ export default class App extends React.Component {
           <Route
             path={'/add-item'}
             component={AddItemPage}
+          />
+          <Route
+            path={'/new-template'}
+            component={NewTemplatePage}
           />
           <Route
             path={'/email'}
