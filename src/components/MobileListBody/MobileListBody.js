@@ -2,6 +2,12 @@ import React from 'react';
 import './MobileListBody.css'
 import MobileListItem from '../MobileListItem/MobileListItem';
 
+const icons = {
+    'none': <i className="far fa-circle"></i>,
+    'reached': <i className="fas fa-arrow-circle-left"></i>,
+    'completed': <i className="fas fa-check-circle"></i>
+}
+
 const dummyData = [
     {
         id: 1,
