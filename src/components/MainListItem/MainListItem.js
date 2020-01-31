@@ -14,11 +14,11 @@ export default class MainListItem extends React.Component {
                         <option value="completed">Completed</option>
                     </select>
                 </div>
-                <div className="table-body-cell">{this.props.project}</div>
-                <div className="table-body-cell">{this.props.advisor}</div>
+                <div className="table-body-cell proj-cell">{this.props.project}</div>
+                <div className="table-body-cell adv-cell">{this.props.advisor}</div>
                 <div className="table-body-cell">{this.props.pm}</div>
                 <div className="table-body-cell">{this.props.date}</div>
-                <div className="table-body-cell">{this.props.notes}</div>
+                <div className="table-body-cel notes-cell">{this.props.notes}</div>
                 <div className="table-body-cell">
                     <button><i className="fas fa-envelope"></i></button>
                     <button><i className="fas fa-edit"></i></button>

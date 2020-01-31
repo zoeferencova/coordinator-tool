@@ -8,3 +8,12 @@
     padding: 10px;
 }
 
+.proj-cell, .adv-cell, .notes-cell {
+    max-width: 150px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+
+

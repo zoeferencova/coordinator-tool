@@ -2,6 +2,8 @@ import React from 'react';
 import './MainListBody.css'
 import MainListItem from '../MainListItem/MainListItem';
 
+const dateOptions = { month: 'numeric', day: 'numeric' }
+
 const dummyData = [
     {
         id: 1,
@@ -10,7 +12,7 @@ const dummyData = [
         project: 'Fake Project',
         advisor: 'Zoe Ferencova',
         pm: 1,
-        date: new Date().toLocaleDateString(),
+        date: new Date().toLocaleDateString('en-US', dateOptions),
         notes: 'Lorem ipsum'
     },
     {
@@ -20,7 +22,7 @@ const dummyData = [
         project: 'Dummy Project',
         advisor: 'James Park',
         pm: 2,
-        date: new Date().toLocaleDateString(),
+        date: new Date().toLocaleDateString('en-US', dateOptions),
         notes: 'Dolor sit amet'
     },
     {
@@ -30,7 +32,7 @@ const dummyData = [
         project: 'Super Fake Project',
         advisor: 'Robin Hurst',
         pm: 3,
-        date: new Date().toLocaleDateString(),
+        date: new Date().toLocaleDateString('en-US', dateOptions),
         notes: 'Consectetur adipiscing'
     },
     {
@@ -40,7 +42,7 @@ const dummyData = [
         project: 'Fake Project',
         advisor: 'Robin Hurst',
         pm: 3,
-        date: new Date().toLocaleDateString(),
+        date: new Date().toLocaleDateString('en-US', dateOptions),
         notes: 'Consectetur adipiscing'
     },
     {
@@ -50,7 +52,7 @@ const dummyData = [
         project: 'Super Fake Project',
         advisor: 'Sara Waldman',
         pm: 3,
-        date: new Date().toLocaleDateString(),
+        date: new Date().toLocaleDateString('en-US', dateOptions),
         notes: 'Consectetur adipiscing'
     },
     {
@@ -60,18 +62,18 @@ const dummyData = [
         project: 'Not Real Project',
         advisor: 'Marnie Hurst',
         pm: 2,
-        date: new Date().toLocaleDateString(),
+        date: new Date().toLocaleDateString('en-US', dateOptions),
         notes: 'Consectetur adipiscing'
     },
     {
         id: 6,
         checked: false,
         status: 'none',
-        project: 'Another Fake Project',
+        project: 'Another Fake Project with a Super long name blah blah',
         advisor: 'Daniela Narvaez',
         pm: 1,
-        date: new Date().toLocaleDateString(),
-        notes: 'Consectetur adipiscing'
+        date: new Date().toLocaleDateString('en-US', dateOptions),
+        notes: 'Need times for next Mon/Tues'
     },
 ]
 

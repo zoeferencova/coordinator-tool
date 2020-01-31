@@ -42,7 +42,7 @@ export default class EmailPage extends React.Component {
             <div className="container">
                 <main className="content">
                     <Header title={'Email Templates'} />
-                    {this.renderTemplates()}
+                    {this.renderTemplates()}<br></br>
                     <button>New Template</button>
                     
                 </main>

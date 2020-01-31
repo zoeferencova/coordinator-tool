@@ -9,7 +9,7 @@
     width: 90%
 }
 
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 970px) {
     .container {
         margin-left: 0px;
     }
@@ -27,7 +27,7 @@ h2 {
     display: none;
 }
 
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 970px) {
     .mobile-list-container {
         display: block;
     }

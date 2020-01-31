@@ -8,7 +8,7 @@ export default class NavBar extends React.Component {
     }
 
     showMobile() {
-        if (window.innerWidth >= 768) {
+        if (window.innerWidth >= 970) {
             if (this.state.expanded) {
                 return 'show'
             } else {

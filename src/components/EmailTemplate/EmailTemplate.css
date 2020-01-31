@@ -1,0 +1,13 @@
+.template-item {
+    background-color: lightgray;
+    height: 60px;
+    line-height: 60px;
+    margin: 0;
+    border-radius: 10px;
+}
+
+
+
+.template-item:hover {
+    cursor: pointer;
+}

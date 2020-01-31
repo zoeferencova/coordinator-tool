@@ -2,27 +2,29 @@ import React from 'react';
 import './CompletedListBody.css'
 import CompletedListItem from '../CompletedListItem/CompletedListItem';
 
+const dateOptions = { month: 'numeric', day: 'numeric' }
+
 const dummyData = [
     {
         id: 1,
         project: 'Fake Project',
         advisor: 'Zoe Ferencova',
         pm: 1,
-        date: new Date().toLocaleDateString(),
+        date: new Date().toLocaleDateString('en-US', dateOptions),
     },
     {
         id: 2,
         project: 'Dummy Project',
         advisor: 'James Park',
         pm: 2,
-        date: new Date().toLocaleDateString(),
+        date: new Date().toLocaleDateString('en-US', dateOptions),
     },
     {
         id: 3,
-        project: 'Super Fake Project',
+        project: 'Super Fake Project with really long name',
         advisor: 'Robin Hurst',
         pm: 3,
-        date: new Date().toLocaleDateString(),
+        date: new Date().toLocaleDateString('en-US', dateOptions),
     },
 ]
 

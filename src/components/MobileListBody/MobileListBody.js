@@ -67,7 +67,7 @@ const dummyData = [
         id: 6,
         checked: false,
         status: 'none',
-        project: 'Another Fake Project',
+        project: 'Another Fake Project with a Super Long Title',
         advisor: 'Daniela Narvaez',
         pm: 1,
         date: new Date().toLocaleDateString(),
@@ -99,7 +99,7 @@ export default class MobileListBody extends React.Component {
                     <div className="table-header-cell">Status</div>
                     <div className="table-header-cell">Project</div>
                     <div className="table-header-cell">Advisor</div>
-                    <div className="table-header-cell">Actions</div>
+                    <div className="table-header-cell">More</div>
                 </div>
                 {this.renderMobileRows()}
             </div>
