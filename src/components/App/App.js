@@ -5,13 +5,14 @@ import LoginPage from '../../routes/LoginPage/LoginPage';
 import RegistrationPage from '../../routes/RegistrationPage/RegistrationPage';
 import MainListPage from '../../routes/MainListPage/MainListPage';
 import CompletedListPage from '../../routes/CompletedListPage/CompletedListPage';
-import ArchivePage from '../../routes/ArchivePage/ArchivePage';
 import DashboardPage from '../../routes/DashboardPage/DashboardPage';
 import AccountPage from '../../routes/AccountPage/AccountPage';
 import AddItemPage from '../../routes/AddItemPage/AddItemPage';
 import NewTemplatePage from '../../routes/NewTemplatePage/NewTemplatePage';
 import EmailPage from '../../routes/EmailPage/EmailPage';
 import NotFoundPage from '../../routes/NotFoundPage/NotFoundPage';
+import PrivateRoute from '../Utils/PrivateRoute';
+import PublicOnlyRoute from '../Utils/PublicOnlyRoute';
 import './App.css';
 
 export default class App extends React.Component {
@@ -26,41 +27,41 @@ export default class App extends React.Component {
             path={'/'}
             component={LandingPage}
           />
-          <Route
+          <PublicOnlyRoute
             path={'/login'}
             component={LoginPage}
           />
-          <Route
+          <PublicOnlyRoute
             path={'/register'}
             component={RegistrationPage}
           />
 
           {/* private routes */}
-          <Route
+          <PrivateRoute
             path={'/main'}
             component={MainListPage}
           />
-          <Route
+          <PrivateRoute
             path={'/completed'}
             component={CompletedListPage}
           />
-          <Route
+          <PrivateRoute
             path={'/dashboard'}
             component={DashboardPage}
           />
-          <Route
+          <PrivateRoute
             path={'/account'}
             component={AccountPage}
           />
-          <Route
+          <PrivateRoute
             path={'/add-item'}
             component={AddItemPage}
           />
-          <Route
+          <PrivateRoute
             path={'/new-template'}
             component={NewTemplatePage}
           />
-          <Route
+          <PrivateRoute
             path={'/email'}
             component={EmailPage}
           />
