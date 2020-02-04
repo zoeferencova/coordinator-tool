@@ -32,7 +32,6 @@ const AuthApiService = {
             .then(res =>
                 TokenService.saveAuthToken(res.authToken)
             )
-            return res;
     },
 
 }

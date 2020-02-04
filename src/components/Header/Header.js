@@ -1,5 +1,7 @@
 import React from 'react';
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
+import TokenService from '../../services/token-service'
+
 import './Header.css'
 
 const dummyUser = {
@@ -7,13 +9,18 @@ const dummyUser = {
 }
 
 export default class Header extends React.Component {
+    handleLogout = () => {
+        TokenService.clearAuthToken();
+
+    }
+
     render() {
         return (   
             <div className='header-container'>
                 <h1 className='header-title'>{this.props.title}</h1>
                 <div className="header-details">
                     <span>Welcome, {dummyUser.name} </span>
-                    <span><Link to="/">Log Out</Link></span>
+                    <Link to='/'><span onClick={this.handleLogout}>Log Out</span></Link>
                 </div>
             </div>   
         )
