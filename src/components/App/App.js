@@ -37,7 +37,7 @@ export default class App extends React.Component {
           />
 
           {/* private routes */}
-          <PrivateRoute
+          <PublicOnlyRoute
             path={'/main'}
             component={MainListPage}
           />
