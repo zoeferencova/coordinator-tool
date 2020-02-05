@@ -13,63 +13,98 @@ import EmailPage from '../../routes/EmailPage/EmailPage';
 import NotFoundPage from '../../routes/NotFoundPage/NotFoundPage';
 import PrivateRoute from '../Utils/PrivateRoute';
 import PublicOnlyRoute from '../Utils/PublicOnlyRoute';
+import UserDataService from '../../services/user-data-service';
+import STORE from '../../STORE';
+
 import './App.css';
+import AppContext from '../../contexts/contexts';
 
 export default class App extends React.Component {
+  state = {
+    listItems: [],
+    pms: [],
+    user: {},
+    templates: [],
+    completed: [],
+    dateOptions: {},
+  }
+
+  componentDidMount() {
+    this.setState(STORE);
+  }
+
+  // componentDidMount() {
+  //     UserDataService.getUserData()
+  //         .then(res => this.setState({ listItems: res }))
+  // }
 
   render() {
-    return (
-      <main className='App'>
-        <Switch>
-          {/* public routes */}
-          <Route
-            exact
-            path={'/'}
-            component={LandingPage}
-          />
-          <PublicOnlyRoute
-            path={'/login'}
-            component={LoginPage}
-          />
-          <PublicOnlyRoute
-            path={'/register'}
-            component={RegistrationPage}
-          />
+    const { listItems, pms, user, templates, completed, dateOptions } = this.state;
 
-          {/* private routes */}
-          <PublicOnlyRoute
-            path={'/main'}
-            component={MainListPage}
-          />
-          <PrivateRoute
-            path={'/completed'}
-            component={CompletedListPage}
-          />
-          <PrivateRoute
-            path={'/dashboard'}
-            component={DashboardPage}
-          />
-          <PrivateRoute
-            path={'/account'}
-            component={AccountPage}
-          />
-          <PrivateRoute
-            path={'/add-item'}
-            component={AddItemPage}
-          />
-          <PrivateRoute
-            path={'/new-template'}
-            component={NewTemplatePage}
-          />
-          <PrivateRoute
-            path={'/email'}
-            component={EmailPage}
-          />
-          <Route
-            component={NotFoundPage}
-          />
-        </Switch>
-      </main>
+    const value = {
+      listItems,
+      pms,
+      user,
+      templates,
+      completed,
+      dateOptions
+    }
+
+    return (
+      <AppContext.Provider value={value}>
+        <main className='App'>
+          <Switch>
+            {/* public routes */}
+            <Route
+              exact
+              path={'/'}
+              component={LandingPage}
+            />
+            <PublicOnlyRoute
+              path={'/login'}
+              component={LoginPage}
+            />
+            <PublicOnlyRoute
+              path={'/register'}
+              component={RegistrationPage}
+            />
+
+            {/* private routes */}
+            <PublicOnlyRoute
+              path={'/main'}
+              component={MainListPage}
+            />
+            <PublicOnlyRoute
+              path={'/completed'}
+              component={CompletedListPage}
+            />
+            <PublicOnlyRoute
+              path={'/dashboard'}
+              component={DashboardPage}
+            />
+            <PublicOnlyRoute
+              path={'/account'}
+              component={AccountPage}
+            />
+            <PublicOnlyRoute
+              path={'/add-item'}
+              component={AddItemPage}
+            />
+            <PublicOnlyRoute
+              path={'/new-template'}
+              component={NewTemplatePage}
+            />
+            <PublicOnlyRoute
+              path={'/email'}
+              component={EmailPage}
+            />
+            <Route
+              component={NotFoundPage}
+            />
+          </Switch>
+        </main>
+      </AppContext.Provider>
+      
     );
   }
 }

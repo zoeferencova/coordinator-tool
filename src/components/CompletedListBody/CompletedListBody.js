@@ -1,36 +1,13 @@
 import React from 'react';
+import AppContext from '../../contexts/contexts'
 import './CompletedListBody.css'
 import CompletedListItem from '../CompletedListItem/CompletedListItem';
 
-const dateOptions = { month: 'numeric', day: 'numeric' }
-
-const dummyData = [
-    {
-        id: 1,
-        project: 'Fake Project',
-        advisor: 'Zoe Ferencova',
-        pm: 1,
-        date: new Date().toLocaleDateString('en-US', dateOptions),
-    },
-    {
-        id: 2,
-        project: 'Dummy Project',
-        advisor: 'James Park',
-        pm: 2,
-        date: new Date().toLocaleDateString('en-US', dateOptions),
-    },
-    {
-        id: 3,
-        project: 'Super Fake Project with really long name',
-        advisor: 'Robin Hurst',
-        pm: 3,
-        date: new Date().toLocaleDateString('en-US', dateOptions),
-    },
-]
-
 export default class CompletedListBody extends React.Component {   
+    static contextType = AppContext;
+    
     renderRows() {
-        return dummyData.map(row => 
+        return this.context.completed.map(row => 
             <CompletedListItem
                 key={row.id}
                 project={row.project}

@@ -1,34 +1,14 @@
 import React from 'react';
 import Header from '../../components/Header/Header'
+import AppContext from '../../contexts/contexts'
 import './AccountPage.css'
 import NavBar from '../../components/NavBar/NavBar';
 
-const dummyAccount = {
-    name: 'Zoe Ferencova',
-    email: 'zoeferencova@gmail.com'
-}
-
-const dummyPms = [
-    {
-        id: 1,
-        name: 'James Park',
-        email: 'jamespark@gmail.com'
-    },
-    {
-        id: 2,
-        name: 'Robin Hurst',
-        email: 'robinhurst@gmail.com'
-    },
-    {
-        id: 3,
-        name: 'Petr Ferenc',
-        email: 'pferi@gmail.com'
-    },
-]
-
 export default class AccountPage extends React.Component {
+    static contextType = AppContext;
+    
     renderPms() {
-        return dummyPms.map(pm => 
+        return this.context.pms.map(pm => 
             <li key={pm.id}>{pm.name} - <span>{pm.email} </span><button>Edit</button> <button>Delete</button></li>
         )
     }
@@ -40,8 +20,8 @@ export default class AccountPage extends React.Component {
                     <Header title={'Account'} />
                     <section>
                         <h2>Account Info</h2>
-                        <p><strong>Name:</strong> {dummyAccount.name}</p>
-                        <p><strong>Email:</strong> {dummyAccount.email}</p>
+                        <p><strong>Name:</strong> {this.context.user.name}</p>
+                        <p><strong>Email:</strong> {this.context.user.email}</p>
                     </section>
                     <section>
                         <h2>PM Settings</h2>

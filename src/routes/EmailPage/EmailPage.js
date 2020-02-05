@@ -2,33 +2,15 @@ import React from 'react';
 import NavBar from '../../components/NavBar/NavBar';
 import EmailTemplate from '../../components/EmailTemplate/EmailTemplate'
 import Header from '../../components/Header/Header'
+import AppContext from '../../contexts/contexts'
 import { Link } from 'react-router-dom';
 import './EmailPage.css'
 
-const dummyTemplates = [
-    {
-        id: 1,
-        template_name: 'Template Name',
-        template_subject: 'Hello There!',
-        template_body: 'To whom this may concern, Blah blah blah'
-    },
-    {
-        id: 2,
-        template_name: 'Template Name',
-        template_subject: 'Hello There!',
-        template_body: 'To whom this may concern, Blah blah blah'
-    },
-    {
-        id: 3,
-        template_name: 'Template Name',
-        template_subject: 'Hello There!',
-        template_body: 'To whom this may concern, Blah blah blah'
-    },
-]
-
 export default class EmailPage extends React.Component {
+    static contextType = AppContext;
+
     renderTemplates() {
-        return dummyTemplates.map(template => 
+        return this.context.templates.map(template => 
             <EmailTemplate
                 key={template.id}
                 template_name={template.template_name}
