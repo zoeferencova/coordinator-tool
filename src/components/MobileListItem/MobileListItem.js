@@ -46,13 +46,13 @@ export default class MobileListItem extends React.Component {
                         <i className="far fa-caret-square-down"></i>
                     </div>
                     <div className={`popup ${this.state.popup ? 'show' : 'hidden'}`}>
-                            <div>PM: {this.props.pm}</div>
-                            <div>Date: {this.props.date}</div>
-                            <div>Notes: {this.props.notes}</div>
-                            <div>Email...</div>
-                            <div>Edit...</div>
-                            <div>Delete</div>
-                        </div>
+                        <div>PM: {this.props.pm}</div>
+                        <div>Date: {this.props.date}</div>
+                        <div>Notes: {this.props.notes}</div>
+                        <div>Email...</div>
+                        <div>Edit...</div>
+                        <div>Delete</div>
+                    </div>
                 </div>
             </div>
         )

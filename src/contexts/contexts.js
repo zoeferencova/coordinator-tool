@@ -1,4 +1,5 @@
 import React from 'react';
+import SendEmailForm from '../components/SendEmailForm/SendEmailForm';
 
 const AppContext = React.createContext({
     listItems: [],

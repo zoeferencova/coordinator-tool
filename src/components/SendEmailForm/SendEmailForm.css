@@ -1,0 +1,27 @@
+.email-form {
+    background: lightgray;
+    position: fixed;
+    min-height: 400px;
+    width: 60%;
+
+    left: 50%;
+    transform: translate(-50%, 50%);
+    bottom: 50%;
+    padding: 20px;
+    margin-left: 110px;
+}
+
+@media only screen and (max-width: 945px) {
+    .email-form {
+        margin-left: 0;
+    }
+}
+
+@media only screen and (max-width: 700px) {
+    .email-form {
+        width: 100%;
+        height: 100%;
+        padding-top: 50px;
+        margin: 0;
+    }
+}

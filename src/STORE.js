@@ -95,20 +95,20 @@ export default {
     templates: [
         {
             id: 1,
-            template_name: 'Template Name',
-            template_subject: 'Hello There!',
-            template_body: 'To whom this may concern, Blah blah blah'
+            template_name: 'Availability',
+            template_subject: 'Availability for Call',
+            template_body: 'Hi [ADVISOR],\n\nI am working with my colleague [PM] to arrange the new consultation on [PROJECT]. My client was hoping to schedule the call for this week. Could you please let me know what time windows work for you?\n\nThank you\n\nBest,\nZoe'
         },
         {
             id: 2,
             template_name: 'Template Name',
             template_subject: 'Hello There!',
-            template_body: 'To whom this may concern, Blah blah blah'
+            template_body: 'To whom this \n may concern, Blah blah blah'
         },
         {
             id: 3,
             template_name: 'Template Name',
-            template_subject: 'Hello There!',
+            template_subject: 'Hello &#013; There!',
             template_body: 'To whom this may concern, Blah blah blah'
         },
     ],

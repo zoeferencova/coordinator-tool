@@ -70,10 +70,6 @@
     opacity: 0.4;
 }
 
-.nav-wrap {
-    position: relative;
-}
-
 .hidden {
     display: none;
 }
@@ -93,6 +89,17 @@
 @media only screen and (max-width: 945px) {
     .burger {
         display: block;
+    }
+
+    .nav-wrap .burger {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        height: 60px;
+        line-height: 60px;
+        display: flex;
+        left: 0;
+        padding-left: 20px;
     }
     .burger i {
         font-size: 25px;

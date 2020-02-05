@@ -1,17 +1,15 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import AppContext from '../../contexts/contexts';
 import TokenService from '../../services/token-service'
 
 import './Header.css'
 
-const dummyUser = {
-    name: 'Zoe'
-}
-
 export default class Header extends React.Component {
+    static contextType = AppContext;
+
     handleLogout = () => {
         TokenService.clearAuthToken();
-
     }
 
     render() {
@@ -19,7 +17,7 @@ export default class Header extends React.Component {
             <div className='header-container'>
                 <h1 className='header-title'>{this.props.title}</h1>
                 <div className="header-details">
-                    <span>Welcome, {dummyUser.name} </span>
+                    <span>Welcome, {this.context.user.name} </span>
                     <Link to='/'><span onClick={this.handleLogout}>Log Out</span></Link>
                 </div>
             </div>   

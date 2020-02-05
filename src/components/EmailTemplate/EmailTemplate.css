@@ -6,7 +6,13 @@
     border-radius: 10px;
 }
 
+.template-body {
+    white-space: pre-line;
+}
 
+.template-contents p {
+    text-align: left;
+}
 
 .template-item:hover {
     cursor: pointer;
