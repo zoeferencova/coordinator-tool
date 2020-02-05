@@ -5,9 +5,10 @@ import MainListBody from '../../components/MainListBody/MainListBody';
 import MobileListBody from '../../components/MobileListBody/MobileListBody';
 import NavBar from '../../components/NavBar/NavBar'
 import Header from '../../components/Header/Header';
+import AuthApiService from '../../services/auth-api-service'
 
 export default class MainListPage extends React.Component {
-    
+
     render() {
         const dateOptions = { weekday: 'long', month: 'long', day: 'numeric' }
         const title = new Date().toLocaleDateString("en-US", dateOptions)

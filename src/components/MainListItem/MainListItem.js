@@ -9,7 +9,6 @@ const icons = {
 
 export default class MainListItem extends React.Component {
     state = {
-        status: 'none',
         expanded: false
     }
 
@@ -27,7 +26,7 @@ export default class MainListItem extends React.Component {
             <div className="table-row row">
                 <div className="table-body-cell"><input type="checkbox"></input></div>
                 <div className="table-body-cell">
-                    <span className="status-icon" onClick={() => this.state.expanded === true ? this.setState({ expanded: false }) : this.setState({ expanded: true })}>{icons[this.state.status]}</span>
+                    <span className="status-icon" onClick={() => this.state.expanded === true ? this.setState({ expanded: false }) : this.setState({ expanded: true })}>{icons[this.props.status]}</span>
                     <ul className={`icon-list hide-list ${this.state.expanded && 'show-list'}`}>
                         <li onClick={() => this.handleStatusClick('none')}>{icons['none']} None</li>
                         <li onClick={() => this.handleStatusClick('reached')}>{icons['reached']} Reached Out</li>

@@ -24,7 +24,7 @@ export default class LoginForm extends React.Component {
                 this.props.onLoginSuccess()
             })
             .catch(res => {
-                this.setState({ error: res.error })
+                this.setState({ error: res.message })
             })
     }
     

@@ -39,16 +39,12 @@ export default class RegistrationForm extends React.Component {
                         {error && <p>{error}</p>}
                     </div>
                     <div>
-                        <label htmlFor="first-name">First name</label>
-                        <input required placeholder='First Name' type="text" name='first-name' id='first-name' />
+                        <label htmlFor="full_name">Full name</label>
+                        <input required type="text" name='full_name' id='full_name' placeholder='Full Name' />
                     </div>
                     <div>
-                        <label htmlFor="last-name">Last name</label>
-                        <input required type="text" name='last-name' id='last-name' placeholder='Last Name' />
-                    </div>
-                    <div>
-                        <label htmlFor="username">Email</label>
-                        <input required type="text" name='username' id='username' />
+                        <label htmlFor="email">Email</label>
+                        <input required type="text" name='email' id='email' />
                     </div>
                     <div>
                         <label htmlFor="password">Password</label>
