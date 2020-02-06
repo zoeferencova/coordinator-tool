@@ -9,7 +9,7 @@ export default class AccountPage extends React.Component {
     
     renderPms() {
         return this.context.pms.map(pm => 
-            <li key={pm.id}>{pm.name} - <span>{pm.email} </span><button>Edit</button> <button>Delete</button></li>
+            <li key={pm.id}>{pm.name} - <span>{pm.email} </span> <button>Delete</button></li>
         )
     }
     

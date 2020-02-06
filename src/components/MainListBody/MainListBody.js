@@ -16,6 +16,7 @@ export default class MainListBody extends React.Component {
         }
     }
 
+    
     render() {
         return (
             <div className="table">

@@ -26,6 +26,40 @@ export default class MainListTools extends React.Component {
 
         return updateArray.join('%0A%0A')
     }
+
+    fireAction(action) {
+        const listCheckboxes = document.querySelectorAll('#list-checkbox')
+        const actionsSelect = document.querySelector('#action')
+        if (action === 'mark-completed') {
+            for (let i=0; i < listCheckboxes.length; i++) {
+                if (listCheckboxes[i].checked === true) {
+                    //function for changing posting status as completed to api
+                }
+            }
+            
+        }
+
+        if (action === 'mark-reached') {
+            for (let i=0; i < listCheckboxes.length; i++) {
+                if (listCheckboxes[i].checked === true) {
+                    //function for changing posting status as reached to api
+                }
+            }
+
+        }
+
+        if (action === 'delete-selected') {
+            window.confirm('Are you sure you want to delete the selected items?')
+            for (let i=0; i < listCheckboxes.length; i++) {
+                if (listCheckboxes[i].checked === true) {
+                    //function for deleting item in api
+                }
+            }
+        }
+
+        
+    }
+
     
     render() {
         return (
@@ -49,7 +83,7 @@ export default class MainListTools extends React.Component {
                     </div>
                     <div>
                         <label htmlFor="action">Actions: </label>
-                        <select name="action" id="action">
+                        <select name="action" id="action" onChange={e => this.fireAction(e.target.value)}>
                             <option value="none"></option>
                             <option value="mark-completed">Mark Completed</option>
                             <option value="mark-reached">Mark Reached Out</option>
