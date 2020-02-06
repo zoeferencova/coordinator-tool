@@ -27,7 +27,7 @@ export default class MainListItem extends React.Component {
     render() {
         return (
             <div className="table-row row">
-                <div className="table-body-cell hide-mobile"><input type="checkbox"></input></div>
+                <div className="table-body-cell hide-mobile"><input type="checkbox" id="list-checkbox"></input></div>
                 <div className="table-body-cell">
                     <span className="status-icon" onClick={() => this.state.expanded === true ? this.setState({ expanded: false }) : this.setState({ expanded: true })}>{icons[this.props.status]}</span>
                     <ul className={`icon-list hide-list ${this.state.expanded && 'show-list'}`}>
