@@ -37,7 +37,7 @@ export default class MainListTools extends React.Component {
 
                     <div>
                         <label htmlFor="sort">Sort by: </label>
-                        <select name="sort" id="sort">
+                        <select name="sort" id="sort" onChange={e => this.props.setSort(e.target.value)}>
                             <option value="none"></option>
                             <option value="advisor">Advisor (A-Z)</option>
                             <option value="project">Project Name</option>

@@ -5,7 +5,7 @@ const data = {
             status: 'reached',
             project: 'Fake Project',
             advisor: 'Zoe Ferencova',
-            pm: 1,
+            pm: 'John',
             date: new Date().toLocaleDateString(),
             notes: 'Lorem ipsum'
         },
@@ -14,7 +14,7 @@ const data = {
             status: 'reached',
             project: 'Dummy Project',
             advisor: 'James Park',
-            pm: 2,
+            pm: 'Jane',
             date: new Date().toLocaleDateString(),
             notes: 'Dolor sit amet'
         },
@@ -23,7 +23,7 @@ const data = {
             status: 'none',
             project: 'Super Fake Project',
             advisor: 'Robin Hurst',
-            pm: 3,
+            pm: 'Jane',
             date: new Date().toLocaleDateString(),
             notes: 'Consectetur adipiscing'
         },
@@ -32,7 +32,7 @@ const data = {
             status: 'none',
             project: 'Fake Project',
             advisor: 'Robin Hurst',
-            pm: 3,
+            pm: 'Emily',
             date: new Date().toLocaleDateString(),
             notes: 'Consectetur adipiscing'
         },
@@ -41,7 +41,7 @@ const data = {
             status: 'none',
             project: 'Super Fake Project',
             advisor: 'Sara Waldman',
-            pm: 3,
+            pm: 'Alice',
             date: new Date().toLocaleDateString(),
             notes: 'Consectetur adipiscing'
         },
@@ -50,7 +50,7 @@ const data = {
             status: 'none',
             project: 'Another Fake Project with a Super Long Title',
             advisor: 'Daniela Narvaez',
-            pm: 1,
+            pm: 'Jessica',
             date: new Date().toLocaleDateString(),
             notes: 'Consectetur adipiscing'
         },
@@ -102,8 +102,8 @@ const data = {
             status: 'completed',
             project: 'Fake Project',
             advisor: 'Zoe Ferencova',
-            pm: 1,
-            date: new Date().toLocaleDateString(),
+            pm: 'John',
+            date: new Date('2019-06-22').toLocaleDateString(),
             notes: 'Note',
         },
         {
@@ -111,8 +111,8 @@ const data = {
             status: 'completed',
             project: 'Dummy Project',
             advisor: 'James Park',
-            pm: 2,
-            date: new Date().toLocaleDateString(),
+            pm: 'Alice',
+            date: new Date('2019-06-28').toLocaleDateString(),
             notes: 'Note',
         },
         {
@@ -120,8 +120,8 @@ const data = {
             status: 'completed',
             project: 'Super Fake Project with really long name',
             advisor: 'Robin Hurst',
-            pm: 3,
-            date: new Date().toLocaleDateString(),
+            pm: 'Jessica',
+            date: new Date('2019-06-10').toLocaleDateString(),
             notes: 'Note',
         },
     ],

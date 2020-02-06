@@ -6,18 +6,6 @@ import CompletedListItem from '../CompletedListItem/CompletedListItem';
 export default class CompletedListBody extends React.Component {   
     static contextType = AppContext;
     
-    renderRows() {
-        return this.context.completedListItems.map(row => 
-            <CompletedListItem
-                key={row.id}
-                project={row.project}
-                advisor={row.advisor}
-                pm={row.pm}
-                date={row.date}
-            />
-        )
-    }
-    
     render() {
         return (
             <div className="table">
@@ -28,7 +16,7 @@ export default class CompletedListBody extends React.Component {
                     <div className="table-header-cell">Date</div>
                     <div className="table-header-cell">Actions</div>
                 </div>
-                {this.renderRows()}
+                {this.props.renderCompletedItems()}
             </div>
         ) 
     }

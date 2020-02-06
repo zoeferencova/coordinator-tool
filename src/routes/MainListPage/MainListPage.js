@@ -18,6 +18,7 @@ export default class MainListPage extends React.Component {
         emailAdvisor: '',
         emailPm: '',
         query: '',
+        sort: 'none',
     }
 
     openEmailForm = (project, advisor, pm) => {
@@ -33,6 +34,10 @@ export default class MainListPage extends React.Component {
         this.setState({ query })
     }
 
+    setSort = (sort) => {
+        this.setState({ sort })
+    }
+
     closeEmailForm = () => {
         this.setState({
             emailFormOpen: false,
@@ -40,6 +45,34 @@ export default class MainListPage extends React.Component {
             emailAdvisor: '',
             emailPm: '',
         })
+    }
+
+    sortItems = (inputItems, sort) => {
+        const ASC = 'ascending';
+        const DSC = 'descending';
+
+        const sortByAdvisor = (a, b) => a.props.advisor.toLowerCase().localeCompare(b.props.advisor.toLowerCase());
+        const sortByProject = (a, b) => a.props.project.toLowerCase().localeCompare(b.props.project.toLowerCase());
+        const sortByPM = (a, b) => a.props.pm.toLowerCase().localeCompare(b.props.pm.toLowerCase());
+        const sortByDate = (a, b, order=ASC) => {
+            const diff = new Date(a.props.date) - new Date(b.props.date);
+            return order === ASC ? diff : -1 * diff
+        };
+        const sortByStatus = (a, b) => a.props.status.toLowerCase().localeCompare(b.props.status.toLowerCase());
+        
+        if (sort === 'advisor') {
+            return inputItems.sort((a, b) => sortByAdvisor(a, b))
+        } else if (sort === 'project') {
+            return inputItems.sort((a, b) => sortByProject(a, b))
+        } else if (sort === 'pm') {
+            return inputItems.sort((a, b) => sortByPM(a, b))
+        } else if (sort === 'date-asc') {
+            return inputItems.sort((a, b) => sortByDate(a, b, ASC))
+        } else if (sort === 'date-desc') {
+            return inputItems.sort((a, b) => sortByDate(a, b, DSC))
+        } else if (sort === 'status') {
+            return inputItems.sort((a, b) => sortByStatus(a, b))
+        }
     }
     
     searchItems = (inputItems, query) => {
@@ -49,12 +82,11 @@ export default class MainListPage extends React.Component {
         } else if (query === '') {
             items = inputItems
         }
-
         return items;
     }
 
     renderListItems = () => { 
-        const query = this.state.query;
+        const { sort, query } = this.state;
         const { listItems } = this.context;
         const itemArray = listItems.map(item => 
             <MainListItem
@@ -70,8 +102,12 @@ export default class MainListPage extends React.Component {
                 closeEmailForm={e => this.closeEmailForm}
             />
         )
-
-        return this.searchItems(itemArray, query)
+        const searchedItems = this.searchItems(itemArray, query)
+        if (sort === 'none') {
+            return searchedItems;
+        } else {
+            return this.sortItems(searchedItems, sort)
+        }
     }
 
     render() {
@@ -82,7 +118,7 @@ export default class MainListPage extends React.Component {
             <div className="container">
                 <main className="content">
                     <Header title={title} />
-                    <MainListTools setQuery={this.setQuery} />
+                    <MainListTools setQuery={this.setQuery} setSort={this.setSort} />
                     <br></br>
                     <div className='main-list-container'>
                         <MainListBody renderListItems={this.renderListItems} openEmailForm={this.openEmailForm} closeEmailForm={this.closeEmailForm} />
