@@ -5,7 +5,11 @@ const data = {
             status: 'reached',
             project: 'Fake Project',
             advisor: 'Zoe Ferencova',
-            pm: 'John',
+            pm: {
+                id: 4,
+                name: 'Jerry',
+                email: 'jerry@gmail.com'
+            },
             date: new Date().toLocaleDateString(),
             notes: 'Lorem ipsum'
         },
@@ -14,7 +18,11 @@ const data = {
             status: 'reached',
             project: 'Dummy Project',
             advisor: 'James Park',
-            pm: 'Jane',
+            pm: {
+                id: 4,
+                name: 'Jerry',
+                email: 'jerry@gmail.com'
+            },
             date: new Date().toLocaleDateString(),
             notes: 'Dolor sit amet'
         },
@@ -23,7 +31,11 @@ const data = {
             status: 'none',
             project: 'Super Fake Project',
             advisor: 'Robin Hurst',
-            pm: 'Jane',
+            pm: {
+                id: 3,
+                name: 'Jack',
+                email: 'pferi@gmail.com'
+            },
             date: new Date().toLocaleDateString(),
             notes: 'Consectetur adipiscing'
         },
@@ -32,7 +44,11 @@ const data = {
             status: 'none',
             project: 'Fake Project',
             advisor: 'Robin Hurst',
-            pm: 'Emily',
+            pm: {
+                id: 3,
+                name: 'Jack',
+                email: 'pferi@gmail.com'
+            },
             date: new Date().toLocaleDateString(),
             notes: 'Consectetur adipiscing'
         },
@@ -41,7 +57,11 @@ const data = {
             status: 'none',
             project: 'Super Fake Project',
             advisor: 'Sara Waldman',
-            pm: 'Alice',
+            pm: {
+                id: 2,
+                name: 'John',
+                email: 'robinhurst@gmail.com'
+            },
             date: new Date().toLocaleDateString(),
             notes: 'Consectetur adipiscing'
         },
@@ -50,7 +70,11 @@ const data = {
             status: 'none',
             project: 'Another Fake Project with a Super Long Title',
             advisor: 'Daniela Narvaez',
-            pm: 'Jessica',
+            pm: {
+                id: 1,
+                name: 'Jane',
+                email: 'jamespark@gmail.com'
+            },
             date: new Date().toLocaleDateString(),
             notes: 'Consectetur adipiscing'
         },
@@ -58,18 +82,23 @@ const data = {
     pms: [
         {
             id: 1,
-            name: 'James Park',
+            name: 'Jane',
             email: 'jamespark@gmail.com'
         },
         {
             id: 2,
-            name: 'Robin Hurst',
+            name: 'John',
             email: 'robinhurst@gmail.com'
         },
         {
             id: 3,
-            name: 'Petr Ferenc',
+            name: 'Jack',
             email: 'pferi@gmail.com'
+        },
+        {
+            id: 4,
+            name: 'Jerry',
+            email: 'jerry@gmail.com'
         },
     ],
     user: {
@@ -102,7 +131,11 @@ const data = {
             status: 'completed',
             project: 'Fake Project',
             advisor: 'Zoe Ferencova',
-            pm: 'John',
+            pm: {
+                id: 3,
+                name: 'Jack',
+                email: 'pferi@gmail.com'
+            },
             date: new Date('2019-06-22').toLocaleDateString(),
             notes: 'Note',
         },
@@ -111,7 +144,11 @@ const data = {
             status: 'completed',
             project: 'Dummy Project',
             advisor: 'James Park',
-            pm: 'Alice',
+            pm: {
+                id: 4,
+                name: 'Jerry',
+                email: 'jerry@gmail.com'
+            },
             date: new Date('2019-06-28').toLocaleDateString(),
             notes: 'Note',
         },
@@ -120,7 +157,11 @@ const data = {
             status: 'completed',
             project: 'Super Fake Project with really long name',
             advisor: 'Robin Hurst',
-            pm: 'Jessica',
+            pm: {
+                id: 1,
+                name: 'Jane',
+                email: 'jamespark@gmail.com'
+            },
             date: new Date('2019-06-10').toLocaleDateString(),
             notes: 'Note',
         },

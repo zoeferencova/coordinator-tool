@@ -11,6 +11,7 @@ import AddItemPage from '../../routes/AddItemPage/AddItemPage';
 import NewTemplatePage from '../../routes/NewTemplatePage/NewTemplatePage';
 import EmailPage from '../../routes/EmailPage/EmailPage';
 import NotFoundPage from '../../routes/NotFoundPage/NotFoundPage';
+import EditItemPage from '../../routes/EditItemPage/EditItemPage'
 import PrivateRoute from '../Utils/PrivateRoute';
 import PublicOnlyRoute from '../Utils/PublicOnlyRoute';
 import UserDataService from '../../services/user-data-service';
@@ -96,6 +97,10 @@ export default class App extends React.Component {
             <PublicOnlyRoute
               path={'/add-item'}
               component={AddItemPage}
+            />
+            <PublicOnlyRoute
+              path={'/edit-item'}
+              component={EditItemPage}
             />
             <PublicOnlyRoute
               path={'/new-template'}

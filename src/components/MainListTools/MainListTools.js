@@ -2,6 +2,7 @@ import React from 'react';
 import AppContext from '../../contexts/contexts'
 import './MainListTools.css'
 import { Link } from 'react-router-dom';
+import LoginForm from '../LoginForm/LoginForm';
 
 export default class MainListTools extends React.Component {
     static contextType = AppContext;
@@ -10,11 +11,11 @@ export default class MainListTools extends React.Component {
         const { listItems } = this.context;
         const allItems = {}
         listItems.forEach(item => {
-            const itemPm = item.pm;
-            if (allItems[itemPm]) {
-                allItems[itemPm].push(item)
+            const itemPmName = item.pm.name;
+            if (allItems[itemPmName]) {
+                allItems[itemPmName].push(item)
             } else {
-                allItems[itemPm] = [item];
+                allItems[itemPmName] = [item];
             }
         })
 
@@ -25,6 +26,18 @@ export default class MainListTools extends React.Component {
         }
 
         return updateArray.join('%0A%0A')
+    }
+
+    formatUpdateEmailAddresses = () => {
+        const { listItems } = this.context;
+        const pmEmails = []
+        listItems.forEach(item => {
+            if (!pmEmails.includes(item.pm.email)) {
+                pmEmails.push(item.pm.email)  
+            }
+        })
+
+        return pmEmails.join('; ')
     }
 
     fireAction(action) {
@@ -93,7 +106,7 @@ export default class MainListTools extends React.Component {
 
                 <div>
                     <button>Reset</button>
-                    <a href={`mailto:?Subject=Update&Body=${this.formatEmailUpdate()}`}><button>Send Update</button></a>
+                    <a href={`mailto:${this.formatUpdateEmailAddresses()}?Subject=Update - ${new Date().toLocaleDateString('en-US', {month: 'long', weekday: 'long', day: 'numeric'})}&Body=${this.formatEmailUpdate()}`}><button>Send Update</button></a>
                     <Link to='/add-item'><button>Add Item</button></Link>
                 </div>
                 

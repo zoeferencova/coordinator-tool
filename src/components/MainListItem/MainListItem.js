@@ -1,6 +1,7 @@
 import React from 'react';
 import AppContext from '../../contexts/contexts'
 import './MainListItem.css'
+import { Link } from 'react-router-dom';
 
 const icons = {
     'none': <i className="far fa-circle"></i>,
@@ -25,25 +26,26 @@ export default class MainListItem extends React.Component {
     }
 
     render() {
+        const { project, advisor, pm, notes, status, date } = this.props;
         return (
             <div className="table-row row">
                 <div className="table-body-cell hide-mobile"><input type="checkbox" id="list-checkbox"></input></div>
                 <div className="table-body-cell">
-                    <span className="status-icon" onClick={() => this.state.expanded === true ? this.setState({ expanded: false }) : this.setState({ expanded: true })}>{icons[this.props.status]}</span>
+                    <span className="status-icon" onClick={() => this.state.expanded === true ? this.setState({ expanded: false }) : this.setState({ expanded: true })}>{icons[status]}</span>
                     <ul className={`icon-list hide-list ${this.state.expanded && 'show-list'}`}>
                         <li onClick={() => this.handleStatusClick('none')}>{icons['none']} None</li>
                         <li onClick={() => this.handleStatusClick('reached')}>{icons['reached']} Reached Out</li>
                         <li className='last' onClick={() => this.handleStatusClick('completed')}>{icons['completed']} Completed</li>
                     </ul>
                 </div>
-                <div className="table-body-cell proj-cell">{this.props.project}</div>
-                <div className="table-body-cell adv-cell">{this.props.advisor}</div>
-                <div className="table-body-cell hide-mobile">{this.props.pm}</div>
-                <div className="table-body-cell hide-mobile">{this.props.date}</div>
-                <div className="table-body-cell notes-cell hide-mobile">{this.props.notes}</div>
+                <div className="table-body-cell proj-cell">{project}</div>
+                <div className="table-body-cell adv-cell">{advisor}</div>
+                <div className="table-body-cell hide-mobile">{pm.name}</div>
+                <div className="table-body-cell hide-mobile">{date}</div>
+                <div className="table-body-cell notes-cell hide-mobile">{notes}</div>
                 <div className="table-body-cell hide-mobile">
-                    <button onClick={() => this.props.openEmailForm(this.props.project, this.props.advisor, this.props.pm)}><i className="fas fa-envelope"></i></button>
-                    <button><i className="fas fa-edit"></i></button>
+                    <button onClick={() => this.props.openEmailForm(project, advisor, pm)}><i className="fas fa-envelope"></i></button>
+                    <Link to={{pathname:'/edit-item', itemProps: {project, advisor, pm, notes}}} ><button onClick={this.handleEditItem}><i className="fas fa-edit"></i></button></Link>
                     <button><i className="fas fa-trash-alt"></i></button>
                 </div>
                 <div className="table-body-cell hide-desktop">
@@ -55,9 +57,9 @@ export default class MainListItem extends React.Component {
                         <i className="far fa-caret-square-down"></i>
                     </div>
                     <div className={`popup ${this.state.popup ? 'show' : 'hidden'}`}>
-                        <div>PM: {this.props.pm}</div>
-                        <div>Date: {this.props.date}</div>
-                        <div>Notes: {this.props.notes}</div>
+                        <div>PM: {pm.name}</div>
+                        <div>Date: {date}</div>
+                        <div>Notes: {notes}</div>
                         <div>Email...</div>
                         <div>Edit...</div>
                         <div>Delete</div>
