@@ -11,6 +11,19 @@
     margin-left: 110px;
 }
 
+.x-button {
+    position: absolute;
+    left: 0;
+    top: 0;
+    background: none;
+    border: none;
+}
+
+.x-button i {
+    font-size: 22px;
+    padding: 10px;
+}
+
 @media only screen and (max-width: 945px) {
     .email-form {
         margin-left: 0;

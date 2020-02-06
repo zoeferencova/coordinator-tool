@@ -14,7 +14,7 @@ import NotFoundPage from '../../routes/NotFoundPage/NotFoundPage';
 import PrivateRoute from '../Utils/PrivateRoute';
 import PublicOnlyRoute from '../Utils/PublicOnlyRoute';
 import UserDataService from '../../services/user-data-service';
-import STORE from '../../STORE';
+import data from '../../STORE';
 
 import './App.css';
 import AppContext from '../../contexts/contexts';
@@ -22,15 +22,22 @@ import AppContext from '../../contexts/contexts';
 export default class App extends React.Component {
   state = {
     listItems: [],
+    completedListItems: [],
     pms: [],
     user: {},
     templates: [],
-    completed: [],
     dateOptions: {},
   }
 
   componentDidMount() {
-    this.setState(STORE);
+    this.setState({
+      listItems: data.listItems,
+      completedListItems: data.completedListItems,
+      pms: data.pms,
+      user: data.user,
+      templates: data.templates,
+      dateOptions: data.dateOptions,
+    });
   }
 
   // componentDidMount() {
@@ -39,14 +46,14 @@ export default class App extends React.Component {
   // }
 
   render() {
-    const { listItems, pms, user, templates, completed, dateOptions } = this.state;
+    const { listItems, pms, user, templates, completedListItems, dateOptions } = this.state;
 
     const value = {
       listItems,
       pms,
       user,
       templates,
-      completed,
+      completedListItems,
       dateOptions,
     }
 

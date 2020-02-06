@@ -1,9 +1,8 @@
-export default {
+const data = {
     listItems : [
         {
             id: 1,
-            checked: true,
-            status: 'none',
+            status: 'reached',
             project: 'Fake Project',
             advisor: 'Zoe Ferencova',
             pm: 1,
@@ -12,8 +11,7 @@ export default {
         },
         {
             id: 2,
-            checked: false,
-            status: 'none',
+            status: 'reached',
             project: 'Dummy Project',
             advisor: 'James Park',
             pm: 2,
@@ -22,7 +20,6 @@ export default {
         },
         {
             id: 3,
-            checked: false,
             status: 'none',
             project: 'Super Fake Project',
             advisor: 'Robin Hurst',
@@ -32,7 +29,6 @@ export default {
         },
         {
             id: 7,
-            checked: false,
             status: 'none',
             project: 'Fake Project',
             advisor: 'Robin Hurst',
@@ -42,8 +38,7 @@ export default {
         },
         {
             id: 4,
-            checked: false,
-            status: 'reached',
+            status: 'none',
             project: 'Super Fake Project',
             advisor: 'Sara Waldman',
             pm: 3,
@@ -51,18 +46,7 @@ export default {
             notes: 'Consectetur adipiscing'
         },
         {
-            id: 5,
-            checked: false,
-            status: 'completed',
-            project: 'Not Real Project',
-            advisor: 'Marnie Hurst',
-            pm: 2,
-            date: new Date().toLocaleDateString(),
-            notes: 'Consectetur adipiscing'
-        },
-        {
             id: 6,
-            checked: false,
             status: 'none',
             project: 'Another Fake Project with a Super Long Title',
             advisor: 'Daniela Narvaez',
@@ -112,29 +96,37 @@ export default {
             template_body: 'To whom this may concern, Blah blah blah'
         },
     ],
-    completed: [
+    completedListItems: [
         {
             id: 1,
+            status: 'completed',
             project: 'Fake Project',
             advisor: 'Zoe Ferencova',
             pm: 1,
             date: new Date().toLocaleDateString(),
+            notes: 'Note',
         },
         {
             id: 2,
+            status: 'completed',
             project: 'Dummy Project',
             advisor: 'James Park',
             pm: 2,
             date: new Date().toLocaleDateString(),
+            notes: 'Note',
         },
         {
             id: 3,
+            status: 'completed',
             project: 'Super Fake Project with really long name',
             advisor: 'Robin Hurst',
             pm: 3,
             date: new Date().toLocaleDateString(),
+            notes: 'Note',
         },
     ],
     dateOptions: { month: 'short', day: 'numeric' },
     
 }
+
+export default data;

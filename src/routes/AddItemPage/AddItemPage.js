@@ -29,7 +29,7 @@ export default class AddItemPage extends React.Component {
                             <label htmlFor="adv-url">Advisor URL: </label>
                             <input type="text" name='adv-url' id='adv-url'></input>
                         </div>
-                        <a>+ Additional Advisors</a>
+                        <button>+ Additional Advisors</button>
                         <br></br>
                         <div>
                             <label htmlFor="pm">Project Manager: </label>

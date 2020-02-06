@@ -46,7 +46,9 @@ export default class SendEmailForm extends React.Component {
         return (
 
                  <main role="main" className="email-form">
+                    <button onClick={this.props.closeEmailForm}  className="x-button"><i className="fas fa-times"></i></button>
                     <h3>Send Email</h3>
+                    
                     <form>
                         <div>
                             <label htmlFor="template">Template: </label>
@@ -63,7 +65,7 @@ export default class SendEmailForm extends React.Component {
                             <h4>Preview:</h4>
                             <p className='template-body'>{this.state.selectedTemplate !== '' ? this.formatTemplateBody() : ''}</p>
                         </div>
-                        <button onClick={e => this.props.closeEmailForm(e)}>Cancel</button>
+                        
                         <a href={`mailto:?Subject=${this.state.selectedTemplate !== '' ? this.context.templates[this.state.selectedTemplate].template_subject : ''}&Body=${this.state.selectedTemplate !== '' ? this.formatTemplateForEmail() : ''}`}>Open in Outlook</a>
                     </form>
                 </main>

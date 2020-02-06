@@ -1,5 +1,4 @@
 import React from 'react';
-import SendEmailForm from '../SendEmailForm/SendEmailForm'
 import AppContext from '../../contexts/contexts'
 import './MainListItem.css'
 

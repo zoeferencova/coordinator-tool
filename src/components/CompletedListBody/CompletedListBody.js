@@ -7,7 +7,7 @@ export default class CompletedListBody extends React.Component {
     static contextType = AppContext;
     
     renderRows() {
-        return this.context.completed.map(row => 
+        return this.context.completedListItems.map(row => 
             <CompletedListItem
                 key={row.id}
                 project={row.project}
