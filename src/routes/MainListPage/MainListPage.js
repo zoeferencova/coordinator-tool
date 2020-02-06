@@ -16,7 +16,7 @@ export default class MainListPage extends React.Component {
         emailFormOpen: false,
         emailProject: '',
         emailAdvisor: '',
-        emailPm: '',
+        emailPm: {},
         query: '',
         sort: 'none',
     }
@@ -123,7 +123,7 @@ export default class MainListPage extends React.Component {
                     <div className='main-list-container'>
                         <MainListBody renderListItems={this.renderListItems} openEmailForm={this.openEmailForm} closeEmailForm={this.closeEmailForm} />
                     </div>
-                    {this.state.emailFormOpen && <SendEmailForm project={this.state.emailProject} advisor={this.state.emailAdvisor} pm={this.state.emailPm} closeEmailForm={this.closeEmailForm} />}
+                    {this.state.emailFormOpen && <SendEmailForm project={this.state.emailProject} advisor={this.state.emailAdvisor} pm={this.state.emailPm.name} pm_email={this.state.emailPm.email} closeEmailForm={this.closeEmailForm} />}
                 </main>
                 <NavBar />
             </div>
