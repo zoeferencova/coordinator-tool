@@ -53,7 +53,7 @@ export default class MainListPage extends React.Component {
 
         const sortByAdvisor = (a, b) => a.props.advisor.toLowerCase().localeCompare(b.props.advisor.toLowerCase());
         const sortByProject = (a, b) => a.props.project.toLowerCase().localeCompare(b.props.project.toLowerCase());
-        const sortByPM = (a, b) => a.props.pm.toLowerCase().localeCompare(b.props.pm.toLowerCase());
+        const sortByPM = (a, b) => a.props.pm.name.toLowerCase().localeCompare(b.props.pm.name.toLowerCase());
         const sortByDate = (a, b, order=ASC) => {
             const diff = new Date(a.props.date) - new Date(b.props.date);
             return order === ASC ? diff : -1 * diff
