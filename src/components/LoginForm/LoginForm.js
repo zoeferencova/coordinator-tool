@@ -1,12 +1,16 @@
 import React from 'react';
 import AuthApiService from '../../services/auth-api-service'
+import { Redirect } from 'react-router-dom';
 
 export default class LoginForm extends React.Component {
     static defaultProps = {
         onLoginSuccess: () => {}
     }
 
-    state = { error: null }
+    state = { 
+        error: null,
+        toMain: false, 
+    }
 
     handleSubmitJwtAuth = e => {
         e.preventDefault()
@@ -20,7 +24,7 @@ export default class LoginForm extends React.Component {
             .then(res => {
                 email.value = '';
                 password.value = '';
-                this.props.onLoginSuccess()
+                this.setState({ toMain: true })
             })
             .catch(res => {
                 this.setState({ error: res.message })
@@ -29,7 +33,9 @@ export default class LoginForm extends React.Component {
     
     render() {
         const { error } = this.state;
-
+        if(this.state.toMain === true ) {
+            return <Redirect to='/main'></Redirect>
+        }
         return (
             <main>
                 <form className='LoginForm' onSubmit={this.handleSubmitJwtAuth}>

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import LoginForm from '../../components/LoginForm/LoginForm'
 import './LoginPage.css'
 
@@ -10,10 +10,7 @@ export default class LoginPage extends React.Component {
             push: () => {},
         },
     }
-
-    handleLogin = () => {
-        this.props.history.push('/main')
-    }
+    
     
     render() {
         return (

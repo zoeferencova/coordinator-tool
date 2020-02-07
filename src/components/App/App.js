@@ -28,7 +28,7 @@ export default class App extends React.Component {
     pms: [],
     user: [],
     templates: [],
-    dateOptions: {},
+    dateOptions: { month: 'short', day: 'numeric' },
   }
 
   componentDidMount() {
