@@ -11,7 +11,7 @@ export default class MainListTools extends React.Component {
         const { listItems } = this.context;
         const allItems = {}
         listItems.forEach(item => {
-            const itemPmName = item.pm.name;
+            const itemPmName = item.pm_name;
             if (allItems[itemPmName]) {
                 allItems[itemPmName].push(item)
             } else {
@@ -32,8 +32,8 @@ export default class MainListTools extends React.Component {
         const { listItems } = this.context;
         const pmEmails = []
         listItems.forEach(item => {
-            if (!pmEmails.includes(item.pm.email)) {
-                pmEmails.push(item.pm.email)  
+            if (!pmEmails.includes(item.pm_email)) {
+                pmEmails.push(item.pm_email)  
             }
         })
 

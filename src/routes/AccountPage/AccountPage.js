@@ -9,7 +9,7 @@ export default class AccountPage extends React.Component {
     
     renderPms() {
         return this.context.pms.map(pm => 
-            <li key={pm.id}>{pm.name} - <span>{pm.email} </span> <button>Delete</button></li>
+            <li key={pm.id}>{pm.pm_name} - <span>{pm.pm_email} </span> <button>Delete</button></li>
         )
     }
     
@@ -20,7 +20,7 @@ export default class AccountPage extends React.Component {
                     <Header title={'Account'} />
                     <section>
                         <h2>Account Info</h2>
-                        <p><strong>Name:</strong> {this.context.user.name}</p>
+                        <p><strong>Name:</strong> {this.context.user.full_name}</p>
                         <p><strong>Email:</strong> {this.context.user.email}</p>
                     </section>
                     <section>

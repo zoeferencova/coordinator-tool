@@ -15,6 +15,7 @@ import EditItemPage from '../../routes/EditItemPage/EditItemPage'
 import PrivateRoute from '../Utils/PrivateRoute';
 import PublicOnlyRoute from '../Utils/PublicOnlyRoute';
 import UserDataService from '../../services/user-data-service';
+import config from '../../config'
 import data from '../../STORE';
 
 import './App.css';
@@ -25,28 +26,67 @@ export default class App extends React.Component {
     listItems: [],
     completedListItems: [],
     pms: [],
-    user: {},
+    user: [],
     templates: [],
     dateOptions: {},
   }
 
   componentDidMount() {
-    this.setState({
-      listItems: data.listItems,
-      completedListItems: data.completedListItems,
-      pms: data.pms,
-      user: data.user,
-      templates: data.templates,
-      dateOptions: data.dateOptions,
-    });
+    fetch(`${config.API_ENDPOINT}/list`, {
+      method: 'GET',
+      headers: {
+          'content-type': 'application/json',
+          'Authorization': `Bearer ${window.sessionStorage.getItem(config.TOKEN_KEY)}`
+      }
+      })
+          .then(res => res.json())
+          .then(resJson => this.setState({ listItems: resJson }))
+          
+    fetch(`${config.API_ENDPOINT}/pms`, {
+      method: 'GET',
+      headers: {
+          'content-type': 'application/json',
+          'Authorization': `Bearer ${window.sessionStorage.getItem(config.TOKEN_KEY)}`
+      }
+      })
+          .then(res => res.json())
+          .then(resJson => this.setState({ pms: resJson }))
+
+    fetch(`${config.API_ENDPOINT}/templates`, {
+      method: 'GET',
+      headers: {
+          'content-type': 'application/json',
+          'Authorization': `Bearer ${window.sessionStorage.getItem(config.TOKEN_KEY)}`
+      }
+      })
+          .then(res => res.json())
+          .then(resJson => this.setState({ templates: resJson }))
+
+    fetch(`${config.API_ENDPOINT}/completed`, {
+      method: 'GET',
+      headers: {
+          'content-type': 'application/json',
+          'Authorization': `Bearer ${window.sessionStorage.getItem(config.TOKEN_KEY)}`
+      }
+      })
+          .then(res => res.json())
+          .then(resJson => this.setState({ completedListItems: resJson }))
+
+    fetch(`${config.API_ENDPOINT}/users`, {
+      method: 'GET',
+      headers: {
+          'content-type': 'application/json',
+          'Authorization': `Bearer ${window.sessionStorage.getItem(config.TOKEN_KEY)}`
+      }
+      })
+          .then(res => res.json())
+          .then(resJson => this.setState({ user: resJson[0] }))
   }
 
-  // componentDidMount() {
-  //     UserDataService.getUserData()
-  //         .then(res => this.setState({ listItems: res }))
-  // }
+  
 
   render() {
+    
     const { listItems, pms, user, templates, completedListItems, dateOptions } = this.state;
 
     const value = {
@@ -59,11 +99,12 @@ export default class App extends React.Component {
     }
 
     return (
+      
       <AppContext.Provider value={value}>
         <main className='App'>
           <Switch>
             {/* public routes */}
-            <Route
+            <PublicOnlyRoute
               exact
               path={'/'}
               component={LandingPage}
@@ -78,39 +119,39 @@ export default class App extends React.Component {
             />
 
             {/* private routes */}
-            <PublicOnlyRoute
+            <PrivateRoute
               path={'/main'}
               component={MainListPage}
             />
-            <PublicOnlyRoute
+            <PrivateRoute
               path={'/completed'}
               component={CompletedListPage}
             />
-            <PublicOnlyRoute
+            <PrivateRoute
               path={'/dashboard'}
               component={DashboardPage}
             />
-            <PublicOnlyRoute
+            <PrivateRoute
               path={'/account'}
               component={AccountPage}
             />
-            <PublicOnlyRoute
+            <PrivateRoute
               path={'/add-item'}
               component={AddItemPage}
             />
-            <PublicOnlyRoute
+            <PrivateRoute
               path={'/edit-item'}
               component={EditItemPage}
             />
-            <PublicOnlyRoute
+            <PrivateRoute
               path={'/new-template'}
               component={NewTemplatePage}
             />
-            <PublicOnlyRoute
+            <PrivateRoute
               path={'/email'}
               component={EmailPage}
             />
-            <Route
+            <PrivateRoute
               component={NotFoundPage}
             />
           </Switch>

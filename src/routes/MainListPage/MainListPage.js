@@ -21,12 +21,13 @@ export default class MainListPage extends React.Component {
         sort: 'none',
     }
 
-    openEmailForm = (project, advisor, pm) => {
+    openEmailForm = (project, advisor, pm_name, pm_email) => {
         this.setState({ emailFormOpen: true })
         this.setState({
             emailProject: project,
             emailAdvisor: advisor,
-            emailPm: pm
+            emailPmName: pm_name,
+            emailPmEmail: pm_email
         })
     }
 
@@ -53,7 +54,7 @@ export default class MainListPage extends React.Component {
 
         const sortByAdvisor = (a, b) => a.props.advisor.toLowerCase().localeCompare(b.props.advisor.toLowerCase());
         const sortByProject = (a, b) => a.props.project.toLowerCase().localeCompare(b.props.project.toLowerCase());
-        const sortByPM = (a, b) => a.props.pm.name.toLowerCase().localeCompare(b.props.pm.name.toLowerCase());
+        const sortByPM = (a, b) => a.props.pm_name.toLowerCase().localeCompare(b.props.pm_name.toLowerCase());
         const sortByDate = (a, b, order=ASC) => {
             const diff = new Date(a.props.date) - new Date(b.props.date);
             return order === ASC ? diff : -1 * diff
@@ -95,7 +96,8 @@ export default class MainListPage extends React.Component {
                 status={item.status}
                 project={item.project}
                 advisor={item.advisor}
-                pm={item.pm}
+                pm_name={item.pm_name}
+                pm_email={item.pm_email}
                 date={new Date(item.date).toLocaleDateString('en-US', this.context.dateOptions)}
                 notes={item.notes}
                 openEmailForm={this.openEmailForm}
@@ -123,7 +125,7 @@ export default class MainListPage extends React.Component {
                     <div className='main-list-container'>
                         <MainListBody renderListItems={this.renderListItems} openEmailForm={this.openEmailForm} closeEmailForm={this.closeEmailForm} />
                     </div>
-                    {this.state.emailFormOpen && <SendEmailForm project={this.state.emailProject} advisor={this.state.emailAdvisor} pm={this.state.emailPm.name} pm_email={this.state.emailPm.email} closeEmailForm={this.closeEmailForm} />}
+                    {this.state.emailFormOpen && <SendEmailForm project={this.state.emailProject} advisor={this.state.emailAdvisor} pm={this.state.emailPmName} pm_email={this.state.emailPmEmail} closeEmailForm={this.closeEmailForm} />}
                 </main>
                 <NavBar />
             </div>

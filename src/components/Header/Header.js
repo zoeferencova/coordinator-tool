@@ -17,7 +17,7 @@ export default class Header extends React.Component {
             <div className='header-container'>
                 <h1 className='header-title'>{this.props.title}</h1>
                 <div className="header-details">
-                    <span>Welcome, {this.context.user.name} </span>
+                    <span>Welcome, {this.context.user.full_name} </span>
                     <Link to='/'><span onClick={this.handleLogout}>Log Out</span></Link>
                 </div>
             </div>   

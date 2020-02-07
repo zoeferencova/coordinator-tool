@@ -26,7 +26,7 @@ export default class MainListItem extends React.Component {
     }
 
     render() {
-        const { project, advisor, pm, notes, status, date } = this.props;
+        const { project, advisor, pm_name, pm_email, notes, status, date } = this.props;
         return (
             <div className="table-row row">
                 <div className="table-body-cell hide-mobile"><input type="checkbox" id="list-checkbox"></input></div>
@@ -40,12 +40,12 @@ export default class MainListItem extends React.Component {
                 </div>
                 <div className="table-body-cell proj-cell">{project}</div>
                 <div className="table-body-cell adv-cell">{advisor}</div>
-                <div className="table-body-cell hide-mobile">{pm.name}</div>
+                <div className="table-body-cell hide-mobile">{pm_name}</div>
                 <div className="table-body-cell hide-mobile">{date}</div>
                 <div className="table-body-cell notes-cell hide-mobile">{notes}</div>
                 <div className="table-body-cell hide-mobile">
-                    <button onClick={() => this.props.openEmailForm(project, advisor, pm)}><i className="fas fa-envelope"></i></button>
-                    <Link to={{pathname:'/edit-item', itemProps: {project, advisor, pm, notes}}} ><button onClick={this.handleEditItem}><i className="fas fa-edit"></i></button></Link>
+                    <button onClick={() => this.props.openEmailForm(project, advisor, pm_name, pm_email)}><i className="fas fa-envelope"></i></button>
+                    <Link to={{pathname:'/edit-item', itemProps: {project, advisor, pm_name, notes}}} ><button onClick={this.handleEditItem}><i className="fas fa-edit"></i></button></Link>
                     <button><i className="fas fa-trash-alt"></i></button>
                 </div>
                 <div className="table-body-cell hide-desktop">
@@ -57,7 +57,7 @@ export default class MainListItem extends React.Component {
                         <i className="far fa-caret-square-down"></i>
                     </div>
                     <div className={`popup ${this.state.popup ? 'show' : 'hidden'}`}>
-                        <div>PM: {pm.name}</div>
+                        <div>PM: {pm_name}</div>
                         <div>Date: {date}</div>
                         <div>Notes: {notes}</div>
                         <div>Email...</div>
