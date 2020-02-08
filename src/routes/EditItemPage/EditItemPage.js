@@ -67,9 +67,9 @@ export default class EditItemPage extends React.Component {
                         <br></br>
                         <div>
                             <label htmlFor="pm">Project Manager: </label>
-                            <select name="pm" id="pm" defaultValue={this.props.location.itemProps.pm.name}>
+                            <select name="pm" id="pm" defaultValue={this.props.location.itemProps.pm_name}>
                                 <option value={'none'}></option>
-                                {this.context.pms.map((pm, i ) => <option key={i} value={pm.name}>{pm.name}</option>)}
+                                {this.context.pms.map((pm, i ) => <option key={i} value={pm.pm_name}>{pm.pm_name}</option>)}
                             </select>
                         </div>
                         <br></br>

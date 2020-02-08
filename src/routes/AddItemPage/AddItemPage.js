@@ -1,9 +1,10 @@
 import React from 'react';
 import NavBar from '../../components/NavBar/NavBar'
 import Header from '../../components/Header/Header'
-import { Link } from 'react-router-dom'
+import { Link, Redirect } from 'react-router-dom'
 import AppContext from '../../contexts/contexts'
 import './AddItemPage.css';
+import config from '../../config';
 
 export default class AddItemPage extends React.Component {
     static contextType = AppContext;
@@ -17,8 +18,8 @@ export default class AddItemPage extends React.Component {
         const arr = []
         for (let i=0; i < numberOfAdvisorInputs; i++) {
             arr.push(<div><div>
-                <label htmlFor="adv-name">Advisor Name: </label>
-                <input type="text" name='adv-name' id='adv-name'></input>
+                <label htmlFor="advisor">Advisor Name: </label>
+                <input type="text" name='advisor' id='advisor'></input>
             </div>
             <div>
                 <label htmlFor="adv-url">Advisor URL: </label>
@@ -35,16 +36,38 @@ export default class AddItemPage extends React.Component {
         this.setState({ numberOfAdvisorInputs: newNumber })
     }
 
+    handlePostItem(e) {
+        e.preventDefault();
+        const project = e.target.project.value;
+        const advisor = e.target.advisor.value;
+        const pm_id = this.context.pms.find(pm => pm.pm_name === e.target.pm.value).id;
+        const notes = e.target.notes.value;
+        
+        const item = { project, advisor, pm_id, notes, status: 'none' }
+        console.log(JSON.stringify(item))
+        return fetch(`${config.API_ENDPOINT}/list`, {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json',
+                'Authorization': `Bearer ${window.sessionStorage.getItem(config.TOKEN_KEY)}`
+            },
+            body: JSON.stringify(item)
+        })
+          .then(res => res.json())
+          .then(item => this.context.addItem(item))
+          .then(res => this.props.history.push('/main'))
+    }
+
     render() {
         return (
             <div className="container">
                 
                 <main className="content">
                     <Header title='Add Item' />
-                    <form>
+                    <form onSubmit={e => this.handlePostItem(e)}>
                         <div>
-                            <label htmlFor="proj-name">Project Name: </label>
-                            <input type="text" name='proj-name' id='proj-name'></input>
+                            <label htmlFor="project">Project Name: </label>
+                            <input type="text" name='project' id='project'></input>
                         </div>
                         <div>
                             <label htmlFor="proj-url">Project URL: </label>
@@ -59,7 +82,7 @@ export default class AddItemPage extends React.Component {
                             <select name="pm" id="pm" >
                                 <option></option>
                                 {this.context.pms.map(pm => 
-                                     <option value={pm.name}>{pm.name}</option>
+                                     <option value={pm.pm_name}>{pm.pm_name}</option>
                                 )}
                             </select>
                         </div>

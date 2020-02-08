@@ -7,6 +7,7 @@ import NavBar from '../../components/NavBar/NavBar'
 import Header from '../../components/Header/Header';
 import SendEmailForm from '../../components/SendEmailForm/SendEmailForm'
 import MainListItem from '../../components/MainListItem/MainListItem'
+import config from '../../config'
 
 
 export default class MainListPage extends React.Component {
@@ -19,6 +20,48 @@ export default class MainListPage extends React.Component {
         emailPm: {},
         query: '',
         sort: 'none',
+    }
+
+    componentDidMount() {
+        fetch(`${config.API_ENDPOINT}/list`, {
+            method: 'GET',
+            headers: {
+                'content-type': 'application/json',
+                'Authorization': `Bearer ${window.sessionStorage.getItem(config.TOKEN_KEY)}`
+            }
+            })
+                .then(res => res.json())
+                .then(resJson => this.context.setListItems(resJson))
+
+        fetch(`${config.API_ENDPOINT}/pms`, {
+            method: 'GET',
+            headers: {
+                'content-type': 'application/json',
+                'Authorization': `Bearer ${window.sessionStorage.getItem(config.TOKEN_KEY)}`
+            }
+            })
+                .then(res => res.json())
+                .then(resJson => this.context.setPms(resJson))
+        
+            fetch(`${config.API_ENDPOINT}/templates`, {
+            method: 'GET',
+            headers: {
+                'content-type': 'application/json',
+                'Authorization': `Bearer ${window.sessionStorage.getItem(config.TOKEN_KEY)}`
+            }
+            })
+                .then(res => res.json())
+                .then(resJson => this.context.setTemplates(resJson))
+        
+            fetch(`${config.API_ENDPOINT}/users`, {
+            method: 'GET',
+            headers: {
+                'content-type': 'application/json',
+                'Authorization': `Bearer ${window.sessionStorage.getItem(config.TOKEN_KEY)}`
+            }
+            })
+                .then(res => res.json())
+                .then(resJson => this.context.setUser(resJson[0]))
     }
 
     openEmailForm = (project, advisor, pm_name, pm_email) => {
@@ -92,6 +135,7 @@ export default class MainListPage extends React.Component {
         const itemArray = listItems.map(item => 
             <MainListItem
                 key={item.id}
+                id={item.id}
                 checked={item.checked}
                 status={item.status}
                 project={item.project}

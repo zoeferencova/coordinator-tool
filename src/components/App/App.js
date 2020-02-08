@@ -1,5 +1,6 @@
 import React from 'react';
-import { Route, Switch } from 'react-router-dom';
+import ReactDOM from 'react-dom';
+import { Switch } from 'react-router-dom';
 import LandingPage from '../../routes/LandingPage/LandingPage';
 import LoginPage from '../../routes/LoginPage/LoginPage';
 import RegistrationPage from '../../routes/RegistrationPage/RegistrationPage';
@@ -14,146 +15,105 @@ import NotFoundPage from '../../routes/NotFoundPage/NotFoundPage';
 import EditItemPage from '../../routes/EditItemPage/EditItemPage'
 import PrivateRoute from '../Utils/PrivateRoute';
 import PublicOnlyRoute from '../Utils/PublicOnlyRoute';
-import UserDataService from '../../services/user-data-service';
 import config from '../../config'
-import data from '../../STORE';
 
 import './App.css';
 import AppContext from '../../contexts/contexts';
 
 export default class App extends React.Component {
-  state = {
-    listItems: [],
-    completedListItems: [],
-    pms: [],
-    user: [],
-    templates: [],
-    dateOptions: { month: 'short', day: 'numeric' },
+  constructor(props) {
+    super(props)
+    this.state = {
+      listItems: [],
+      completedListItems: [],
+      pms: [],
+      user: [],
+      templates: [],
+      dateOptions: { month: 'short', day: 'numeric' },
+      deleteItem: this.deleteItem,
+      addItem: this.addItem,
+      setListItems: this.setListItems,
+      setCompletedItems: this.setCompletedItems,
+      setPms: this.setPms,
+      setTemplates: this.setTemplates,
+      setUser: this.setUser,
+      setInitialState: this.setInitialState,
+    }
   }
 
-  componentDidMount() {
-    fetch(`${config.API_ENDPOINT}/list`, {
-      method: 'GET',
-      headers: {
-          'content-type': 'application/json',
-          'Authorization': `Bearer ${window.sessionStorage.getItem(config.TOKEN_KEY)}`
-      }
-      })
-          .then(res => res.json())
-          .then(resJson => this.setState({ listItems: resJson }))
-          
-    fetch(`${config.API_ENDPOINT}/pms`, {
-      method: 'GET',
-      headers: {
-          'content-type': 'application/json',
-          'Authorization': `Bearer ${window.sessionStorage.getItem(config.TOKEN_KEY)}`
-      }
-      })
-          .then(res => res.json())
-          .then(resJson => this.setState({ pms: resJson }))
-
-    fetch(`${config.API_ENDPOINT}/templates`, {
-      method: 'GET',
-      headers: {
-          'content-type': 'application/json',
-          'Authorization': `Bearer ${window.sessionStorage.getItem(config.TOKEN_KEY)}`
-      }
-      })
-          .then(res => res.json())
-          .then(resJson => this.setState({ templates: resJson }))
-
-    fetch(`${config.API_ENDPOINT}/completed`, {
-      method: 'GET',
-      headers: {
-          'content-type': 'application/json',
-          'Authorization': `Bearer ${window.sessionStorage.getItem(config.TOKEN_KEY)}`
-      }
-      })
-          .then(res => res.json())
-          .then(resJson => this.setState({ completedListItems: resJson }))
-
-    fetch(`${config.API_ENDPOINT}/users`, {
-      method: 'GET',
-      headers: {
-          'content-type': 'application/json',
-          'Authorization': `Bearer ${window.sessionStorage.getItem(config.TOKEN_KEY)}`
-      }
-      })
-          .then(res => res.json())
-          .then(resJson => this.setState({ user: resJson[0] }))
+  setInitialState = () => {
+    this.setState({
+      listItems: [],
+      completedListItems: [],
+      pms: [],
+      user: [],
+      templates: [],
+    })
   }
 
+  setListItems = (items) => {
+    this.setState({ listItems: items })
+  }
+
+  setCompletedItems = (items) => {
+    this.setState({ completedListItems: items })
+  }
+
+  setUser = (data) => {
+    this.setState({ user: data })
+  }
+
+  setTemplates = (templates) => {
+    this.setState({ templates })
+  }
+
+  setPms = (pms) => {
+    this.setState({ pms })
+  }
   
+  deleteItem = (itemId) => {
+    const newItems = this.state.listItems.filter(listItem => Number(listItem.id) !== Number(itemId))
+    this.setState({ listItems: newItems })
+  }
+
+  addItem = (item) => {
+    this.setState({ listItems: [item, ...this.state.listItems] })
+  }
+
 
   render() {
-    
-    const { listItems, pms, user, templates, completedListItems, dateOptions } = this.state;
+    const { listItems, pms, user, templates, completedListItems, dateOptions, deleteItem, addItem, setListItems, setCompletedItems, setPms, setTemplates, setUser, setInitialState } = this.state;
+    const value = { listItems, pms, user, templates, completedListItems, dateOptions, deleteItem, addItem, setListItems, setCompletedItems, setPms, setTemplates, setUser, setInitialState }
 
-    const value = {
-      listItems,
-      pms,
-      user,
-      templates,
-      completedListItems,
-      dateOptions,
-    }
-
-    return (
-      
+    return ( 
       <AppContext.Provider value={value}>
         <main className='App'>
           <Switch>
             {/* public routes */}
-            <PublicOnlyRoute
-              exact
-              path={'/'}
-              component={LandingPage}
-            />
-            <PublicOnlyRoute
-              path={'/login'}
-              component={LoginPage}
-            />
-            <PublicOnlyRoute
-              path={'/register'}
-              component={RegistrationPage}
-            />
+            <PublicOnlyRoute exact path={'/'} component={LandingPage} />
 
-            {/* private routes */}
-            <PrivateRoute
-              path={'/main'}
-              component={MainListPage}
-            />
-            <PrivateRoute
-              path={'/completed'}
-              component={CompletedListPage}
-            />
-            <PrivateRoute
-              path={'/dashboard'}
-              component={DashboardPage}
-            />
-            <PrivateRoute
-              path={'/account'}
-              component={AccountPage}
-            />
-            <PrivateRoute
-              path={'/add-item'}
-              component={AddItemPage}
-            />
-            <PrivateRoute
-              path={'/edit-item'}
-              component={EditItemPage}
-            />
-            <PrivateRoute
-              path={'/new-template'}
-              component={NewTemplatePage}
-            />
-            <PrivateRoute
-              path={'/email'}
-              component={EmailPage}
-            />
-            <PrivateRoute
-              component={NotFoundPage}
-            />
+            <PublicOnlyRoute path={'/login'} component={LoginPage} />
+            
+            <PublicOnlyRoute path={'/register'} component={RegistrationPage} />
+
+            <PrivateRoute path={'/main'} component={MainListPage} />
+            
+            <PrivateRoute path={'/completed'} component={CompletedListPage} />
+            
+            <PrivateRoute path={'/dashboard'} component={DashboardPage} />
+            
+            <PrivateRoute path={'/account'} component={AccountPage} />
+            
+            <PrivateRoute path={'/add-item'} component={AddItemPage} />
+            
+            <PrivateRoute path={'/edit-item'} component={EditItemPage} />
+            
+            <PrivateRoute path={'/new-template'} component={NewTemplatePage} />
+            
+            <PrivateRoute path={'/email'} component={EmailPage} />
+            
+            <PrivateRoute component={NotFoundPage} />
+            
           </Switch>
         </main>
       </AppContext.Provider>

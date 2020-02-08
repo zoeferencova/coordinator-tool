@@ -2,6 +2,8 @@ import React from 'react';
 import AppContext from '../../contexts/contexts'
 import './MainListItem.css'
 import { Link } from 'react-router-dom';
+import ReactDOM from 'react-dom'
+import config from '../../config';
 
 const icons = {
     'none': <i className="far fa-circle"></i>,
@@ -25,8 +27,22 @@ export default class MainListItem extends React.Component {
         }
     }
 
+    handleDeleteItem(e) {
+        e.preventDefault();
+        const itemId = ReactDOM.findDOMNode(e.target).parentNode.getAttribute('itemkey')
+        
+        fetch(`${config.API_ENDPOINT}/list/${itemId}`, {
+            method: 'DELETE',
+            headers: {
+                'content-type': 'application/json',
+                'Authorization': `Bearer ${window.sessionStorage.getItem(config.TOKEN_KEY)}`
+            }
+        })
+        this.context.deleteItem(itemId)
+    }
+
     render() {
-        const { project, advisor, pm_name, pm_email, notes, status, date_created } = this.props;
+        const { id, project, advisor, pm_name, pm_email, notes, status, date_created } = this.props;
         return (
             <div className="table-row row">
                 <div className="table-body-cell hide-mobile"><input type="checkbox" id="list-checkbox"></input></div>
@@ -46,7 +62,7 @@ export default class MainListItem extends React.Component {
                 <div className="table-body-cell hide-mobile">
                     <button onClick={() => this.props.openEmailForm(project, advisor, pm_name, pm_email)}><i className="fas fa-envelope"></i></button>
                     <Link to={{pathname:'/edit-item', itemProps: {project, advisor, pm_name, notes}}} ><button onClick={this.handleEditItem}><i className="fas fa-edit"></i></button></Link>
-                    <button><i className="fas fa-trash-alt"></i></button>
+                    <button itemkey={id} onClick={e => this.handleDeleteItem(e)}><i className="fas fa-trash-alt"></i></button>
                 </div>
                 <div className="table-body-cell hide-desktop">
                     <div 

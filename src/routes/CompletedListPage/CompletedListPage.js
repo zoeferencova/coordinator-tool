@@ -5,6 +5,7 @@ import CompletedListTools from '../../components/CompletedListTools/CompletedLis
 import CompletedListBody from '../../components/CompletedListBody/CompletedListBody'
 import CompletedListItem from '../../components/CompletedListItem/CompletedListItem'
 import Header from '../../components/Header/Header'
+import config from '../../config'
 import './CompletedListPage.css';
 
 export default class CompletedListPage extends React.Component {
@@ -13,6 +14,18 @@ export default class CompletedListPage extends React.Component {
     state = {
         query: '',
         sort: 'none'
+    }
+
+    componentDidMount() {
+        fetch(`${config.API_ENDPOINT}/completed`, {
+            method: 'GET',
+            headers: {
+                'content-type': 'application/json',
+                'Authorization': `Bearer ${window.sessionStorage.getItem(config.TOKEN_KEY)}`
+            }
+            })
+                .then(res => res.json())
+                .then(resJson => this.context.setCompletedItems(resJson))
     }
 
     searchItems = (inputItems, query) => {

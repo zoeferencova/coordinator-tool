@@ -23,7 +23,7 @@ export default class EmailTemplate extends React.Component {
                 </div>
                 {this.state.expanded && !this.state.edit && <div className="template-contents">
                     <p>Subject: {this.props.template_subject}</p>
-                    <p className= 'template-body'>Body: {this.props.template_body}</p>
+                    <p className= 'template-body'>Body: {this.props.template_content}</p>
                     <button onClick={this.handleEmailEdit}>Edit</button>
                     <button>Delete</button>
                 </div>}
