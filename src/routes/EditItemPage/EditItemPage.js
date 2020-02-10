@@ -51,6 +51,13 @@ export default class EditItemPage extends React.Component {
     }
 
     handlePatchItem(e) {
+        const pm = this.context.pms.find(pm => pm.pm_name === this.state.inputValues.pm_name)
+        const pmId = pm.id;
+        const updateValues = {...this.state.inputValues, pm_id: pmId }
+
+        delete updateValues.pm_name;
+        delete updateValues.pm_email;
+
         e.preventDefault()
         fetch(`${config.API_ENDPOINT}/list/${this.props.match.params.id}`, {
             method: 'PATCH',
@@ -58,7 +65,7 @@ export default class EditItemPage extends React.Component {
                 'content-type': 'application/json',
                 'Authorization': `Bearer ${window.sessionStorage.getItem(config.TOKEN_KEY)}`
             },
-            body: JSON.stringify(this.state.inputValues)
+            body: JSON.stringify(updateValues)
         })
             .then(res => this.context.updateItem(this.state.inputValues))
             .then(this.setState({ inputValues: {} }))
@@ -75,6 +82,7 @@ export default class EditItemPage extends React.Component {
     }
 
     handleChangePm = val => {
+        console.log(val)
         this.setState({ inputValues: { ...this.state.inputValues, pm_name: val } })
     }
 
@@ -116,7 +124,7 @@ export default class EditItemPage extends React.Component {
                             <select name="pm" id="pm" defaultValue={this.state.inputValues.pm_name} onChange={e => this.handleChangePm(e.target.value)}>
                                 <option value={'none'}></option>
                                 {this.context.pms.map(pm => 
-                                     <option value={pm.pm_name}>{pm.pm_name}</option>
+                                     <option value={pm.pm_name} key={pm.id}>{pm.pm_name}</option>
                                 )}                            
                                 </select>
                         </div>

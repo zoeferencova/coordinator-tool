@@ -82,7 +82,7 @@ export default class AddItemPage extends React.Component {
                             <select name="pm" id="pm" >
                                 <option></option>
                                 {this.context.pms.map(pm => 
-                                     <option value={pm.pm_name}>{pm.pm_name}</option>
+                                     <option value={pm.pm_name} key={pm.id}>{pm.pm_name}</option>
                                 )}
                             </select>
                         </div>
