@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import AppContext from '../../contexts/contexts';
 import TokenService from '../../services/token-service'
+import config from '../../config'
 
 import './Header.css'
 
@@ -12,6 +13,7 @@ export default class Header extends React.Component {
         TokenService.clearAuthToken();
         this.context.setInitialState()
     }
+    
 
     render() {
         return (   

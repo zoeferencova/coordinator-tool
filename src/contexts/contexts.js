@@ -9,6 +9,7 @@ const AppContext = React.createContext({
     dateOptions: {},
     deleteItem: () => {},
     addItem: () => {},
+    updateItem: () => {},
     setListItems: () => {},
     setCompletedItems: () => {},
     setPms: () => {},

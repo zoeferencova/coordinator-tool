@@ -61,7 +61,7 @@ export default class MainListItem extends React.Component {
                 <div className="table-body-cell notes-cell hide-mobile">{notes}</div>
                 <div className="table-body-cell hide-mobile">
                     <button onClick={() => this.props.openEmailForm(project, advisor, pm_name, pm_email)}><i className="fas fa-envelope"></i></button>
-                    <Link to={{pathname:'/edit-item', itemProps: {project, advisor, pm_name, notes}}} ><button onClick={this.handleEditItem}><i className="fas fa-edit"></i></button></Link>
+                    <Link to={{pathname:`/edit-item/${id}`, itemProps: {project, advisor, pm_name, notes}}} ><button onClick={this.handleEditItem}><i className="fas fa-edit"></i></button></Link>
                     <button itemkey={id} onClick={e => this.handleDeleteItem(e)}><i className="fas fa-trash-alt"></i></button>
                 </div>
                 <div className="table-body-cell hide-desktop">

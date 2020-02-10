@@ -52,7 +52,7 @@ export default class MainListPage extends React.Component {
             })
                 .then(res => res.json())
                 .then(resJson => this.context.setTemplates(resJson))
-        
+
             fetch(`${config.API_ENDPOINT}/users`, {
             method: 'GET',
             headers: {
@@ -61,7 +61,7 @@ export default class MainListPage extends React.Component {
             }
             })
                 .then(res => res.json())
-                .then(resJson => this.context.setUser(resJson[0]))
+                .then(resJson => this.context.setUser(resJson))
     }
 
     openEmailForm = (project, advisor, pm_name, pm_email) => {

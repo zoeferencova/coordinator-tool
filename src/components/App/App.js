@@ -32,6 +32,7 @@ export default class App extends React.Component {
       dateOptions: { month: 'short', day: 'numeric' },
       deleteItem: this.deleteItem,
       addItem: this.addItem,
+      updateItem: this.updateItem,
       setListItems: this.setListItems,
       setCompletedItems: this.setCompletedItems,
       setPms: this.setPms,
@@ -80,10 +81,19 @@ export default class App extends React.Component {
     this.setState({ listItems: [item, ...this.state.listItems] })
   }
 
+  updateItem = (updatedItem) => {
+    const newItems = this.state.listItems.map(item => 
+      (item.id === updatedItem.id)
+        ? updatedItem
+        : item 
+    )
+    console.log(updatedItem)
+    this.setState({ listItems: newItems })
+  }
 
   render() {
-    const { listItems, pms, user, templates, completedListItems, dateOptions, deleteItem, addItem, setListItems, setCompletedItems, setPms, setTemplates, setUser, setInitialState } = this.state;
-    const value = { listItems, pms, user, templates, completedListItems, dateOptions, deleteItem, addItem, setListItems, setCompletedItems, setPms, setTemplates, setUser, setInitialState }
+    const { listItems, pms, user, templates, completedListItems, dateOptions, deleteItem, addItem, updateItem, setListItems, setCompletedItems, setPms, setTemplates, setUser, setInitialState } = this.state;
+    const value = { listItems, pms, user, templates, completedListItems, dateOptions, deleteItem, addItem, updateItem, setListItems, setCompletedItems, setPms, setTemplates, setUser, setInitialState }
 
     return ( 
       <AppContext.Provider value={value}>
@@ -106,14 +116,14 @@ export default class App extends React.Component {
             
             <PrivateRoute path={'/add-item'} component={AddItemPage} />
             
-            <PrivateRoute path={'/edit-item'} component={EditItemPage} />
+            <PrivateRoute path={`/edit-item/:id`} component={EditItemPage} />
             
             <PrivateRoute path={'/new-template'} component={NewTemplatePage} />
             
             <PrivateRoute path={'/email'} component={EmailPage} />
             
             <PrivateRoute component={NotFoundPage} />
-            
+
           </Switch>
         </main>
       </AppContext.Provider>
