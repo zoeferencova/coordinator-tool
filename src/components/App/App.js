@@ -34,6 +34,7 @@ export default class App extends React.Component {
       addItem: this.addItem,
       updateItem: this.updateItem,
       updateItemStatus: this.updateItemStatus,
+      addTemplate: this.addTemplate,
       revertCompleted: this.revertCompleted,
       setListItems: this.setListItems,
       setCompletedItems: this.setCompletedItems,
@@ -93,6 +94,10 @@ export default class App extends React.Component {
     this.setState({ listItems: newItems })
   }
 
+  addTemplate = template => {
+    this.setState({ templates: [...this.state.templates, template] })
+  }
+
   updateItemStatus = (updatedItemId, status) => {
     const item = this.state.listItems.find(item => item.id === updatedItemId)
     item.status = status;
@@ -108,9 +113,21 @@ export default class App extends React.Component {
     this.setState({ completedListItems: newCompleted })
   }
 
+  componentDidMount() {
+    fetch(`${config.API_ENDPOINT}/templates`, {
+      method: 'GET',
+      headers: {
+          'content-type': 'application/json',
+          'Authorization': `Bearer ${window.sessionStorage.getItem(config.TOKEN_KEY)}`
+      }
+      })
+          .then(res => res.json())
+          .then(resJson => this.setTemplates(resJson))
+  }
+
   render() {
-    const { listItems, pms, user, templates, completedListItems, dateOptions, deleteItem, addItem, updateItem, updateItemStatus, revertCompleted, setListItems, setCompletedItems, setPms, setTemplates, setUser, setInitialState } = this.state;
-    const value = { listItems, pms, user, templates, completedListItems, dateOptions, deleteItem, addItem, updateItem, updateItemStatus, revertCompleted, setListItems, setCompletedItems, setPms, setTemplates, setUser, setInitialState }
+    const { listItems, pms, user, templates, completedListItems, dateOptions, deleteItem, addItem, updateItem, updateItemStatus, addTemplate, revertCompleted, setListItems, setCompletedItems, setPms, setTemplates, setUser, setInitialState } = this.state;
+    const value = { listItems, pms, user, templates, completedListItems, dateOptions, deleteItem, addItem, updateItem, updateItemStatus, addTemplate, revertCompleted, setListItems, setCompletedItems, setPms, setTemplates, setUser, setInitialState }
 
     return ( 
       <AppContext.Provider value={value}>

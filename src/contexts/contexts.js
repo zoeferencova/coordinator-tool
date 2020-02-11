@@ -11,6 +11,7 @@ const AppContext = React.createContext({
     addItem: () => {},
     updateItem: () => {},
     updateItemStatus: () => {},
+    addTemplate: () => {},
     revertCompleted: () => {},
     setListItems: () => {},
     setCompletedItems: () => {},

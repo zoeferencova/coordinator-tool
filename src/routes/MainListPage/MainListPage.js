@@ -44,15 +44,6 @@ export default class MainListPage extends React.Component {
                 .then(res => res.json())
                 .then(resJson => this.context.setPms(resJson))
         
-        fetch(`${config.API_ENDPOINT}/templates`, {
-            method: 'GET',
-            headers: {
-                'content-type': 'application/json',
-                'Authorization': `Bearer ${window.sessionStorage.getItem(config.TOKEN_KEY)}`
-            }
-            })
-                .then(res => res.json())
-                .then(resJson => this.context.setTemplates(resJson))
 
         fetch(`${config.API_ENDPOINT}/users`, {
             method: 'GET',

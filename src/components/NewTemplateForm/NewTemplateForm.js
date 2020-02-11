@@ -2,22 +2,24 @@ import React from 'react';
 import './NewTemplateForm.css';
 
 export default class NewTemplateForm extends React.Component {
+    
+    
     render() {
         return (
             <main>
-                <form action="submit">
+                <form onSubmit={e => this.handlePostTemplate(e)}>
                     <h3>New Template Form</h3>
                     <div>
-                        <label htmlFor="template-name">Name: </label>
-                        <input type="text" class="block" id="template-name"></input>
+                        <label htmlFor="template_name">Name: </label>
+                        <input type="text" class="block" id="template_name"></input>
                     </div>
                     <div>
-                        <label htmlFor="template-subject">Subject: </label>
-                        <input type="text" class="block" id="template-subject"></input>
+                        <label htmlFor="template_subject">Subject: </label>
+                        <input type="text" class="block" id="template_subject"></input>
                     </div>
                     <div>
-                        <label htmlFor="template-body">Body: </label>
-                        <textarea name="template-body" id="template-body" cols="100" rows="30"></textarea>
+                        <label htmlFor="template_body">Body: </label>
+                        <textarea name="template_body" id="template_body" cols="100" rows="30"></textarea>
                     </div>
                     <button>Cancel</button>
                     <button type="submit">Save Template</button>
