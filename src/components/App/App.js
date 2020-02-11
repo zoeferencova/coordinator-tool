@@ -35,6 +35,8 @@ export default class App extends React.Component {
       updateItem: this.updateItem,
       updateItemStatus: this.updateItemStatus,
       addTemplate: this.addTemplate,
+      deleteTemplate: this.deleteTemplate,
+      updateTemplate: this.updateTemplate,
       revertCompleted: this.revertCompleted,
       setListItems: this.setListItems,
       setCompletedItems: this.setCompletedItems,
@@ -98,6 +100,21 @@ export default class App extends React.Component {
     this.setState({ templates: [...this.state.templates, template] })
   }
 
+  deleteTemplate = templateId => {
+    const newTemplates = this.state.templates.filter(template => Number(template.id) !== Number(templateId))
+    this.setState({ templates: newTemplates })
+  }
+
+  updateTemplate = (updatedTemplate) => {
+    console.log(updatedTemplate)
+    const newTemplates = this.state.templates.map(template => 
+      (template.id === updatedTemplate.id)
+        ? updatedTemplate
+        : template 
+    )
+    this.setState({ templates: newTemplates })
+  }
+
   updateItemStatus = (updatedItemId, status) => {
     const item = this.state.listItems.find(item => item.id === updatedItemId)
     item.status = status;
@@ -126,8 +143,8 @@ export default class App extends React.Component {
   }
 
   render() {
-    const { listItems, pms, user, templates, completedListItems, dateOptions, deleteItem, addItem, updateItem, updateItemStatus, addTemplate, revertCompleted, setListItems, setCompletedItems, setPms, setTemplates, setUser, setInitialState } = this.state;
-    const value = { listItems, pms, user, templates, completedListItems, dateOptions, deleteItem, addItem, updateItem, updateItemStatus, addTemplate, revertCompleted, setListItems, setCompletedItems, setPms, setTemplates, setUser, setInitialState }
+    const { listItems, pms, user, templates, completedListItems, dateOptions, deleteItem, addItem, updateItem, updateItemStatus, addTemplate, deleteTemplate, updateTemplate, revertCompleted, setListItems, setCompletedItems, setPms, setTemplates, setUser, setInitialState } = this.state;
+    const value = { listItems, pms, user, templates, completedListItems, dateOptions, deleteItem, addItem, updateItem, updateItemStatus, addTemplate, deleteTemplate, updateTemplate, revertCompleted, setListItems, setCompletedItems, setPms, setTemplates, setUser, setInitialState }
 
     return ( 
       <AppContext.Provider value={value}>
