@@ -96,9 +96,15 @@ export default class MainListPage extends React.Component {
         if (this.state.checkedItems.includes(id)) {
             const newItems = this.state.checkedItems.filter(item => item !== id)
             this.setState({ checkedItems: newItems })
-        } else {
+        } else if (typeof(id) !== 'object') {
             this.setState({ checkedItems: [...this.state.checkedItems, id] })
+        } else if (typeof(id) === 'object') {
+            this.setState({ checkedItems: id })
         }
+    }
+
+    clearChecked = () => {
+        this.setState({ checkedItems: [] })
     }
 
     sortItems = (inputItems, sort) => {
@@ -178,7 +184,7 @@ export default class MainListPage extends React.Component {
                     <MainListTools setQuery={this.setQuery} setSort={this.setSort} checkedItems={this.state.checkedItems} />
                     <br></br>
                     <div className='main-list-container'>
-                        <MainListBody renderListItems={this.renderListItems} openEmailForm={this.openEmailForm} closeEmailForm={this.closeEmailForm} />
+                        <MainListBody renderListItems={this.renderListItems} openEmailForm={this.openEmailForm} closeEmailForm={this.closeEmailForm} setChecked={this.setChecked} clearChecked={this.clearChecked} />
                     </div>
                     {this.state.emailFormOpen && <SendEmailForm project={this.state.emailProject} advisor={this.state.emailAdvisor} pm={this.state.emailPmName} pm_email={this.state.emailPmEmail} closeEmailForm={this.closeEmailForm} />}
                 </main>
