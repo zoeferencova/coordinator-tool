@@ -15,11 +15,20 @@ export default class MainListItem extends React.Component {
     static contextType = AppContext;
     
     state = {
-        expanded: false
+        expanded: false,
     }
 
-    handleStatusClick(status) {
-        this.setState({status});
+    handleStatusClick(status, id) {
+        fetch(`${config.API_ENDPOINT}/list/${id}`, {
+            method: 'PATCH',
+            headers: {
+                'content-type': 'application/json',
+                'Authorization': `Bearer ${window.sessionStorage.getItem(config.TOKEN_KEY)}`
+            },
+            body: JSON.stringify({ status })
+        })
+            .then(res => this.context.updateItemStatus(id, status))
+
         if (this.state.expanded === true) {
             this.setState({ expanded: false })
         } else {
@@ -49,9 +58,9 @@ export default class MainListItem extends React.Component {
                 <div className="table-body-cell">
                     <span className="status-icon" onClick={() => this.state.expanded === true ? this.setState({ expanded: false }) : this.setState({ expanded: true })}>{icons[status]}</span>
                     <ul className={`icon-list hide-list ${this.state.expanded && 'show-list'}`}>
-                        <li onClick={() => this.handleStatusClick('none')}>{icons['none']} None</li>
-                        <li onClick={() => this.handleStatusClick('reached')}>{icons['reached']} Reached Out</li>
-                        <li className='last' onClick={() => this.handleStatusClick('completed')}>{icons['completed']} Completed</li>
+                        <li onClick={() => this.handleStatusClick('none', id)}>{icons['none']} None</li>
+                        <li onClick={() => this.handleStatusClick('reached', id)}>{icons['reached']} Reached Out</li>
+                        <li className='last' onClick={() => this.handleStatusClick('completed', id)}>{icons['completed']} Completed</li>
                     </ul>
                 </div>
                 <div className="table-body-cell proj-cell">{project}</div>

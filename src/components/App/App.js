@@ -33,6 +33,8 @@ export default class App extends React.Component {
       deleteItem: this.deleteItem,
       addItem: this.addItem,
       updateItem: this.updateItem,
+      updateItemStatus: this.updateItemStatus,
+      revertCompleted: this.revertCompleted,
       setListItems: this.setListItems,
       setCompletedItems: this.setCompletedItems,
       setPms: this.setPms,
@@ -91,9 +93,24 @@ export default class App extends React.Component {
     this.setState({ listItems: newItems })
   }
 
+  updateItemStatus = (updatedItemId, status) => {
+    const item = this.state.listItems.find(item => item.id === updatedItemId)
+    item.status = status;
+    if(status === 'completed') {
+      const newItems = this.state.listItems.filter(item => item.id !== updatedItemId)
+      this.setState({ listItems: newItems })
+    }
+    this.setState({ listItems: this.state.listItems })
+  }
+
+  revertCompleted = (itemId) => {
+    const newCompleted = this.state.completedListItems.filter(item => item.id !== itemId)
+    this.setState({ completedListItems: newCompleted })
+  }
+
   render() {
-    const { listItems, pms, user, templates, completedListItems, dateOptions, deleteItem, addItem, updateItem, setListItems, setCompletedItems, setPms, setTemplates, setUser, setInitialState } = this.state;
-    const value = { listItems, pms, user, templates, completedListItems, dateOptions, deleteItem, addItem, updateItem, setListItems, setCompletedItems, setPms, setTemplates, setUser, setInitialState }
+    const { listItems, pms, user, templates, completedListItems, dateOptions, deleteItem, addItem, updateItem, updateItemStatus, revertCompleted, setListItems, setCompletedItems, setPms, setTemplates, setUser, setInitialState } = this.state;
+    const value = { listItems, pms, user, templates, completedListItems, dateOptions, deleteItem, addItem, updateItem, updateItemStatus, revertCompleted, setListItems, setCompletedItems, setPms, setTemplates, setUser, setInitialState }
 
     return ( 
       <AppContext.Provider value={value}>

@@ -82,7 +82,6 @@ export default class EditItemPage extends React.Component {
     }
 
     handleChangePm = val => {
-        console.log(val)
         this.setState({ inputValues: { ...this.state.inputValues, pm_name: val } })
     }
 
@@ -121,7 +120,7 @@ export default class EditItemPage extends React.Component {
                         <br></br>
                         <div>
                             <label htmlFor="pm">Project Manager: </label>
-                            <select name="pm" id="pm" defaultValue={this.state.inputValues.pm_name} onChange={e => this.handleChangePm(e.target.value)}>
+                            <select name="pm" id="pm" value={this.state.inputValues.pm_name} onChange={e => this.handleChangePm(e.target.value)}>
                                 <option value={'none'}></option>
                                 {this.context.pms.map(pm => 
                                      <option value={pm.pm_name} key={pm.id}>{pm.pm_name}</option>

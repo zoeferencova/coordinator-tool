@@ -78,6 +78,7 @@ export default class CompletedListPage extends React.Component {
         const itemArray = completedListItems.map(item => 
             <CompletedListItem
                 key={item.id}
+                id={item.id}
                 status={item.status}
                 project={item.project}
                 advisor={item.advisor}
