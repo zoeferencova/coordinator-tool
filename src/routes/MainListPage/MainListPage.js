@@ -20,6 +20,7 @@ export default class MainListPage extends React.Component {
         emailPm: {},
         query: '',
         sort: 'none',
+        checkedItems: []
     }
 
     componentDidMount() {
@@ -43,7 +44,7 @@ export default class MainListPage extends React.Component {
                 .then(res => res.json())
                 .then(resJson => this.context.setPms(resJson))
         
-            fetch(`${config.API_ENDPOINT}/templates`, {
+        fetch(`${config.API_ENDPOINT}/templates`, {
             method: 'GET',
             headers: {
                 'content-type': 'application/json',
@@ -53,7 +54,7 @@ export default class MainListPage extends React.Component {
                 .then(res => res.json())
                 .then(resJson => this.context.setTemplates(resJson))
 
-            fetch(`${config.API_ENDPOINT}/users`, {
+        fetch(`${config.API_ENDPOINT}/users`, {
             method: 'GET',
             headers: {
                 'content-type': 'application/json',
@@ -89,6 +90,15 @@ export default class MainListPage extends React.Component {
             emailAdvisor: '',
             emailPm: '',
         })
+    }
+
+    setChecked = (id) => {
+        if (this.state.checkedItems.includes(id)) {
+            const newItems = this.state.checkedItems.filter(item => item !== id)
+            this.setState({ checkedItems: newItems })
+        } else {
+            this.setState({ checkedItems: [...this.state.checkedItems, id] })
+        }
     }
 
     sortItems = (inputItems, sort) => {
@@ -146,6 +156,7 @@ export default class MainListPage extends React.Component {
                 notes={item.notes}
                 openEmailForm={this.openEmailForm}
                 closeEmailForm={e => this.closeEmailForm}
+                setChecked={this.setChecked}
             />
         )
         const searchedItems = this.searchItems(itemArray, query)
@@ -164,7 +175,7 @@ export default class MainListPage extends React.Component {
             <div className="container">
                 <main className="content">
                     <Header title={title} />
-                    <MainListTools setQuery={this.setQuery} setSort={this.setSort} />
+                    <MainListTools setQuery={this.setQuery} setSort={this.setSort} checkedItems={this.state.checkedItems} />
                     <br></br>
                     <div className='main-list-container'>
                         <MainListBody renderListItems={this.renderListItems} openEmailForm={this.openEmailForm} closeEmailForm={this.closeEmailForm} />

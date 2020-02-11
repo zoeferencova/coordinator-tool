@@ -3,6 +3,7 @@ import AppContext from '../../contexts/contexts'
 import './MainListTools.css'
 import { Link } from 'react-router-dom';
 import LoginForm from '../LoginForm/LoginForm';
+import config from '../../config'
 
 export default class MainListTools extends React.Component {
     static contextType = AppContext;
@@ -40,37 +41,46 @@ export default class MainListTools extends React.Component {
         return pmEmails.join('; ')
     }
 
-    fireAction(action) {
-        const listCheckboxes = document.querySelectorAll('#list-checkbox')
-        const actionsSelect = document.querySelector('#action')
-        if (action === 'mark-completed') {
-            for (let i=0; i < listCheckboxes.length; i++) {
-                if (listCheckboxes[i].checked === true) {
-                    //function for changing posting status as completed to api
-                }
-            }
-            
+    fireAction(status) {
+        const checked = this.props.checkedItems;
+        if (status === 'completed' || status === 'reached') {
+            checked.forEach(item => {
+                fetch(`${config.API_ENDPOINT}/list/${item}`, {
+                    method: 'PATCH',
+                    headers: {
+                        'content-type': 'application/json',
+                        'Authorization': `Bearer ${window.sessionStorage.getItem(config.TOKEN_KEY)}`
+                    },
+                    body: JSON.stringify({ status })
+                })
+                    .then(res => this.context.updateItemStatus(item, status))
+            })
+        } else if (status === 'delete') {
+            checked.forEach(item => {
+                fetch(`${config.API_ENDPOINT}/list/${item}`, {
+                    method: 'DELETE',
+                    headers: {
+                        'content-type': 'application/json',
+                        'Authorization': `Bearer ${window.sessionStorage.getItem(config.TOKEN_KEY)}`
+                    }
+                })
+                this.context.deleteItem(item)
+            })
+        } else if (status === 'reset') {
+            this.context.listItems.forEach(item => {
+                const itemId = item.id;
+                fetch(`${config.API_ENDPOINT}/list/${itemId}`, {
+                    method: 'PATCH',
+                    headers: {
+                        'content-type': 'application/json',
+                        'Authorization': `Bearer ${window.sessionStorage.getItem(config.TOKEN_KEY)}`
+                    },
+                    body: JSON.stringify({ status: 'none' })
+                })
+                    .then(res => this.context.updateItemStatus(itemId, 'none'))
+            })
         }
 
-        if (action === 'mark-reached') {
-            for (let i=0; i < listCheckboxes.length; i++) {
-                if (listCheckboxes[i].checked === true) {
-                    //function for changing posting status as reached to api
-                }
-            }
-
-        }
-
-        if (action === 'delete-selected') {
-            window.confirm('Are you sure you want to delete the selected items?')
-            for (let i=0; i < listCheckboxes.length; i++) {
-                if (listCheckboxes[i].checked === true) {
-                    //function for deleting item in api
-                }
-            }
-        }
-
-        
     }
 
     
@@ -96,16 +106,16 @@ export default class MainListTools extends React.Component {
                     </div>
                     <div>
                         <label htmlFor="action">Actions: </label>
-                        <select name="action" id="action" onChange={e => this.fireAction(e.target.value)}>
+                        <select name="action" id="action" value={'none'} onChange={e => this.fireAction(e.target.value)}>
                             <option value="none"></option>
-                            <option value="mark-completed">Mark Completed</option>
-                            <option value="mark-reached">Mark Reached Out</option>
-                            <option value="delete-selected">Delete</option>
+                            <option value="completed">Mark Completed</option>
+                            <option value="reached">Mark Reached Out</option>
+                            <option value="delete">Delete</option>
                         </select>
                     </div>
 
                 <div>
-                    <button>Reset</button>
+                    <button onClick={e => this.fireAction('reset')}>Reset</button>
                     <a href={`mailto:${this.formatUpdateEmailAddresses()}?Subject=Update - ${new Date().toLocaleDateString('en-US', {month: 'long', weekday: 'long', day: 'numeric'})}&Body=${this.formatEmailUpdate()}`}><button>Send Update</button></a>
                     <Link to='/add-item'><button>Add Item</button></Link>
                 </div>

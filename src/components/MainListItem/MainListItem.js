@@ -15,7 +15,7 @@ export default class MainListItem extends React.Component {
     static contextType = AppContext;
     
     state = {
-        expanded: false,
+        expanded: false
     }
 
     handleStatusClick(status, id) {
@@ -54,7 +54,7 @@ export default class MainListItem extends React.Component {
         const { id, project, advisor, pm_name, pm_email, notes, status, date_created } = this.props;
         return (
             <div className="table-row row">
-                <div className="table-body-cell hide-mobile"><input type="checkbox" id="list-checkbox"></input></div>
+                <div className="table-body-cell hide-mobile"><input type="checkbox" id="list-checkbox" onChange={e => this.props.setChecked(id)}></input></div>
                 <div className="table-body-cell">
                     <span className="status-icon" onClick={() => this.state.expanded === true ? this.setState({ expanded: false }) : this.setState({ expanded: true })}>{icons[status]}</span>
                     <ul className={`icon-list hide-list ${this.state.expanded && 'show-list'}`}>
