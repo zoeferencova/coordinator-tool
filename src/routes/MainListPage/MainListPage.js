@@ -33,27 +33,6 @@ export default class MainListPage extends React.Component {
             })
                 .then(res => res.json())
                 .then(resJson => this.context.setListItems(resJson))
-
-        fetch(`${config.API_ENDPOINT}/pms`, {
-            method: 'GET',
-            headers: {
-                'content-type': 'application/json',
-                'Authorization': `Bearer ${window.sessionStorage.getItem(config.TOKEN_KEY)}`
-            }
-            })
-                .then(res => res.json())
-                .then(resJson => this.context.setPms(resJson))
-        
-
-        fetch(`${config.API_ENDPOINT}/users`, {
-            method: 'GET',
-            headers: {
-                'content-type': 'application/json',
-                'Authorization': `Bearer ${window.sessionStorage.getItem(config.TOKEN_KEY)}`
-            }
-            })
-                .then(res => res.json())
-                .then(resJson => this.context.setUser(resJson))
     }
 
     openEmailForm = (project, advisor, pm_name, pm_email) => {
@@ -146,7 +125,9 @@ export default class MainListPage extends React.Component {
                 checked={item.checked}
                 status={item.status}
                 project={item.project}
+                project_url={item.project_url}
                 advisor={item.advisor}
+                advisor_url={item.advisor_url}
                 pm_name={item.pm_name}
                 pm_email={item.pm_email}
                 date_created={new Date(item.date_created).toLocaleDateString('en-US', this.context.dateOptions)}

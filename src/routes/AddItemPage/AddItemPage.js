@@ -22,8 +22,8 @@ export default class AddItemPage extends React.Component {
                 <input type="text" name='advisor' id='advisor'></input>
             </div>
             <div>
-                <label htmlFor="adv-url">Advisor URL: </label>
-                <input type="text" name='adv-url' id='adv-url'></input>
+                <label htmlFor="advisor_url">Advisor URL: </label>
+                <input type="text" name='advisor_url' id='advisor_url'></input>
             </div><br></br></div>)
         }
 
@@ -39,11 +39,13 @@ export default class AddItemPage extends React.Component {
     handlePostItem(e) {
         e.preventDefault();
         const project = e.target.project.value;
+        const project_url = e.target.project_url.value;
         const advisor = e.target.advisor.value;
+        const advisor_url = e.target.advisor_url.value;
         const pm_id = this.context.pms.find(pm => pm.pm_name === e.target.pm.value).id;
         const notes = e.target.notes.value;
         
-        const item = { project, advisor, pm_id, notes, status: 'none' }
+        const item = { project, project_url, advisor, advisor_url, pm_id, notes, status: 'none' }
         console.log(JSON.stringify(item))
         return fetch(`${config.API_ENDPOINT}/list`, {
             method: 'POST',
@@ -70,8 +72,8 @@ export default class AddItemPage extends React.Component {
                             <input type="text" name='project' id='project'></input>
                         </div>
                         <div>
-                            <label htmlFor="proj-url">Project URL: </label>
-                            <input type="text" name='proj-url' id='proj-url'></input>
+                            <label htmlFor="project_url">Project URL: </label>
+                            <input type="text" name='project_url' id='project_url'></input>
                         </div>
                         <br></br>
                         {this.renderAdvisorInputs()}

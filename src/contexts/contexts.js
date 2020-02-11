@@ -7,6 +7,7 @@ const AppContext = React.createContext({
     templates: [],
     completedListItems: [],
     dateOptions: {},
+    fetchData: () => {},
     deleteItem: () => {},
     addItem: () => {},
     updateItem: () => {},

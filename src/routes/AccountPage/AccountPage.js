@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 import Header from '../../components/Header/Header'
 import AppContext from '../../contexts/contexts'
 import './AccountPage.css'
@@ -10,8 +11,21 @@ export default class AccountPage extends React.Component {
     
     renderPms() {
         return this.context.pms.map(pm => 
-            <li key={pm.id}>{pm.pm_name} - <span>{pm.pm_email} </span> <button>Delete</button></li>
+            <li key={pm.id}>{pm.pm_name} - <span>{pm.pm_email} </span> <button onClick={e => this.handleDeletePm(e)} pmid={pm.id}>Delete</button></li>
         )
+    }
+
+    handleDeletePm(e) {
+        e.preventDefault();
+        const pmId = ReactDOM.findDOMNode(e.target).getAttribute('pmid')
+        fetch(`${config.API_ENDPOINT}/pms/${pmId}`, {
+            method: 'DELETE',
+            headers: {
+                'content-type': 'application/json',
+                'Authorization': `Bearer ${window.sessionStorage.getItem(config.TOKEN_KEY)}`
+            }
+        })
+        this.context.deletePm(pmId)
     }
 
     handlePostPm(e) {
@@ -30,6 +44,8 @@ export default class AccountPage extends React.Component {
         })
           .then(res => res.json())
           .then(pm => this.context.addPm(pm))
+          .then(e.target.pm_name.value = '')
+          .then(e.target.pm_email.value = '')
     }
     
     render() {

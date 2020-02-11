@@ -88,6 +88,14 @@ export default class EditItemPage extends React.Component {
     handleChangeNotes = val => {
         this.setState({ inputValues: { ...this.state.inputValues, notes: val } })
     }
+
+    handleChangeAdvisorURL = val => {
+        this.setState({ inputValues: { ...this.state.inputValues, advisor_url: val } })
+    }
+
+    handleChangeProjectURL = val => {
+        this.setState({ inputValues: { ...this.state.inputValues, project_url: val } })
+    }
     
     render() {
         return (
@@ -102,7 +110,7 @@ export default class EditItemPage extends React.Component {
                         </div>
                         <div>
                             <label htmlFor="proj-url">Project URL: </label>
-                            <input type="text" name='proj-url' id='proj-url' ></input>
+                            <input type="text" name='proj-url' id='proj-url' defaultValue={this.state.inputValues.project_url || ''} onChange={e => this.handleChangeProjectURL(e.target.value)}></input>
                         </div>
                         <br></br>
                         <br></br>
@@ -112,7 +120,7 @@ export default class EditItemPage extends React.Component {
                         </div>
                         <div>
                             <label htmlFor="adv-url">Advisor URL: </label>
-                            <input type="text" name='adv-url' id='adv-url'></input>
+                            <input type="text" name='adv-url' id='adv-url' defaultValue={this.state.inputValues.advisor_url || ''} onChange={e => this.handleChangeAdvisorURL(e.target.value)}></input>
                         </div><br></br>
                         {this.renderAdvisorInputs()}
                         <button onClick={e => this.setAdvisorInputNumber(e)}>+ Additional Advisors</button>

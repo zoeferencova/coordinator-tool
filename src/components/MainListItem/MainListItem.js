@@ -51,7 +51,7 @@ export default class MainListItem extends React.Component {
     }
 
     render() {
-        const { id, project, advisor, pm_name, pm_email, notes, status, date_created } = this.props;
+        const { id, project, project_url, advisor, advisor_url, pm_name, pm_email, notes, status, date_created } = this.props;
         return (
             <div className="table-row row">
                 <div className="table-body-cell hide-mobile"><input type="checkbox" id="list-checkbox" onChange={e => this.props.setChecked(id)}></input></div>
@@ -63,8 +63,8 @@ export default class MainListItem extends React.Component {
                         <li className='last' onClick={() => this.handleStatusClick('completed', id)}>{icons['completed']} Completed</li>
                     </ul>
                 </div>
-                <div className="table-body-cell proj-cell">{project}</div>
-                <div className="table-body-cell adv-cell">{advisor}</div>
+                <div className="table-body-cell proj-cell">{project_url !== '' ? <a href={project_url} target="_blank">{project}</a> : project}</div>
+                <div className="table-body-cell proj-cell">{advisor_url !== '' ? <a href={advisor_url} target="_blank">{advisor}</a> : advisor}</div>
                 <div className="table-body-cell hide-mobile">{pm_name}</div>
                 <div className="table-body-cell hide-mobile">{date_created}</div>
                 <div className="table-body-cell notes-cell hide-mobile">{notes}</div>

@@ -1,8 +1,11 @@
 import React from 'react';
+import AppContext from '../../contexts/contexts'
 import AuthApiService from '../../services/auth-api-service'
 import { Redirect } from 'react-router-dom';
 
 export default class LoginForm extends React.Component {
+    static contextType = AppContext;
+    
     static defaultProps = {
         onLoginSuccess: () => {}
     }
@@ -25,6 +28,9 @@ export default class LoginForm extends React.Component {
                 email.value = '';
                 password.value = '';
                 this.setState({ toMain: true })
+            })
+            .then(res => {
+                this.context.fetchData()
             })
             .catch(res => {
                 this.setState({ error: res.message })
