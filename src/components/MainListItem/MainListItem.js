@@ -39,7 +39,6 @@ export default class MainListItem extends React.Component {
     handleDeleteItem(e) {
         e.preventDefault();
         const itemId = ReactDOM.findDOMNode(e.target).parentNode.getAttribute('itemkey')
-        
         fetch(`${config.API_ENDPOINT}/list/${itemId}`, {
             method: 'DELETE',
             headers: {
@@ -79,15 +78,22 @@ export default class MainListItem extends React.Component {
                             ? this.setState({ popup: false }) 
                             : this.setState({popup: true})}
                     >
-                        <i className="far fa-caret-square-down"></i>
+                        <i className="fas fa-ellipsis-h"></i>
                     </div>
                     <div className={`popup ${this.state.popup ? 'show' : 'hidden'}`}>
-                        <div>PM: {pm_name}</div>
-                        <div>Date: {date_created}</div>
-                        <div>Notes: {notes}</div>
-                        <div>Email...</div>
-                        <div>Edit...</div>
-                        <div>Delete</div>
+                        <div className="popup-overlay" onClick={() => this.setState({ popup: false })}></div>
+                        <div className='popup-container'>
+                            <div itemkey={id}>
+                                <div>PM: {pm_name}</div>
+                                <div>Date: {date_created}</div>
+                                {this.props.notes && <div>Notes: {notes}</div>}
+                                <div onClick={() => this.props.openEmailForm(project, advisor, pm_name, pm_email)} >Email...</div>
+                                <Link to={{pathname:`/edit-item/${id}`, itemProps: {project, advisor, pm_name, notes}}} ><div className="popup-link" onClick={this.handleEditItem}>Edit...</div></Link>
+                                <div className='last' itemkey={id} onClick={e => this.handleDeleteItem(e)}>Delete</div>
+                            </div>
+    
+                            <div className='cancel' onClick={() => this.setState({ popup: false })}>Cancel</div>
+                        </div>
                     </div>
                 </div>
             </div>

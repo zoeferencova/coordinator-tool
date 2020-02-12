@@ -50,6 +50,10 @@ export default class App extends React.Component {
     }
   }
 
+  componentDidMount() {
+    this.fetchData()
+  }
+
   fetchData() {
     fetch(`${config.API_ENDPOINT}/pms`, {
       method: 'GET',
