@@ -18,12 +18,12 @@ export default class AddItemPage extends React.Component {
         const arr = []
         for (let i=0; i < numberOfAdvisorInputs; i++) {
             arr.push(<div><div>
-                <label htmlFor="advisor">Advisor Name: </label>
-                <input type="text" name='advisor' id='advisor'></input>
+                <label htmlFor={`advisor${i}`}>Advisor Name: </label>
+                <input type="text" name={`advisor${i}`} id={`advisor${i}`}></input>
             </div>
             <div>
-                <label htmlFor="advisor_url">Advisor URL: </label>
-                <input type="text" name='advisor_url' id='advisor_url'></input>
+                <label htmlFor={`advisor${i}_url`}>Advisor URL: </label>
+                <input type="text" name={`advisor${i}_url`} id={`advisor${i}_url`}></input>
             </div><br></br></div>)
         }
 
@@ -38,26 +38,29 @@ export default class AddItemPage extends React.Component {
 
     handlePostItem(e) {
         e.preventDefault();
-        const project = e.target.project.value;
-        const project_url = e.target.project_url.value;
-        const advisor = e.target.advisor.value;
-        const advisor_url = e.target.advisor_url.value;
-        const pm_id = this.context.pms.find(pm => pm.pm_name === e.target.pm.value).id;
-        const notes = e.target.notes.value;
+        for (let i=0; i < this.state.numberOfAdvisorInputs; i++) {
+            const project = e.target.project.value;
+            const project_url = e.target.project_url.value;
+            const advisor = document.getElementById(`advisor${i}`).value;
+            const advisor_url = document.getElementById(`advisor${i}_url`).value;
+            const pm_id = this.context.pms.find(pm => pm.pm_name === e.target.pm.value).id;
+            const notes = e.target.notes.value;
+            
+            const item = { project, project_url, advisor, advisor_url, pm_id, notes, status: 'none' }
+            
+            fetch(`${config.API_ENDPOINT}/list`, {
+                method: 'POST',
+                headers: {
+                    'content-type': 'application/json',
+                    'Authorization': `Bearer ${window.sessionStorage.getItem(config.TOKEN_KEY)}`
+                },
+                body: JSON.stringify(item)
+            })
+                .then(res => res.json())
+                .then(item => this.context.addItem(item))
+            }
         
-        const item = { project, project_url, advisor, advisor_url, pm_id, notes, status: 'none' }
-        console.log(JSON.stringify(item))
-        return fetch(`${config.API_ENDPOINT}/list`, {
-            method: 'POST',
-            headers: {
-                'content-type': 'application/json',
-                'Authorization': `Bearer ${window.sessionStorage.getItem(config.TOKEN_KEY)}`
-            },
-            body: JSON.stringify(item)
-        })
-          .then(res => res.json())
-          .then(item => this.context.addItem(item))
-          .then(res => this.props.history.push('/main'))
+        return this.props.history.push('/main')
     }
 
     render() {
