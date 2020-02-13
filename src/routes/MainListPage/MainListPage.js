@@ -24,18 +24,6 @@ export default class MainListPage extends React.Component {
         checkedItems: []
     }
 
-    componentDidMount() {
-        fetch(`${config.API_ENDPOINT}/list`, {
-            method: 'GET',
-            headers: {
-                'content-type': 'application/json',
-                'Authorization': `Bearer ${window.sessionStorage.getItem(config.TOKEN_KEY)}`
-            }
-            })
-                .then(res => res.json())
-                .then(resJson => this.context.setListItems(resJson))
-    }
-
     openEmailForm = (project, advisor, pm_name, pm_email) => {
         this.setState({ emailFormOpen: true })
         this.setState({

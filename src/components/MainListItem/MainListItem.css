@@ -39,12 +39,11 @@ div .notes-cell, div .adv-cell, div .proj-cell {
 }
 
 .icon-list {
-    position: fixed;
+    position: absolute;
     background: lightgray;
     padding: 6px;
     text-align: left;
-    margin-top: 4px;
-    margin-left: 5px;
+    margin: 3px 0px 0px 25px;
     border-radius: 5px;
 }
 
