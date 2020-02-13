@@ -106,7 +106,7 @@ export default class App extends React.Component {
       }
       })
           .then(res => res.json())
-          .then(resJson => this.context.setListItems(resJson))
+          .then(resJson => this.setListItems(resJson))
   }
 
   setInitialState = () => {
