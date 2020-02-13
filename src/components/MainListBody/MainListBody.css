@@ -71,7 +71,8 @@ div.status-column {
 }
 
 div .actions-column {
-    width: 110px;
+    width: 100px;
+    padding: 5px;
 }
 
 
