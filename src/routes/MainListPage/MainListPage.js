@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 import AppContext from '../../contexts/contexts'
 import './MainListPage.css'
 import MainListTools from '../../components/MainListTools/MainListTools';
@@ -17,7 +18,7 @@ export default class MainListPage extends React.Component {
         emailFormOpen: false,
         emailProject: '',
         emailAdvisor: '',
-        emailPm: {},
+        emailPmName: '',
         query: '',
         sort: 'none',
         checkedItems: []
@@ -58,7 +59,7 @@ export default class MainListPage extends React.Component {
             emailFormOpen: false,
             emailProject: '',
             emailAdvisor: '',
-            emailPm: '',
+            emailPmName: '',
         })
     }
 
@@ -75,6 +76,10 @@ export default class MainListPage extends React.Component {
 
     clearChecked = () => {
         this.setState({ checkedItems: [] })
+        const listCheckboxes = document.querySelectorAll('#list-checkbox')
+        const headerCheckbox = document.querySelector('#header-checkbox')
+        listCheckboxes.forEach(item => item.checked = false)
+        headerCheckbox.checked = false;
     }
 
     sortItems = (inputItems, sort) => {
@@ -135,6 +140,7 @@ export default class MainListPage extends React.Component {
                 openEmailForm={this.openEmailForm}
                 closeEmailForm={e => this.closeEmailForm}
                 setChecked={this.setChecked}
+                
             />
         )
         const searchedItems = this.searchItems(itemArray, query)
@@ -153,12 +159,12 @@ export default class MainListPage extends React.Component {
             <div className="container">
                 <main className="content">
                     <Header title={title} />
-                    <MainListTools setQuery={this.setQuery} setSort={this.setSort} checkedItems={this.state.checkedItems} />
+                    <MainListTools setQuery={this.setQuery} setSort={this.setSort} checkedItems={this.state.checkedItems} clearChecked={this.clearChecked} />
                     <br></br>
                     <div className='main-list-container'>
                         <MainListBody renderListItems={this.renderListItems} openEmailForm={this.openEmailForm} closeEmailForm={this.closeEmailForm} setChecked={this.setChecked} clearChecked={this.clearChecked} />
                     </div>
-                    {this.state.emailFormOpen && <SendEmailForm project={this.state.emailProject} advisor={this.state.emailAdvisor} pm={this.state.emailPmName} pm_email={this.state.emailPmEmail} closeEmailForm={this.closeEmailForm} />}
+                    {this.state.emailFormOpen && <SendEmailForm project={this.state.emailProject} advisor={this.state.emailAdvisor} pm_name={this.state.emailPmName} closeEmailForm={this.closeEmailForm} />}
                 </main>
                 <NavBar />
             </div>

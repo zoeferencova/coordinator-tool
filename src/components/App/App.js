@@ -85,6 +85,17 @@ export default class App extends React.Component {
       })
           .then(res => res.json())
           .then(resJson => this.setTemplates(resJson))
+
+
+    fetch(`${config.API_ENDPOINT}/list`, {
+      method: 'GET',
+      headers: {
+          'content-type': 'application/json',
+          'Authorization': `Bearer ${window.sessionStorage.getItem(config.TOKEN_KEY)}`
+      }
+      })
+          .then(res => res.json())
+          .then(resJson => this.setListItems(resJson))
   }
 
   setInitialState = () => {

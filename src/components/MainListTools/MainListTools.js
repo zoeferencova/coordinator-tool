@@ -54,17 +54,22 @@ export default class MainListTools extends React.Component {
                     body: JSON.stringify({ status })
                 })
                     .then(res => this.context.updateItemStatus(item, status))
+                    .then(this.props.clearChecked())
             })
         } else if (status === 'delete') {
             checked.forEach(item => {
+                console.log(item + ' working')
                 fetch(`${config.API_ENDPOINT}/list/${item}`, {
                     method: 'DELETE',
                     headers: {
                         'content-type': 'application/json',
                         'Authorization': `Bearer ${window.sessionStorage.getItem(config.TOKEN_KEY)}`
                     }
+                        
                 })
-                this.context.deleteItem(item)
+                    .then(res => this.context.deleteItem(item))
+                    .then(this.props.clearChecked())
+                    
             })
         } else if (status === 'reset') {
             this.context.listItems.forEach(item => {
@@ -78,6 +83,8 @@ export default class MainListTools extends React.Component {
                     body: JSON.stringify({ status: 'none' })
                 })
                     .then(res => this.context.updateItemStatus(itemId, 'none'))
+                    .then(this.props.clearChecked())
+                    
             })
         }
 

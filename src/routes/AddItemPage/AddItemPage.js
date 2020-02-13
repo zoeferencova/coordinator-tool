@@ -59,6 +59,7 @@ export default class AddItemPage extends React.Component {
                 .then(res => res.json())
                 .then(item => this.context.addItem(item))
             }
+        this.setState({numberOfAdvisorInputs: 1})
         
         return this.props.history.push('/main')
     }
