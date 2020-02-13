@@ -145,7 +145,7 @@ export default class App extends React.Component {
   }
 
   addItem = (item) => {
-    this.setState({ listItems: [item, ...this.state.listItems] })
+    this.setState({ listItems: [...this.state.listItems, item] })
   }
 
   updateItem = (updatedItem) => {
