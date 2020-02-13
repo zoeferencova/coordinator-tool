@@ -13,7 +13,7 @@ export default class CompletedListBody extends React.Component {
                     <div className="table-header-cell">Advisor</div>
                     <div className="table-header-cell">PM</div>
                     <div className="table-header-cell">Date</div>
-                    <div className="table-header-cell">Actions</div>
+                    <div className="table-header-cell actions-column">Actions</div>
                 </div>
                 {this.props.renderCompletedItems()}
             </div>

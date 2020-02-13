@@ -1,6 +1,6 @@
 .table-row i {
     font-size: 17px;
-    margin: 0 7px;
+    margin: 0 4px;
     color: gray;
 }
 
@@ -15,6 +15,7 @@
 
 div .notes-cell, div .adv-cell, div .proj-cell, div .date-cell, div .pm-cell {
     padding: 0 10px;
+    text-align: left;
 }
 
 .hide-list {
