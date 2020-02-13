@@ -33,6 +33,7 @@ export default class App extends React.Component {
       fetchData: this.fetchData,
       deleteItem: this.deleteItem,
       addItem: this.addItem,
+      addItemById: this.addItemById,
       updateItem: this.updateItem,
       updateItemStatus: this.updateItemStatus,
       addTemplate: this.addTemplate,
@@ -96,6 +97,16 @@ export default class App extends React.Component {
       })
           .then(res => res.json())
           .then(resJson => this.setListItems(resJson))
+
+    fetch(`${config.API_ENDPOINT}/list`, {
+      method: 'GET',
+      headers: {
+          'content-type': 'application/json',
+          'Authorization': `Bearer ${window.sessionStorage.getItem(config.TOKEN_KEY)}`
+      }
+      })
+          .then(res => res.json())
+          .then(resJson => this.context.setListItems(resJson))
   }
 
   setInitialState = () => {
@@ -202,11 +213,14 @@ export default class App extends React.Component {
     this.setState({ completedListItems: newCompleted })
   }
 
-  
+  addItemById = (itemId) => {
+    const item = this.state.listItems.find(item => item.id === itemId)
+    this.setState({ listItems: [item, ...this.state.listItems] })
+  }
 
   render() {
-    const { listItems, pms, user, templates, completedListItems, dateOptions, fetchData, deleteItem, addItem, updateItem, updateItemStatus, addTemplate, deleteTemplate, updateTemplate, addPm, deletePm, revertCompleted, setListItems, setCompletedItems, setPms, setTemplates, setUser, setInitialState } = this.state;
-    const value = { listItems, pms, user, templates, completedListItems, dateOptions, fetchData, deleteItem, addItem, updateItem, updateItemStatus, addTemplate, deleteTemplate, updateTemplate, addPm, deletePm, revertCompleted, setListItems, setCompletedItems, setPms, setTemplates, setUser, setInitialState }
+    const { listItems, pms, user, templates, completedListItems, dateOptions, fetchData, deleteItem, addItem, addItemById, updateItem, updateItemStatus, addTemplate, deleteTemplate, updateTemplate, addPm, deletePm, revertCompleted, setListItems, setCompletedItems, setPms, setTemplates, setUser, setInitialState } = this.state;
+    const value = { listItems, pms, user, templates, completedListItems, dateOptions, fetchData, deleteItem, addItem, addItemById, updateItem, updateItemStatus, addTemplate, deleteTemplate, updateTemplate, addPm, deletePm, revertCompleted, setListItems, setCompletedItems, setPms, setTemplates, setUser, setInitialState }
 
     return ( 
       <AppContext.Provider value={value}>

@@ -10,6 +10,7 @@ const AppContext = React.createContext({
     fetchData: () => {},
     deleteItem: () => {},
     addItem: () => {},
+    addItemById: () => {},
     updateItem: () => {},
     updateItemStatus: () => {},
     addTemplate: () => {},

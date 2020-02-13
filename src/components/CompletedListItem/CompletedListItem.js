@@ -18,6 +18,7 @@ export default class CompletedListItem extends React.Component {
             body: JSON.stringify({ status })
         })
             .then(res => this.context.revertCompleted(id))
+            .then(res => this.context.addItemById(id))
     }
 
 
