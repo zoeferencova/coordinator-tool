@@ -40,6 +40,10 @@
     display: table-row;
 }
 
+div .table-body-cell {
+    height: 32px; 
+}
+
 .table-body-cell {
     display: table-cell;
 }
