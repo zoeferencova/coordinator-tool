@@ -57,7 +57,9 @@ div.actions-column, div.status-column, div.check-column {
     text-align: center;
 }
 
-
+div .check-column {
+    width: 30px;
+}
 
 div.status-column {
     width: 40px;
