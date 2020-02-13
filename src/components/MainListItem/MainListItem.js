@@ -54,7 +54,7 @@ export default class MainListItem extends React.Component {
                 <div className="table-body-cell hide-mobile date-cell">{date_created}</div>
                 <div className="table-body-cell notes-cell hide-mobile">{notes}</div>
                 <div className="table-body-cell status-column">
-                    <select className="status-select" onChange={(e) => this.handleStatusClick(e.target.value, this.props.id)}>
+                    <select className="status-select" value={status} onChange={(e) => this.handleStatusClick(e.target.value, this.props.id)}>
                         <option value='none'></option>
                         <option value='reached'>Reached</option>
                         <option value='completed'>Completed</option>
