@@ -6,11 +6,29 @@
 
 
 
-.proj-cell, .adv-cell, .notes-cell {
-    max-width: 136px;
+.proj-cell, .adv-cell, .notes-cell, .pm-cell {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+}
+
+.proj-cell {
+    max-width: 200px;
+    min-width: 140px;
+}
+
+.adv-cell {
+    max-width: 100px;
+    min-width: 70px;
+}
+
+.pm-cell {
+    max-width: 70px;
+}
+
+.notes-cell {
+    max-width: 170px;
+    min-width: 100px;
 }
 
 div .notes-cell, div .adv-cell, div .proj-cell, div .date-cell, div .pm-cell {

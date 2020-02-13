@@ -49,7 +49,7 @@ export default class MainListItem extends React.Component {
             <div className="table-row row">
                 <div className="table-body-cell hide-mobile check-column"><input type="checkbox" id="list-checkbox" onChange={e => this.props.setChecked(id)}></input></div>
                 <div className="table-body-cell proj-cell">{project_url !== '' ? <a href={project_url} target="_blank" rel="noopener noreferrer">{project}</a> : project}</div>
-                <div className="table-body-cell proj-cell">{advisor_url !== '' ? <a href={advisor_url} target="_blank" rel="noopener noreferrer">{advisor}</a> : advisor}</div>
+                <div className="table-body-cell adv-cell">{advisor_url !== '' ? <a href={advisor_url} target="_blank" rel="noopener noreferrer">{advisor}</a> : advisor}</div>
                 <div className="table-body-cell hide-mobile pm-cell">{pm_name}</div>
                 <div className="table-body-cell hide-mobile date-cell">{date_created}</div>
                 <div className="table-body-cell notes-cell hide-mobile">{notes}</div>
