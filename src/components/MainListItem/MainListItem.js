@@ -28,12 +28,6 @@ export default class MainListItem extends React.Component {
             body: JSON.stringify({ status })
         })
             .then(res => this.context.updateItemStatus(id, status))
-
-        if (this.state.expanded === true) {
-            this.setState({ expanded: false })
-        } else {
-            this.setState({ expanded: true })
-        }
     }
 
     handleDeleteItem(e) {
@@ -54,19 +48,18 @@ export default class MainListItem extends React.Component {
         return (
             <div className="table-row row">
                 <div className="table-body-cell hide-mobile check-column"><input type="checkbox" id="list-checkbox" onChange={e => this.props.setChecked(id)}></input></div>
-                <div className="table-body-cell status-column">
-                    <span className="status-icon" onClick={() => this.state.expanded === true ? this.setState({ expanded: false }) : this.setState({ expanded: true })}>{icons[status]}</span>
-                    <ul className={`icon-list hide-list ${this.state.expanded && 'show-list'}`}>
-                        <li onClick={() => this.handleStatusClick('none', id)}>{icons['none']} None</li>
-                        <li onClick={() => this.handleStatusClick('reached', id)}>{icons['reached']} Reached Out</li>
-                        <li className='last' onClick={() => this.handleStatusClick('completed', id)}>{icons['completed']} Completed</li>
-                    </ul>
-                </div>
                 <div className="table-body-cell proj-cell">{project_url !== '' ? <a href={project_url} target="_blank" rel="noopener noreferrer">{project}</a> : project}</div>
                 <div className="table-body-cell proj-cell">{advisor_url !== '' ? <a href={advisor_url} target="_blank" rel="noopener noreferrer">{advisor}</a> : advisor}</div>
                 <div className="table-body-cell hide-mobile pm-cell">{pm_name}</div>
                 <div className="table-body-cell hide-mobile date-cell">{date_created}</div>
                 <div className="table-body-cell notes-cell hide-mobile">{notes}</div>
+                <div className="table-body-cell status-column">
+                    <select className="status-select" onChange={(e) => this.handleStatusClick(e.target.value, this.props.id)}>
+                        <option value='none'></option>
+                        <option value='reached'>Reached</option>
+                        <option value='completed'>Completed</option>
+                    </select>
+                </div>
                 <div className="table-body-cell hide-mobile actions-column">
                     <button onClick={() => this.props.openEmailForm(project, advisor, pm_name, pm_email)}><i className="fas fa-envelope"></i></button>
                     <Link to={{pathname:`/edit-item/${id}`, itemProps: {project, advisor, pm_name, notes}}} ><button onClick={this.handleEditItem}><i className="fas fa-edit"></i></button></Link>

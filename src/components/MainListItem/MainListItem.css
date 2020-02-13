@@ -25,6 +25,10 @@ div .notes-cell, div .adv-cell, div .proj-cell, div .date-cell, div .pm-cell {
     display: block;
 }
 
+.status-select {
+    width: 60px;
+}
+
 .status-icon i {
     font-size: 20px;
 }
