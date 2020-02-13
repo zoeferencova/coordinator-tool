@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import AppContext from '../../contexts/contexts'
 import './MainListPage.css'
 import MainListTools from '../../components/MainListTools/MainListTools';
@@ -8,7 +7,6 @@ import NavBar from '../../components/NavBar/NavBar'
 import Header from '../../components/Header/Header';
 import SendEmailForm from '../../components/SendEmailForm/SendEmailForm'
 import MainListItem from '../../components/MainListItem/MainListItem'
-import config from '../../config'
 
 
 export default class MainListPage extends React.Component {

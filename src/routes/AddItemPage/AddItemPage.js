@@ -1,7 +1,7 @@
 import React from 'react';
 import NavBar from '../../components/NavBar/NavBar'
 import Header from '../../components/Header/Header'
-import { Link, Redirect } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import AppContext from '../../contexts/contexts'
 import './AddItemPage.css';
 import config from '../../config';
@@ -17,7 +17,7 @@ export default class AddItemPage extends React.Component {
         const { numberOfAdvisorInputs } = this.state;
         const arr = []
         for (let i=0; i < numberOfAdvisorInputs; i++) {
-            arr.push(<div><div>
+            arr.push(<div key={i}><div>
                 <label htmlFor={`advisor${i}`}>Advisor Name: </label>
                 <input type="text" name={`advisor${i}`} id={`advisor${i}`}></input>
             </div>

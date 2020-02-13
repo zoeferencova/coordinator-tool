@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import NavBar from '../../components/NavBar/NavBar'
 import Header from '../../components/Header/Header'
 import AppContext from '../../contexts/contexts'

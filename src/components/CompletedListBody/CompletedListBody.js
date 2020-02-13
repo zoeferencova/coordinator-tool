@@ -1,7 +1,6 @@
 import React from 'react';
 import AppContext from '../../contexts/contexts'
 import './CompletedListBody.css'
-import CompletedListItem from '../CompletedListItem/CompletedListItem';
 
 export default class CompletedListBody extends React.Component {   
     static contextType = AppContext;

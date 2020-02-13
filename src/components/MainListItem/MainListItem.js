@@ -62,8 +62,8 @@ export default class MainListItem extends React.Component {
                         <li className='last' onClick={() => this.handleStatusClick('completed', id)}>{icons['completed']} Completed</li>
                     </ul>
                 </div>
-                <div className="table-body-cell proj-cell">{project_url !== '' ? <a href={project_url} target="_blank">{project}</a> : project}</div>
-                <div className="table-body-cell proj-cell">{advisor_url !== '' ? <a href={advisor_url} target="_blank">{advisor}</a> : advisor}</div>
+                <div className="table-body-cell proj-cell">{project_url !== '' ? <a href={project_url} target="_blank" rel="noopener noreferrer">{project}</a> : project}</div>
+                <div className="table-body-cell proj-cell">{advisor_url !== '' ? <a href={advisor_url} target="_blank" rel="noopener noreferrer">{advisor}</a> : advisor}</div>
                 <div className="table-body-cell hide-mobile">{pm_name}</div>
                 <div className="table-body-cell hide-mobile">{date_created}</div>
                 <div className="table-body-cell notes-cell hide-mobile">{notes}</div>
@@ -78,7 +78,7 @@ export default class MainListItem extends React.Component {
                             ? this.setState({ popup: false }) 
                             : this.setState({popup: true})}
                     >
-                        <i className="fas fa-ellipsis-h"></i>
+                        <i className="fas fa-ellipsis-h pointer"></i>
                     </div>
                     <div className={`popup ${this.state.popup ? 'show' : 'hidden'}`}>
                         <div className="popup-overlay" onClick={() => this.setState({ popup: false })}></div>
@@ -87,12 +87,12 @@ export default class MainListItem extends React.Component {
                                 <div>PM: {pm_name}</div>
                                 <div>Date: {date_created}</div>
                                 {this.props.notes && <div>Notes: {notes}</div>}
-                                <div onClick={() => this.props.openEmailForm(project, advisor, pm_name, pm_email)} >Email...</div>
+                                <div className='pointer' onClick={() => {this.props.openEmailForm(project, advisor, pm_name, pm_email); this.setState({ popup: false })}} >Email...</div>
                                 <Link to={{pathname:`/edit-item/${id}`, itemProps: {project, advisor, pm_name, notes}}} ><div className="popup-link" onClick={this.handleEditItem}>Edit...</div></Link>
-                                <div className='last' itemkey={id} onClick={e => this.handleDeleteItem(e)}>Delete</div>
+                                <div className='last pointer' itemkey={id} onClick={e => this.handleDeleteItem(e)}>Delete</div>
                             </div>
     
-                            <div className='cancel' onClick={() => this.setState({ popup: false })}>Cancel</div>
+                            <div className='cancel pointer' onClick={() => this.setState({ popup: false })}>Cancel</div>
                         </div>
                     </div>
                 </div>

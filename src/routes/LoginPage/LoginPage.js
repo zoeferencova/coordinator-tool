@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, Redirect } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import LoginForm from '../../components/LoginForm/LoginForm'
 import './LoginPage.css'
 

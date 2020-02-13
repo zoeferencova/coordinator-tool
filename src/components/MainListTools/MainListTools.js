@@ -2,7 +2,6 @@ import React from 'react';
 import AppContext from '../../contexts/contexts'
 import './MainListTools.css'
 import { Link } from 'react-router-dom';
-import LoginForm from '../LoginForm/LoginForm';
 import config from '../../config'
 
 export default class MainListTools extends React.Component {
@@ -111,7 +110,7 @@ export default class MainListTools extends React.Component {
                             <option value="status">Status</option>
                         </select>
                     </div>
-                    <div>
+                    <div className="hide-mobile">
                         <label htmlFor="action">Actions: </label>
                         <select name="action" id="action" value={'none'} onChange={e => this.fireAction(e.target.value)}>
                             <option value="none"></option>

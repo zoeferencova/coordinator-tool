@@ -51,7 +51,7 @@ div .notes-cell, div .adv-cell, div .proj-cell {
     border-bottom: none;
 }
 
-.status-icon:hover, .icon-list:hover {
+.status-icon:hover, .icon-list:hover , .pointer {
     cursor: pointer;
 }
 
