@@ -21,19 +21,23 @@ export default class MainListBody extends React.Component {
             this.props.clearChecked()
         }
     }
+
+    uncheckAll = () => {
+        this.setState({ checked: false })
+    }
     
     render() {
         return (
             <div className="table">
                 <div className="table-header">
-                    <div className='table-header-cell hide-mobile'><input type="checkbox" id="header-checkbox" onChange={this.setCheckedState}></input></div>
-                    <div className="table-header-cell">Status</div>
+                    <div className='table-header-cell hide-mobile check-column'><input type="checkbox" id="header-checkbox" onChange={this.setCheckedState}></input></div>
+                    <div className="table-header-cell status-column">Status</div>
                     <div className="table-header-cell">Project</div>
                     <div className="table-header-cell">Advisor</div>
                     <div className="table-header-cell hide-mobile">PM</div>
                     <div className="table-header-cell hide-mobile">Date</div>
                     <div className="table-header-cell hide-mobile">Notes</div>
-                    <div className="table-header-cell">Actions</div>
+                    <div className="table-header-cell actions-column">Actions</div>
                 </div>
                 {this.props.renderListItems()}
             </div>

@@ -12,17 +12,18 @@
 
 .table-header {
     display: table-header-group;
+
 }
 
 .table-header div {
     background-color: lightgray;
     font-weight: bold;
+    padding: 10px;
 }
 
 .table-header-cell {
     display: table-cell;
     padding: 10px;
-    text-align: center;
     border-bottom: 1px solid black;
 }
 
@@ -52,10 +53,33 @@
     display: none !important;
 }
 
+div.actions-column, div.status-column, div.check-column {
+    text-align: center;
+}
+
+
+
+div.status-column {
+    width: 40px;
+    padding: 0;
+}
+
+.actions-column .table-body-cell {
+    text-align: center;
+}
+
+div .actions-column {
+    width: 110px;
+}
+
 
 @media only screen and (max-width: 700px) {
     .hide-mobile {
         display: none !important;
+    }
+
+    div .actions-column {
+        width: 60px;
     }
 
     .hide-desktop {

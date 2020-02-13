@@ -4,9 +4,7 @@
     color: gray;
 }
 
-div .table-body-cell {
-    padding: 10px 0;
-}
+
 
 .proj-cell, .adv-cell, .notes-cell {
     max-width: 136px;
@@ -15,7 +13,7 @@ div .table-body-cell {
     text-overflow: ellipsis;
 }
 
-div .notes-cell, div .adv-cell, div .proj-cell {
+div .notes-cell, div .adv-cell, div .proj-cell, div .date-cell, div .pm-cell {
     padding: 0 10px;
 }
 
@@ -54,6 +52,8 @@ div .notes-cell, div .adv-cell, div .proj-cell {
 .status-icon:hover, .icon-list:hover , .pointer {
     cursor: pointer;
 }
+
+
 
 @media only screen and (max-width: 1020px) {
     .table-row i {
