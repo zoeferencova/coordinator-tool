@@ -15,6 +15,11 @@
 
 }
 
+.table a {
+    text-decoration: none;
+    color: #365d75;
+}
+
 .table-header div {
     background-color: lightgray;
     font-weight: bold;
@@ -75,9 +80,6 @@ div .actions-column {
     padding: 5px;
 }
 
-div .adv-cell {
-    max-width: 100px;
-}
 
 
 @media only screen and (max-width: 700px) {
