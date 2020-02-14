@@ -211,7 +211,7 @@ export default class App extends React.Component {
     const item = this.state.completedListItems.find(item => item.id === itemId)
     const newCompleted = this.state.completedListItems.filter(item => item.id !== itemId)
     this.setState({ completedListItems: newCompleted })
-
+    item.status = 'none'
     this.addItem(item)
   }
 
