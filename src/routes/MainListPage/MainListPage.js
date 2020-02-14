@@ -76,7 +76,7 @@ export default class MainListPage extends React.Component {
         const sortByProject = (a, b) => a.props.project.toLowerCase().localeCompare(b.props.project.toLowerCase());
         const sortByPM = (a, b) => a.props.pm_name.toLowerCase().localeCompare(b.props.pm_name.toLowerCase());
         const sortByDate = (a, b, order=ASC) => {
-            const diff = new Date(a.props.date_created) - new Date(b.props.date_created);
+            const diff = new Date(a.props.unformatted_date) - new Date(b.props.unformatted_date);
             return order === ASC ? diff : -1 * diff
         };
         const sortByStatus = (a, b) => a.props.status.toLowerCase().localeCompare(b.props.status.toLowerCase());
@@ -122,6 +122,7 @@ export default class MainListPage extends React.Component {
                 pm_name={item.pm_name}
                 pm_email={item.pm_email}
                 date_created={new Date(item.date_created).toLocaleDateString('en-US', this.context.dateOptions)}
+                unformatted_date={item.date_created}
                 notes={item.notes}
                 openEmailForm={this.openEmailForm}
                 closeEmailForm={e => this.closeEmailForm}
