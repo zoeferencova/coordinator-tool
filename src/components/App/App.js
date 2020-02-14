@@ -208,13 +208,16 @@ export default class App extends React.Component {
   }
 
   revertCompleted = (itemId) => {
+    const item = this.state.completedListItems.find(item => item.id === itemId)
     const newCompleted = this.state.completedListItems.filter(item => item.id !== itemId)
     this.setState({ completedListItems: newCompleted })
+
+    this.addItem(item)
   }
 
   addItemById = (itemId) => {
     const item = this.state.listItems.find(item => item.id === itemId)
-    this.setState({ listItems: [item, ...this.state.listItems] })
+    this.setState({ listItems: [...this.state.listItems, item] })
   }
 
   render() {
