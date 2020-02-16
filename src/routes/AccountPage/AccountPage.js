@@ -8,6 +8,10 @@ import config from '../../config'
 
 export default class AccountPage extends React.Component {
     static contextType = AppContext;
+
+    state = {
+        error: null
+    }
     
     renderPms() {
         return this.context.pms.map(pm => 
@@ -42,10 +46,22 @@ export default class AccountPage extends React.Component {
             },
             body: JSON.stringify(pm)
         })
-          .then(res => res.json())
-          .then(pm => this.context.addPm(pm))
-          .then(e.target.pm_name.value = '')
-          .then(e.target.pm_email.value = '')
+            .then(res => 
+                (!res.ok)
+                    ? res.json().then(e => Promise.reject(e))
+                    : res.json()
+            )
+            .then(pm => this.handlePostSuccess(pm))
+            .catch(res => {
+                this.setState({ error: res.error.message })
+            })
+    }
+
+    handlePostSuccess = pm => {
+        this.context.addPm(pm)
+        document.getElementById('pm_name').value = ''
+        document.getElementById('pm_email').value = ''
+        this.setState({ error: null })
     }
     
     render() {
@@ -64,6 +80,7 @@ export default class AccountPage extends React.Component {
                         <ul className="pm-list">
                             {this.renderPms()}
                         </ul>
+                        {this.state.error && <p>{this.state.error}</p>}
                         <form onSubmit={e => this.handlePostPm(e)}>
                             <div>
                                 <label htmlFor="pm_name">Name: </label>

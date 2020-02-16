@@ -1,5 +1,6 @@
 import React from 'react';
 import AuthApiService from '../../services/auth-api-service';
+import { Link } from 'react-router-dom';
 
 export default class RegistrationForm extends React.Component {
     static defaultProps = {
@@ -26,7 +27,7 @@ export default class RegistrationForm extends React.Component {
                 this.props.onRegistrationSuccess();
             })
             .catch(res => 
-                this.setState({ error: res.message })
+                this.setState({ error: res.error })
             )
     }
     
@@ -50,7 +51,7 @@ export default class RegistrationForm extends React.Component {
                         <label htmlFor="password">Password</label>
                         <input required type="password" name='password' id='password' />
                     </div>
-                    <button>Cancel</button>
+                    <Link to='/'><button>Cancel</button></Link>
                     <button type='submit'>Create Account</button>
                 </form>
             </main> 

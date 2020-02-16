@@ -8,6 +8,10 @@ import './NewTemplatePage.css';
 
 export default class NewTemplatePage extends React.Component {
     static contextType = AppContext;
+
+    state = {
+        error: null
+    }
     
     handlePostTemplate(e) {
         e.preventDefault();
@@ -25,9 +29,20 @@ export default class NewTemplatePage extends React.Component {
             },
             body: JSON.stringify(template)
         })
-          .then(res => res.json())
-          .then(template => this.context.addTemplate(template))
-          .then(res => this.props.history.push('/email'))
+            .then(res => 
+                (!res.ok)
+                    ? res.json().then(e => Promise.reject(e))
+                    : res.json()
+            )
+            .then(template => this.handlePostSuccess(template))
+            .catch(res => {
+                this.setState({ error: res.error.message })
+            })
+    }
+
+    handlePostSuccess = template => {
+        this.context.addTemplate(template)
+        this.props.history.push('/email')
     }
     
     render() {
@@ -36,6 +51,7 @@ export default class NewTemplatePage extends React.Component {
                 
                 <main className="content">
                     <Header title='New Template' />
+                    {this.state.error && <p>{this.state.error}</p>}
                     <form onSubmit={e => this.handlePostTemplate(e)}>
                         <div>
                             <label htmlFor="template_name">Template Name: </label>

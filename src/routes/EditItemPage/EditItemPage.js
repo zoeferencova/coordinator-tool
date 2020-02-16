@@ -10,7 +10,8 @@ export default class EditItemPage extends React.Component {
     static contextType = AppContext;
     
     state = {
-        inputValues: {}
+        inputValues: {},
+        error: null
     }
 
     componentDidMount() {
@@ -51,7 +52,8 @@ export default class EditItemPage extends React.Component {
 
     handlePatchItem(e) {
         const pm = this.context.pms.find(pm => pm.pm_name === this.state.inputValues.pm_name)
-        const pmId = pm.id;
+        let pmId;
+        pm === undefined ? pmId = '' : pmId = pm.id;
         const updateValues = {...this.state.inputValues, pm_id: pmId }
 
         delete updateValues.pm_name;
@@ -66,10 +68,20 @@ export default class EditItemPage extends React.Component {
             },
             body: JSON.stringify(updateValues)
         })
-            .then(res => this.context.updateItem(this.state.inputValues))
-            .then(this.setState({ inputValues: {} }))
-            .then(this.props.history.push('/main'))
-            
+            .then(res => 
+                (!res.ok)
+                    ? res.json().then(e => Promise.reject(e))
+                    : this.handlePatchSuccess()
+            )
+            .catch(res => {
+                this.setState({ error: res.error.message })
+            })
+    }
+
+    handlePatchSuccess = () => {
+        this.context.updateItem(this.state.inputValues)
+        this.setState({ inputValues: {} })
+        this.props.history.push('/main')
     }
 
     handleChangeProject = val => {
@@ -102,10 +114,11 @@ export default class EditItemPage extends React.Component {
                 
                 <main className="content">
                     <Header title='Edit Item' />
+                    {this.state.error && <p>{this.state.error}</p>}
                     <form onSubmit={e => this.handlePatchItem(e)}>
                         <div>
                             <label htmlFor="proj-name">Project Name: </label>
-                            <input type="text" name='proj-name' id='proj-name' defaultValue={this.state.inputValues.project|| ''} onChange={e => this.handleChangeProject(e.target.value)}></input>
+                            <input type="text" name='proj-name' id='proj-name' defaultValue={this.state.inputValues.project|| ''} onChange={e => this.handleChangeProject(e.target.value.trim())}></input>
                         </div>
                         <div>
                             <label htmlFor="proj-url">Project URL: </label>
@@ -115,7 +128,7 @@ export default class EditItemPage extends React.Component {
                         <br></br>
                         <div>
                             <label htmlFor="adv-name">Advisor Name: </label>
-                            <input type="text" name='adv-name' id='adv-name' defaultValue={this.state.inputValues.advisor || ''} onChange={e => this.handleChangeAdvisor(e.target.value)}></input>
+                            <input type="text" name='adv-name' id='adv-name' defaultValue={this.state.inputValues.advisor || ''} onChange={e => this.handleChangeAdvisor(e.target.value.trim())}></input>
                         </div>
                         <div>
                             <label htmlFor="adv-url">Advisor URL: </label>

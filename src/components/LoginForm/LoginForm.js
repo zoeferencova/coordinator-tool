@@ -1,7 +1,7 @@
 import React from 'react';
 import AppContext from '../../contexts/contexts'
 import AuthApiService from '../../services/auth-api-service'
-import { Redirect } from 'react-router-dom';
+import { Redirect, Link } from 'react-router-dom';
 
 export default class LoginForm extends React.Component {
     static contextType = AppContext;
@@ -33,7 +33,7 @@ export default class LoginForm extends React.Component {
                 this.context.fetchData()
             })
             .catch(res => {
-                this.setState({ error: res.message })
+                this.setState({ error: res.error })
             })
     }
     
@@ -42,10 +42,11 @@ export default class LoginForm extends React.Component {
         if(this.state.toMain === true ) {
             return <Redirect to='/main'></Redirect>
         }
+
         return (
             <main>
                 <form className='LoginForm' onSubmit={this.handleSubmitJwtAuth}>
-                <div role='alert'>{error && <p className='red'>{error}</p>}</div>
+                <div role='alert'>{error && <p>{error}</p>}</div>
                     <div>
                         <label htmlFor="email">Email</label>
                         <input required type="text" name='email' id='login-email' />
@@ -54,7 +55,7 @@ export default class LoginForm extends React.Component {
                         <label htmlFor="password">Password</label>
                         <input required type="password" name='password' id='login-password' />
                     </div>
-                    <button>Cancel</button>
+                    <Link to='/'><button>Cancel</button></Link>
                     <button type='submit'>Log in</button>
                 </form>
             </main> 

@@ -68,7 +68,11 @@ export default class App extends React.Component {
           'Authorization': `Bearer ${window.sessionStorage.getItem(config.TOKEN_KEY)}`
       }
       })
-          .then(res => res.json())
+          .then(res => 
+            (!res.ok)
+              ? res.json().then(e => Promise.reject(e))
+              : res.json()
+          )
           .then(resJson => this.setPms(resJson))
   
 
@@ -79,7 +83,11 @@ export default class App extends React.Component {
             'Authorization': `Bearer ${window.sessionStorage.getItem(config.TOKEN_KEY)}`
         }
         })
-            .then(res => res.json())
+            .then(res => 
+              (!res.ok)
+                ? res.json().then(e => Promise.reject(e))
+                : res.json()
+            )
             .then(resJson => this.setUser(resJson))
 
     fetch(`${config.API_ENDPOINT}/templates`, {
@@ -89,7 +97,11 @@ export default class App extends React.Component {
           'Authorization': `Bearer ${window.sessionStorage.getItem(config.TOKEN_KEY)}`
       }
       })
-          .then(res => res.json())
+          .then(res => 
+            (!res.ok)
+              ? res.json().then(e => Promise.reject(e))
+              : res.json()
+          )
           .then(resJson => this.setTemplates(resJson))
 
 
@@ -100,17 +112,11 @@ export default class App extends React.Component {
           'Authorization': `Bearer ${window.sessionStorage.getItem(config.TOKEN_KEY)}`
       }
       })
-          .then(res => res.json())
-          .then(resJson => this.setListItems(resJson))
-
-    fetch(`${config.API_ENDPOINT}/list`, {
-      method: 'GET',
-      headers: {
-          'content-type': 'application/json',
-          'Authorization': `Bearer ${window.sessionStorage.getItem(config.TOKEN_KEY)}`
-      }
-      })
-          .then(res => res.json())
+          .then(res => 
+            (!res.ok)
+              ? res.json().then(e => Promise.reject(e))
+              : res.json()
+          )
           .then(resJson => this.setListItems(resJson))
   }
 
