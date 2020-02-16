@@ -4,7 +4,10 @@
     color: gray;
 }
 
+.status-select {
+    font-size: 11px;
 
+}
 
 .proj-cell, .adv-cell, .notes-cell, .pm-cell {
     white-space: nowrap;

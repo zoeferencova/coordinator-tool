@@ -132,9 +132,9 @@ export default class MainListTools extends React.Component {
                     </div>
 
                 <div>
-                    <button onClick={e => this.fireAction('reset')}>Reset</button>
-                    <a href={`mailto:${this.formatUpdateEmailAddresses()}?Subject=Update - ${new Date().toLocaleDateString('en-US', {month: 'long', weekday: 'long', day: 'numeric'})}&Body=${this.formatEmailUpdate()}`}><button>Send Update</button></a>
-                    <Link to='/add-item'><button>Add Item</button></Link>
+                    <button onClick={e => this.fireAction('reset')} className='tool-button'>Reset</button>
+                    <a href={`mailto:${this.formatUpdateEmailAddresses()}?Subject=Update - ${new Date().toLocaleDateString('en-US', {month: 'long', weekday: 'long', day: 'numeric'})}&Body=${this.formatEmailUpdate()}`}><button className="tool-button">Send Update</button></a>
+                    <Link to='/add-item'><button className="tool-button">Add Item</button></Link>
                 </div>
                 
             </div>

@@ -15,7 +15,7 @@
 
 .table-header {
     display: table-header-group;
-
+    
 }
 
 .table a {
@@ -27,6 +27,7 @@
     background-color: lightgray;
     font-weight: bold;
     padding: 10px;
+
 }
 
 .table-header-cell {
@@ -34,6 +35,12 @@
     padding: 10px;
     border-bottom: 1px solid black;
 }
+
+div .table-header-cell {
+    height: 25px;
+}
+
+
 
 .table-body {
     display: table-row-group;

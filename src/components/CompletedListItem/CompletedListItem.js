@@ -38,7 +38,7 @@ export default class CompletedListItem extends React.Component {
                 <div className="table-body-cell pm-cell comp-pm-cell">{this.props.pm_name}</div>
                 <div className="table-body-cell date-cell hide-mobile">{this.props.date_created}</div>
                 <div className="table-body-cell comp-revert">
-                    <button onClick={e => this.handleRevert(e, this.props.id)}>Revert</button>
+                    <button onClick={e => this.handleRevert(e, this.props.id)} className="revert-button">Revert</button>
                 </div>
             </div>
         )
