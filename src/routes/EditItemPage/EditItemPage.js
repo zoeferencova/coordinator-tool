@@ -27,29 +27,6 @@ export default class EditItemPage extends React.Component {
             .then(resJson => this.setState({ inputValues: resJson }))
     }
 
-    renderAdvisorInputs = () => {
-        const { numberOfAdvisorInputs } = this.state;
-        const arr = []
-        for (let i=0; i < numberOfAdvisorInputs; i++) {
-            arr.push(<div><div>
-                <label htmlFor="adv-name">Advisor Name: </label>
-                <input type="text" name='adv-name' id='adv-name'></input>
-            </div>
-            <div>
-                <label htmlFor="adv-url">Advisor URL: </label>
-                <input type="text" name='adv-url' id='adv-url'></input>
-            </div><br></br></div>)
-        }
-
-        return arr;
-    }
-
-    setAdvisorInputNumber = e => {
-        e.preventDefault()
-        let newNumber = this.state.numberOfAdvisorInputs + 1;
-        this.setState({ numberOfAdvisorInputs: newNumber })
-    }
-
     handlePatchItem(e) {
         const pm = this.context.pms.find(pm => pm.pm_name === this.state.inputValues.pm_name)
         let pmId;
@@ -134,8 +111,6 @@ export default class EditItemPage extends React.Component {
                             <label htmlFor="adv-url">Advisor URL: </label>
                             <input type="text" name='adv-url' id='adv-url' defaultValue={this.state.inputValues.advisor_url || ''} onChange={e => this.handleChangeAdvisorURL(e.target.value)}></input>
                         </div><br></br>
-                        {this.renderAdvisorInputs()}
-                        <button onClick={e => this.setAdvisorInputNumber(e)}>+ Additional Advisors</button>
                         <br></br><br></br>
                         <br></br>
                         <div>
