@@ -12,16 +12,22 @@ export default class MainListItem extends React.Component {
         expanded: false
     }
 
-    handleStatusClick(status, id) {
+    handleStatusClick(status, id, project, advisor, pmEmail) {
+        const pmId = this.context.pms.find(pm => pm.pm_email === pmEmail).id
+
         fetch(`${config.API_ENDPOINT}/list/${id}`, {
             method: 'PATCH',
             headers: {
                 'content-type': 'application/json',
                 'Authorization': `Bearer ${window.sessionStorage.getItem(config.TOKEN_KEY)}`
             },
-            body: JSON.stringify({ status })
+            body: JSON.stringify({ project, advisor, pm_id: pmId, status })
         })
-            .then(res => this.context.updateItemStatus(id, status))
+            .then(res => 
+                (!res.ok)
+                 ? res.json().then(e => Promise.reject(e))
+                : this.context.updateItemStatus(id, status))
+            .catch(err => console.log(err))
     }
 
     handleDeleteItem(e) {
@@ -38,7 +44,7 @@ export default class MainListItem extends React.Component {
     }
 
     render() {
-        const { id, project, project_url, advisor, advisor_url, pm_name, pm_email, notes, status, date_created } = this.props;
+        const { id, project, project_url, advisor, advisor_url, pm_name, pm_email, pm_id, notes, status, date_created } = this.props;
         return (
             <div className="table-row row">
                 <div className="table-body-cell hide-mobile check-column"><input type="checkbox" id="list-checkbox" onChange={e => this.props.setChecked(id)}></input></div>
@@ -48,7 +54,7 @@ export default class MainListItem extends React.Component {
                 <div className="table-body-cell hide-mobile date-cell">{date_created}</div>
                 <div className="table-body-cell notes-cell hide-mobile">{notes}</div>
                 <div className="table-body-cell status-column">
-                    <select className="status-select" value={status} onChange={(e) => this.handleStatusClick(e.target.value, this.props.id)}>
+                    <select className="status-select" value={status} onChange={(e) => this.handleStatusClick(e.target.value, this.props.id, project, advisor, pm_email)}>
                         <option value='none'></option>
                         <option value='reached'>Reached</option>
                         <option value='completed'>Completed</option>

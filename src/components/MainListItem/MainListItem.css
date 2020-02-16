@@ -19,7 +19,7 @@
 
 .adv-cell {
     max-width: 100px;
-    min-width: 70px;
+    min-width: 60px;
 }
 
 .pm-cell {
@@ -29,6 +29,10 @@
 .notes-cell {
     max-width: 170px;
     min-width: 100px;
+}
+
+.date-cell {
+    min-width: 75px;
 }
 
 div .notes-cell, div .adv-cell, div .proj-cell, div .date-cell, div .pm-cell {

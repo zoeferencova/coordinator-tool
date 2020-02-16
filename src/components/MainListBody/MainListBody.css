@@ -79,9 +79,8 @@ div.status-column {
     text-align: center;
 }
 
-div .actions-column {
-    width: 100px;
-    padding: 5px;
+.actions-column {
+    min-width: 80px
 }
 
 
@@ -126,7 +125,6 @@ div .actions-column {
         font-size: 20px;
     }
 
-    
 }
 
 
