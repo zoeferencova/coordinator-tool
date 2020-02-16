@@ -138,6 +138,11 @@ export default class MainListPage extends React.Component {
         }
     }
 
+    renderNoItemMessage = () => {
+        const nonCompletedItems = this.context.listItems.filter(item => item.status !== 'completed')
+        return nonCompletedItems.length === 0 ? <p>You have no items to do! :)</p> : ''
+    }
+
     render() {
         const dateOptions = { weekday: 'long', month: 'long', day: 'numeric' }
         const title = new Date().toLocaleDateString("en-US", dateOptions)
@@ -150,6 +155,7 @@ export default class MainListPage extends React.Component {
                     <br></br>
                     <div className='main-list-container'>
                         <MainListBody renderListItems={this.renderListItems} openEmailForm={this.openEmailForm} closeEmailForm={this.closeEmailForm} setChecked={this.setChecked} clearChecked={this.clearChecked} />
+                        {this.renderNoItemMessage()}
                     </div>
                     {this.state.emailFormOpen && <SendEmailForm project={this.state.emailProject} advisor={this.state.emailAdvisor} pm_name={this.state.emailPmName} closeEmailForm={this.closeEmailForm} />}
                 </main>

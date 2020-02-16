@@ -5,12 +5,6 @@ import { Link } from 'react-router-dom';
 import ReactDOM from 'react-dom'
 import config from '../../config';
 
-const icons = {
-    'none': <i className="far fa-circle"></i>,
-    'reached': <i className="fas fa-arrow-circle-left"></i>,
-    'completed': <i className="fas fa-check-circle"></i>
-}
-
 export default class MainListItem extends React.Component {
     static contextType = AppContext;
     

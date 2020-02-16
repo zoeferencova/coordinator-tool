@@ -47,7 +47,13 @@ export default class App extends React.Component {
       setTemplates: this.setTemplates,
       setUser: this.setUser,
       setInitialState: this.setInitialState,
+      hasError: false
     }
+  }
+
+  static getDerivedStateFromError(error) {
+    console.error(error)
+    return { hasError: true }
   }
 
   componentDidMount() {
@@ -227,6 +233,7 @@ export default class App extends React.Component {
     return ( 
       <AppContext.Provider value={value}>
         <main className='App'>
+          {this.state.hasError && <p>There was an error!</p>}
           <Switch>
             {/* public routes */}
             <PublicOnlyRoute exact path={'/'} component={LandingPage} />

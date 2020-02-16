@@ -31,12 +31,13 @@ export default class MainListTools extends React.Component {
     formatUpdateEmailAddresses = () => {
         const { listItems } = this.context;
         const pmEmails = []
-        listItems.forEach(item => {
-            if (!pmEmails.includes(item.pm_email)) {
-                pmEmails.push(item.pm_email)  
-            }
-        })
-
+        if (listItems) {
+            listItems.forEach(item => {
+                if (!pmEmails.includes(item.pm_email)) {
+                    pmEmails.push(item.pm_email)  
+                }
+            })
+        }
         return pmEmails.join('; ')
     }
 
