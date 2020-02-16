@@ -6,18 +6,27 @@ import './CompletedListItem.css'
 export default class CompletedListItem extends React.Component {
     static contextType = AppContext;
     
-    handleRevert = (e, id) => {
+    handleRevert = (e, itemId) => {
         e.preventDefault();
+        const item = this.context.completedListItems.find(item => item.id === itemId)
+        const { project, advisor } = item;
+        const foundPm = this.context.pms.find(pm => pm.pm_email === item.pm_email)
+        const pmId = foundPm.id;
         const status = 'none'
-        fetch(`${config.API_ENDPOINT}/list/${id}`, {
+        fetch(`${config.API_ENDPOINT}/list/${itemId}`, {
             method: 'PATCH',
             headers: {
                 'content-type': 'application/json',
                 'Authorization': `Bearer ${window.sessionStorage.getItem(config.TOKEN_KEY)}`
             },
-            body: JSON.stringify({ status })
+            body: JSON.stringify({ status, project, advisor, pm_id: pmId })
         })
-            .then(res => this.context.revertCompleted(id))
+            .then(res => 
+                (!res.ok)
+                    ? res.json().then(e => Promise.reject(e))
+                    : this.context.revertCompleted(itemId)
+                )
+            .catch(err => console.log(err))
     }
 
 

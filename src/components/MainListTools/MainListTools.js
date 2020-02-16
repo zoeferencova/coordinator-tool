@@ -44,21 +44,28 @@ export default class MainListTools extends React.Component {
     fireAction(status) {
         const checked = this.props.checkedItems;
         if (status === 'completed' || status === 'reached') {
-            checked.forEach(item => {
-                fetch(`${config.API_ENDPOINT}/list/${item}`, {
+            checked.forEach(itemId => {
+                const item = this.context.listItems.find(item => item.id === itemId)
+                const foundPm = this.context.pms.find(pm => pm.pm_email === item.pm_email)
+                const pmId = foundPm.id;
+                const { project, advisor } = item;
+                fetch(`${config.API_ENDPOINT}/list/${itemId}`, {
                     method: 'PATCH',
                     headers: {
                         'content-type': 'application/json',
                         'Authorization': `Bearer ${window.sessionStorage.getItem(config.TOKEN_KEY)}`
                     },
-                    body: JSON.stringify({ status })
+                    body: JSON.stringify({ status, project, advisor, pm_id: pmId })
                 })
-                    .then(res => this.context.updateItemStatus(item, status))
+                    .then(res => 
+                        (!res.ok)
+                            ? res.json().then(e => Promise.reject(e))
+                            : this.context.updateItemStatus(itemId, status))
                     .then(this.props.clearChecked())
+                    .catch(error => console.log(error))
             })
         } else if (status === 'delete') {
             checked.forEach(item => {
-                console.log(item + ' working')
                 fetch(`${config.API_ENDPOINT}/list/${item}`, {
                     method: 'DELETE',
                     headers: {
@@ -73,6 +80,9 @@ export default class MainListTools extends React.Component {
             })
         } else if (status === 'reset') {
             this.context.listItems.forEach(item => {
+                const { project, advisor } = item
+                const foundPm = this.context.pms.find(pm => pm.pm_email === item.pm_email)
+                const pmId = foundPm.id;
                 const itemId = item.id;
                 fetch(`${config.API_ENDPOINT}/list/${itemId}`, {
                     method: 'PATCH',
@@ -80,7 +90,7 @@ export default class MainListTools extends React.Component {
                         'content-type': 'application/json',
                         'Authorization': `Bearer ${window.sessionStorage.getItem(config.TOKEN_KEY)}`
                     },
-                    body: JSON.stringify({ status: 'none' })
+                    body: JSON.stringify({ project, advisor, pm_id: pmId, status: 'none' })
                 })
                     .then(res => this.context.updateItemStatus(itemId, 'none'))
                     .then(this.props.clearChecked())

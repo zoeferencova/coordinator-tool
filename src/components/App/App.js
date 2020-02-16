@@ -188,15 +188,18 @@ export default class App extends React.Component {
     this.setState({ templates: newTemplates })
   }
 
-  updateDateCompleted = (updatedItemId, date) => {
-    fetch(`${config.API_ENDPOINT}/list/${updatedItemId}`, {
+  updateDateCompleted = (updatedItem, date) => {
+    const { advisor, project } = updatedItem;
+    const foundPm = this.state.pms.find(pm => pm.pm_email === updatedItem.pm_email);
+    const pmId = foundPm.id;
+    fetch(`${config.API_ENDPOINT}/list/${updatedItem.id}`, {
       method: 'PATCH',
       headers: {
           'content-type': 'application/json',
           'Authorization': `Bearer ${window.sessionStorage.getItem(config.TOKEN_KEY)}`
       },
-      body: JSON.stringify({ date_completed: new Date(date) })
-  })
+      body: JSON.stringify({ date_completed: new Date(date), advisor, project, pm_id: pmId })
+    })
   }
 
   updateItemStatus = (updatedItemId, status) => {
@@ -205,7 +208,7 @@ export default class App extends React.Component {
     if(status === 'completed') {
       const newItems = this.state.listItems.filter(item => item.id !== updatedItemId)
       this.setState({ listItems: newItems })
-      this.updateDateCompleted(updatedItemId, Date.now())
+      this.updateDateCompleted(item, Date.now())
     }
     this.setState({ listItems: this.state.listItems })
   }
