@@ -37,11 +37,11 @@ export default class MainListBody extends React.Component {
                     <div className="table-header-cell hide-mobile">Date</div>
                     <div className="table-header-cell hide-mobile">Notes</div>
                     <div className="table-header-cell status-column">Status</div>
-                    <div className="table-header-cell actions-column">Actions</div>
+                    <div className="table-header-cell actions-column hide-mobile">Actions</div>
+                    <div className="table-header-cell mobile-actions-column hide-desktop"></div>
                 </div>
                 {this.props.renderListItems()}
             </div>
-            
         ) 
     }
 }

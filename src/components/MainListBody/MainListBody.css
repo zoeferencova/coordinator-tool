@@ -90,8 +90,8 @@ div.status-column {
         display: none !important;
     }
 
-    div .actions-column {
-        width: 60px;
+    div .mobile-actions-column {
+        max-width: 40px;
     }
 
     .hide-desktop {

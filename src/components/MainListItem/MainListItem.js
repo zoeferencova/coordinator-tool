@@ -15,6 +15,7 @@ export default class MainListItem extends React.Component {
     handleStatusClick(status, id, project, advisor, pmEmail) {
         const pmId = this.context.pms.find(pm => pm.pm_email === pmEmail).id
 
+
         fetch(`${config.API_ENDPOINT}/list/${id}`, {
             method: 'PATCH',
             headers: {
@@ -65,7 +66,7 @@ export default class MainListItem extends React.Component {
                     <Link to={{pathname:`/edit-item/${id}`, itemProps: {project, advisor, pm_name, notes}}} ><button onClick={this.handleEditItem}><i className="fas fa-edit"></i></button></Link>
                     <button itemkey={id} onClick={e => this.handleDeleteItem(e)}><i className="fas fa-trash-alt"></i></button>
                 </div>
-                <div className="table-body-cell hide-desktop actions-column">
+                <div className="table-body-cell hide-desktop mobile-actions-column">
                     <div 
                         onClick={() => this.state.popup 
                             ? this.setState({ popup: false }) 

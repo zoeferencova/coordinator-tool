@@ -33,11 +33,11 @@ export default class CompletedListItem extends React.Component {
     render() {
         return (
             <div className="table-row">
-                <div className="table-body-cell proj-cell">{this.props.project}</div>
+                <div className="table-body-cell comp-proj-cell">{this.props.project}</div>
                 <div className="table-body-cell adv-cell">{this.props.advisor}</div>
-                <div className="table-body-cell pm-cell">{this.props.pm_name}</div>
-                <div className="table-body-cell date-cell">{this.props.date_created}</div>
-                <div className="table-body-cell">
+                <div className="table-body-cell pm-cell comp-pm-cell">{this.props.pm_name}</div>
+                <div className="table-body-cell date-cell hide-mobile">{this.props.date_created}</div>
+                <div className="table-body-cell comp-revert">
                     <button onClick={e => this.handleRevert(e, this.props.id)}>Revert</button>
                 </div>
             </div>

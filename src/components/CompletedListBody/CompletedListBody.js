@@ -7,13 +7,13 @@ export default class CompletedListBody extends React.Component {
     
     render() {
         return (
-            <div className="table">
+            <div className="table completed-list">
                 <div className="table-header">
-                    <div className="table-header-cell">Project</div>
+                    <div className="table-header-cell comp-proj-cell">Project</div>
                     <div className="table-header-cell">Advisor</div>
-                    <div className="table-header-cell">PM</div>
-                    <div className="table-header-cell">Date</div>
-                    <div className="table-header-cell actions-column">Actions</div>
+                    <div className="table-header-cell comp-pm-cell">PM</div>
+                    <div className="table-header-cell hide-mobile">Date</div>
+                    <div className="table-header-cell actions-column comp-revert">Actions</div>
                 </div>
                 {this.props.renderCompletedItems()}
             </div>
