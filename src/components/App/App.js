@@ -28,6 +28,7 @@ export default class App extends React.Component {
       pms: [],
       user: [],
       templates: [],
+      data: { pm_data: [], timespan_data: [], time_completed_data: [] },
       dateOptions: { month: 'short', day: 'numeric' },
       fetchData: this.fetchData,
       deleteItem: this.deleteItem,
@@ -46,6 +47,7 @@ export default class App extends React.Component {
       setPms: this.setPms,
       setTemplates: this.setTemplates,
       setUser: this.setUser,
+      setDashboardData: this.setDashboardData,
       setInitialState: this.setInitialState,
       hasError: false
     }
@@ -57,11 +59,11 @@ export default class App extends React.Component {
   }
 
   componentDidMount() {
-    this.fetchData()
+    this.fetchUserData()
   }
 
-  fetchData() {
-    fetch(`${config.API_ENDPOINT}/pms`, {
+  fetchUserData() {
+    fetch(`${config.API_ENDPOINT}/user-data`, {
       method: 'GET',
       headers: {
           'content-type': 'application/json',
@@ -73,24 +75,11 @@ export default class App extends React.Component {
               ? res.json().then(e => Promise.reject(e))
               : res.json()
           )
-          .then(resJson => this.setPms(resJson))
-  
+          .then(resJson => this.setUserData(resJson))
+  }
 
-    fetch(`${config.API_ENDPOINT}/users`, {
-        method: 'GET',
-        headers: {
-            'content-type': 'application/json',
-            'Authorization': `Bearer ${window.sessionStorage.getItem(config.TOKEN_KEY)}`
-        }
-        })
-            .then(res => 
-              (!res.ok)
-                ? res.json().then(e => Promise.reject(e))
-                : res.json()
-            )
-            .then(resJson => this.setUser(resJson))
-
-    fetch(`${config.API_ENDPOINT}/templates`, {
+  fetchDashboardData() {
+    fetch(`${config.API_ENDPOINT}/data/pm-data`, {
       method: 'GET',
       headers: {
           'content-type': 'application/json',
@@ -102,10 +91,9 @@ export default class App extends React.Component {
               ? res.json().then(e => Promise.reject(e))
               : res.json()
           )
-          .then(resJson => this.setTemplates(resJson))
+          .then(resJson => this.setPmData(resJson))
 
-
-    fetch(`${config.API_ENDPOINT}/list`, {
+    fetch(`${config.API_ENDPOINT}/data/timespan-data`, {
       method: 'GET',
       headers: {
           'content-type': 'application/json',
@@ -117,7 +105,33 @@ export default class App extends React.Component {
               ? res.json().then(e => Promise.reject(e))
               : res.json()
           )
-          .then(resJson => this.setListItems(resJson))
+          .then(resJson => this.setTimespanData(resJson))
+
+    fetch(`${config.API_ENDPOINT}/data/time-completed-data`, {
+      method: 'GET',
+      headers: {
+          'content-type': 'application/json',
+          'Authorization': `Bearer ${window.sessionStorage.getItem(config.TOKEN_KEY)}`
+      }
+      })
+          .then(res => 
+            (!res.ok)
+              ? res.json().then(e => Promise.reject(e))
+              : res.json()
+          )
+          .then(resJson => this.setTimeCompletedData(resJson))
+  }
+
+  setPmData = userData => {
+    this.setState({ data: {...this.state.data, pm_data: userData } })
+  }
+
+  setTimespanData = userData => {
+    this.setState({ data: {...this.state.data ,timespan_data: userData } })
+  }
+
+  setTimeCompletedData = userData => {
+    this.setState({ data: {...this.state.data, time_completed_data: userData } })
   }
 
   setInitialState = () => {
@@ -130,24 +144,12 @@ export default class App extends React.Component {
     })
   }
 
-  setListItems = (items) => {
-    this.setState({ listItems: items })
-  }
-
-  setCompletedItems = (items) => {
-    this.setState({ completedListItems: items })
-  }
-
-  setUser = (data) => {
-    this.setState({ user: data })
-  }
-
-  setTemplates = (templates) => {
-    this.setState({ templates: templates })
-  }
-
-  setPms = (pms) => {
-    this.setState({ pms })
+  setUserData = data => {
+    this.setState({ listItems: data[0] })
+    this.setState({ pms: data[1] })
+    this.setState({ templates: data[2] })
+    this.setState({ completedListItems: data[3] })
+    this.setState({ user: data[4] })
   }
   
   deleteItem = (itemId) => {
@@ -165,7 +167,6 @@ export default class App extends React.Component {
         ? updatedItem
         : item 
     )
-    console.log(updatedItem)
     this.setState({ listItems: newItems })
   }
 
@@ -208,6 +209,7 @@ export default class App extends React.Component {
     if(status === 'completed') {
       const newItems = this.state.listItems.filter(item => item.id !== updatedItemId)
       this.setState({ listItems: newItems })
+      this.setState({ completedListItems: [...this.state.completedListItems, item] })
       this.updateDateCompleted(item, Date.now())
     }
     this.setState({ listItems: this.state.listItems })
@@ -236,8 +238,8 @@ export default class App extends React.Component {
   }
 
   render() {
-    const { listItems, pms, user, templates, completedListItems, dateOptions, fetchData, deleteItem, addItem, addItemById, updateItem, updateItemStatus, addTemplate, deleteTemplate, updateTemplate, addPm, deletePm, revertCompleted, setListItems, setCompletedItems, setPms, setTemplates, setUser, setInitialState } = this.state;
-    const value = { listItems, pms, user, templates, completedListItems, dateOptions, fetchData, deleteItem, addItem, addItemById, updateItem, updateItemStatus, addTemplate, deleteTemplate, updateTemplate, addPm, deletePm, revertCompleted, setListItems, setCompletedItems, setPms, setTemplates, setUser, setInitialState }
+    const { listItems, pms, user, templates, completedListItems, data, dateOptions, fetchData, deleteItem, addItem, addItemById, updateItem, updateItemStatus, addTemplate, deleteTemplate, updateTemplate, addPm, deletePm, revertCompleted, setListItems, setCompletedItems, setPms, setTemplates, setUser, setInitialState } = this.state;
+    const value = { listItems, pms, user, templates, completedListItems, data, dateOptions, fetchData, deleteItem, addItem, addItemById, updateItem, updateItemStatus, addTemplate, deleteTemplate, updateTemplate, addPm, deletePm, revertCompleted, setListItems, setCompletedItems, setPms, setTemplates, setUser, setInitialState }
 
     return ( 
       <AppContext.Provider value={value}>

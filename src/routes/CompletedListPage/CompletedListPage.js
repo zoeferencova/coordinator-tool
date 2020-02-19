@@ -16,18 +16,6 @@ export default class CompletedListPage extends React.Component {
         sort: 'none'
     }
 
-    componentDidMount() {
-        fetch(`${config.API_ENDPOINT}/completed`, {
-            method: 'GET',
-            headers: {
-                'content-type': 'application/json',
-                'Authorization': `Bearer ${window.sessionStorage.getItem(config.TOKEN_KEY)}`
-            }
-            })
-                .then(res => res.json())
-                .then(resJson => this.context.setCompletedItems(resJson))
-    }
-
     searchItems = (inputItems, query) => {
         let items;
         if (query !== '') {
