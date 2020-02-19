@@ -16,7 +16,7 @@ export default class LoginPage extends React.Component {
         return (
             <main role="main">
                 <h1>Log in</h1>
-                <LoginForm onLoginSuccess={this.handleLogin} />
+                <LoginForm setLoggedIn={this.props.setLoggedIn}  />
                 <p>Don't have an account? <Link to='/register'>Sign up</Link></p>
                 <p>Don't work at GP? <Link to='/main'>See the demo</Link></p>
             </main>

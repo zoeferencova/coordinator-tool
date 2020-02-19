@@ -29,9 +29,7 @@ export default class LoginForm extends React.Component {
                 password.value = '';
                 this.setState({ toMain: true })
             })
-            .then(res => {
-                this.context.fetchData()
-            })
+            .then(res => this.props.setLoggedIn(true))
             .catch(res => {
                 this.setState({ error: res.error })
             })

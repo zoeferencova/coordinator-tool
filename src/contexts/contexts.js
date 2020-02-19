@@ -20,11 +20,6 @@ const AppContext = React.createContext({
     addPm: () => {},
     deletePm: () => {},
     revertCompleted: () => {},
-    setListItems: () => {},
-    setCompletedItems: () => {},
-    setPms: () => {},
-    setTemplates: () => {},
-    setUser: () => {},
     setInitialState: () => {},
 })
 

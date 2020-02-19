@@ -45,7 +45,7 @@ export default class MainListItem extends React.Component {
     }
 
     render() {
-        const { id, project, project_url, advisor, advisor_url, pm_name, pm_email, pm_id, notes, status, date_created } = this.props;
+        const { id, project, project_url, advisor, advisor_url, pm_name, pm_email, notes, status, date_created } = this.props;
         return (
             <div className="table-row row">
                 <div className="table-body-cell hide-mobile check-column"><input type="checkbox" id="list-checkbox" onChange={e => this.props.setChecked(id)}></input></div>

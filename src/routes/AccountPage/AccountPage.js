@@ -53,7 +53,7 @@ export default class AccountPage extends React.Component {
             )
             .then(pm => this.handlePostSuccess(pm))
             .catch(res => {
-                this.setState({ error: res.error.message })
+                this.setState({ error: res.error })
             })
     }
 

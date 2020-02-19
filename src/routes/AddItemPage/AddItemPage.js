@@ -73,8 +73,11 @@ export default class AddItemPage extends React.Component {
 
     handlePostSuccess = (item) => {
         this.context.addItem(item)
-        this.setState({numberOfAdvisorInputs: 1})
         this.props.history.push('/main')
+    }
+
+    componentWillUnmount() {
+        this.setState({numberOfAdvisorInputs: 1})
     }
 
     render() {
