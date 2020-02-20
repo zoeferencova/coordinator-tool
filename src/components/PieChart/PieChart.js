@@ -20,15 +20,16 @@ export default class PieChart {
             .append("g")
                 .attr("transform", `translate(${WIDTH/2}, ${HEIGHT/2})`)
         
-        const colors = ['#97c9d1', '#faf0b1', '#8176b5', '#80bd91', '#72c8cc']
+        const colors = ['#97c9d1', '#faf0b1', '#8176b5', '#80bd91', '#72c8cc', "#31702c", "#e34653", "#48457d", "#e89e7b", "#355a6e"]
 
         d3.json(`${config.API_ENDPOINT}/data/pm-data`, { headers: { "Authorization": `Bearer ${window.sessionStorage.getItem(config.TOKEN_KEY)}` } })
             .then(res => {
                 console.log(res)
+                res.map((d, i) => d.color = colors[i])
                 vis.data = res;
                 vis.color = d3.scaleOrdinal()
                     .domain(vis.data.map(d => d.pm_name))
-                    .range(colors)
+                    .range(vis.data.map(d => d.color))
 
                 vis.pie = d3.pie()
                     .value(d => d.value.count)
