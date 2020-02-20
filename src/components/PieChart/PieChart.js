@@ -1,10 +1,10 @@
-import React, { Component } from 'react';
-
 import * as d3 from 'd3';
+import { legendColor } from 'd3-svg-legend'
+
 import config from '../../config'
 
 const MARGIN = 40;
-const WIDTH = 450;
+const WIDTH = 600;
 const HEIGHT = 450;
 const RADIUS = Math.min(WIDTH, HEIGHT) / 2 - MARGIN;
 
@@ -20,14 +20,14 @@ export default class PieChart {
             .append("g")
                 .attr("transform", `translate(${WIDTH/2}, ${HEIGHT/2})`)
         
-        const colors = ['#e8b082' ,'#d15c5c', '#97c9d1', '#faf0b1', '#8176b5', '#80bd91', '#72c8cc', '#d9adbf', '#30337a', '#31702c']
+        const colors = ['#97c9d1', '#faf0b1', '#8176b5', '#80bd91', '#72c8cc']
 
         d3.json(`${config.API_ENDPOINT}/data/pm-data`, { headers: { "Authorization": `Bearer ${window.sessionStorage.getItem(config.TOKEN_KEY)}` } })
             .then(res => {
                 console.log(res)
                 vis.data = res;
                 vis.color = d3.scaleOrdinal()
-                    .domain(vis.data)
+                    .domain(vis.data.map(d => d.pm_name))
                     .range(colors)
 
                 vis.pie = d3.pie()
@@ -47,6 +47,22 @@ export default class PieChart {
                     .attr('fill', function(d){ return(vis.color(d.data.key)) })
                     .style("stroke-width", "2px")
                     .style("opacity", 0.7)
+
+                vis.svg.append("g")
+                    .attr("class", "legendOrdinal")
+                    .attr("transform", "translate(230, -100)")
+
+                const legendOrdinal = legendColor()
+                    .labelFormat(d3.format(".2f"))
+                    .shape("path", d3.symbol().type(d3.symbolCircle).size(150)())
+                    .shapePadding(10)
+                    .cellFilter(d => isNaN(Number(d.label)))
+                    .title("Legend")
+                    .scale(vis.color)
+
+                vis.svg.select(".legendOrdinal")
+                    .call(legendOrdinal)
+
             })
 
         console.log(colors)
