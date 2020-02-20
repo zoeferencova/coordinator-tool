@@ -6,6 +6,7 @@ import * as d3 from 'd3';
 import ChartWrapper from '../../components/ChartWrapper/ChartWrapper';
 
 import './DashboardPage.css'
+import { treemapSlice } from 'd3';
 
 export default class DashboardPage extends React.Component {
     state = {
@@ -37,21 +38,27 @@ export default class DashboardPage extends React.Component {
             d.count = d[key]
             delete d[key]
         })
-        fixed.map((d, i) => d.type = keys[i][0]) 
+        fixed.map((d, i) => d.span = keys[i][0]) 
         const days = []
         const weeks = []
         const months = []
-        fixed.forEach(d => {
-            if (d.type.includes("days")) {
+        fixed.forEach((d, i) => {
+            if (d.span.includes("days")) {
+                d.span = d.span.slice(5)
                 days.push(d)
-            } else if (d.type.includes("weeks")) {
+            } else if (d.span.includes("weeks")) {
+                d.span = d.span.slice(6)
                 weeks.push(d)
-            } else if (d.type.includes("months")) {
+            } else if (d.span.includes("months")) {
+                d.span = d.span.slice(7)
                 months.push(d)
             }
         })
+        days[1].span = 'Yesterday'
         const obj = {}
+        
         obj.days = days;
+    
         obj.weeks = weeks;
         obj.months = months;
         type === 'completed' ? this.setState({ completed_timespan_data: obj }) : this.setState({ created_timespan_data: obj})

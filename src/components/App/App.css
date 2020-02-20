@@ -1,13 +1,11 @@
-@import url('https://fonts.googleapis.com/css?family=Muli');
-
 .App {
-    font-family: 'Muli';
     padding-top: 20px;
     padding-bottom: 20px;
     width: 90%;
     margin: 0 auto;
     text-align: center;
 }
+
 
 p {
     padding: 10px 0;
