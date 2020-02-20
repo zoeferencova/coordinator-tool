@@ -3,7 +3,7 @@ import TimespanChart from '../TimespanChart/TimespanChart';
 
 export default class ChartWrapper extends Component {
     componentDidMount() {
-        this.setState({ chart: new TimespanChart(this.refs.chart, this.props.data) })
+        this.setState({ chart: new TimespanChart(this.refs.chart) })
     }
 
     shouldComponentUpdate() {
@@ -11,7 +11,7 @@ export default class ChartWrapper extends Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        this.state.chart.update(nextProps.data)
+        this.state.chart.update(nextProps.dataType)
     }
 
     render() {
