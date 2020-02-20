@@ -2,6 +2,7 @@ import React from 'react';
 import NavBar from '../../components/NavBar/NavBar';
 import Header from '../../components/Header/Header';
 import ChartWrapper from '../../components/ChartWrapper/ChartWrapper';
+import PieChartWrapper from '../../components/PieChartWrapper/PieChartWrapper'
 
 import './DashboardPage.css'
 
@@ -44,6 +45,7 @@ export default class DashboardPage extends React.Component {
                     <section>
                         <h2>Requests by PM</h2>
                         <div><em>[ Placeholder for requests by PM graph ]</em></div>
+                        <PieChartWrapper />
                     </section>
                     <section>
                         <h2>Average Time</h2>
@@ -53,17 +55,17 @@ export default class DashboardPage extends React.Component {
                         <h2>Completed Requests</h2>
                         <form>
                             <input type="radio" name="span" id="days" value="days" defaultChecked="checked" onChange={e => this.changeSpan(e.target.value)}></input>
-                            <label htmlFor="days">Day</label>
+                            <label htmlFor="days"> Day</label><br></br>
                             <input type="radio" name="span" id="weeks" value="weeks" onChange={e => this.changeSpan(e.target.value)}></input>
-                            <label htmlFor="weeks">Week</label>
+                            <label htmlFor="weeks"> Week</label><br></br>
                             <input type="radio" name="span" id="months" value="months" onChange={e => this.changeSpan(e.target.value)}></input>
-                            <label htmlFor="months">Month</label>
+                            <label htmlFor="months"> Month</label><br></br><br></br>
                         </form>
                         <form>
                             <input type="radio" name="type" id="created" value="created" defaultChecked="checked" onChange={e => this.changeType(e.target.value)}></input>
-                            <label htmlFor="created">Created</label>
+                            <label htmlFor="created"> Created</label><br></br>
                             <input type="radio" name="type" id="completed" value="completed" onChange={e => this.changeType(e.target.value)}></input>
-                            <label htmlFor="completed">Completed</label>
+                            <label htmlFor="completed"> Completed</label>
                         </form>
                         <ChartWrapper dataType={this.state.dataType} />
                     </section>
