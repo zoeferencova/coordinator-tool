@@ -1,4 +1,7 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:300,400,600&display=swap');
+
 .App {
+    font-family: "Roboto";
     padding-top: 20px;
     padding-bottom: 20px;
     width: 90%;
@@ -6,6 +9,10 @@
     text-align: center;
 }
 
+h1 {
+    font-weight: 300;
+    font-size: 20px;
+}
 
 p {
     padding: 10px 0;

@@ -23,9 +23,10 @@ export default class MainListPage extends React.Component {
     }
 
     openEmailForm = (project, advisor, pm_name, pm_email) => {
+        const fixedproj = project.replace('&', 'and')
         this.setState({ emailFormOpen: true })
         this.setState({
-            emailProject: project,
+            emailProject: fixedproj,
             emailAdvisor: advisor,
             emailPmName: pm_name,
             emailPmEmail: pm_email

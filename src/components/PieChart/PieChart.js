@@ -20,7 +20,7 @@ export default class PieChart {
             .append("g")
                 .attr("transform", `translate(${WIDTH/2}, ${HEIGHT/2})`)
         
-        const colors = ['#97c9d1', '#faf0b1', '#8176b5', '#80bd91', '#72c8cc', "#31702c", "#e34653", "#48457d", "#e89e7b", "#355a6e"]
+        const colors = ['#c95757', '#79a3ba', '#69a867', '#faf1a2', '#9679b3', "#ebbb91", "#4d557d", "#f5b3cd", "#752221", "#367041", "#ccdae8", "#a8f7ef", "#e2f5c1"]
 
         d3.json(`${config.API_ENDPOINT}/data/pm-data`, { headers: { "Authorization": `Bearer ${window.sessionStorage.getItem(config.TOKEN_KEY)}` } })
             .then(res => {
