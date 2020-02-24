@@ -4,7 +4,8 @@ import EmailTemplate from '../../components/EmailTemplate/EmailTemplate'
 import Header from '../../components/Header/Header'
 import AppContext from '../../contexts/contexts'
 import { Link } from 'react-router-dom';
-import './EmailPage.css'
+
+import styles from './EmailPage.module.css'
 
 export default class EmailPage extends React.Component {
     static contextType = AppContext;

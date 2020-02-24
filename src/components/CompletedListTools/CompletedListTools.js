@@ -1,10 +1,10 @@
 import React from 'react';
-import './CompletedListTools.css'
+import styles from './CompletedListTools.module.css'
 
 export default class CompletedListTools extends React.Component {
     render() {
         return (
-            <div className="tools">
+            <div className={styles.tools}>
                 <div>
                     <label htmlFor="search">Search: </label>
                     <input type="text" id="search" onChange={e => this.props.setQuery(e.target.value)}></input>

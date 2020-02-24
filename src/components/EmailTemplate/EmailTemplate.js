@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import config from '../../config'
 import AppContext from '../../contexts/contexts'
-import './EmailTemplate.css'
+import styles from './EmailTemplate.module.css'
 
 export default class EmailTemplate extends React.Component {
     static contextType = AppContext;
@@ -78,12 +78,12 @@ export default class EmailTemplate extends React.Component {
     render() {
         return (
             <div>
-                <div className="template-item" onClick={() => this.state.expanded ? this.setState({ expanded: false, edit: false }) : this.setState({ expanded: true })}>
+                <div className={styles.templateItem} onClick={() => this.state.expanded ? this.setState({ expanded: false, edit: false }) : this.setState({ expanded: true })}>
                     <h2 >{this.props.template_name}</h2>
                 </div>
-                {this.state.expanded && !this.state.edit && <div className="template-contents" itemkey={this.props.id}>
+                {this.state.expanded && !this.state.edit && <div className={styles.templateContent} itemkey={this.props.id}>
                     <p>Subject: {this.props.template_subject}</p>
-                    <p className= 'template-body'>Body: {this.props.template_content}</p>
+                    <p className={styles.templateBody}>Body: {this.props.template_content}</p>
                     <button onClick={this.handleEmailEdit}>Edit</button>
                     <button onClick={e => this.handleDeleteTemplate(e)}>Delete</button>
                 </div>}

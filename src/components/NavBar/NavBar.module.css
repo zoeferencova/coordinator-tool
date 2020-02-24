@@ -2,7 +2,7 @@
     box-sizing: border-box;
 }
 
-.App__nav {
+.nav {
     display: block;
     position: fixed;
     background-color: #202421;
@@ -13,13 +13,13 @@
     bottom: 0;
 }
 
-.NavBar__logo {
+.logo {
     color: white;
     font-weight: normal;
     margin-bottom: 50px;
 }
 
-.tab-list {
+.tabList {
     display: flex;
     flex-direction: column;
     list-style: none;
@@ -42,7 +42,7 @@
     background-color: rgb(100, 100, 100, 0.4)
 }
 
-.tab-title {
+.tabTitle {
     display: inline-block;
     padding: 0;
     margin-left: 18px;
@@ -55,19 +55,21 @@
     font-size: 18px;
 }
 
-.active > .tab-content {
-    opacity: 1;
-    margin-left: -3px;
+:global .active i, :global .active li {
+    color: white;
 }
 
-.active {
+:global .active {
     background-color: rgb(100, 100, 100, 0.4);
     border-left: 3px solid white;
 }
 
-.tab-content {
-    color: white;
-    opacity: 0.4;
+:global .active i {
+    margin-left: -3px;
+}
+
+.tabContent {
+    color: gray;
 }
 
 .hidden {
@@ -86,12 +88,12 @@
     cursor: pointer;
 }
 
-@media only screen and (max-width: 945px) {
+@media only screen and (max-width: 1065px) {
     .burger {
         display: block;
     }
 
-    .nav-wrap .burger {
+    .navWrap .burger {
         position: fixed;
         top: 0;
         width: 10%;
@@ -106,7 +108,7 @@
         font-size: 25px;
     }
 
-    .App__nav {
+    .nav {
         display: none;
     }
 

@@ -1,6 +1,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import './NavBar.css'
+
+import styles from './NavBar.module.css';
 
 export default class NavBar extends React.Component {
     state = {
@@ -20,44 +21,44 @@ export default class NavBar extends React.Component {
 
     render() {
         return (   
-            <div className='nav-wrap'>
-                <button className={`burger`} onClick={() => this.setState({ expanded: true })}><i className="fas fa-bars"></i></button>
-                <nav role="navigation" className={`App__nav ${this.state.expanded ? 'show': ''}`} >
-                    <h1 className="NavBar__logo">Logo</h1>
-                    <ul className="tab-list">
-                        <NavLink to="/main" className="tab">
-                            <li className="tab-content">
+            <div className={styles.navWrap}>
+                <button className={styles.burger} onClick={() => this.setState({ expanded: true })}><i className="fas fa-bars"></i></button>
+                <nav role="navigation" className={`${styles.nav} ${this.state.expanded ? styles.show : ''}`} >
+                    <h1 className={styles.logo}>Logo</h1>
+                    <ul className={styles.tabList}>
+                        <NavLink to="/main" className={styles.tab}>
+                            <li className={styles.tabContent}>
                                 <i className="fas fa-list-alt"></i>
-                                <span className="tab-title">List</span>
+                                <span className={styles.tabTitle}>List</span>
                             </li>
                         </NavLink>
-                        <NavLink to="/completed" className="tab">
-                            <li className="tab-content">
+                        <NavLink to="/completed" className={styles.tab}>
+                            <li className={styles.tabContent}>
                                 <i className="fas fa-check-square"></i>
-                                <span className="tab-title">Completed</span>
+                                <span className={styles.tabTitle}>Completed</span>
                             </li>
                         </NavLink>                                  
-                        <NavLink to="/dashboard" className="tab">
-                            <li className="tab-content">
+                        <NavLink to="/dashboard" className={styles.tab}>
+                            <li className={styles.tabContent}>
                                 <i className="fas fa-chart-pie"></i>
-                                <span className="tab-title">Dashboard</span>
+                                <span className={styles.tabTitle}>Dashboard</span>
                             </li>
                         </NavLink>
-                        <NavLink to="email" className="tab">
-                            <li className="tab-content">                       
+                        <NavLink to="email" className={styles.tab}>
+                            <li className={styles.tabContent}>                       
                                 <i className="fas fa-envelope"></i>
-                                <span className="tab-title">Templates</span>                        
+                                <span className={styles.tabTitle}>Templates</span>                        
                             </li>
                         </NavLink>
-                        <NavLink to="account" className="tab">
-                            <li className="tab-content">
+                        <NavLink to="account" className={styles.tab}>
+                            <li className={styles.tabContent}>
                                 <i className="fas fa-user-circle"></i>
-                                <span className="tab-title">Account</span>
+                                <span className={styles.tabTitle}>Account</span>
                             </li>
                         </NavLink>
                     </ul>
                 </nav>
-                <div className={`overlay ${this.state.expanded ? 'show' : 'hidden'}` } onClick={() => this.setState({ expanded: false })}></div>
+                <div className={`${styles.overlay} ${this.state.expanded ? styles.show : styles.hidden}` } onClick={() => this.setState({ expanded: false })}></div>
             </div>   
             
         )

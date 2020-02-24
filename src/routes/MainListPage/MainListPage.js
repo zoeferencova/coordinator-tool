@@ -1,6 +1,5 @@
 import React from 'react';
 import AppContext from '../../contexts/contexts'
-import './MainListPage.css'
 import MainListTools from '../../components/MainListTools/MainListTools';
 import MainListBody from '../../components/MainListBody/MainListBody';
 import NavBar from '../../components/NavBar/NavBar'
@@ -8,6 +7,7 @@ import Header from '../../components/Header/Header';
 import SendEmailForm from '../../components/SendEmailForm/SendEmailForm'
 import MainListItem from '../../components/MainListItem/MainListItem'
 
+import styles from './MainListPage.module.css'
 
 export default class MainListPage extends React.Component {
     static contextType = AppContext;
@@ -154,7 +154,7 @@ export default class MainListPage extends React.Component {
                     <Header title={title} />
                     <MainListTools setQuery={this.setQuery} setSort={this.setSort} checkedItems={this.state.checkedItems} clearChecked={this.clearChecked} />
                     <br></br>
-                    <div className='main-list-container'>
+                    <div>
                         <MainListBody renderListItems={this.renderListItems} openEmailForm={this.openEmailForm} closeEmailForm={this.closeEmailForm} setChecked={this.setChecked} clearChecked={this.clearChecked} />
                         {this.renderNoItemMessage()}
                     </div>

@@ -2,6 +2,8 @@ import React from 'react';
 import AuthApiService from '../../services/auth-api-service';
 import { Link } from 'react-router-dom';
 
+import styles from './RegistrationForm.module.css'
+
 export default class RegistrationForm extends React.Component {
     static defaultProps = {
         onRegistrationSuccess: () => {}

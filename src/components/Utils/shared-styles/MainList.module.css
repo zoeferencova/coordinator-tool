@@ -1,0 +1,64 @@
+.check{
+    width: 30px;
+}
+
+.status {
+    width: 40px;
+    padding: 0;
+}
+
+.project {
+    max-width: 150px;
+}
+
+.advisor {
+    max-width: 90px;
+}
+
+.pm {
+    max-width: 60px;
+    min-width: 20px;
+}
+
+.notes {
+    max-width: 130px;
+}
+
+.date {
+    width: 80px;
+}
+
+.actions {
+    width: 90px
+}
+
+.project, .advisor, .notes, .pm {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+div .notes, div .advisor, div .project, div .date, div .pm {
+    padding: 0 10px;
+    text-align: left;
+}
+
+div.actions, div.status, div.check {
+    text-align: center;
+}
+
+@media only screen and (max-width: 810px) {
+    div .mobileActions {
+        max-width: 40px;
+        display: block;
+    }
+
+    .project {
+        max-width: 100px;
+    }
+
+    .advisor {
+        max-width: 50px;
+    }
+
+}

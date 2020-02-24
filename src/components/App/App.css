@@ -14,11 +14,35 @@ h1 {
     font-size: 20px;
 }
 
+h2 {
+    font-size: 18px;
+}
+
 p {
     padding: 10px 0;
 }
 
-button:hover {
- cursor: pointer;
+.container {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: center;
+    margin-left: 220px;
+}
+
+.content {
+    width: 95%
+}
+
+@media only screen and (max-width: 1065px) {
+    .container {
+        margin-left: 0px;
+    }
+}
+
+@media only screen and (max-width: 810px) {
+    .content {
+        width: 92%;
+    }
+
 }
 

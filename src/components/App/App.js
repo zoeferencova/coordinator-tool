@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import UnauthenticatedApp from '../UnauthenticatedApp/UnauthenticatedApp';
 import AuthenticatedApp from '../AuthenticatedApp/AuthenticatedApp';
 import TokenService from '../../services/token-service';
-import "circular-std";
 
 import './App.css';
 

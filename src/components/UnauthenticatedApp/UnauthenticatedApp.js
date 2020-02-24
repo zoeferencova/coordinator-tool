@@ -5,7 +5,7 @@ import LoginPage from '../../routes/LoginPage/LoginPage';
 import RegistrationPage from '../../routes/RegistrationPage/RegistrationPage';
 import NotFoundPage from '../../routes/NotFoundPage/NotFoundPage';
 
-import './UnauthenticatedApp.css';
+import styles from './UnauthenticatedApp.module.css';
 
 export default class UnauthenticatedApp extends Component {
 

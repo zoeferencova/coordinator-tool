@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import AppContext from '../../contexts/contexts';
 import TokenService from '../../services/token-service'
 
-import './Header.css'
+import styles from './Header.module.css'
 
 export default class Header extends React.Component {
     static contextType = AppContext;
@@ -16,9 +16,9 @@ export default class Header extends React.Component {
 
     render() {
         return (   
-            <div className='header-container'>
-                <h1 className='header-title'>{this.props.title}</h1>
-                <div className="header-details">
+            <div className={styles.headerContainer}>
+                <h1 className={styles.headerTitle}>{this.props.title}</h1>
+                <div className={styles.headerDetails}>
                     <span>Welcome, {this.context.user.full_name} </span>
                     <Link to='/'><span onClick={this.handleLogout}>Log Out</span></Link>
                 </div>

@@ -1,0 +1,106 @@
+.table {
+    width: 100%;
+    display: table;
+    margin: 0 auto;
+}
+
+.table div {
+    padding: 8px 0;
+    font-size: 14px;
+}
+
+.table a {
+    text-decoration: none;
+    color: #365d75;
+}
+
+.tableHeader {
+    display: table-header-group;
+}
+
+.tableHeader div {
+    background-color: lightgray;
+    font-weight: bold;
+    padding: 10px;
+    text-align: left;
+}
+
+.tableHeaderCell {
+    display: table-cell;
+    padding: 10px;
+    border-bottom: 1px solid black;
+}
+
+div .tableHeaderCell {
+    height: 25px;
+}
+
+.tableRow {
+    display: table-row;
+}
+
+.tableRow i {
+    font-size: 17px;
+    margin: 0 4px;
+    color: gray;
+}
+
+.tableBody{
+    display: table-row-group;
+}
+
+.tableBodyCell {
+    display: table-cell;
+}
+
+div .tableBodyCell {
+    height: 32px; 
+}
+
+.tableBodyCell button {
+    padding: 2px;
+    background-color: transparent;
+    border: none;
+}
+
+.hideDesktop {
+    display: none;
+}
+
+.hidden {
+    display: none;
+}
+
+.show {
+    display: block;
+}
+
+.pointer:hover {
+    cursor: pointer;
+}
+
+@media only screen and (max-width: 810px) {
+    .hideMobile {
+        display: none;
+    }
+
+    .table {
+        width: 90%
+    }
+
+    .tableRow div {
+        font-size: 14px;
+    }
+
+    .tableRow i {
+        font-size: 16px;
+        margin: 1px;
+    }
+}
+
+@media only screen and (max-width: 1020px) {
+    .tableRow i {
+        margin: 0 1px;
+    }
+}
+

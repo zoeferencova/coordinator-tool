@@ -1,8 +1,9 @@
 import React from 'react';
 import AppContext from '../../contexts/contexts'
-import './MainListTools.css'
 import { Link } from 'react-router-dom';
 import config from '../../config'
+
+import styles from './MainListTools.module.css'
 
 export default class MainListTools extends React.Component {
     static contextType = AppContext;
@@ -103,7 +104,7 @@ export default class MainListTools extends React.Component {
     
     render() {
         return (
-            <div className="tools">
+            <div className={styles.tools}>
                 <div>
                     <label htmlFor="search">Search: </label>
                     <input type="text" id="search" onChange={e => this.props.setQuery(e.target.value)}></input>
@@ -121,7 +122,7 @@ export default class MainListTools extends React.Component {
                             <option value="status">Status</option>
                         </select>
                     </div>
-                    <div className="hide-mobile">
+                    <div className={styles.hideMobile}>
                         <label htmlFor="action">Actions: </label>
                         <select name="action" id="action" value={'none'} onChange={e => this.fireAction(e.target.value)}>
                             <option value="none"></option>
@@ -132,9 +133,9 @@ export default class MainListTools extends React.Component {
                     </div>
 
                 <div>
-                    <button onClick={e => this.fireAction('reset')} className='tool-button'>Reset</button>
-                    <a href={`mailto:${this.formatUpdateEmailAddresses()}?Subject=Update - ${new Date().toLocaleDateString('en-US', {month: 'long', weekday: 'long', day: 'numeric'})}&Body=${this.formatEmailUpdate()}`}><button className="tool-button">Send Update</button></a>
-                    <Link to='/add-item'><button className="tool-button">Add Item</button></Link>
+                    <button onClick={e => this.fireAction('reset')} className={styles.toolButton}>Reset</button>
+                    <a href={`mailto:${this.formatUpdateEmailAddresses()}?Subject=Update - ${new Date().toLocaleDateString('en-US', {month: 'long', weekday: 'long', day: 'numeric'})}&Body=${this.formatEmailUpdate()}`}><button className={styles.toolButton}>Send Update</button></a>
+                    <Link to='/add-item'><button className={styles.toolButton}>Add Item</button></Link>
                 </div>
                 
             </div>

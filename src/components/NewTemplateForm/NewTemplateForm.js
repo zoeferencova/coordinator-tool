@@ -1,5 +1,5 @@
 import React from 'react';
-import './NewTemplateForm.css';
+import styles from './NewTemplateForm.module.css';
 
 export default class NewTemplateForm extends React.Component {
     

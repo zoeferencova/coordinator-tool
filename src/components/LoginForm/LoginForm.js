@@ -3,6 +3,8 @@ import AppContext from '../../contexts/contexts'
 import AuthApiService from '../../services/auth-api-service'
 import { Redirect, Link } from 'react-router-dom';
 
+import styles from './LoginForm.module.css'
+
 export default class LoginForm extends React.Component {
     static contextType = AppContext;
     

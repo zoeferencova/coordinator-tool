@@ -4,7 +4,8 @@ import Header from '../../components/Header/Header'
 import { Link } from 'react-router-dom'
 import config from '../../config'
 import AppContext from '../../contexts/contexts'
-import './NewTemplatePage.css';
+
+import styles from './NewTemplatePage.module.css';
 
 export default class NewTemplatePage extends React.Component {
     static contextType = AppContext;

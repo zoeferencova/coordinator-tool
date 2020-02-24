@@ -3,8 +3,9 @@ import NavBar from '../../components/NavBar/NavBar'
 import Header from '../../components/Header/Header'
 import { Link } from 'react-router-dom'
 import AppContext from '../../contexts/contexts'
-import './AddItemPage.css';
 import config from '../../config';
+
+import styles from './AddItemPage.module.css';
 
 export default class AddItemPage extends React.Component {
     static contextType = AppContext;

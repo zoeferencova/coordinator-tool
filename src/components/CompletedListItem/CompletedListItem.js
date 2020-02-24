@@ -1,7 +1,11 @@
 import React from 'react';
 import config from '../../config'
 import AppContext from '../../contexts/contexts'
-import './CompletedListItem.css'
+
+import styles from './CompletedListItem.module.css'
+import listStyles from '../Utils/shared-styles/CompletedList.module.css'
+import tableStyles from '../Utils/shared-styles/TableStyles.module.css'
+
 
 export default class CompletedListItem extends React.Component {
     static contextType = AppContext;
@@ -32,13 +36,13 @@ export default class CompletedListItem extends React.Component {
 
     render() {
         return (
-            <div className="table-row">
-                <div className="table-body-cell comp-proj-cell">{this.props.project}</div>
-                <div className="table-body-cell adv-cell">{this.props.advisor}</div>
-                <div className="table-body-cell pm-cell comp-pm-cell">{this.props.pm_name}</div>
-                <div className="table-body-cell date-cell hide-mobile">{this.props.date_created}</div>
-                <div className="table-body-cell comp-revert">
-                    <button onClick={e => this.handleRevert(e, this.props.id)} className="revert-button">Revert</button>
+            <div className={tableStyles.tableRow}>
+                <div className={`${tableStyles.tableBodyCell} ${listStyles.project}`}>{this.props.project}</div>
+                <div className={`${tableStyles.tableBodyCell} ${listStyles.advisor}`}>{this.props.advisor}</div>
+                <div className={`${tableStyles.tableBodyCell} ${listStyles.pm}`}>{this.props.pm_name}</div>
+                <div className={`${tableStyles.tableBodyCell} ${listStyles.date} ${tableStyles.hideMobile}`}>{this.props.date_created}</div>
+                <div className={`${tableStyles.tableBodyCell} ${listStyles.actions}`}>
+                    <button onClick={e => this.handleRevert(e, this.props.id)} className={styles.revertButton}>Revert</button>
                 </div>
             </div>
         )

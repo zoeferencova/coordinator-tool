@@ -1,6 +1,8 @@
 import * as d3 from 'd3';
 import config from '../../config'
 
+import styles from './TimespanChart.module.css'
+
 const MARGIN = { TOP: 10, RIGHT: 10, BOTTOM: 70, LEFT: 70 }
 const WIDTH = 550 - MARGIN.LEFT - MARGIN.RIGHT;
 const HEIGHT = 350 - MARGIN.TOP - MARGIN.BOTTOM;

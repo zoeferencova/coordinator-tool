@@ -2,9 +2,10 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import Header from '../../components/Header/Header'
 import AppContext from '../../contexts/contexts'
-import './AccountPage.css'
 import NavBar from '../../components/NavBar/NavBar';
 import config from '../../config'
+
+import styles from './AccountPage.module.css'
 
 export default class AccountPage extends React.Component {
     static contextType = AppContext;
@@ -77,7 +78,7 @@ export default class AccountPage extends React.Component {
                     <section>
                         <h2>PM Settings</h2>
                         <h3>Current PMs:</h3>
-                        <ul className="pm-list">
+                        <ul className={styles.pmList}>
                             {this.renderPms()}
                         </ul>
                         {this.state.error && <p>{this.state.error}</p>}

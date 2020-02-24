@@ -6,7 +6,7 @@ import PieChartWrapper from '../../components/PieChartWrapper/PieChartWrapper'
 import * as d3 from 'd3';
 import config from '../../config'
 
-import './DashboardPage.css'
+import styles from './DashboardPage.module.css'
 import { formatDefaultLocale } from 'd3';
 
 export default class DashboardPage extends React.Component {

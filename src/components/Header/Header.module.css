@@ -1,4 +1,4 @@
-.header-container {
+.headerContainer {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -7,22 +7,22 @@
     margin-bottom: 50px;
 }
 
-.header-details span {
+.headerDetails span {
     padding: 0 8px;
 }
 
-.header-title {
+.headerTitle {
     margin: 0;
     padding: 0;
     font-size: 22px;
 }
 
-@media only screen and (max-width: 945px) {
-    .header-details {
+@media only screen and (max-width: 1065px) {
+    .headerDetails {
         display: none;
     }
 
-    .header-container {
+    .headerContainer {
         margin-top: 40px;
         justify-content: center;
     }

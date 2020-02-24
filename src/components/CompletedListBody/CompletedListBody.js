@@ -1,19 +1,22 @@
 import React from 'react';
 import AppContext from '../../contexts/contexts'
-import './CompletedListBody.css'
+
+import styles from './CompletedListBody.module.css'
+import listStyles from '../Utils/shared-styles/CompletedList.module.css'
+import tableStyles from '../Utils/shared-styles/TableStyles.module.css'
 
 export default class CompletedListBody extends React.Component {   
     static contextType = AppContext;
     
     render() {
         return (
-            <div className="table completed-list">
-                <div className="table-header">
-                    <div className="table-header-cell comp-proj-cell">Project</div>
-                    <div className="table-header-cell">Advisor</div>
-                    <div className="table-header-cell comp-pm-cell">PM</div>
-                    <div className="table-header-cell hide-mobile">Date</div>
-                    <div className="table-header-cell actions-column comp-revert">Actions</div>
+            <div className={tableStyles.table}>
+                <div className={tableStyles.tableHeader}>
+                    <div className={`${tableStyles.tableHeaderCell} ${listStyles.project}`}>Project</div>
+                    <div className={`${tableStyles.tableHeaderCell} ${listStyles.advisor}`}>Advisor</div>
+                    <div className={`${tableStyles.tableHeaderCell} ${listStyles.pm}`}>PM</div>
+                    <div className={`${tableStyles.tableHeaderCell} ${listStyles.date} ${tableStyles.hideMobile}`}>Date</div>
+                    <div className={`${tableStyles.tableHeaderCell} ${listStyles.actions} ${styles.revert}`}>Actions</div>
                 </div>
                 {this.props.renderCompletedItems()}
             </div>

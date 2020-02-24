@@ -1,13 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import './LandingPage.css'
+import styles from './LandingPage.module.css'
 
 export default class LandingPage extends React.Component {
     render() {
         return (
             <main role="main">
                 <header>
-                    <nav role="navigation" className="LandingPage__nav">
+                    <nav role="navigation" className={styles.nav}>
                         <Link to={'/login'}>
                             Log In
                         </Link>

@@ -1,4 +1,4 @@
-.email-form {
+.emailForm {
     background: lightgray;
     position: fixed;
     min-height: 400px;
@@ -11,7 +11,7 @@
     margin-left: 110px;
 }
 
-.x-button {
+.xButton {
     position: absolute;
     right: 0;
     top: 0;
@@ -19,19 +19,24 @@
     border: none;
 }
 
-.x-button i {
+.xButton i {
     font-size: 22px;
     padding: 10px;
 }
 
+.templateBody {
+    white-space: pre-line;
+    text-align: left;
+}
+
 @media only screen and (max-width: 945px) {
-    .email-form {
+    .emailForm {
         margin-left: 0;
     }
 }
 
 @media only screen and (max-width: 700px) {
-    .email-form {
+    .emailForm {
         width: 100%;
         height: 100%;
         padding-top: 50px;

@@ -1,6 +1,9 @@
 import React from 'react';
-import './MainListBody.css'
-import AppContext from '../../contexts/contexts'
+import AppContext from '../../contexts/contexts';
+
+import tableStyles from '../Utils/shared-styles/TableStyles.module.css'
+import listStyles from '../Utils/shared-styles/MainList.module.css'
+import styles from './MainListBody.module.css'
 
 export default class MainListBody extends React.Component {   
     static contextType = AppContext;
@@ -28,17 +31,17 @@ export default class MainListBody extends React.Component {
     
     render() {
         return (
-            <div className="table">
-                <div className="table-header">
-                    <div className='table-header-cell hide-mobile check-column'><input type="checkbox" id="header-checkbox" onChange={this.setCheckedState}></input></div>
-                    <div className="table-header-cell proj-cell">Project</div>
-                    <div className="table-header-cell adv-cell">Advisor</div>
-                    <div className="table-header-cell hide-mobile">PM</div>
-                    <div className="table-header-cell hide-mobile">Date</div>
-                    <div className="table-header-cell hide-mobile">Notes</div>
-                    <div className="table-header-cell status-column">Status</div>
-                    <div className="table-header-cell actions-column hide-mobile">Actions</div>
-                    <div className="table-header-cell mobile-actions-column hide-desktop"></div>
+            <div className={tableStyles.table}>
+                <div className={tableStyles.tableHeader}>
+                    <div className={`${tableStyles.tableHeaderCell} ${tableStyles.hideMobile} ${listStyles.check}`}><input type="checkbox" id="header-checkbox" onChange={this.setCheckedState}></input></div>
+                    <div className={`${tableStyles.tableHeaderCell} ${listStyles.project}`}>Project</div>
+                    <div className={`${tableStyles.tableHeaderCell} ${listStyles.advisor}`}>Advisor</div>
+                    <div className={`${tableStyles.tableHeaderCell} ${tableStyles.hideMobile}`}>PM</div>
+                    <div className={`${tableStyles.tableHeaderCell} ${tableStyles.hideMobile}`}>Date</div>
+                    <div className={`${tableStyles.tableHeaderCell} ${tableStyles.hideMobile}`}>Notes</div>
+                    <div className={`${tableStyles.tableHeaderCell} ${listStyles.status}`}>Status</div>
+                    <div className={`${tableStyles.tableHeaderCell} ${listStyles.actions} ${tableStyles.hideMobile}`}>Actions</div>
+                    <div className={`${tableStyles.tableHeaderCell} ${listStyles.mobileActions} ${tableStyles.hideDesktop}`}></div>
                 </div>
                 {this.props.renderListItems()}
             </div>

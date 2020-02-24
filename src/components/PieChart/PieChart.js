@@ -1,7 +1,8 @@
 import * as d3 from 'd3';
 import { legendColor } from 'd3-svg-legend'
-
 import config from '../../config'
+
+import styles from './PieChart.module.css'
 
 const MARGIN = 40;
 const WIDTH = 600;

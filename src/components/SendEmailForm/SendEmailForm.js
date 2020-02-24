@@ -1,6 +1,6 @@
 import React from 'react';
 import AppContext from '../../contexts/contexts'
-import './SendEmailForm.css'
+import styles from './SendEmailForm.module.css'
 
 export default class SendEmailForm extends React.Component {
     static contextType = AppContext;
@@ -45,8 +45,8 @@ export default class SendEmailForm extends React.Component {
     render() {
         return (
 
-                 <main role="main" className="email-form">
-                    <button onClick={this.props.closeEmailForm}  className="x-button"><i className="fas fa-times"></i></button>
+                 <main role="main" className={styles.emailForm}>
+                    <button onClick={this.props.closeEmailForm}  className={styles.xButton}><i className="fas fa-times"></i></button>
                     <h3>Send Email</h3>
                     
                     <form>
@@ -63,7 +63,7 @@ export default class SendEmailForm extends React.Component {
                         </div>
                         <div>
                             <h4>Preview:</h4>
-                            <p className='template-body'>{this.state.selectedTemplate !== '' ? this.formatTemplateBody() : ''}</p>
+                            <p className={styles.templateBody}>{this.state.selectedTemplate !== '' ? this.formatTemplateBody() : ''}</p>
                         </div>
                         
                         <a href={`mailto:?Subject=${this.state.selectedTemplate !== '' ? this.context.templates[this.state.selectedTemplate].template_subject : ''}&Body=${this.state.selectedTemplate !== '' ? this.formatTemplateForEmail() : ''}`}>Open in Outlook</a>
