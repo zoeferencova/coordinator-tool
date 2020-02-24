@@ -16,10 +16,9 @@ export default class PieChart {
         const vis = this;
         vis.svg = d3.select(element)
             .append("svg")
-                .attr("width", WIDTH)
-                .attr("height", HEIGHT)
+                .attr("viewBox", `0 0  ${WIDTH} ${HEIGHT}`)
             .append("g")
-                .attr("transform", `translate(${WIDTH/2}, ${HEIGHT/2})`)
+                .attr("transform", `translate(${WIDTH/2-70}, ${HEIGHT/2})`)
         
         const colors = ['#c95757', '#79a3ba', '#69a867', '#faf1a2', '#9679b3', "#ebbb91", "#4d557d", "#f5b3cd", "#752221", "#367041", "#ccdae8", "#a8f7ef", "#e2f5c1"]
 

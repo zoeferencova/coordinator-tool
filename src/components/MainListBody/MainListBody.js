@@ -41,7 +41,7 @@ export default class MainListBody extends React.Component {
                     <div className={`${tableStyles.tableHeaderCell} ${tableStyles.hideMobile}`}>Notes</div>
                     <div className={`${tableStyles.tableHeaderCell} ${listStyles.status}`}>Status</div>
                     <div className={`${tableStyles.tableHeaderCell} ${listStyles.actions} ${tableStyles.hideMobile}`}>Actions</div>
-                    <div className={`${tableStyles.tableHeaderCell} ${listStyles.mobileActions} ${tableStyles.hideDesktop}`}></div>
+                    <div className={`${tableStyles.tableHeaderCell} ${listStyles.mobileActions} ${tableStyles.hideDesktop}`}><i className={`fas fa-ellipsis-h`}></i></div>
                 </div>
                 {this.props.renderListItems()}
             </div>

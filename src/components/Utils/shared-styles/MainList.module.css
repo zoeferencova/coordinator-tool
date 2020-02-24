@@ -51,6 +51,8 @@ div.actions, div.status, div.check {
     div .mobileActions {
         max-width: 40px;
         display: block;
+        padding-bottom: 26px;
+        color: lightgray;
     }
 
     .project {

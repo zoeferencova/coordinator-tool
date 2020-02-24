@@ -6,7 +6,7 @@
 
 .table div {
     padding: 8px 0;
-    font-size: 14px;
+    font-size: 13px;
 }
 
 .table a {
@@ -20,7 +20,6 @@
 
 .tableHeader div {
     background-color: lightgray;
-    font-weight: bold;
     padding: 10px;
     text-align: left;
 }
@@ -82,11 +81,6 @@ div .tableBodyCell {
 @media only screen and (max-width: 810px) {
     .hideMobile {
         display: none;
-    }
-
-
-    .tableRow div {
-        font-size: 14px;
     }
 
     .tableRow i {
