@@ -13,9 +13,10 @@ export default class EmailPage extends React.Component {
         return this.context.templates.map(template => 
             <EmailTemplate
                 key={template.id}
+                id={template.id}
                 template_name={template.template_name}
                 template_subject={template.template_subject}
-                template_body={template.template_body}
+                template_content={template.template_content}
             />
         )
     }

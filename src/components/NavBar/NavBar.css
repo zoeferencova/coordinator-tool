@@ -94,12 +94,13 @@
     .nav-wrap .burger {
         position: fixed;
         top: 0;
-        width: 100%;
+        width: 10%;
         height: 60px;
         line-height: 60px;
         display: flex;
         left: 0;
         padding-left: 20px;
+        z-index: 10;
     }
     .burger i {
         font-size: 25px;

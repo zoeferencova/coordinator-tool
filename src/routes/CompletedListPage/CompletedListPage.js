@@ -33,7 +33,7 @@ export default class CompletedListPage extends React.Component {
         const sortByProject = (a, b) => a.props.project.toLowerCase().localeCompare(b.props.project.toLowerCase());
         const sortByPM = (a, b) => a.props.pm.name.toLowerCase().localeCompare(b.props.pm.name.toLowerCase());
         const sortByDate = (a, b, order=ASC) => {
-            const diff = new Date(a.props.date) - new Date(b.props.date);
+            const diff = new Date(a.props.date_created) - new Date(b.props.date_created);
             return order === ASC ? diff : -1 * diff
         };
         
@@ -65,11 +65,13 @@ export default class CompletedListPage extends React.Component {
         const itemArray = completedListItems.map(item => 
             <CompletedListItem
                 key={item.id}
+                id={item.id}
                 status={item.status}
                 project={item.project}
                 advisor={item.advisor}
-                pm={item.pm}
-                date={new Date(item.date).toLocaleDateString('en-US', this.context.dateOptions)}
+                pm_name={item.pm_name}
+                pm_email={item.pm_email}
+                date_created={new Date(item.date_created).toLocaleDateString('en-US', this.context.dateOptions)}
             />
         )
         const searchedItems = this.searchItems(itemArray, query)

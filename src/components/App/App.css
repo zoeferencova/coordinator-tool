@@ -1,12 +1,17 @@
-@import url('https://fonts.googleapis.com/css?family=Muli');
+@import url('https://fonts.googleapis.com/css?family=Roboto:300,400,600&display=swap');
 
 .App {
-    font-family: 'Muli';
+    font-family: "Roboto";
     padding-top: 20px;
     padding-bottom: 20px;
     width: 90%;
     margin: 0 auto;
     text-align: center;
+}
+
+h1 {
+    font-weight: 300;
+    font-size: 20px;
 }
 
 p {
@@ -16,3 +21,4 @@ p {
 button:hover {
  cursor: pointer;
 }
+

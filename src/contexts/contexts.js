@@ -6,7 +6,21 @@ const AppContext = React.createContext({
     user: {},
     templates: [],
     completedListItems: [],
+    data: {},
     dateOptions: {},
+    fetchData: () => {},
+    deleteItem: () => {},
+    addItem: () => {},
+    addItemById: () => {},
+    updateItem: () => {},
+    updateItemStatus: () => {},
+    addTemplate: () => {},
+    deleteTemplate: () => {},
+    updateTemplate: () => {},
+    addPm: () => {},
+    deletePm: () => {},
+    revertCompleted: () => {},
+    setInitialState: () => {},
 })
 
 export default AppContext;

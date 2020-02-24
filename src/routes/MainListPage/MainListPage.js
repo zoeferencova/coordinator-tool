@@ -16,17 +16,20 @@ export default class MainListPage extends React.Component {
         emailFormOpen: false,
         emailProject: '',
         emailAdvisor: '',
-        emailPm: {},
+        emailPmName: '',
         query: '',
         sort: 'none',
+        checkedItems: []
     }
 
-    openEmailForm = (project, advisor, pm) => {
+    openEmailForm = (project, advisor, pm_name, pm_email) => {
+        const fixedproj = project.replace('&', 'and')
         this.setState({ emailFormOpen: true })
         this.setState({
-            emailProject: project,
+            emailProject: fixedproj,
             emailAdvisor: advisor,
-            emailPm: pm
+            emailPmName: pm_name,
+            emailPmEmail: pm_email
         })
     }
 
@@ -43,8 +46,27 @@ export default class MainListPage extends React.Component {
             emailFormOpen: false,
             emailProject: '',
             emailAdvisor: '',
-            emailPm: '',
+            emailPmName: '',
         })
+    }
+
+    setChecked = (id) => {
+        if (this.state.checkedItems.includes(id)) {
+            const newItems = this.state.checkedItems.filter(item => item !== id)
+            this.setState({ checkedItems: newItems })
+        } else if (typeof(id) !== 'object') {
+            this.setState({ checkedItems: [...this.state.checkedItems, id] })
+        } else if (typeof(id) === 'object') {
+            this.setState({ checkedItems: id })
+        }
+    }
+
+    clearChecked = () => {
+        this.setState({ checkedItems: [] })
+        const listCheckboxes = document.querySelectorAll('#list-checkbox')
+        const headerCheckbox = document.querySelector('#header-checkbox')
+        listCheckboxes.forEach(item => item.checked = false)
+        headerCheckbox.checked = false;
     }
 
     sortItems = (inputItems, sort) => {
@@ -53,9 +75,9 @@ export default class MainListPage extends React.Component {
 
         const sortByAdvisor = (a, b) => a.props.advisor.toLowerCase().localeCompare(b.props.advisor.toLowerCase());
         const sortByProject = (a, b) => a.props.project.toLowerCase().localeCompare(b.props.project.toLowerCase());
-        const sortByPM = (a, b) => a.props.pm.name.toLowerCase().localeCompare(b.props.pm.name.toLowerCase());
+        const sortByPM = (a, b) => a.props.pm_name.toLowerCase().localeCompare(b.props.pm_name.toLowerCase());
         const sortByDate = (a, b, order=ASC) => {
-            const diff = new Date(a.props.date) - new Date(b.props.date);
+            const diff = new Date(a.props.unformatted_date) - new Date(b.props.unformatted_date);
             return order === ASC ? diff : -1 * diff
         };
         const sortByStatus = (a, b) => a.props.status.toLowerCase().localeCompare(b.props.status.toLowerCase());
@@ -91,15 +113,22 @@ export default class MainListPage extends React.Component {
         const itemArray = listItems.map(item => 
             <MainListItem
                 key={item.id}
+                id={item.id}
                 checked={item.checked}
                 status={item.status}
                 project={item.project}
+                project_url={item.project_url}
                 advisor={item.advisor}
-                pm={item.pm}
-                date={new Date(item.date).toLocaleDateString('en-US', this.context.dateOptions)}
+                advisor_url={item.advisor_url}
+                pm_name={item.pm_name}
+                pm_email={item.pm_email}
+                date_created={new Date(item.date_created).toLocaleDateString('en-US', this.context.dateOptions)}
+                unformatted_date={item.date_created}
                 notes={item.notes}
                 openEmailForm={this.openEmailForm}
                 closeEmailForm={e => this.closeEmailForm}
+                setChecked={this.setChecked}
+                
             />
         )
         const searchedItems = this.searchItems(itemArray, query)
@@ -110,6 +139,11 @@ export default class MainListPage extends React.Component {
         }
     }
 
+    renderNoItemMessage = () => {
+        const nonCompletedItems = this.context.listItems.filter(item => item.status !== 'completed')
+        return nonCompletedItems.length === 0 ? <p>You have no items to do! :)</p> : ''
+    }
+
     render() {
         const dateOptions = { weekday: 'long', month: 'long', day: 'numeric' }
         const title = new Date().toLocaleDateString("en-US", dateOptions)
@@ -118,12 +152,13 @@ export default class MainListPage extends React.Component {
             <div className="container">
                 <main className="content">
                     <Header title={title} />
-                    <MainListTools setQuery={this.setQuery} setSort={this.setSort} />
+                    <MainListTools setQuery={this.setQuery} setSort={this.setSort} checkedItems={this.state.checkedItems} clearChecked={this.clearChecked} />
                     <br></br>
                     <div className='main-list-container'>
-                        <MainListBody renderListItems={this.renderListItems} openEmailForm={this.openEmailForm} closeEmailForm={this.closeEmailForm} />
+                        <MainListBody renderListItems={this.renderListItems} openEmailForm={this.openEmailForm} closeEmailForm={this.closeEmailForm} setChecked={this.setChecked} clearChecked={this.clearChecked} />
+                        {this.renderNoItemMessage()}
                     </div>
-                    {this.state.emailFormOpen && <SendEmailForm project={this.state.emailProject} advisor={this.state.emailAdvisor} pm={this.state.emailPm.name} pm_email={this.state.emailPm.email} closeEmailForm={this.closeEmailForm} />}
+                    {this.state.emailFormOpen && <SendEmailForm project={this.state.emailProject} advisor={this.state.emailAdvisor} pm_name={this.state.emailPmName} closeEmailForm={this.closeEmailForm} />}
                 </main>
                 <NavBar />
             </div>

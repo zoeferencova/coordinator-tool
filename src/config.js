@@ -1,4 +1,5 @@
 export default {
-    API_ENDPOINT: 'https://secure-brook-55265.herokuapp.com/api',
-    TOKEN_KEY: 'coordinator-tool-client-auth-token',
+    API_ENDPOINT: process.env.REACT_APP_BASE_URL,
+    // API_ENDPOINT: 'http://localhost:8000/api',
+    TOKEN_KEY: process.env.TOKEN_KEY,
 }

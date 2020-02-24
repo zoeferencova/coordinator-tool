@@ -5,6 +5,8 @@
     margin: 0 auto;
 }
 
+
+
 .table-header {
     display: table-header-group;
     background-color: grey;
@@ -14,7 +16,7 @@
 .table-header-cell {
     display: table-cell;
     padding: 10px;
-    text-align: center;
+    text-align: left;
     border-bottom: 1px solid black;
 }
 
@@ -46,4 +48,17 @@
     height: 15px;
 }
 
+@media only screen and (max-width: 700px) {
+    div .comp-proj-cell {
+        min-width: 100px;
+        text-align: left;
+        padding-left: 10px;
+    }
 
+    div .comp-pm-cell {
+        max-width: 60px;
+    }
+
+
+
+}
