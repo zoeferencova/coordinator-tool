@@ -123,6 +123,7 @@ export default class AuthenticatedApp extends Component {
     if(status === 'completed') {
       const newItems = this.state.listItems.filter(item => item.id !== updatedItemId)
       this.setState({ listItems: newItems })
+      item.date_completed = Date.now()
       this.setState({ completedListItems: [item, ...this.state.completedListItems] })
       this.updateDateCompleted(item, Date.now())
     }
