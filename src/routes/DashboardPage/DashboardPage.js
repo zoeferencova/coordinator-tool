@@ -22,8 +22,8 @@ export default class DashboardPage extends React.Component {
 
     componentDidMount() {
         d3.json(`${config.API_ENDPOINT}/data/time-completed-data`, { headers: { "Authorization": `Bearer ${window.sessionStorage.getItem(config.TOKEN_KEY)}` } })
-            .then(res => this.getHourMinute(res[0].map(item => this.getMinutes(item)).reduce((acc, el) => acc + el)/res[0].length))
-            .then(item => this.setState({ completionTime: item }))
+            .then(res => res[0].length === 0 ? this.setState({ completionTime: { hour: "--", minute: "--"} }) : this.getHourMinute(res[0].map(item => this.getMinutes(item)).reduce((acc, el) => acc + el)/res[0].length))
+            .then(item => item !== undefined ? this.setState({ completionTime: item }) : item)
 
         d3.json(`${config.API_ENDPOINT}/data/dashboard-data`, { headers: { "Authorization": `Bearer ${window.sessionStorage.getItem(config.TOKEN_KEY)}` } })
             .then(res => this.formatDashData(res))
@@ -62,8 +62,12 @@ export default class DashboardPage extends React.Component {
 
     formatDashData(data) {
         this.setState({ pending: Number(data[0][0].pending) })
-        const percentage = (Number(data[2][0].completed) * 100)/Number(data[1][0].created);
-        this.setState({ completion: parseInt(percentage) })
+        if (Number(data[2][0].completed) === 0) {
+            this.setState({ completion: 0 })
+        } else {
+            const percentage = (Number(data[2][0].completed) * 100)/Number(data[1][0].created);
+            this.setState({ completion: parseInt(percentage) })
+        }
     }
 
     changeType = (type) => {
