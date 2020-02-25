@@ -1,30 +1,29 @@
-.headerContainer {
+.header-container {
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    padding: 20px;
+    padding: 20px 0;
     margin-bottom: 50px;
-    margin-top: 20px;
 }
 
-.headerDetails span {
+.header-details span {
     padding: 0 8px;
 }
 
-.headerTitle {
+.header-title {
     margin: 0;
     padding: 0;
-    font-size: 20px;
-    font-weight: bold;
+    font-size: 22px;
+
 }
 
-@media only screen and (max-width: 1065px) {
-    .headerDetails {
+@media only screen and (max-width: 945px) {
+    .header-details {
         display: none;
     }
 
-    .headerContainer {
+    .header-container {
         margin-top: 40px;
         justify-content: center;
     }

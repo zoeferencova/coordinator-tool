@@ -5,7 +5,7 @@
 .nav {
     display: block;
     position: fixed;
-    background-color: #202421;
+
     height: 100%;
     width: 220px;
     left: 0;
@@ -13,11 +13,6 @@
     bottom: 0;
 }
 
-.logo {
-    color: white;
-    font-weight: normal;
-    margin-bottom: 50px;
-}
 
 .tabList {
     display: flex;
@@ -39,7 +34,7 @@
 }
 
 .tab:hover {
-    background-color: rgb(100, 100, 100, 0.4)
+    background-color: #f2f4f7;
 }
 
 .tabTitle {
@@ -56,20 +51,20 @@
 }
 
 :global .active i, :global .active li {
-    color: white;
+    color: #1d2d59;
 }
 
 :global .active {
-    background-color: rgb(100, 100, 100, 0.4);
-    border-left: 3px solid white;
+    border-left: 5px solid #1d2d59;
+    /* background-color: #f2f4f7; */
 }
 
 :global .active i {
-    margin-left: -3px;
+    margin-left: -5px;
 }
 
 .tabContent {
-    color: gray;
+    color: #768194;
 }
 
 .hidden {
@@ -86,6 +81,12 @@
 
 .burger:hover {
     cursor: pointer;
+}
+
+.logo {
+    width: 180px;
+    margin-bottom: 20px;
+    margin-top: 15px;
 }
 
 @media only screen and (max-width: 1065px) {

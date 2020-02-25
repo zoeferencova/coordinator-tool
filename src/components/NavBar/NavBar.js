@@ -24,7 +24,7 @@ export default class NavBar extends React.Component {
             <div className={styles.navWrap}>
                 <button className={styles.burger} onClick={() => this.setState({ expanded: true })}><i className="fas fa-bars"></i></button>
                 <nav role="navigation" className={`${styles.nav} ${this.state.expanded ? styles.show : ''}`} >
-                    <h1 className={styles.logo}>Logo</h1>
+                    <img src={require("../../images/coordinator-logo.png")} className={styles.logo}></img>
                     <ul className={styles.tabList}>
                         <NavLink to="/main" className={styles.tab}>
                             <li className={styles.tabContent}>
