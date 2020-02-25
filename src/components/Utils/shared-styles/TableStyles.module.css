@@ -2,11 +2,7 @@
     width: 100%;
     display: table;
     margin: 0 auto;
-}
-
-.table div {
-    padding: 8px 0;
-    font-size: 13px;
+    
 }
 
 .table a {
@@ -16,14 +12,17 @@
 
 .tableHeader {
     display: table-header-group;
-    
 }
 
 .tableHeader div {
     background-color: #e1e3f0;
     padding: 12px 10px;
     text-align: left;
-
+    text-transform: uppercase;
+    color: #5f697d;
+    font-weight:  bold;
+    font-size: 11px;
+    letter-spacing: 0.5px
 }
 
 .tableHeaderCell {
@@ -32,16 +31,23 @@
     
 }
 
+.tableHeaderCell i {
+    padding-left: 4px;
+    cursor: pointer;
+    font-size: 12px;
+}
+
 div .tableHeaderCell {
     height: 25px;
 }
 
 .tableRow {
     display: table-row;
+    font-size: 13px;
 }
 
 .tableRow i {
-    font-size: 17px;
+    font-size: 15px;
     margin: 0 4px;
     color: gray;
 }
@@ -52,10 +58,7 @@ div .tableHeaderCell {
 
 .tableBodyCell {
     display: table-cell;
-}
-
-div .tableBodyCell {
-    height: 32px; 
+    padding-top: 18px;
 }
 
 .tableBodyCell button {

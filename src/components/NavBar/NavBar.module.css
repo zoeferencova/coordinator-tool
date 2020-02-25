@@ -11,6 +11,8 @@
     left: 0;
     top: 0;
     bottom: 0;
+    opacity: 1;
+    background-color: white;
 }
 
 
@@ -42,7 +44,7 @@
     padding: 0;
     margin-left: 18px;
     line-height: normal;
-    font-size: 15px;;
+    font-size: 14px;
 }
 
 
@@ -84,15 +86,12 @@
 }
 
 .logo {
-    width: 180px;
-    margin-bottom: 20px;
-    margin-top: 15px;
+    width: 170px;
+    margin-top: 20px;
+    margin-bottom: 10px;
 }
 
 @media only screen and (max-width: 1065px) {
-    .burger {
-        display: block;
-    }
 
     .navWrap .burger {
         position: fixed;
@@ -102,9 +101,9 @@
         line-height: 60px;
         display: flex;
         left: 0;
-        padding-left: 20px;
-        z-index: 10;
+        padding-left: 20px; 
     }
+
     .burger i {
         font-size: 25px;
     }
@@ -115,6 +114,10 @@
 
     .show {
         display: block;
+    }
+
+    .hide {
+        display: none !important;
     }
 
     .overlay {

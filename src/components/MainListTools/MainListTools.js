@@ -109,19 +109,6 @@ export default class MainListTools extends React.Component {
                     <label htmlFor="search">Search: </label>
                     <input type="text" id="search" onChange={e => this.props.setQuery(e.target.value)}></input>
                 </div>
-
-                    <div>
-                        <label htmlFor="sort">Sort by: </label>
-                        <select name="sort" id="sort" onChange={e => this.props.setSort(e.target.value)}>
-                            <option value="none"></option>
-                            <option value="advisor">Advisor (A-Z)</option>
-                            <option value="project">Project Name</option>
-                            <option value="pm">PM</option>
-                            <option value="date-desc">Date (Newest-Oldest)</option>
-                            <option value="date-asc">Date (Oldest-Newest)</option>
-                            <option value="status">Status</option>
-                        </select>
-                    </div>
                     <div className={styles.hideMobile}>
                         <label htmlFor="action">Actions: </label>
                         <select name="action" id="action" value={'none'} onChange={e => this.fireAction(e.target.value)}>

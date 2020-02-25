@@ -59,16 +59,16 @@ export default class MainListItem extends React.Component {
                 <div className={`${tableStyles.tableBodyCell} ${tableStyles.hideMobile} ${listStyles.date}`}>{date_created}</div>
                 <div className={`${tableStyles.tableBodyCell} ${tableStyles.hideMobile} ${listStyles.notes}`}>{notes}</div>
                 <div className={`${tableStyles.tableBodyCell} ${listStyles.status}`}>
-                    <select className={styles.statusSelect} value={status} onChange={(e) => this.handleStatusClick(e.target.value, this.props.id, project, advisor, pm_email)}>
+                    <select className={`${styles.statusSelect} ${status === 'reached' ? styles.pending : ''}`} value={status} onChange={(e) => this.handleStatusClick(e.target.value, this.props.id, project, advisor, pm_email)}>
                         <option value='none'></option>
-                        <option value='reached'>Reached</option>
+                        <option value='reached'>Pending</option>
                         <option value='completed'>Completed</option>
                     </select>
                 </div>
                 <div className={`${tableStyles.tableBodyCell} ${tableStyles.hideMobile} ${listStyles.actions}`}>
-                    <button onClick={() => this.props.openEmailForm(project, advisor, pm_name, pm_email)}><i className="fas fa-envelope"></i></button>
-                    <Link to={{pathname:`/edit-item/${id}`, itemProps: {project, advisor, pm_name, notes}}} ><button onClick={this.handleEditItem}><i className="fas fa-edit"></i></button></Link>
-                    <button itemkey={id} onClick={e => this.handleDeleteItem(e)}><i className="fas fa-trash-alt"></i></button>
+                    <button className={`${styles.icon}`} onClick={() => this.props.openEmailForm(project, advisor, pm_name, pm_email)}><i className="fas fa-envelope"></i></button>
+                    <Link to={{pathname:`/edit-item/${id}`, itemProps: {project, advisor, pm_name, notes}}} ><button className={`${styles.icon}`}  onClick={this.handleEditItem}><i className="fas fa-edit"></i></button></Link>
+                    <button className={`${styles.icon}`} itemkey={id} onClick={e => this.handleDeleteItem(e)}><i className="fas fa-trash"></i></button>
                 </div>
                 <div className={`${tableStyles.tableBodyCell} ${tableStyles.hideDesktop} ${listStyles.mobileActions}`}>
                     <div 

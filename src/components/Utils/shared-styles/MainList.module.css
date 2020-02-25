@@ -1,9 +1,13 @@
-.check{
+.check {
     width: 30px;
 }
 
-.status {
-    width: 40px;
+.check input {
+    cursor: pointer;
+}
+
+div.status {
+    width: 45px;
     padding: 0;
 }
 

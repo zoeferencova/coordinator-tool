@@ -19,7 +19,7 @@ export default class MainListPage extends React.Component {
         emailAdvisor: '',
         emailPmName: '',
         query: '',
-        sort: 'none',
+        sort: 'date-asc',
         checkedItems: []
     }
 
@@ -74,27 +74,47 @@ export default class MainListPage extends React.Component {
         const ASC = 'ascending';
         const DSC = 'descending';
 
-        const sortByAdvisor = (a, b) => a.props.advisor.toLowerCase().localeCompare(b.props.advisor.toLowerCase());
-        const sortByProject = (a, b) => a.props.project.toLowerCase().localeCompare(b.props.project.toLowerCase());
-        const sortByPM = (a, b) => a.props.pm_name.toLowerCase().localeCompare(b.props.pm_name.toLowerCase());
+        const sortByAdvisor = (a, b, order=ASC) => {
+            const diff = a.props.advisor.toLowerCase().localeCompare(b.props.advisor.toLowerCase());
+            return order === ASC ? diff : -1 * diff
+        } 
+        const sortByProject = (a, b, order=ASC) => {
+            const diff = a.props.project.toLowerCase().localeCompare(b.props.project.toLowerCase());
+            return order === ASC ? diff : -1 * diff
+        }
+        const sortByPM = (a, b, order=ASC) => {
+            const diff = a.props.pm_name.toLowerCase().localeCompare(b.props.pm_name.toLowerCase());
+            return order === ASC ? diff : -1 * diff
+        } 
         const sortByDate = (a, b, order=ASC) => {
             const diff = new Date(a.props.unformatted_date) - new Date(b.props.unformatted_date);
             return order === ASC ? diff : -1 * diff
         };
-        const sortByStatus = (a, b) => a.props.status.toLowerCase().localeCompare(b.props.status.toLowerCase());
-        
-        if (sort === 'advisor') {
-            return inputItems.sort((a, b) => sortByAdvisor(a, b))
-        } else if (sort === 'project') {
-            return inputItems.sort((a, b) => sortByProject(a, b))
-        } else if (sort === 'pm') {
-            return inputItems.sort((a, b) => sortByPM(a, b))
+        const sortByStatus = (a, b, order=ASC) => {
+            const diff = a.props.status.toLowerCase().localeCompare(b.props.status.toLowerCase());
+            return order === ASC ? diff : -1 * diff
+        } 
+                
+        if (sort === 'advisor-asc') {
+            return inputItems.sort((a, b) => sortByAdvisor(a, b, ASC))
+        } else if (sort === 'advisor-desc') {
+            return inputItems.sort((a, b) => sortByAdvisor(a, b, DSC))
+        } else if (sort === 'project-asc') {
+            return inputItems.sort((a, b) => sortByProject(a, b, ASC))
+        } else if (sort === 'project-desc') {
+            return inputItems.sort((a, b) => sortByProject(a, b, DSC))
+        } else if (sort === 'pm-asc') {
+            return inputItems.sort((a, b) => sortByPM(a, b, ASC))
+        } else if (sort === 'pm-desc') {
+            return inputItems.sort((a, b) => sortByPM(a, b, DSC))
         } else if (sort === 'date-asc') {
             return inputItems.sort((a, b) => sortByDate(a, b, ASC))
         } else if (sort === 'date-desc') {
             return inputItems.sort((a, b) => sortByDate(a, b, DSC))
-        } else if (sort === 'status') {
-            return inputItems.sort((a, b) => sortByStatus(a, b))
+        } else if (sort === 'status-asc') {
+            return inputItems.sort((a, b) => sortByStatus(a, b, ASC))
+        } else if (sort === 'status-desc') {
+            return inputItems.sort((a, b) => sortByStatus(a, b, DSC))
         }
     }
     
@@ -154,10 +174,10 @@ export default class MainListPage extends React.Component {
                 <main className="content">
                     <Header title={title} />
                     <div className={tableStyles.listContainer}>
-                        <MainListTools setQuery={this.setQuery} setSort={this.setSort} checkedItems={this.state.checkedItems} clearChecked={this.clearChecked} />
+                        <MainListTools setQuery={this.setQuery} checkedItems={this.state.checkedItems} clearChecked={this.clearChecked} />
                         <br></br>
                         <div>
-                            <MainListBody renderListItems={this.renderListItems} openEmailForm={this.openEmailForm} closeEmailForm={this.closeEmailForm} setChecked={this.setChecked} clearChecked={this.clearChecked} />
+                            <MainListBody setSort={this.setSort} currentSort={this.state.sort} renderListItems={this.renderListItems} openEmailForm={this.openEmailForm} closeEmailForm={this.closeEmailForm} setChecked={this.setChecked} clearChecked={this.clearChecked} />
                             {this.renderNoItemMessage()}
                         </div>
                     </div>
