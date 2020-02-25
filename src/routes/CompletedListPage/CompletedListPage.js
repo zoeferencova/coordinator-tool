@@ -14,7 +14,7 @@ export default class CompletedListPage extends React.Component {
 
     state = {
         query: '',
-        sort: 'none'
+        sort: 'date-desc'
     }
 
     searchItems = (inputItems, query) => {
@@ -31,26 +31,51 @@ export default class CompletedListPage extends React.Component {
         const ASC = 'ascending';
         const DSC = 'descending';
 
-        const sortByAdvisor = (a, b) => a.props.advisor.toLowerCase().localeCompare(b.props.advisor.toLowerCase());
-        const sortByProject = (a, b) => a.props.project.toLowerCase().localeCompare(b.props.project.toLowerCase());
-        const sortByPM = (a, b) => a.props.pm.name.toLowerCase().localeCompare(b.props.pm.name.toLowerCase());
+        const sortByAdvisor = (a, b, order=ASC) => {
+            const diff = a.props.advisor.toLowerCase().localeCompare(b.props.advisor.toLowerCase());
+            return order === ASC ? diff : -1 * diff
+        } 
+        const sortByProject = (a, b, order=ASC) => {
+            const diff = a.props.project.toLowerCase().localeCompare(b.props.project.toLowerCase());
+            return order === ASC ? diff : -1 * diff
+        }
+        const sortByPM = (a, b, order=ASC) => {
+            const diff = a.props.pm_name.toLowerCase().localeCompare(b.props.pm_name.toLowerCase());
+            return order === ASC ? diff : -1 * diff
+        } 
         const sortByDate = (a, b, order=ASC) => {
-            const diff = new Date(a.props.date_created) - new Date(b.props.date_created);
+            console.log(a.props.date_completed)
+            const diff = new Date(a.props.date_completed) - new Date(b.props.date_completed);
             return order === ASC ? diff : -1 * diff
         };
-        
-        if (sort === 'advisor') {
-            return inputItems.sort((a, b) => sortByAdvisor(a, b))
-        } else if (sort === 'project') {
-            return inputItems.sort((a, b) => sortByProject(a, b))
-        } else if (sort === 'pm') {
-            return inputItems.sort((a, b) => sortByPM(a, b))
+        const sortByStatus = (a, b, order=ASC) => {
+            const diff = a.props.status.toLowerCase().localeCompare(b.props.status.toLowerCase());
+            return order === ASC ? diff : -1 * diff
+        } 
+                
+        if (sort === 'advisor-asc') {
+            return inputItems.sort((a, b) => sortByAdvisor(a, b, ASC))
+        } else if (sort === 'advisor-desc') {
+            return inputItems.sort((a, b) => sortByAdvisor(a, b, DSC))
+        } else if (sort === 'project-asc') {
+            return inputItems.sort((a, b) => sortByProject(a, b, ASC))
+        } else if (sort === 'project-desc') {
+            return inputItems.sort((a, b) => sortByProject(a, b, DSC))
+        } else if (sort === 'pm-asc') {
+            return inputItems.sort((a, b) => sortByPM(a, b, ASC))
+        } else if (sort === 'pm-desc') {
+            return inputItems.sort((a, b) => sortByPM(a, b, DSC))
         } else if (sort === 'date-asc') {
             return inputItems.sort((a, b) => sortByDate(a, b, ASC))
         } else if (sort === 'date-desc') {
             return inputItems.sort((a, b) => sortByDate(a, b, DSC))
+        } else if (sort === 'status-asc') {
+            return inputItems.sort((a, b) => sortByStatus(a, b, ASC))
+        } else if (sort === 'status-desc') {
+            return inputItems.sort((a, b) => sortByStatus(a, b, DSC))
         }
     }
+    
 
     setQuery = (query) => {
         const lowerCaseQuery = query.toLowerCase()
@@ -74,6 +99,7 @@ export default class CompletedListPage extends React.Component {
                 pm_name={item.pm_name}
                 pm_email={item.pm_email}
                 date_created={new Date(item.date_created).toLocaleDateString('en-US', this.context.dateOptions)}
+                date_completed={new Date(item.date_completed).toLocaleDateString('en-US', this.context.dateOptions)}
             />
         )
         const searchedItems = this.searchItems(itemArray, query)
@@ -90,9 +116,9 @@ export default class CompletedListPage extends React.Component {
                 <main className="content">
                     <Header title={"Completed"} />
                     <div className={tableStyles.listContainer}>
-                        <CompletedListTools setQuery={this.setQuery} setSort={this.setSort} />
+                        <CompletedListTools setQuery={this.setQuery}  />
                         <br></br>
-                        <CompletedListBody renderCompletedItems={this.renderCompletedItems} />
+                        <CompletedListBody currentSort={this.state.sort} setSort={this.setSort} renderCompletedItems={this.renderCompletedItems} />
                     </div>
                 </main>
                 <NavBar />

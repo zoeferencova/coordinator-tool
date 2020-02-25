@@ -40,7 +40,7 @@ export default class CompletedListItem extends React.Component {
                 <div className={`${tableStyles.tableBodyCell} ${listStyles.project}`}>{this.props.project}</div>
                 <div className={`${tableStyles.tableBodyCell} ${listStyles.advisor}`}>{this.props.advisor}</div>
                 <div className={`${tableStyles.tableBodyCell} ${listStyles.pm}`}>{this.props.pm_name}</div>
-                <div className={`${tableStyles.tableBodyCell} ${listStyles.date} ${tableStyles.hideMobile}`}>{this.props.date_created}</div>
+                <div className={`${tableStyles.tableBodyCell} ${listStyles.date} ${tableStyles.hideMobile}`}>{this.props.date_completed}</div>
                 <div className={`${tableStyles.tableBodyCell} ${listStyles.actions}`}>
                     <button onClick={e => this.handleRevert(e, this.props.id)} className={styles.revertButton}>Revert</button>
                 </div>
