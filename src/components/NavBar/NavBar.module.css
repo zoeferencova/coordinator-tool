@@ -35,8 +35,13 @@
     text-align: left;
 }
 
-.tab:hover > .tabContent {
+/* .tab:hover > .tabContent {
     color: #1d2d59;
+    
+} */
+
+.tab:hover {
+    background-color: #f7f9fc;
 }
 
 .tabTitle {
@@ -56,14 +61,14 @@
     color: #1d2d59;
 }
 
-/* :global .active {
-    /* border-left: 5px solid #1d2d59; */
-    /* background-color: #f2f4f7; */
-/* }
+:global .active {
+    border-left: 5px solid #98ba93;
+    background-color: #f7f9fc;
+}
 
 :global .active i {
     margin-left: -5px;
-} */
+} 
 
 .tabContent {
     color: #768194;
