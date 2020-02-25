@@ -6,6 +6,7 @@ import CompletedListBody from '../../components/CompletedListBody/CompletedListB
 import CompletedListItem from '../../components/CompletedListItem/CompletedListItem'
 import Header from '../../components/Header/Header'
 
+import tableStyles from '../../components/Utils/shared-styles/TableStyles.module.css'
 import styles from './CompletedListPage.module.css';
 
 export default class CompletedListPage extends React.Component {
@@ -88,9 +89,11 @@ export default class CompletedListPage extends React.Component {
             <div className="container">
                 <main className="content">
                     <Header title={"Completed"} />
-                    <CompletedListTools setQuery={this.setQuery} setSort={this.setSort} />
-                    <br></br>
-                    <CompletedListBody renderCompletedItems={this.renderCompletedItems} />
+                    <div className={tableStyles.listContainer}>
+                        <CompletedListTools setQuery={this.setQuery} setSort={this.setSort} />
+                        <br></br>
+                        <CompletedListBody renderCompletedItems={this.renderCompletedItems} />
+                    </div>
                 </main>
                 <NavBar />
             </div>

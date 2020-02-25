@@ -16,18 +16,20 @@
 
 .tableHeader {
     display: table-header-group;
+    
 }
 
 .tableHeader div {
-    background-color: lightgray;
-    padding: 10px;
+    background-color: #e1e3f0;
+    padding: 12px 10px;
     text-align: left;
+
 }
 
 .tableHeaderCell {
     display: table-cell;
     padding: 10px;
-    border-bottom: 1px solid black;
+    
 }
 
 div .tableHeaderCell {
@@ -76,6 +78,17 @@ div .tableBodyCell {
 
 .pointer:hover {
     cursor: pointer;
+}
+
+.listContainer {
+    background-color: white;
+    padding: 20px;
+    border-radius: 7px;
+    box-shadow: 2px 2px 40px -20px lightgray;
+}
+
+.listContainer {
+    margin-bottom: 50px;
 }
 
 @media only screen and (max-width: 810px) {

@@ -5,7 +5,7 @@
 .nav {
     display: block;
     position: fixed;
-
+    box-shadow: 2px 0 40px -20px lightgray;
     height: 100%;
     width: 220px;
     left: 0;
@@ -27,7 +27,7 @@
 }
 
 .tab {
-    padding: 20px 35px;
+    padding: 20px 40px;
     margin: 0 auto;
     width: 100%;
     text-align: left;
@@ -54,14 +54,14 @@
     color: #1d2d59;
 }
 
-:global .active {
-    border-left: 5px solid #1d2d59;
+/* :global .active {
+    /* border-left: 5px solid #1d2d59; */
     /* background-color: #f2f4f7; */
-}
+/* }
 
 :global .active i {
     margin-left: -5px;
-}
+} */
 
 .tabContent {
     color: #768194;

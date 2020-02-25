@@ -7,6 +7,7 @@ import Header from '../../components/Header/Header';
 import SendEmailForm from '../../components/SendEmailForm/SendEmailForm'
 import MainListItem from '../../components/MainListItem/MainListItem'
 
+import tableStyles from '../../components/Utils/shared-styles/TableStyles.module.css'
 import styles from './MainListPage.module.css'
 
 export default class MainListPage extends React.Component {
@@ -152,11 +153,13 @@ export default class MainListPage extends React.Component {
             <div className="container">
                 <main className="content">
                     <Header title={title} />
-                    <MainListTools setQuery={this.setQuery} setSort={this.setSort} checkedItems={this.state.checkedItems} clearChecked={this.clearChecked} />
-                    <br></br>
-                    <div>
-                        <MainListBody renderListItems={this.renderListItems} openEmailForm={this.openEmailForm} closeEmailForm={this.closeEmailForm} setChecked={this.setChecked} clearChecked={this.clearChecked} />
-                        {this.renderNoItemMessage()}
+                    <div className={tableStyles.listContainer}>
+                        <MainListTools setQuery={this.setQuery} setSort={this.setSort} checkedItems={this.state.checkedItems} clearChecked={this.clearChecked} />
+                        <br></br>
+                        <div>
+                            <MainListBody renderListItems={this.renderListItems} openEmailForm={this.openEmailForm} closeEmailForm={this.closeEmailForm} setChecked={this.setChecked} clearChecked={this.clearChecked} />
+                            {this.renderNoItemMessage()}
+                        </div>
                     </div>
                     {this.state.emailFormOpen && <SendEmailForm project={this.state.emailProject} advisor={this.state.emailAdvisor} pm_name={this.state.emailPmName} closeEmailForm={this.closeEmailForm} />}
                 </main>
