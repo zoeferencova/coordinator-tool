@@ -1,5 +1,6 @@
 import React from 'react';
 import AppContext from '../../contexts/contexts'
+import Button from '../Utils/Utils'
 import { Link } from 'react-router-dom';
 import config from '../../config'
 
@@ -44,6 +45,9 @@ export default class MainListTools extends React.Component {
 
     fireAction(status) {
         const checked = this.props.checkedItems;
+        if (status === 'completed') {
+            alert('Are you sure you want to mark the selected items')
+        }
         if (status === 'completed' || status === 'reached') {
             checked.forEach(itemId => {
                 const item = this.context.listItems.find(item => item.id === itemId)
@@ -114,15 +118,15 @@ export default class MainListTools extends React.Component {
                         <select name="action" id="action" value={'none'} onChange={e => this.fireAction(e.target.value)}>
                             <option value="none"></option>
                             <option value="completed">Mark Completed</option>
-                            <option value="reached">Mark Reached Out</option>
+                            <option value="reached">Mark Pending</option>
                             <option value="delete">Delete</option>
                         </select>
                     </div>
 
                 <div>
-                    <button onClick={e => this.fireAction('reset')} className={styles.toolButton}>Reset</button>
-                    <a href={`mailto:${this.formatUpdateEmailAddresses()}?Subject=Update - ${new Date().toLocaleDateString('en-US', {month: 'long', weekday: 'long', day: 'numeric'})}&Body=${this.formatEmailUpdate()}`}><button className={styles.toolButton}>Send Update</button></a>
-                    <Link to='/add-item'><button className={styles.toolButton}>Add Item</button></Link>
+                    <Button onClick={e => this.fireAction('reset')} className={styles.toolButton}>Reset</Button>
+                    <a href={`mailto:${this.formatUpdateEmailAddresses()}?Subject=Update - ${new Date().toLocaleDateString('en-US', {month: 'long', weekday: 'long', day: 'numeric'})}&Body=${this.formatEmailUpdate()}`}><Button className={styles.toolButton}>Send Update</Button></a>
+                    <Link to='/add-item'><Button className={styles.toolButton}>Add Item</Button></Link>
                 </div>
                 
             </div>

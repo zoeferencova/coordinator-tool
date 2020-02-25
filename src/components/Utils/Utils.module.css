@@ -1,0 +1,23 @@
+.button {
+    padding: 8px 12px;
+    margin: 4px;
+    background-color:#516991;
+    border-radius: 5px;
+    cursor: pointer;
+    color: white;
+    border:none;
+    text-transform: uppercase;
+    font-weight: 700;
+    letter-spacing: 1px;
+    font-size: 10px;
+}
+
+.button:hover {
+    background-color: #212a57;
+    box-shadow: 3px 3px 4px -2px lightgray;
+}
+
+.button a {
+    text-decoration: none;
+    color: white;
+}

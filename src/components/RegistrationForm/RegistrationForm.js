@@ -1,6 +1,7 @@
 import React from 'react';
 import AuthApiService from '../../services/auth-api-service';
 import { Link } from 'react-router-dom';
+import Button from '../Utils/Utils'
 
 import styles from './RegistrationForm.module.css'
 
@@ -53,8 +54,8 @@ export default class RegistrationForm extends React.Component {
                         <label htmlFor="password">Password</label>
                         <input required type="password" name='password' id='password' />
                     </div>
-                    <Link to='/'><button>Cancel</button></Link>
-                    <button type='submit'>Create Account</button>
+                    <Link to='/'><Button>Cancel</Button></Link>
+                    <Button type='submit'>Create Account</Button>
                 </form>
             </main> 
         )

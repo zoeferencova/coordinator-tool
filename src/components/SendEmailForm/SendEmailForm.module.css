@@ -11,12 +11,18 @@
     margin-left: 110px;
 }
 
+.link {
+    text-decoration: none;
+    color: white;
+}
+
 .xButton {
     position: absolute;
     right: 0;
     top: 0;
     background: none;
     border: none;
+    cursor: pointer;
 }
 
 .xButton i {

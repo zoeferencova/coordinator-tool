@@ -3,6 +3,7 @@ import NavBar from '../../components/NavBar/NavBar';
 import EmailTemplate from '../../components/EmailTemplate/EmailTemplate'
 import Header from '../../components/Header/Header'
 import AppContext from '../../contexts/contexts'
+import Button from '../../components/Utils/Utils'
 import { Link } from 'react-router-dom';
 
 import styles from './EmailPage.module.css'
@@ -28,7 +29,7 @@ export default class EmailPage extends React.Component {
                 <main className="content">
                     <Header title={'Email Templates'} />
                     {this.renderTemplates()}<br></br>
-                    <Link to='/new-template'><button>New Template</button></Link>
+                    <Link to='/new-template'><Button>New Template</Button></Link>
                     
                 </main>
                 <NavBar className="nav" />

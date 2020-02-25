@@ -3,10 +3,6 @@
     justify-content: space-evenly;
 }
 
-.toolButton {
-    font-size: 13px;
-}
-
 @media only screen and (max-width: 945px) {
     .tools {
         flex-direction: column;

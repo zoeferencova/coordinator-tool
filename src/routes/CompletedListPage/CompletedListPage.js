@@ -44,8 +44,7 @@ export default class CompletedListPage extends React.Component {
             return order === ASC ? diff : -1 * diff
         } 
         const sortByDate = (a, b, order=ASC) => {
-            console.log(a.props.date_completed)
-            const diff = new Date(a.props.date_completed) - new Date(b.props.date_completed);
+            const diff = new Date(a.props.unformatted_date) - new Date(b.props.unformatted_date);
             return order === ASC ? diff : -1 * diff
         };
         const sortByStatus = (a, b, order=ASC) => {
@@ -100,6 +99,7 @@ export default class CompletedListPage extends React.Component {
                 pm_email={item.pm_email}
                 date_created={new Date(item.date_created).toLocaleDateString('en-US', this.context.dateOptions)}
                 date_completed={new Date(item.date_completed).toLocaleDateString('en-US', this.context.dateOptions)}
+                unformatted_date={item.date_completed}
             />
         )
         const searchedItems = this.searchItems(itemArray, query)

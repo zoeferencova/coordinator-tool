@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import RegistrationForm from '../../components/RegistrationForm/RegistrationForm';
+import Button from '../../components/Utils/Utils'
 import styles from './RegistrationPage.module.css'
 
 export default class RegistrationPage extends React.Component {
@@ -22,8 +23,8 @@ export default class RegistrationPage extends React.Component {
                 <RegistrationForm
                     onRegistrationSuccess={this.handleRegistrationSuccess}
                 />
-                <p>Already have an account? <Link to='/login'>Log in</Link></p>
-                <p>Don't work at GP? <Link to='/main'>See the demo</Link></p>
+                <p>Already have an account? <Button><Link to='/login'>Log in</Link></Button></p>
+                <p>Don't work at GP? <Button><Link to='/main'>See the demo</Link></Button></p>
             </main>
         )
     }

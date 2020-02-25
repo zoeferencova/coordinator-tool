@@ -1,4 +1,6 @@
 import React from 'react';
+import Button from '../Utils/Utils'
+
 import styles from './NewTemplateForm.module.css';
 
 export default class NewTemplateForm extends React.Component {
@@ -21,8 +23,8 @@ export default class NewTemplateForm extends React.Component {
                         <label htmlFor="template_body">Body: </label>
                         <textarea name="template_body" id="template_body" cols="100" rows="30"></textarea>
                     </div>
-                    <button>Cancel</button>
-                    <button type="submit">Save Template</button>
+                    <Button>Cancel</Button>
+                    <Button type="submit">Save Template</Button>
                 </form>
             </main> 
         )

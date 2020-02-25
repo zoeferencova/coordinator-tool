@@ -4,6 +4,7 @@ import Header from '../../components/Header/Header'
 import { Link } from 'react-router-dom'
 import config from '../../config'
 import AppContext from '../../contexts/contexts'
+import Button from '../../components/Utils/Utils'
 
 import styles from './NewTemplatePage.module.css';
 
@@ -68,8 +69,8 @@ export default class NewTemplatePage extends React.Component {
                             <textarea name="template_content" id="template_content" cols="100" rows="30"></textarea>
                         </div>
                         <div>
-                            <Link to='/email'><button>Cancel</button></Link>
-                            <button type='submit'>Create Template</button>
+                            <Link to='/email'><Button>Cancel</Button></Link>
+                            <Button type='submit'>Create Template</Button>
                         </div>
                     </form>
 

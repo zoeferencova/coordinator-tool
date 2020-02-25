@@ -1,5 +1,7 @@
 import React from 'react';
 import AppContext from '../../contexts/contexts'
+import Button from '../Utils/Utils'
+
 import styles from './SendEmailForm.module.css'
 
 export default class SendEmailForm extends React.Component {
@@ -66,7 +68,7 @@ export default class SendEmailForm extends React.Component {
                             <p className={styles.templateBody}>{this.state.selectedTemplate !== '' ? this.formatTemplateBody() : ''}</p>
                         </div>
                         
-                        <a href={`mailto:?Subject=${this.state.selectedTemplate !== '' ? this.context.templates[this.state.selectedTemplate].template_subject : ''}&Body=${this.state.selectedTemplate !== '' ? this.formatTemplateForEmail() : ''}`}>Open in Outlook</a>
+                        <Button><a href={`mailto:?Subject=${this.state.selectedTemplate !== '' ? this.context.templates[this.state.selectedTemplate].template_subject : ''}&Body=${this.state.selectedTemplate !== '' ? this.formatTemplateForEmail() : ''}`} className={styles.link}>Open in Outlook</a></Button>
                     </form>
                 </main>
 

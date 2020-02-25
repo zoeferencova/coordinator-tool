@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import config from '../../config'
 import AppContext from '../../contexts/contexts'
 import styles from './EmailTemplate.module.css'
+import Button from '../Utils/Utils';
 
 export default class EmailTemplate extends React.Component {
     static contextType = AppContext;
@@ -84,8 +85,8 @@ export default class EmailTemplate extends React.Component {
                 {this.state.expanded && !this.state.edit && <div className={styles.templateContent} itemkey={this.props.id}>
                     <p>Subject: {this.props.template_subject}</p>
                     <p className={styles.templateBody}>Body: {this.props.template_content}</p>
-                    <button onClick={this.handleEmailEdit}>Edit</button>
-                    <button onClick={e => this.handleDeleteTemplate(e)}>Delete</button>
+                    <Button onClick={this.handleEmailEdit}>Edit</Button>
+                    <Button onClick={e => this.handleDeleteTemplate(e)}>Delete</Button>
                 </div>}
                 {this.state.expanded && this.state.edit && <form onSubmit={e => this.handlePatchTemplate(e)}>
                         <div>
@@ -102,8 +103,8 @@ export default class EmailTemplate extends React.Component {
                             <textarea name="template-body" id="template-body" cols="100" rows="30" defaultValue={this.state.inputValues.template_content} onChange={e => this.handleChangeContent(e.target.value)}></textarea>
                         </div>
                         <div>
-                            <button onClick={this.closeEmailEdit}>Cancel</button>
-                            <button type='submit'>Save</button>
+                            <Button onClick={this.closeEmailEdit}>Cancel</Button>
+                            <Button type='submit'>Save</Button>
                         </div>
                     </form>}
             </div>

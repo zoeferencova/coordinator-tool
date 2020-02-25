@@ -3,6 +3,8 @@ import ReactDOM from 'react-dom';
 import Header from '../../components/Header/Header'
 import AppContext from '../../contexts/contexts'
 import NavBar from '../../components/NavBar/NavBar';
+import Button from '../../components/Utils/Utils'
+
 import config from '../../config'
 
 import styles from './AccountPage.module.css'
@@ -16,7 +18,7 @@ export default class AccountPage extends React.Component {
     
     renderPms() {
         return this.context.pms.map(pm => 
-            <li key={pm.id}>{pm.pm_name} - <span>{pm.pm_email} </span> <button onClick={e => this.handleDeletePm(e)} pmid={pm.id}>Delete</button></li>
+            <li key={pm.id}>{pm.pm_name} - <span>{pm.pm_email} </span> <Button onClick={e => this.handleDeletePm(e)} pmid={pm.id}>Delete</Button></li>
         )
     }
 
@@ -91,7 +93,7 @@ export default class AccountPage extends React.Component {
                                 <label htmlFor="pm_email">Email: </label>
                                 <input type="text" id="pm_email"></input>
                             </div>
-                            <button type="submit">Add PM</button>
+                            <Button type="submit">Add PM</Button>
                         </form>
                     </section>
                 </main>

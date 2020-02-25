@@ -2,6 +2,7 @@ import React from 'react';
 import AppContext from '../../contexts/contexts'
 import AuthApiService from '../../services/auth-api-service'
 import { Redirect, Link } from 'react-router-dom';
+import Button from '../Utils/Utils'
 
 import styles from './LoginForm.module.css'
 
@@ -55,8 +56,8 @@ export default class LoginForm extends React.Component {
                         <label htmlFor="password">Password</label>
                         <input required type="password" name='password' id='login-password' />
                     </div>
-                    <Link to='/'><button>Cancel</button></Link>
-                    <button type='submit'>Log in</button>
+                    <Link to='/'><Button>Cancel</Button></Link>
+                    <Button type='submit'>Log in</Button>
                 </form>
             </main> 
         )

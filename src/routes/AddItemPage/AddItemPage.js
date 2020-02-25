@@ -3,6 +3,7 @@ import NavBar from '../../components/NavBar/NavBar'
 import Header from '../../components/Header/Header'
 import { Link } from 'react-router-dom'
 import AppContext from '../../contexts/contexts'
+import Button from '../../components/Utils/Utils'
 import config from '../../config';
 
 import styles from './AddItemPage.module.css';
@@ -99,7 +100,7 @@ export default class AddItemPage extends React.Component {
                         </div>
                         <br></br>
                         {this.renderAdvisorInputs()}
-                        <button onClick={e => this.setAdvisorInputNumber(e)}>+ Additional Advisors</button>
+                        <Button onClick={e => this.setAdvisorInputNumber(e)}>+ Additional Advisors</Button>
                         <br></br><br></br>
                         <div>
                             <label htmlFor="pm">Project Manager: </label>
@@ -116,8 +117,8 @@ export default class AddItemPage extends React.Component {
                             <textarea name="notes" id="notes" cols="30" rows="5"></textarea>
                         </div>
                         <div>
-                            <Link to='/main'><button>Cancel</button></Link>
-                            <button type='submit'>Add Item</button>
+                            <Link to='/main'><Button>Cancel</Button></Link>
+                            <Button type='submit'>Add Item</Button>
                         </div>
                     </form>
 

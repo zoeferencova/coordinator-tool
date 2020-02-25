@@ -1,5 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import Button from '../../components/Utils/Utils'
+
 import styles from './LandingPage.module.css'
 
 export default class LandingPage extends React.Component {
@@ -8,20 +10,16 @@ export default class LandingPage extends React.Component {
             <main role="main">
                 <header>
                     <nav role="navigation" className={styles.nav}>
-                        <Link to={'/login'}>
-                            Log In
-                        </Link>
-                        <Link to={'/register'}>
-                            Register
-                        </Link>
+                        <Button><Link to={'/login'}>Log In</Link></Button>
+                        <Button><Link to={'/register'}>Register</Link></Button>
                     </nav>
                 </header>
                 
                 <header role="banner">
                     <h1>Coordinator Tool</h1>
                     <h2>Streamline your coordinator workflow</h2>
-                    <Link to='/register'>Sign Up</Link>
-                    <Link to='/main'>See the demo</Link>
+                    <Button><Link to='/register'>Sign Up</Link></Button>
+                    <Button><Link to='/main'>See the demo</Link></Button>
                 </header>
                 <section>
                     <header>

@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import AppContext from '../../contexts/contexts';
 import TokenService from '../../services/token-service'
+import Button from '../Utils/Utils'
 
 import styles from './Header.module.css'
 
@@ -20,7 +21,7 @@ export default class Header extends React.Component {
                 <h1 className={styles.headerTitle}>{this.props.title}</h1>
                 <div className={styles.headerDetails}>
                     <span>Welcome, {this.context.user.full_name} </span>
-                    <Link to='/'><span onClick={this.handleLogout}>Log Out</span></Link>
+                    <Link to='/'><Button onClick={this.handleLogout}>Log Out</Button></Link>
                 </div>
             </div>   
         )

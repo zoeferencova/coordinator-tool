@@ -3,6 +3,8 @@ import NavBar from '../../components/NavBar/NavBar'
 import Header from '../../components/Header/Header'
 import AppContext from '../../contexts/contexts'
 import { Link } from 'react-router-dom'
+import Button from '../../components/Utils/Utils'
+
 import './EditItemPage.css';
 import config from '../../config'
 
@@ -128,8 +130,8 @@ export default class EditItemPage extends React.Component {
                             <textarea name="notes" id="notes" cols="30" rows="5" defaultValue={this.state.inputValues.notes || ''} onChange={e => this.handleChangeNotes(e.target.value)}></textarea>
                         </div>
                         <div>
-                            <Link to='/main'><button>Cancel</button></Link>
-                            <button type='submit'>Save</button>
+                            <Link to='/main'><Button>Cancel</Button></Link>
+                            <Button type='submit'>Save</Button>
                         </div>
                     </form>
 
