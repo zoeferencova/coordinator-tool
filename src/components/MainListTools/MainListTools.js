@@ -126,7 +126,7 @@ export default class MainListTools extends React.Component {
                 <div>
                     <Button onClick={e => this.fireAction('reset')} className={styles.toolButton}>Reset</Button>
                     <a href={`mailto:${this.formatUpdateEmailAddresses()}?Subject=Update - ${new Date().toLocaleDateString('en-US', {month: 'long', weekday: 'long', day: 'numeric'})}&Body=${this.formatEmailUpdate()}`}><Button className={styles.toolButton}>Send Update</Button></a>
-                    <Link to='/add-item'><Button className={styles.toolButton}>Add Item</Button></Link>
+                    <Link to='/add-item'><Button className={`${styles.addButton}`}>+ Add Item</Button></Link>
                 </div>
                 
             </div>

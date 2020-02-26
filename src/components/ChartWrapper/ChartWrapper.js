@@ -13,7 +13,7 @@ export default class ChartWrapper extends Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        this.state.chart.update(nextProps.dataType)
+        this.state.chart.update(nextProps.dataType, nextProps.color)
     }
 
     render() {

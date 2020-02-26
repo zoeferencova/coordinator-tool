@@ -15,7 +15,6 @@
     background-color: white;
 }
 
-
 .tabList {
     display: flex;
     flex-direction: column;
@@ -35,14 +34,14 @@
     text-align: left;
 }
 
-/* .tab:hover > .tabContent {
+.tab:hover > .tabContent {
     color: #1d2d59;
     
-} */
-
-.tab:hover {
-    background-color: #f7f9fc;
 }
+
+/* .tab:hover {
+    background-color: #f7f9fc;
+} */
 
 .tabTitle {
     display: inline-block;
@@ -62,8 +61,7 @@
 }
 
 :global .active {
-    border-left: 5px solid #98ba93;
-    background-color: #f7f9fc;
+    border-left: 5px solid #7fa9c9;
 }
 
 

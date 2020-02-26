@@ -1,20 +1,20 @@
 .button {
-    padding: 8px 12px;
+    padding: 9px 13px;
     margin: 4px;
-    background-color:#516991;
     border-radius: 5px;
     cursor: pointer;
-    color: white;
-    border:none;
-    text-transform: uppercase;
-    font-weight: 700;
-    letter-spacing: 1px;
-    font-size: 10px;
+    color: black;
+    border: 1px solid #d8dee3;
+    font-size: 13px;
+    background-color: white;
+    transition: 0.5s;
 }
 
 .button:hover {
-    background-color: #212a57;
-    box-shadow: 3px 3px 4px -2px lightgray;
+    background-color: #f0f3f5;
+    border: 1px solid #afb9bd;
+
+    /* box-shadow: 3px 3px 4px -2px lightgray; */
 }
 
 .button a {

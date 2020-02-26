@@ -44,8 +44,9 @@ export default class TimespanChart {
         const vis = this;
         vis.svg = d3.select(element)
             .append("svg")
-                .attr("width", WIDTH + MARGIN.LEFT + MARGIN.RIGHT)
-                .attr("height", HEIGHT + MARGIN.TOP + MARGIN.BOTTOM)
+                .attr("viewBox", `0, 0, ${WIDTH + MARGIN.LEFT + MARGIN.RIGHT}, ${HEIGHT + MARGIN.TOP + MARGIN.BOTTOM}`)
+                // .attr("width", WIDTH + MARGIN.LEFT + MARGIN.RIGHT)
+                // .attr("height", HEIGHT + MARGIN.TOP + MARGIN.BOTTOM)
             .append("g")
                 .attr("transform", `translate(${MARGIN.LEFT}, ${MARGIN.TOP})`)
             
@@ -159,6 +160,7 @@ export default class TimespanChart {
                     .attr("x", d => x(d.span))
                     .attr("width", x.bandwidth)
                     .attr("y", HEIGHT)
+                    .attr("fill", "#7db0c9")
                     .transition().duration(500)
                         .attr("y", d => y(d.count))
                         .attr("height", d => HEIGHT - y(d.count))

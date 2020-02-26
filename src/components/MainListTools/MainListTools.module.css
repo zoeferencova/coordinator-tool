@@ -3,7 +3,23 @@
     justify-content: space-evenly;
 }
 
-@media only screen and (max-width: 945px) {
+a {
+    text-decoration: none;
+}
+
+.addButton {
+    background-color: #7fba84;
+    color: white;
+    border: 1px solid #7fba84;
+}
+
+.addButton:hover {
+    background-color: #3e8044;
+    border: 1px solid #3e8044;
+}
+
+
+@media only screen and (max-width: 1065px) {
     .tools {
         flex-direction: column;
     }
