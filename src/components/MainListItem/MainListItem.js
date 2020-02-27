@@ -37,15 +37,20 @@ export default class MainListItem extends React.Component {
 
     handleDeleteItem(e) {
         e.preventDefault();
-        const itemId = ReactDOM.findDOMNode(e.target).parentNode.getAttribute('itemkey')
-        fetch(`${config.API_ENDPOINT}/list/${itemId}`, {
-            method: 'DELETE',
-            headers: {
-                'content-type': 'application/json',
-                'Authorization': `Bearer ${window.sessionStorage.getItem(config.TOKEN_KEY)}`
-            }
-        })
-        this.context.deleteItem(itemId)
+        if (window.confirm('Are you sure you wish to delete this item?')) {
+            const itemId = ReactDOM.findDOMNode(e.target).parentNode.getAttribute('itemkey')
+            fetch(`${config.API_ENDPOINT}/list/${itemId}`, {
+                method: 'DELETE',
+                headers: {
+                    'content-type': 'application/json',
+                    'Authorization': `Bearer ${window.sessionStorage.getItem(config.TOKEN_KEY)}`
+                }
+            })
+            this.context.deleteItem(itemId)
+        } else {
+            return e
+        }
+        
     }
 
     render() {

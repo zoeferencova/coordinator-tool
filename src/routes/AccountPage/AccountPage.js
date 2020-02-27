@@ -13,26 +13,44 @@ export default class AccountPage extends React.Component {
     static contextType = AppContext;
 
     state = {
-        error: null
+        error: null,
+        confirm: false,
     }
     
     renderPms() {
         return this.context.pms.map(pm => 
-            <li key={pm.id}>{pm.pm_name} - <span>{pm.pm_email} </span> <Button onClick={e => this.handleDeletePm(e)} pmid={pm.id}>Delete</Button></li>
+            <li key={pm.id}>
+                {pm.pm_name} - <span>{pm.pm_email} </span> 
+                <Button onClick={(e) => this.handleDeletePm(e) } pmid={pm.id}>Delete</Button>
+            </li>
         )
     }
+        
 
-    handleDeletePm(e) {
-        e.preventDefault();
-        const pmId = ReactDOM.findDOMNode(e.target).getAttribute('pmid')
-        fetch(`${config.API_ENDPOINT}/pms/${pmId}`, {
-            method: 'DELETE',
-            headers: {
-                'content-type': 'application/json',
-                'Authorization': `Bearer ${window.sessionStorage.getItem(config.TOKEN_KEY)}`
-            }
-        })
-        this.context.deletePm(pmId)
+    close = () => {
+        this.setState({ confirm: false })
+    }
+
+    open = () => {
+        this.setState({ confirm: true })
+    }
+
+    handleDeletePm = (e) => {
+        e.preventDefault()
+        if (window.confirm('Are you sure you wish to delete this item?')) {
+            const pmId = ReactDOM.findDOMNode(e.target).getAttribute('pmid')
+            fetch(`${config.API_ENDPOINT}/pms/${pmId}`, {
+                method: 'DELETE',
+                headers: {
+                    'content-type': 'application/json',
+                    'Authorization': `Bearer ${window.sessionStorage.getItem(config.TOKEN_KEY)}`
+                }
+            })
+            this.context.deletePm(pmId)
+        } else {
+            return e
+        }
+        
     }
 
     handlePostPm(e) {
@@ -72,30 +90,32 @@ export default class AccountPage extends React.Component {
             <div className="container">
                 <main className="content">
                     <Header title={'Account'} />
-                    <section>
-                        <h2>Account Info</h2>
-                        <p><strong>Name:</strong> {this.context.user.full_name}</p>
-                        <p><strong>Email:</strong> {this.context.user.email}</p>
-                    </section>
-                    <section>
-                        <h2>PM Settings</h2>
-                        <h3>Current PMs:</h3>
-                        <ul className={styles.pmList}>
-                            {this.renderPms()}
-                        </ul>
-                        {this.state.error && <p>{this.state.error}</p>}
-                        <form onSubmit={e => this.handlePostPm(e)}>
-                            <div>
-                                <label htmlFor="pm_name">Name: </label>
-                                <input type="text" id="pm_name"></input>
-                            </div>
-                            <div>
-                                <label htmlFor="pm_email">Email: </label>
-                                <input type="text" id="pm_email"></input>
-                            </div>
-                            <Button type="submit">Add PM</Button>
-                        </form>
-                    </section>
+                    <div className={styles.pageContainer}>
+                        <section className={`${styles.accountInfo} ${styles.accountContainer}`}>
+                            <h2>Account Info</h2>
+                            <i className={`fas fa-user-circle ${styles.icon}`}></i>
+                            <p className={styles.name}>{this.context.user.full_name}</p>
+                            <p className={styles.email}>{this.context.user.email}</p>
+                        </section>
+                        <section className={`${styles.pmSettings} ${styles.accountContainer}`}>
+                            <h2>PM Settings</h2>
+                            <ul className={styles.pmList}>
+                                {this.renderPms()}
+                            </ul>
+                            {this.state.error && <p>{this.state.error}</p>}
+                            <form onSubmit={e => this.handlePostPm(e)}>
+                                <div>
+                                    <label htmlFor="pm_name">Name: </label>
+                                    <input type="text" id="pm_name"></input>
+                                </div>
+                                <div>
+                                    <label htmlFor="pm_email">Email: </label>
+                                    <input type="text" id="pm_email"></input>
+                                </div>
+                                <Button type="submit">Add PM</Button>
+                            </form>
+                        </section>
+                    </div>
                 </main>
                 <NavBar className="nav" />
             </div>

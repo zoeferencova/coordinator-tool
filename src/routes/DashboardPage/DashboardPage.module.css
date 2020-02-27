@@ -49,6 +49,7 @@
 
 .radioButton:checked + .radioLabel {
     background-color: #dce0e6;
+    font-weight: bold;
 }
 
 .radioLabel:hover {
@@ -89,6 +90,7 @@
     padding: 10px 40px;
     justify-content: space-between;
 }
+
 
 @media only screen and (min-width: 850px) {
 

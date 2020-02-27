@@ -60,15 +60,19 @@ export default class EmailPage extends React.Component {
 
     handleDeleteTemplate(e) {
         e.preventDefault();
-        fetch(`${config.API_ENDPOINT}/templates/${this.state.currentTemplate.id}`, {
-            method: 'DELETE',
-            headers: {
-                'content-type': 'application/json',
-                'Authorization': `Bearer ${window.sessionStorage.getItem(config.TOKEN_KEY)}`
-            }
-        })
-        this.context.deleteTemplate(this.state.currentTemplate.id)
-        this.setState({ currentTemplate: this.context.templates[0] })
+        if (window.confirm('Are you sure you want to delete this template?')) {
+            fetch(`${config.API_ENDPOINT}/templates/${this.state.currentTemplate.id}`, {
+                method: 'DELETE',
+                headers: {
+                    'content-type': 'application/json',
+                    'Authorization': `Bearer ${window.sessionStorage.getItem(config.TOKEN_KEY)}`
+                }
+            })
+            this.context.deleteTemplate(this.state.currentTemplate.id)
+            this.setState({ currentTemplate: this.context.templates[0] })
+        } else {
+            return null;
+        }
     }
 
     handlePatchTemplate(e) {
