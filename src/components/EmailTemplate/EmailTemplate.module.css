@@ -1,17 +1,7 @@
 .templateItem {
-    background-color: lightgray;
-    height: 60px;
-    line-height: 60px;
-    margin: 0;
-    border-radius: 10px;
-}
-
-.templateBody {
-    white-space: pre-line;
-}
-
-.templateContents p {
+    padding: 10px;
     text-align: left;
+    font-size: 13px;
 }
 
 .templateItem:hover {

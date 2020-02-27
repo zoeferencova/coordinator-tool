@@ -1,0 +1,21 @@
+.templateContainer {
+    display: flex;
+    flex-direction: row;
+}
+
+.templateList {
+    width: 20%;
+    background-color: #d8e0e6;
+}
+
+.templateWindow {
+    width: 80%;
+
+}
+
+.pageContainer {
+    background-color: white;
+    padding: 20px;
+    border-radius: 7px;
+    box-shadow: 2px 2px 40px -20px lightgray;
+}

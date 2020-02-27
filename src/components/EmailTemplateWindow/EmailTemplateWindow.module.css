@@ -1,0 +1,15 @@
+
+
+.templateBody {
+    white-space: pre-line;
+}
+
+.templateContent {
+    text-align: left;
+    padding: 20px 30px;
+    font-size: 14px;
+}
+
+.templateItem:hover {
+    cursor: pointer;
+}
