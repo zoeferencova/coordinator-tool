@@ -1,4 +1,4 @@
-import styles from './PieChart.module.css'
+// import styles from './PieChart.module.css'
 import * as d3 from 'd3';
 import { legendColor } from 'd3-svg-legend'
 import config from '../../config'

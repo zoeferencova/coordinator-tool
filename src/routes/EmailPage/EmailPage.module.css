@@ -5,11 +5,14 @@
 
 .templateList {
     width: 20%;
-    background-color: #d8e0e6;
+    background-color: #f0f4f7;
+    border: 1px solid #f0f4f7;
 }
 
 .templateWindow {
     width: 80%;
+    border: 1px solid #f0f4f7;
+    border-left: none;
 
 }
 
@@ -18,4 +21,53 @@
     padding: 20px;
     border-radius: 7px;
     box-shadow: 2px 2px 40px -20px lightgray;
+}
+
+.newButton {
+    background-color: #7fba84;
+    color: white;
+    border: 1px solid #7fba84;
+    margin-top: 20px;
+}
+
+.newButton:hover {
+    background-color: #3e8044;
+    border: 1px solid #3e8044;
+}
+
+.templateSelect {
+    display: none;
+}
+
+.templateHeader {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    height: 50px;
+    align-items: center;
+    /* background-color: #f0f4f7; */
+    padding: 0 30px;
+    font-size: 14px;
+    color: #a7aab0;
+}
+
+@media only screen and (max-width: 850px) {
+    .templateList {
+        display: none;
+    }
+
+    .templateWindow {
+        width: 100%;
+        border-left: 1px solid #f0f4f7;
+        min-height: 200px;
+    }
+
+    .templateSelect {
+        display: block;
+    }
+
+    .templateContainer {
+        flex-direction: column;
+    }
+
 }

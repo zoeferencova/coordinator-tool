@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import LoginForm from '../../components/LoginForm/LoginForm'
 import Button from '../../components/Utils/Utils'
 
-import styles from './LoginPage.module.css'
+// import styles from './LoginPage.module.css'
 
 export default class LoginPage extends React.Component {
     static defaultProps = {

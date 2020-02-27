@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import styles from './Utils.module.css';
 
 export default function Button({ className, ...props }) {

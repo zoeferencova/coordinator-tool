@@ -3,7 +3,7 @@ import AppContext from '../../contexts/contexts';
 
 import tableStyles from '../Utils/shared-styles/TableStyles.module.css'
 import listStyles from '../Utils/shared-styles/MainList.module.css'
-import styles from './MainListBody.module.css'
+// import styles from './MainListBody.module.css'
 
 export default class MainListBody extends React.Component {   
     static contextType = AppContext;

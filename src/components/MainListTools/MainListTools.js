@@ -24,7 +24,7 @@ export default class MainListTools extends React.Component {
         const updateArray = []
         
         for (let [key, value] of Object.entries(allItems)) {
-            updateArray.push(`${key}%0A%0A${value.map(item => `${item.project} - ${item.advisor}%0A`).join('')}`)
+            updateArray.push(`${key}%0A%0A${value.map(item => `${item.project.replace('&', 'and')} - ${item.advisor}%0A`).join('')}`)
         }
 
         return updateArray.join('%0A%0A')

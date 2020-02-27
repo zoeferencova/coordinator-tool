@@ -3,7 +3,7 @@ import AuthApiService from '../../services/auth-api-service';
 import { Link } from 'react-router-dom';
 import Button from '../Utils/Utils'
 
-import styles from './RegistrationForm.module.css'
+// import styles from './RegistrationForm.module.css'
 
 export default class RegistrationForm extends React.Component {
     static defaultProps = {

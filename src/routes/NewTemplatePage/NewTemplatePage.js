@@ -6,7 +6,7 @@ import config from '../../config'
 import AppContext from '../../contexts/contexts'
 import Button from '../../components/Utils/Utils'
 
-import styles from './NewTemplatePage.module.css';
+// import styles from './NewTemplatePage.module.css';
 
 export default class NewTemplatePage extends React.Component {
     static contextType = AppContext;

@@ -4,10 +4,18 @@
     white-space: pre-line;
 }
 
+.templateSubject {
+    font-weight: bold;
+}
+
 .templateContent {
     text-align: left;
-    padding: 20px 30px;
+    padding: 0px 30px;
     font-size: 14px;
+}
+
+.templateContent Button {
+    float: right;
 }
 
 .templateItem:hover {

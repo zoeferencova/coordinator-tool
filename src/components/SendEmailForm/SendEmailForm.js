@@ -1,6 +1,5 @@
 import React from 'react';
 import AppContext from '../../contexts/contexts'
-import Button from '../Utils/Utils'
 
 import styles from './SendEmailForm.module.css'
 

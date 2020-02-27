@@ -7,7 +7,6 @@ import * as d3 from 'd3';
 import config from '../../config'
 
 import styles from './DashboardPage.module.css'
-import { formatDefaultLocale } from 'd3';
 
 export default class DashboardPage extends React.Component {
     state = {

@@ -7,7 +7,7 @@ import CompletedListItem from '../../components/CompletedListItem/CompletedListI
 import Header from '../../components/Header/Header'
 
 import tableStyles from '../../components/Utils/shared-styles/TableStyles.module.css'
-import styles from './CompletedListPage.module.css';
+// import styles from './CompletedListPage.module.css';
 
 export default class CompletedListPage extends React.Component {
     static contextType = AppContext;

@@ -11,7 +11,7 @@ import NotFoundPage from '../../routes/NotFoundPage/NotFoundPage';
 import EditItemPage from '../../routes/EditItemPage/EditItemPage'
 import config from '../../config'
 
-import styles from './AuthenticatedApp.module.css';
+// import styles from './AuthenticatedApp.module.css';
 import AppContext from '../../contexts/contexts';
 
 export default class AuthenticatedApp extends Component {

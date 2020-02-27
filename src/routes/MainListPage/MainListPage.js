@@ -8,7 +8,7 @@ import SendEmailForm from '../../components/SendEmailForm/SendEmailForm'
 import MainListItem from '../../components/MainListItem/MainListItem'
 
 import tableStyles from '../../components/Utils/shared-styles/TableStyles.module.css'
-import styles from './MainListPage.module.css'
+// import styles from './MainListPage.module.css'
 
 export default class MainListPage extends React.Component {
     static contextType = AppContext;
