@@ -12,7 +12,7 @@ const INNERRADIUS = 60;
 
 export default class PieChart {
 
-    constructor(element) {
+    constructor(element, info) {
 
         const vis = this;
         vis.svg = d3.select(element)
@@ -26,7 +26,9 @@ export default class PieChart {
         d3.json(`${config.API_ENDPOINT}/data/pm-data`, { headers: { "Authorization": `Bearer ${window.sessionStorage.getItem(config.TOKEN_KEY)}` } })
             .then(res => {
                 const colors = colorbrewer.Spectral[res.length]
-                
+                const arr = []
+                res.forEach(e => arr.push(parseInt(e.count)))
+                const total = arr.reduce((acc, el) => acc + el)
                 res.map((d, i) => d.color = colors[i])
                 res.sort((a, b) => b.count - a.count)
                 vis.data = res;
@@ -38,6 +40,11 @@ export default class PieChart {
                     .value(d => d.value.count)
 
                 vis.data_ready = vis.pie(d3.entries(vis.data))
+
+                vis.info = d3.select(element)
+                    .append("div")
+                    .attr("class", "info")
+                    .style("opacity", 0)
 
                 vis.svg
                     .selectAll('whatever')
@@ -51,7 +58,28 @@ export default class PieChart {
                     .attr('fill', function(d){ return(vis.color(d.data.key)) })
                     .style("stroke-width", "2px")
                     .style("opacity", 0.7)
-               
+                    .on("mouseover", function(d) {
+                        d3.select(this)
+                            .style("cursor", "pointer")
+                            .transition()
+                            .duration(300)
+                            .attr("d", d3.arc().innerRadius(INNERRADIUS).outerRadius(RADIUS + 10));
+                        d3.select(info)
+                            .style("opacity", 1)
+                            .append("text")
+                                .attr("class", "text")
+                                .text(`${d.data.value.pm_name} - ${Math.round((d.data.value.count*100)/total)}%`)
+                      })
+                      .on("mouseout", function(d) {
+                        d3.select(this).transition()
+                          .duration(500)
+                          .attr("d", d3.arc().innerRadius(INNERRADIUS).outerRadius(RADIUS))
+
+                        d3.select(info)
+                            .style("opacity", 0)
+                            .select(".text")
+                            .remove()
+                      })
 
                 vis.svg.append("g")
                     .attr("class", "legendOrdinal")
@@ -64,6 +92,7 @@ export default class PieChart {
                     .shapePadding(10)
                     .cellFilter(d => isNaN(Number(d.label)))
                     .scale(vis.color)
+
                 vis.svg.select(".legendOrdinal")
                     .call(legendOrdinal)
 

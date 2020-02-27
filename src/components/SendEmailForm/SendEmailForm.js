@@ -68,7 +68,7 @@ export default class SendEmailForm extends React.Component {
                             <p className={styles.templateBody}>{this.state.selectedTemplate !== '' ? this.formatTemplateBody() : ''}</p>
                         </div>
                         
-                        <Button><a href={`mailto:?Subject=${this.state.selectedTemplate !== '' ? this.context.templates[this.state.selectedTemplate].template_subject : ''}&Body=${this.state.selectedTemplate !== '' ? this.formatTemplateForEmail() : ''}`} className={styles.link}>Open in Outlook</a></Button>
+                        <a href={`mailto:?Subject=${this.state.selectedTemplate !== '' ? this.context.templates[this.state.selectedTemplate].template_subject : ''}&Body=${this.state.selectedTemplate !== '' ? this.formatTemplateForEmail() : ''}`} className={styles.link}>Open in Outlook</a>
                     </form>
                 </main>
 

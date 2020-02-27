@@ -1,0 +1,21 @@
+.chartContainer {
+    position: relative
+}
+
+.info {
+    position: absolute;
+    text-align: center;			
+    width: 150px;					
+    padding: 10px;				
+    font-size: 13px;		
+    border: 0px;		
+    border-radius: 8px;			
+    pointer-events: none;	
+    opacity: 0;
+    background-color: #d5e2e8;
+    left: 20%;
+    bottom: 0;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: #5c5d5e;
+}
