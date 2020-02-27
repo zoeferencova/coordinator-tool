@@ -43,7 +43,52 @@
     margin-right: 10px;
 }
 
+.radioButton {
+    display: none;
+}
 
+.radioButton:checked + .radioLabel {
+    background-color: #dce0e6;
+}
+
+.radioLabel:hover {
+    background-color: #dce0e6;
+}
+
+.radioLabel {
+    display: inline-block;
+    border: 1px solid #cad0db;
+    padding: 7px;
+    font-size: 12px;
+    margin-bottom: 15px;
+    transition: 500;
+}
+
+.first {
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+    border-right: none;
+}
+
+.last {
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+}
+
+.middle {
+    border-right: none;
+}
+
+.radioLabel:hover {
+    cursor: pointer;
+}
+
+.radioContainer {
+    display: flex;
+    flex-direction: row;
+    padding: 10px 40px;
+    justify-content: space-between;
+}
 
 @media only screen and (min-width: 850px) {
 

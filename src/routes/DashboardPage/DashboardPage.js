@@ -107,20 +107,24 @@ export default class DashboardPage extends React.Component {
                             </section>
                             <section className={`${styles.dashboardContainer} ${styles.chartContainer}`}>
                                 <h2>Completed Requests</h2>
-                                <form>
-                                    <input type="radio" name="span" id="days" value="days" defaultChecked="checked" onChange={e => this.changeSpan(e.target.value)}></input>
-                                    <label htmlFor="days"> Day</label><br></br>
-                                    <input type="radio" name="span" id="weeks" value="weeks" onChange={e => this.changeSpan(e.target.value)}></input>
-                                    <label htmlFor="weeks"> Week</label><br></br>
-                                    <input type="radio" name="span" id="months" value="months" onChange={e => this.changeSpan(e.target.value)}></input>
-                                    <label htmlFor="months"> Month</label><br></br><br></br>
-                                </form>
-                                <form>
-                                    <input type="radio" name="type" id="created" value="created" defaultChecked="checked" onChange={e => this.changeType(e.target.value)}></input>
-                                    <label htmlFor="created"> Created</label><br></br>
-                                    <input type="radio" name="type" id="completed" value="completed" onChange={e => this.changeType(e.target.value)}></input>
-                                    <label htmlFor="completed"> Completed</label>
-                                </form>
+                                <div className={styles.radioContainer}>
+                                    <form className={styles.typeRadio}>
+                                        <input className={styles.radioButton} type="radio" name="type" id="created" value="created" defaultChecked="checked" onChange={e => this.changeType(e.target.value)}></input>
+                                        <label className={`${styles.radioLabel} ${styles.first}`} htmlFor="created"> Created</label>
+                                        <input className={styles.radioButton} type="radio" name="type" id="completed" value="completed" onChange={e => this.changeType(e.target.value)}></input>
+                                        <label className={`${styles.radioLabel} ${styles.last}`} htmlFor="completed"> Completed</label>
+                                    </form>
+                                    <form className={styles.spanRadio}>
+                                        <input className={styles.radioButton} type="radio" name="span" id="days" value="days" defaultChecked="checked" onChange={e => this.changeSpan(e.target.value)}></input>
+                                        <label className={`${styles.radioLabel} ${styles.first}`} htmlFor="days"> Day</label>
+                                        <input className={styles.radioButton} type="radio" name="span" id="weeks" value="weeks" onChange={e => this.changeSpan(e.target.value)}></input>
+                                        <label className={`${styles.radioLabel} ${styles.middle}`} htmlFor="weeks"> Week</label>
+                                        <input className={styles.radioButton} type="radio" name="span" id="months" value="months" onChange={e => this.changeSpan(e.target.value)}></input>
+                                        <label className={`${styles.radioLabel} ${styles.last}`} htmlFor="months"> Month</label>
+                                    </form>
+                                    
+                                </div>
+                                
                                 <ChartWrapper dataType={this.state.dataType} color={"blue"} />
                             </section>
                         </div>           
