@@ -4,9 +4,9 @@ import Header from '../../components/Header/Header'
 import { Link } from 'react-router-dom'
 import config from '../../config'
 import AppContext from '../../contexts/contexts'
-import Button from '../../components/Utils/Utils'
+import { Button, Input, Textarea } from '../../components/Utils/Utils'
 
-// import styles from './NewTemplatePage.module.css';
+import styles from './NewTemplatePage.module.css';
 
 export default class NewTemplatePage extends React.Component {
     static contextType = AppContext;
@@ -56,18 +56,19 @@ export default class NewTemplatePage extends React.Component {
                     {this.state.error && <p>{this.state.error}</p>}
                     <form onSubmit={e => this.handlePostTemplate(e)}>
                         <div>
-                            <label htmlFor="template_name">Template Name: </label>
-                            <input type="text" name='template_name' id='template_name'></input>
+                            <label htmlFor="template_name">Name: </label>
+                            <Input type="text" name='template_name' id='template_name' className={styles.input}></Input>
                         </div>
                         <div>
                             <label htmlFor="template_subject">Subject: </label>
-                            <input type="text" name='template_subject' id='template_subject'></input>
+                            <Input type="text" name='template_subject' id='template_subject' className={styles.input}></Input>
                         </div>
                         <br></br>
-                        <div>
-                            <label htmlFor="template_content">Body: </label>
-                            <textarea name="template_content" id="template_content" cols="100" rows="30"></textarea>
+                        <div className={styles.textAreaSection}>
+                            <label htmlFor="template_content" className={styles.textAreaLabel}>Body: </label>
+                            <Textarea name="template_content" id="template_content" className={styles.textArea}></Textarea>
                         </div>
+                        <p className={styles.instructions}>Note: For template functionality, use [ADVISOR] for advisor name, [PROJECT] for project name, and [PM] for PM name.</p>
                         <div>
                             <Link to='/email'><Button>Cancel</Button></Link>
                             <Button type='submit'>Create Template</Button>

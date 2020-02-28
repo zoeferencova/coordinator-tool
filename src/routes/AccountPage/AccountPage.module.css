@@ -32,11 +32,50 @@
     font-size: 14px;
     font-weight: 800;
     padding-bottom: 0;
+    letter-spacing: 0.5px;
+    color: #464d54;
 }
 
 .email {
-    font-size: 14px;
+    font-size: 12px;
     color: #7f8799;
+    margin-top: 5px;
+}
+
+.pmItem, .addPm {
+    display: flex;
+    padding: 10px;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.addButton {
+    background-color: #7fba84;
+    color: white;
+    border: 1px solid #7fba84;
+}
+
+.addButton:hover {
+    background-color: #3e8044;
+    border: 1px solid #3e8044;
+}
+
+.pmDetails, .addPm {
+    display: flex;
+    flex-direction: column;
+}
+
+.addPm Button {
+    min-width: 90px;
+}
+
+.addPm input {
+    max-width: 150px;
+    min-width: 70px;
+}
+
+.delete {
+    margin-left: 10px;
 }
 
 @media only screen and (min-width: 800px) {
@@ -50,5 +89,21 @@
 
     .accountInfo {
         width: 35%;
+    }
+
+    .pmItem, .addPm {
+        padding: 10px 30px;
+    }
+}
+
+@media only screen and (min-width: 500px) {
+    .pmDetails, .addPm {
+        flex-direction: row;
+    }
+
+    .email {
+        font-size: 14px;
+        margin-left: 10px;
+        margin-top: 0;
     }
 }

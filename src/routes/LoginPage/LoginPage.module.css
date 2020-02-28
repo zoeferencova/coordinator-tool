@@ -1,0 +1,56 @@
+.main {
+    position: absolute;
+    background-color: #F9FBFD;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding-top: 10%
+}
+
+.container {
+    background-color: white;
+    padding: 20px 30px;
+    border-radius: 7px;
+    box-shadow: 2px 2px 40px -20px lightgray;
+    margin: 15px;
+    display: flex;
+    flex-direction: column;
+    width: 35%;
+    justify-content: center;
+    margin: 0 auto;
+}
+
+.title {
+    font-size: 28px;
+    margin-bottom: 40px;
+    font-weight: 600;
+}
+
+.sub {
+    font-size: 14px;
+
+}
+
+.sub a {
+    text-decoration: underline;
+    font-weight: bold
+}
+
+@media only screen and (max-width: 1000px) {
+    .container {
+        width: 50%
+    }
+}
+
+@media only screen and (max-width: 700px) {
+    .container {
+        width: 70%
+    }
+}
+
+@media only screen and (max-width: 500px) {
+    .container {
+        width: 90%
+    }
+}

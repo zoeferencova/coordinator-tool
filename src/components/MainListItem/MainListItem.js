@@ -37,7 +37,7 @@ export default class MainListItem extends React.Component {
 
     handleDeleteItem(e) {
         e.preventDefault();
-        if (window.confirm('Are you sure you wish to delete this item?')) {
+        if (window.confirm('Are you sure you want to delete this item?')) {
             const itemId = ReactDOM.findDOMNode(e.target).parentNode.getAttribute('itemkey')
             fetch(`${config.API_ENDPOINT}/list/${itemId}`, {
                 method: 'DELETE',

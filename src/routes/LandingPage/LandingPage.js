@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import Button from '../../components/Utils/Utils'
+import {Button} from '../../components/Utils/Utils'
 
 import styles from './LandingPage.module.css'
 
@@ -10,8 +10,8 @@ export default class LandingPage extends React.Component {
             <main role="main">
                 <header>
                     <nav role="navigation" className={styles.nav}>
-                        <Button><Link to={'/login'}>Log In</Link></Button>
-                        <Button><Link to={'/register'}>Register</Link></Button>
+                        <Link to={'/login'}><Button>Sign In</Button></Link>
+                        <Link to={'/register'}><Button>Register</Button></Link>
                     </nav>
                 </header>
                 

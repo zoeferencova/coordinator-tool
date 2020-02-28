@@ -1,9 +1,9 @@
 import React from 'react';
 import AuthApiService from '../../services/auth-api-service';
 import { Link } from 'react-router-dom';
-import Button from '../Utils/Utils'
+import { Button, Input } from '../Utils/Utils'
 
-// import styles from './RegistrationForm.module.css'
+import styles from '../LoginForm/LoginForm.module.css'
 
 export default class RegistrationForm extends React.Component {
     static defaultProps = {
@@ -42,20 +42,20 @@ export default class RegistrationForm extends React.Component {
                     <div role="alert">
                         {error && <p>{error}</p>}
                     </div>
-                    <div>
-                        <label htmlFor="full_name">Full name</label>
-                        <input required type="text" name='full_name' id='full_name' placeholder='Full Name' />
+                    <div className={styles.formGroup}>
+                        <label className={styles.label} htmlFor="full_name">Full name</label>
+                        <Input className={styles.input} required type="text" name='full_name' id='full_name' />
                     </div>
-                    <div>
-                        <label htmlFor="email">Email</label>
-                        <input required type="text" name='email' id='email' />
+                    <div className={styles.formGroup}>
+                        <label className={styles.label} htmlFor="email">Email</label>
+                        <Input className={styles.input} required type="text" name='email' id='email' />
                     </div>
-                    <div>
-                        <label htmlFor="password">Password</label>
-                        <input required type="password" name='password' id='password' />
+                    <div className={styles.formGroup}>
+                        <label className={styles.label} htmlFor="password">Password</label>
+                        <Input  className={styles.input}required type="password" name='password' id='password' />
                     </div>
-                    <Link to='/'><Button>Cancel</Button></Link>
-                    <Button type='submit'>Create Account</Button>
+                    <Link to='/'><Button className={`${styles.button} ${styles.cancel}`}>Cancel</Button></Link>
+                    <Button type='submit' className={`${styles.button} ${styles.sign}`}>Create Account</Button>
                 </form>
             </main> 
         )

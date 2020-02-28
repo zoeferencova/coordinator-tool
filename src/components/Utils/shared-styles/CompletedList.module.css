@@ -38,4 +38,8 @@ div .project, div .advisor, div .pm {
         max-width: 50px;
     }
 
+    .actions {
+        max-width: 50px;
+    }
+
 }

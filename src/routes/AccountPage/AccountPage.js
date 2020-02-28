@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import Header from '../../components/Header/Header'
 import AppContext from '../../contexts/contexts'
 import NavBar from '../../components/NavBar/NavBar';
-import Button from '../../components/Utils/Utils'
+import { Button, Input } from '../../components/Utils/Utils'
 
 import config from '../../config'
 
@@ -19,9 +19,12 @@ export default class AccountPage extends React.Component {
     
     renderPms() {
         return this.context.pms.map(pm => 
-            <li key={pm.id}>
-                {pm.pm_name} - <span>{pm.pm_email} </span> 
-                <Button onClick={(e) => this.handleDeletePm(e) } pmid={pm.id}>Delete</Button>
+            <li key={pm.id} className = {styles.pmItem}>
+                <div className={styles.pmDetails}>
+                    <div className={styles.name}>{pm.pm_name}</div> 
+                    <div className={styles.email}>{pm.pm_email}</div> 
+                </div>
+                <Button onClick={(e) => this.handleDeletePm(e) } pmid={pm.id} className={styles.delete}>Delete</Button>
             </li>
         )
     }
@@ -37,7 +40,7 @@ export default class AccountPage extends React.Component {
 
     handleDeletePm = (e) => {
         e.preventDefault()
-        if (window.confirm('Are you sure you wish to delete this item?')) {
+        if (window.confirm('Are you sure you wish to delete this PM?')) {
             const pmId = ReactDOM.findDOMNode(e.target).getAttribute('pmid')
             fetch(`${config.API_ENDPOINT}/pms/${pmId}`, {
                 method: 'DELETE',
@@ -103,16 +106,16 @@ export default class AccountPage extends React.Component {
                                 {this.renderPms()}
                             </ul>
                             {this.state.error && <p>{this.state.error}</p>}
-                            <form onSubmit={e => this.handlePostPm(e)}>
+                            <form onSubmit={e => this.handlePostPm(e)} className={styles.addPm}>
                                 <div>
-                                    <label htmlFor="pm_name">Name: </label>
-                                    <input type="text" id="pm_name"></input>
+                                    <label htmlFor="pm_name"></label>
+                                    <Input type="text" id="pm_name" placeholder={"Name"}></Input>
                                 </div>
                                 <div>
-                                    <label htmlFor="pm_email">Email: </label>
-                                    <input type="text" id="pm_email"></input>
+                                    <label htmlFor="pm_email"></label>
+                                    <Input type="text" id="pm_email" placeholder={"Email"}></Input>
                                 </div>
-                                <Button type="submit">Add PM</Button>
+                                <Button type="submit" className={styles.addButton}>+ Add PM</Button>
                             </form>
                         </section>
                     </div>

@@ -51,6 +51,25 @@
     color: #a7aab0;
 }
 
+.fieldSection {
+    padding-top: 15px;
+}
+
+.textAreaSection {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+
+.textAreaLabel {
+    margin-right: 5px;
+}
+
+
+.input {
+    width: 300px;
+}
+
 @media only screen and (max-width: 850px) {
     .templateList {
         display: none;

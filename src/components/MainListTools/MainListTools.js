@@ -1,6 +1,6 @@
 import React from 'react';
 import AppContext from '../../contexts/contexts'
-import Button from '../Utils/Utils'
+import { Button, Input, Select } from '../Utils/Utils'
 import { Link } from 'react-router-dom';
 import config from '../../config'
 
@@ -136,23 +136,26 @@ export default class MainListTools extends React.Component {
     render() {
         return (
             <div className={styles.tools}>
-                <div>
-                    <label htmlFor="search">Search: </label>
-                    <input type="text" id="search" onChange={e => this.props.setQuery(e.target.value)}></input>
+                <div className={styles.flex}>
+                    <div>
+                        <label htmlFor="search">Search: </label>
+                        <Input type="text" id="search" onChange={e => this.props.setQuery(e.target.value)}></Input>
+                    </div>
+                    
                 </div>
-                    <div className={styles.hideMobile}>
-                        <label htmlFor="action">Actions: </label>
-                        <select name="action" id="action" value={'none'} onChange={e => this.fireAction(e.target.value)}>
+                <div className={styles.flex}>
+                    <div>
+                        <label htmlFor="action" className={styles.hideMobile}>Actions: </label>
+                        <Select className={`${styles.hideMobile} ${styles.select}`} name="action" id="action" value={'none'} onChange={e => this.fireAction(e.target.value)}>
                             <option value="none"></option>
                             <option value="completed">Mark Completed</option>
                             <option value="reached">Mark Pending</option>
                             <option value="delete">Delete</option>
-                        </select>
+                        </Select>
                     </div>
-
-                <div>
+                    
                     <Button onClick={e => this.fireAction('reset')} className={styles.toolButton}>Reset</Button>
-                    <a href={`mailto:${this.formatUpdateEmailAddresses()}?Subject=Update - ${new Date().toLocaleDateString('en-US', {month: 'long', weekday: 'long', day: 'numeric'})}&Body=${this.formatEmailUpdate()}`}><Button className={styles.toolButton}>Send Update</Button></a>
+                    <a href={`mailto:${this.formatUpdateEmailAddresses()}?Subject=Update - ${new Date().toLocaleDateString('en-US', {month: 'long', weekday: 'long', day: 'numeric'})}&Body=${this.formatEmailUpdate()}`}><Button className={styles.toolButton}>PM Update</Button></a>
                     <Link to='/add-item'><Button className={`${styles.addButton}`}>+ Add Item</Button></Link>
                 </div>
                 

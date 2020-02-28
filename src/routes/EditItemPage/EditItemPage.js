@@ -3,7 +3,8 @@ import NavBar from '../../components/NavBar/NavBar'
 import Header from '../../components/Header/Header'
 import AppContext from '../../contexts/contexts'
 import { Link } from 'react-router-dom'
-import Button from '../../components/Utils/Utils'
+import { Button, Input, Textarea, Select } from '../../components/Utils/Utils'
+import styles from '../AddItemPage/AddItemPage.module.css'
 
 import './EditItemPage.css';
 import config from '../../config'
@@ -90,44 +91,43 @@ export default class EditItemPage extends React.Component {
     render() {
         return (
             <div className="container">
-                
                 <main className="content">
                     <Header title='Edit Item' />
                     {this.state.error && <p>{this.state.error}</p>}
                     <form onSubmit={e => this.handlePatchItem(e)}>
-                        <div>
-                            <label htmlFor="proj-name">Project Name: </label>
-                            <input type="text" name='proj-name' id='proj-name' defaultValue={this.state.inputValues.project|| ''} onChange={e => this.handleChangeProject(e.target.value.trim())}></input>
+                        <div className={styles.formSection}>
+                            <div>
+                                <label htmlFor="project">Project Name: </label>
+                                <Input type="text" name='project' id='project' defaultValue={this.state.inputValues.project|| ''} onChange={e => this.handleChangeProject(e.target.value.trim())}></Input>
+                            </div>
+                            <div>
+                                <label htmlFor="project_url">Project URL: </label>
+                                <Input type="text" name='project_url' id='project_url' defaultValue={this.state.inputValues.project_url || ''} onChange={e => this.handleChangeProjectURL(e.target.value)}></Input>
+                            </div>
                         </div>
-                        <div>
-                            <label htmlFor="proj-url">Project URL: </label>
-                            <input type="text" name='proj-url' id='proj-url' defaultValue={this.state.inputValues.project_url || ''} onChange={e => this.handleChangeProjectURL(e.target.value)}></input>
+                        <div className={styles.formSection}>
+                            <div>
+                                <label htmlFor="adv-name">Advisor Name: </label>
+                                <Input type="text" name='adv-name' id='adv-name' defaultValue={this.state.inputValues.advisor || ''} onChange={e => this.handleChangeAdvisor(e.target.value.trim())}></Input>
+                            </div>
+                            <div>
+                                <label htmlFor="adv-url">Advisor URL: </label>
+                                <Input type="text" name='adv-url' id='adv-url' defaultValue={this.state.inputValues.advisor_url || ''} onChange={e => this.handleChangeAdvisorURL(e.target.value)}></Input>
+                            </div>
                         </div>
-                        <br></br>
-                        <br></br>
-                        <div>
-                            <label htmlFor="adv-name">Advisor Name: </label>
-                            <input type="text" name='adv-name' id='adv-name' defaultValue={this.state.inputValues.advisor || ''} onChange={e => this.handleChangeAdvisor(e.target.value.trim())}></input>
-                        </div>
-                        <div>
-                            <label htmlFor="adv-url">Advisor URL: </label>
-                            <input type="text" name='adv-url' id='adv-url' defaultValue={this.state.inputValues.advisor_url || ''} onChange={e => this.handleChangeAdvisorURL(e.target.value)}></input>
-                        </div><br></br>
-                        <br></br><br></br>
-                        <br></br>
-                        <div>
+                        
+                        <div className={styles.pm}>
                             <label htmlFor="pm">Project Manager: </label>
-                            <select name="pm" id="pm" value={this.state.inputValues.pm_name} onChange={e => this.handleChangePm(e.target.value)}>
+                            <Select name="pm" id="pm" value={this.state.inputValues.pm_name} onChange={e => this.handleChangePm(e.target.value)}>
                                 <option value={'none'}></option>
                                 {this.context.pms.map(pm => 
-                                     <option value={pm.pm_name} key={pm.id}>{pm.pm_name}</option>
+                                        <option value={pm.pm_name} key={pm.id}>{pm.pm_name}</option>
                                 )}                            
-                                </select>
+                                </Select>
                         </div>
-                        <br></br>
-                        <div>
-                            <label htmlFor="notes">Notes: </label>
-                            <textarea name="notes" id="notes" cols="30" rows="5" defaultValue={this.state.inputValues.notes || ''} onChange={e => this.handleChangeNotes(e.target.value)}></textarea>
+                        <div className={styles.formSection}>
+                            <label htmlFor="notes" className={styles.notesLabel}>Notes: </label>
+                            <Textarea name="notes" id="notes" className={styles.notes} defaultValue={this.state.inputValues.notes || ''} onChange={e => this.handleChangeNotes(e.target.value)}></Textarea>
                         </div>
                         <div>
                             <Link to='/main'><Button>Cancel</Button></Link>

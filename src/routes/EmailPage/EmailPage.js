@@ -4,7 +4,7 @@ import EmailTemplate from '../../components/EmailTemplate/EmailTemplate'
 import EmailTemplateWindow from '../../components/EmailTemplateWindow/EmailTemplateWindow'
 import Header from '../../components/Header/Header'
 import AppContext from '../../contexts/contexts'
-import Button from '../../components/Utils/Utils'
+import { Button, Input, Textarea, Select } from '../../components/Utils/Utils'
 import { Link } from 'react-router-dom';
 import config from '../../config'
 
@@ -110,10 +110,10 @@ export default class EmailPage extends React.Component {
                                 {this.renderTemplateTabs()}
                             </div>
                             <div className={styles.templateSelect}>
-                                <select onChange={(e) => this.handleTemplateSelect(e.target.value)} defaultValue={this.currentTemplate !== undefined ? this.currentTemplate.id : ''}>
+                                <Select onChange={(e) => this.handleTemplateSelect(e.target.value)} defaultValue={this.currentTemplate !== undefined ? this.currentTemplate.id : ''}>
                                     <option value=''></option>
                                     {this.renderTemplateSelect()}
-                                </select>
+                                </Select>
                             </div>
                             <div className={styles.templateWindow}>
                                 {this.state.currentTemplate !== undefined && !this.state.edit && <div className={styles.templateHeader}>
@@ -125,18 +125,17 @@ export default class EmailPage extends React.Component {
                                 </div>}
                                 {(this.state.currentTemplate !== undefined && !this.state.edit) ? this.renderTemplateContent(): ''}
                                 {this.state.edit && <form onSubmit={e => this.handlePatchTemplate(e)}>
-                                    <div>
+                                    <div className={styles.fieldSection}>
                                         <label htmlFor="template-name">Template Name: </label>
-                                        <input type="text" name='template-name' id='template-name' defaultValue={this.state.currentTemplate.template_name} onChange={e => this.setState({ inputValues: {...this.state.inputValues, template_name: e.target.value }})}></input>
+                                        <Input className={styles.input} type="text" name='template-name' id='template-name' defaultValue={this.state.currentTemplate.template_name} onChange={e => this.setState({ inputValues: {...this.state.inputValues, template_name: e.target.value }})}></Input>
                                     </div>
-                                    <div>
+                                    <div className={styles.fieldSection}>
                                         <label htmlFor="template-subject">Subject: </label>
-                                        <input type="text" name='template-subject' id='template-subject' defaultValue={this.state.currentTemplate.template_subject} onChange={e => this.setState({ inputValues: {...this.state.inputValues, template_subject: e.target.value }})}></input>
+                                        <Input className={styles.input} type="text" name='template-subject' id='template-subject' defaultValue={this.state.currentTemplate.template_subject} onChange={e => this.setState({ inputValues: {...this.state.inputValues, template_subject: e.target.value }})}></Input>
                                     </div>
-                                    <br></br>
-                                    <div>
-                                        <label htmlFor="template-body">Body: </label>
-                                        <textarea name="template-body" id="template-body" cols="80" rows="20" defaultValue={this.state.currentTemplate.template_content} onChange={e => this.setState({ inputValues: {...this.state.inputValues, template_content: e.target.value }})}></textarea>
+                                    <div className={`${styles.fieldSection} ${styles.textAreaSection}`}>
+                                        <label  className={styles.textAreaLabel} htmlFor="template-body">Body: </label>
+                                        <Textarea name="template-body" id="template-body" cols="80" rows="20" defaultValue={this.state.currentTemplate.template_content} onChange={e => this.setState({ inputValues: {...this.state.inputValues, template_content: e.target.value }})}></Textarea>
                                     </div>
                                     <div>
                                         <Button onClick={e => this.closeEmailEdit(e)}>Cancel</Button>

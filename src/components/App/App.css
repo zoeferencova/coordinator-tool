@@ -9,10 +9,7 @@
     text-align: center;
 }
 
-h1 {
-    font-weight: 300;
-    font-size: 20px;
-}
+
 
 h2 {
     font-size: 16px;
@@ -20,6 +17,11 @@ h2 {
 
 p {
     padding: 10px 0;
+}
+
+label {
+    font-size: 13px;
+    color: #8193a1;
 }
 
 .container {

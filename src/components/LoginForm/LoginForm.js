@@ -2,9 +2,9 @@ import React from 'react';
 import AppContext from '../../contexts/contexts'
 import AuthApiService from '../../services/auth-api-service'
 import { Redirect, Link } from 'react-router-dom';
-import Button from '../Utils/Utils'
+import { Button, Input } from '../Utils/Utils'
 
-// import styles from './LoginForm.module.css'
+import styles from './LoginForm.module.css'
 
 export default class LoginForm extends React.Component {
     static contextType = AppContext;
@@ -48,16 +48,16 @@ export default class LoginForm extends React.Component {
             <main>
                 <form className='LoginForm' onSubmit={this.handleSubmitJwtAuth}>
                 <div role='alert'>{error && <p>{error}</p>}</div>
-                    <div>
-                        <label htmlFor="email">Email</label>
-                        <input required type="text" name='email' id='login-email' />
+                    <div className={styles.formGroup}>
+                        <label className={styles.label} htmlFor="email">Email</label>
+                        <Input className={styles.input} required type="text" name='email' id='login-email' />
                     </div>
-                    <div>
-                        <label htmlFor="password">Password</label>
-                        <input required type="password" name='password' id='login-password' />
+                    <div className={styles.formGroup}>
+                        <label className={styles.label} htmlFor="password">Password</label>
+                        <Input className={styles.input} required type="password" name='password' id='login-password' />
                     </div>
-                    <Link to='/'><Button>Cancel</Button></Link>
-                    <Button type='submit'>Log in</Button>
+                    <Link to='/'><Button className={`${styles.button} ${styles.cancel}`}>Cancel</Button></Link>
+                    <Button type='submit' className={`${styles.button} ${styles.sign}`}>Sign in</Button>
                 </form>
             </main> 
         )

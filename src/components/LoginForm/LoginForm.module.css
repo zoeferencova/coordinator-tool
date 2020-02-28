@@ -1,0 +1,35 @@
+.formGroup {
+
+    display: flex;
+    flex-direction: column;
+    width: 70%;
+    margin: 30px auto;
+}
+
+.label {
+    text-align: left;
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+.input {
+    border-radius: 6px;
+    height: 35px;
+}
+
+.button {
+    font-size: 15px;
+    height: 40px;
+}
+
+.sign {
+    background-color: #507eab;
+    color: white;
+    font-weight: bold;
+    border: none;
+}
+
+.sign:hover {
+    background-color: #315475;
+    border: none;
+}

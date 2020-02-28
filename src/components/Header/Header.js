@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import AppContext from '../../contexts/contexts';
 import TokenService from '../../services/token-service'
-import Button from '../Utils/Utils'
+import { Button } from '../Utils/Utils'
 
 import styles from './Header.module.css'
 

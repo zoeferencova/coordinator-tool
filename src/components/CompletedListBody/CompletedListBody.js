@@ -16,7 +16,8 @@ export default class CompletedListBody extends React.Component {
                     <div className={`${tableStyles.tableHeaderCell} ${listStyles.advisor}`}>Advisor <i onClick={() => this.props.currentSort === 'advisor-asc' ? this.props.setSort('advisor-desc') : this.props.setSort('advisor-asc')} className="fas fa-sort"></i></div>
                     <div className={`${tableStyles.tableHeaderCell} ${listStyles.pm}`}>PM <i onClick={() => this.props.currentSort === 'pm-asc' ? this.props.setSort('pm-desc') : this.props.setSort('pm-asc')} className="fas fa-sort"></i></div>
                     <div className={`${tableStyles.tableHeaderCell} ${listStyles.date} ${tableStyles.hideMobile}`}>Date <i onClick={() => this.props.currentSort === 'date-asc' ? this.props.setSort('date-desc') : this.props.setSort('date-asc')} className="fas fa-sort"></i></div>
-                    <div className={`${tableStyles.tableHeaderCell} ${listStyles.actions} ${styles.revert}`}>Actions</div>
+                    <div className={`${tableStyles.tableHeaderCell} ${listStyles.actions} ${styles.revert} ${tableStyles.hideMobile}`}>Actions</div>
+                    <div className={`${tableStyles.tableHeaderCell} ${listStyles.actions} ${styles.revert} ${tableStyles.hideDesktop}`}></div>
                 </div>
                 {this.props.renderCompletedItems()}
             </div>

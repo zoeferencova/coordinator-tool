@@ -3,7 +3,7 @@ import AppContext from '../../contexts/contexts';
 
 import tableStyles from '../Utils/shared-styles/TableStyles.module.css'
 import listStyles from '../Utils/shared-styles/MainList.module.css'
-// import styles from './MainListBody.module.css'
+import styles from './MainListBody.module.css'
 
 export default class MainListBody extends React.Component {   
     static contextType = AppContext;
@@ -41,7 +41,7 @@ export default class MainListBody extends React.Component {
                     <div className={`${tableStyles.tableHeaderCell} ${tableStyles.hideMobile}`}>Notes</div>
                     <div className={`${tableStyles.tableHeaderCell} ${listStyles.status}`}>Status <i onClick={() => this.props.currentSort === 'status-asc' ? this.props.setSort('status-desc') : this.props.setSort('status-asc')} className="fas fa-sort"></i></div>
                     <div className={`${tableStyles.tableHeaderCell} ${listStyles.actions} ${tableStyles.hideMobile}`}>Actions</div>
-                    <div className={`${tableStyles.tableHeaderCell} ${listStyles.mobileActions} ${tableStyles.hideDesktop}`}><i className={`fas fa-ellipsis-h`}></i></div>
+                    <div className={`${tableStyles.tableHeaderCell} ${listStyles.mobileActions} ${styles.actionsLabel} ${tableStyles.hideDesktop}`}>ACT</div>
                 </div>
                 {this.props.renderListItems()}
             </div>

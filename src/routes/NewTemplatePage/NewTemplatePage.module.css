@@ -1,0 +1,24 @@
+.input {
+    margin-top: 10px;
+    width: 300px;
+}
+
+.textAreaSection {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.textArea {
+    height: 400px;
+}
+
+.textAreaLabel {
+    margin-right: 5px;
+}
+
+.instructions {
+    font-size: 12px;
+    color: gray;
+    padding-top: 0px;
+}

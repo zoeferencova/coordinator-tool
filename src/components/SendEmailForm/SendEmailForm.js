@@ -1,5 +1,6 @@
 import React from 'react';
 import AppContext from '../../contexts/contexts'
+import { Select, Input } from '../Utils/Utils'
 
 import styles from './SendEmailForm.module.css'
 
@@ -53,14 +54,14 @@ export default class SendEmailForm extends React.Component {
                     <form>
                         <div>
                             <label htmlFor="template">Template: </label>
-                            <select name="template" id="template" onChange={this.handleSelectChange}>
+                            <Select name="template" id="template" onChange={this.handleSelectChange}>
                                 <option></option>
                                 {this.renderTemplateSelect()}
-                            </select>
+                            </Select>
                         </div>
                         <div>
                             <label htmlFor="doctor">Doctor: </label>
-                            <input type="checkbox" id="doctor" onChange={this.setDoctor}></input>
+                            <Input type="checkbox" id="doctor" onChange={this.setDoctor}></Input>
                         </div>
                         <div>
                             <h4>Preview:</h4>

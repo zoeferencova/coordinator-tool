@@ -1,4 +1,11 @@
 .tools {
     display: flex;
-    justify-content: space-around;
+    flex-direction: row;
+    justify-content: start;
+}
+
+@media only screen and (max-width: 800px) {
+    .tools {
+        justify-content: center;
+    }
 }

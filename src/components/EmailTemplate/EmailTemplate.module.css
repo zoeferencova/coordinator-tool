@@ -1,10 +1,9 @@
 .templateItem {
-    padding: 15px 12px;
+    padding: 20px 12px;
     text-align: left;
-    font-size: 11px;
-    text-transform: uppercase;
-    font-weight: 700;
-    letter-spacing: 0.5px;
+    font-size: 13px;
+
+    font-weight: 600;
     color: gray;
 }
 

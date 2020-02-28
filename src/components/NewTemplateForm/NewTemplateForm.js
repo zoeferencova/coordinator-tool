@@ -1,5 +1,5 @@
 import React from 'react';
-import Button from '../Utils/Utils'
+import { Button, Textarea, Input } from '../Utils/Utils'
 
 import styles from './NewTemplateForm.module.css';
 
@@ -13,15 +13,15 @@ export default class NewTemplateForm extends React.Component {
                     <h3>New Template Form</h3>
                     <div>
                         <label htmlFor="template_name">Name: </label>
-                        <input type="text" class="block" id="template_name"></input>
+                        <Input type="text" class="block" id="template_name"></Input>
                     </div>
                     <div>
                         <label htmlFor="template_subject">Subject: </label>
-                        <input type="text" class="block" id="template_subject"></input>
+                        <Input type="text" class="block" id="template_subject"></Input>
                     </div>
                     <div>
                         <label htmlFor="template_body">Body: </label>
-                        <textarea name="template_body" id="template_body" cols="100" rows="30"></textarea>
+                        <Textarea name="template_body" id="template_body" cols="100" rows="30"></Textarea>
                     </div>
                     <Button>Cancel</Button>
                     <Button type="submit">Save Template</Button>

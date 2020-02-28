@@ -175,7 +175,6 @@ export default class MainListPage extends React.Component {
                     <Header title={title} />
                     <div className={tableStyles.listContainer}>
                         <MainListTools setQuery={this.setQuery} checkedItems={this.state.checkedItems} clearChecked={this.clearChecked} />
-                        <br></br>
                         <div>
                             <MainListBody setSort={this.setSort} currentSort={this.state.sort} renderListItems={this.renderListItems} openEmailForm={this.openEmailForm} closeEmailForm={this.closeEmailForm} setChecked={this.setChecked} clearChecked={this.clearChecked} />
                             {this.renderNoItemMessage()}

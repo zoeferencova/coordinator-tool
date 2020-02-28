@@ -58,7 +58,7 @@ div .tableHeaderCell {
 
 .tableBodyCell {
     display: table-cell;
-    padding-top: 18px;
+    padding-top: 23px;
 }
 
 .tableBodyCell button {
@@ -102,6 +102,10 @@ div .tableHeaderCell {
     .tableRow i {
         font-size: 16px;
         margin: 1px;
+    }
+
+    .hideDesktop {
+        display: table-cell
     }
 }
 

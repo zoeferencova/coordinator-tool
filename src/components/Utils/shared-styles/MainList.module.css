@@ -51,16 +51,15 @@ div.actions, div.status, div.check {
     text-align: center;
 }
 
-@media only screen and (max-width: 810px) {
+@media only screen and (max-width: 811px) {
     div .mobileActions {
-        max-width: 40px;
-        display: block;
-        padding-bottom: 26px;
-        color: lightgray;
+        width: 40px;
+        display: table-cell;
+        color: #f0f4f7;
     }
 
     .project {
-        max-width: 100px;
+        max-width: 80px;
     }
 
     .advisor {
@@ -68,3 +67,4 @@ div.actions, div.status, div.check {
     }
 
 }
+
