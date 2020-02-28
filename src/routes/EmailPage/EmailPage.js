@@ -135,7 +135,7 @@ export default class EmailPage extends React.Component {
                                     </div>
                                     <div className={`${styles.fieldSection} ${styles.textAreaSection}`}>
                                         <label  className={styles.textAreaLabel} htmlFor="template-body">Body: </label>
-                                        <Textarea name="template-body" id="template-body" cols="80" rows="20" defaultValue={this.state.currentTemplate.template_content} onChange={e => this.setState({ inputValues: {...this.state.inputValues, template_content: e.target.value }})}></Textarea>
+                                        <Textarea className={styles.textArea} name="template-body" id="template-body" defaultValue={this.state.currentTemplate.template_content} onChange={e => this.setState({ inputValues: {...this.state.inputValues, template_content: e.target.value }})}></Textarea>
                                     </div>
                                     <div>
                                         <Button onClick={e => this.closeEmailEdit(e)}>Cancel</Button>

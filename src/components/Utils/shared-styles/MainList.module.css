@@ -6,7 +6,7 @@
     cursor: pointer;
 }
 
-div.status {
+div.status.tableBodyCell {
     width: 45px;
     padding: 0;
 }
@@ -55,7 +55,6 @@ div.actions, div.status, div.check {
     div .mobileActions {
         width: 40px;
         display: table-cell;
-        color: #f0f4f7;
     }
 
     .project {

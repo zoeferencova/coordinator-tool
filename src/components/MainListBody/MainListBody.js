@@ -41,7 +41,7 @@ export default class MainListBody extends React.Component {
                     <div className={`${tableStyles.tableHeaderCell} ${tableStyles.hideMobile}`}>Notes</div>
                     <div className={`${tableStyles.tableHeaderCell} ${listStyles.status}`}>Status <i onClick={() => this.props.currentSort === 'status-asc' ? this.props.setSort('status-desc') : this.props.setSort('status-asc')} className="fas fa-sort"></i></div>
                     <div className={`${tableStyles.tableHeaderCell} ${listStyles.actions} ${tableStyles.hideMobile}`}>Actions</div>
-                    <div className={`${tableStyles.tableHeaderCell} ${listStyles.mobileActions} ${styles.actionsLabel} ${tableStyles.hideDesktop}`}>ACT</div>
+                    <div className={`${tableStyles.tableHeaderCell} ${listStyles.mobileActions} ${styles.actionsLabel} ${tableStyles.hideDesktop}`}></div>
                 </div>
                 {this.props.renderListItems()}
             </div>

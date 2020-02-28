@@ -46,11 +46,13 @@ export default class SendEmailForm extends React.Component {
     
     render() {
         return (
-
-                 <main role="main" className={styles.emailForm}>
-                    <button onClick={this.props.closeEmailForm}  className={styles.xButton}><i className="fas fa-times"></i></button>
-                    <h3>Send Email</h3>
-                    
+            <div >
+                
+                <main role="main" className={styles.formContainer}>
+                    <div>
+                        <button onClick={this.props.closeEmailForm}  className={styles.xButton}><i className="fas fa-times"></i></button>
+                        <h3 className={styles.title}>Send Email</h3>
+                    </div>
                     <form>
                         <div>
                             <label htmlFor="template">Template: </label>
@@ -59,19 +61,20 @@ export default class SendEmailForm extends React.Component {
                                 {this.renderTemplateSelect()}
                             </Select>
                         </div>
-                        <div>
+                        <div className={styles.doctor}>
                             <label htmlFor="doctor">Doctor: </label>
-                            <Input type="checkbox" id="doctor" onChange={this.setDoctor}></Input>
+                            <input type="checkbox" id="doctor" onChange={this.setDoctor}></input>
                         </div>
                         <div>
-                            <h4>Preview:</h4>
+                            {this.state.selectedTemplate !== '' && <h4 className={styles.preview}>Preview:</h4>}
                             <p className={styles.templateBody}>{this.state.selectedTemplate !== '' ? this.formatTemplateBody() : ''}</p>
                         </div>
                         
-                        <a href={`mailto:?Subject=${this.state.selectedTemplate !== '' ? this.context.templates[this.state.selectedTemplate].template_subject : ''}&Body=${this.state.selectedTemplate !== '' ? this.formatTemplateForEmail() : ''}`} className={styles.link}>Open in Outlook</a>
+                        {this.state.selectedTemplate !== '' && <a href={`mailto:?Subject=${this.state.selectedTemplate !== '' ? this.context.templates[this.state.selectedTemplate].template_subject : ''}&Body=${this.state.selectedTemplate !== '' ? this.formatTemplateForEmail() : ''}`} className={styles.link}>Open in Outlook</a>}
                     </form>
                 </main>
-
+                <div className={styles.overlay} onClick={this.props.closeEmailForm}></div>
+            </div>
         )
     }
 }

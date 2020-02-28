@@ -21,3 +21,10 @@
 .templateItem:hover {
     cursor: pointer;
 }
+
+@media only screen and (max-width: 850px) {
+    .templateContent {
+        padding: 10px;
+        font-size: 12px;
+    }
+}

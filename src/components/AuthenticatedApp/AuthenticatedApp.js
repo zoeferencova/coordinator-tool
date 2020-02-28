@@ -37,7 +37,8 @@ export default class AuthenticatedApp extends Component {
             deletePm: this.deletePm,
             revertCompleted: this.revertCompleted,
             setInitialState: this.setInitialState,
-            setLoggedIn: this.props.setLoggedIn
+            setLoggedIn: this.props.setLoggedIn,
+            loading: true
         }
     }  
 
@@ -68,6 +69,7 @@ export default class AuthenticatedApp extends Component {
     this.setState({ templates: data[2] })
     this.setState({ completedListItems: data[3] })
     this.setState({ user: data[4] })
+    this.setState({ loading: false })
   }
 
   setInitialState = () => {

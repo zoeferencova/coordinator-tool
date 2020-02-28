@@ -13,7 +13,7 @@
     padding: 20px 30px;
     border-radius: 7px;
     box-shadow: 2px 2px 40px -20px lightgray;
-    margin: 15px;
+    margin: 15px 0px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -59,8 +59,8 @@
 .radioLabel {
     display: inline-block;
     border: 1px solid #cad0db;
-    padding: 7px;
-    font-size: 12px;
+    padding: 5px;
+    font-size: 10px;
     margin-bottom: 15px;
     transition: 500;
 }
@@ -87,8 +87,12 @@
 .radioContainer {
     display: flex;
     flex-direction: row;
-    padding: 10px 40px;
+    padding: 10px 0px;
     justify-content: space-between;
+}
+
+.chartContainer {
+    padding: 15px;
 }
 
 
@@ -100,10 +104,23 @@
 
     .chartContainer {
         width: 50%;
-        padding: 15px;
+        padding: 20px 30px;
     }
 
     .statSection, .chartSection {
         flex-direction: row;
+    }
+
+    .radioLabel {
+        font-size: 12px;
+        padding: 7px;
+    }
+
+    .radioContainer {
+        padding: 10px 40px;
+    }
+
+    .dashboardContainer {
+        margin: 15px;
     }
 }

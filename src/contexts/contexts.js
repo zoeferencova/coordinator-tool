@@ -21,6 +21,7 @@ const AppContext = React.createContext({
     deletePm: () => {},
     revertCompleted: () => {},
     setInitialState: () => {},
+    loading: ''
 })
 
 export default AppContext;

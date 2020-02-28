@@ -27,7 +27,7 @@
 
 .tableHeaderCell {
     display: table-cell;
-    padding: 10px;
+
     
 }
 
@@ -37,9 +37,9 @@
     font-size: 12px;
 }
 
-div .tableHeaderCell {
+/* div .tableHeaderCell {
     height: 25px;
-}
+} */
 
 .tableRow {
     display: table-row;
@@ -106,6 +106,12 @@ div .tableHeaderCell {
 
     .hideDesktop {
         display: table-cell
+    }
+}
+
+@media only screen and (max-width: 500px) {
+    .tableBodyCell {
+        font-size: 11px;
     }
 }
 

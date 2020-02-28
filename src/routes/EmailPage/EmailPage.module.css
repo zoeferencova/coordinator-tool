@@ -83,10 +83,40 @@
 
     .templateSelect {
         display: block;
+        margin-bottom: 20px;
     }
 
     .templateContainer {
         flex-direction: column;
     }
 
+    .templateHeader {
+        padding: 10px;
+    }
+    
+    .templateHeader h3 {
+        font-size: 13px;
+    }
+
+    .templateHeader Button {
+        padding: 7px;
+    }
+
+    .input {
+        width: 90%;
+    }
+
+    .textArea {
+        width: 100%;
+        margin: 0 5%;
+        min-height: 200px;
+    }
+
+    .textAreaLabel {
+        display: none;
+    }
+
+    .input, .textArea {
+        font-size: 11px;
+    }
 }

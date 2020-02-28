@@ -8,7 +8,7 @@ import SendEmailForm from '../../components/SendEmailForm/SendEmailForm'
 import MainListItem from '../../components/MainListItem/MainListItem'
 
 import tableStyles from '../../components/Utils/shared-styles/TableStyles.module.css'
-// import styles from './MainListPage.module.css'
+import styles from './MainListPage.module.css'
 
 export default class MainListPage extends React.Component {
     static contextType = AppContext;
@@ -177,7 +177,8 @@ export default class MainListPage extends React.Component {
                         <MainListTools setQuery={this.setQuery} checkedItems={this.state.checkedItems} clearChecked={this.clearChecked} />
                         <div>
                             <MainListBody setSort={this.setSort} currentSort={this.state.sort} renderListItems={this.renderListItems} openEmailForm={this.openEmailForm} closeEmailForm={this.closeEmailForm} setChecked={this.setChecked} clearChecked={this.clearChecked} />
-                            {this.renderNoItemMessage()}
+                            {this.context.loading && <img src={require('../../images/loader.gif')} alt="loader" className={styles.loader}></img>}
+                            {!this.context.loading && this.renderNoItemMessage()}
                         </div>
                     </div>
                     {this.state.emailFormOpen && <SendEmailForm project={this.state.emailProject} advisor={this.state.emailAdvisor} pm_name={this.state.emailPmName} closeEmailForm={this.closeEmailForm} />}
