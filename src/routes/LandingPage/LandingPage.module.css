@@ -84,23 +84,8 @@
 }
 
 
-.iphoneContainer {
-    width: 30%;
-    margin-bottom: -900px;
-}
-
-.iphone1, .iphone2 {
-    position: relative;
-}
-
-.iphone1 {
-    height: 30%;
-}
-
-.iphone2 {
-    top: -25%;
-    right: 60px;
-    height: 25%;
+.iphone {
+    width: 20%;
 }
 
 .deviceMacbook {

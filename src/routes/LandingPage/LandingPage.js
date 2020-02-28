@@ -33,10 +33,7 @@ export default class LandingPage extends React.Component {
                     </div>
                 </section>
                 <section className={`${styles.section} ${styles.section2}`}>
-                    <div className={styles.iphoneContainer}>
-                        <img className={styles.iphone1} src={require('../../images/iphonex.svg')}></img>
-                        <img className={styles.iphone2} src={require('../../images/iphonex.svg')}></img>
-                    </div>
+                    <img className={styles.iphone} src={require('../../images/iphonex.svg')}></img>
                     <div className={styles.sectionContent}>
                         <h3 className={styles.sectionHeader}>Automate PM update emails and email advisors using Smart Templates</h3>
                         <p className={styles.text}>Save time and streamline your workflow using the Outlook email generator tools.</p>
@@ -51,7 +48,7 @@ export default class LandingPage extends React.Component {
                 </section>
                 <section className={`${styles.section} ${styles.section4}`}>
                     <h3 className={styles.sectionHeader}>Want to see a demo?</h3>
-                    <p className={styles.text}>Sign in to the demo account: Username - DemoUser, Password - DemoPassword</p>
+                    <p className={styles.text}>Sign in to the demo account: Username - DemoUser, Password - DemoPassword1!</p>
                 </section>
             </main>
         )
