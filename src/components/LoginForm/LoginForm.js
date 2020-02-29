@@ -37,6 +37,12 @@ export default class LoginForm extends React.Component {
                 this.setState({ error: res.error })
             })
     }
+
+    handleEnter = e => {
+        if (e.key === 'Enter') {
+            return this.handleSubmitJwtAuth(e)
+        }
+    }
     
     render() {
         const { error } = this.state;
@@ -46,7 +52,7 @@ export default class LoginForm extends React.Component {
 
         return (
             <main>
-                <form className='LoginForm' onSubmit={this.handleSubmitJwtAuth}>
+                <form className='LoginForm' onSubmit={e => this.handleSubmitJwtAuth(e)}>
                 <div role='alert'>{error && <p>{error}</p>}</div>
                     <div className={styles.formGroup}>
                         <label className={styles.label} htmlFor="email">Email</label>
@@ -56,7 +62,7 @@ export default class LoginForm extends React.Component {
                         <label className={styles.label} htmlFor="password">Password</label>
                         <Input className={styles.input} required type="password" name='password' id='login-password' />
                     </div>
-                    <Link to='/'><Button className={`${styles.button} ${styles.cancel}`}>Cancel</Button></Link>
+                    <Link to='/'><Button type='button' className={`${styles.button} ${styles.cancel}`}>Cancel</Button></Link>
                     <Button type='submit' className={`${styles.button} ${styles.sign}`}>Sign in</Button>
                 </form>
             </main> 
