@@ -162,7 +162,11 @@ export default class MainListPage extends React.Component {
 
     renderNoItemMessage = () => {
         const nonCompletedItems = this.context.listItems.filter(item => item.status !== 'completed')
-        return nonCompletedItems.length === 0 ? <p>You have no items to do! :)</p> : ''
+        if (nonCompletedItems.length === 0 && this.context.pms.length > 0) {
+            return <p>You have no items to do! :)</p>
+        } else if (nonCompletedItems.length === 0 && this.context.pms.length === 0) {
+            return <p>Welcome to the coordinator tool! To get started, add your PM's in the Account tab and start creating list items.</p>
+        }
     }
 
     render() {
