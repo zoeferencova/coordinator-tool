@@ -42,3 +42,10 @@ The coordinator tool makes tracking reach-outs and organizing tasks extremely ea
 * PostgreSQL with Knex
 * JWT for authentication
 * Mocha for testing
+
+## Demo Account
+
+To access the demo account, sign in using the below credentials:
+
+Email: demoaccount@demo.com
+Password: DemoPassword1!
