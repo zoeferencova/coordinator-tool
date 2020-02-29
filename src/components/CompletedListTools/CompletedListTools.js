@@ -1,5 +1,5 @@
 import React from 'react';
-import { Input, Select } from '../Utils/Utils'
+import { Input } from '../Utils/Utils'
 import styles from './CompletedListTools.module.css'
 
 export default class CompletedListTools extends React.Component {

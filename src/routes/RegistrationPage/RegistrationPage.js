@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import RegistrationForm from '../../components/RegistrationForm/RegistrationForm';
-import { Button } from '../../components/Utils/Utils'
 
 import styles from '../LoginPage/LoginPage.module.css'
 

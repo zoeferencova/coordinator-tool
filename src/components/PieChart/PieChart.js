@@ -1,4 +1,3 @@
-// import styles from './PieChart.module.css'
 import * as d3 from 'd3';
 import { legendColor } from 'd3-svg-legend'
 import config from '../../config'
@@ -17,8 +16,6 @@ export default class PieChart {
         const vis = this;
         vis.svg = d3.select(element)
             .append("svg")
-                // .attr("width", WIDTH)
-                // .attr("height", HEIGHT)
                 .attr("viewBox", "0 0 350 300")
             .append("g")
                 .attr("transform", `translate(${WIDTH/2 - 50}, ${HEIGHT/2})`)

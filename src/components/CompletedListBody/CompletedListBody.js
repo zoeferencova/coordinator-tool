@@ -1,7 +1,6 @@
 import React from 'react';
 import AppContext from '../../contexts/contexts'
 
-import styles from './CompletedListBody.module.css'
 import listStyles from '../Utils/shared-styles/CompletedList.module.css'
 import tableStyles from '../Utils/shared-styles/TableStyles.module.css'
 
@@ -16,8 +15,8 @@ export default class CompletedListBody extends React.Component {
                     <div className={`${tableStyles.tableHeaderCell} ${listStyles.advisor}`}>Advisor <i onClick={() => this.props.currentSort === 'advisor-asc' ? this.props.setSort('advisor-desc') : this.props.setSort('advisor-asc')} className="fas fa-sort"></i></div>
                     <div className={`${tableStyles.tableHeaderCell} ${listStyles.pm}`}>PM <i onClick={() => this.props.currentSort === 'pm-asc' ? this.props.setSort('pm-desc') : this.props.setSort('pm-asc')} className="fas fa-sort"></i></div>
                     <div className={`${tableStyles.tableHeaderCell} ${listStyles.date} ${tableStyles.hideMobile}`}>Date <i onClick={() => this.props.currentSort === 'date-asc' ? this.props.setSort('date-desc') : this.props.setSort('date-asc')} className="fas fa-sort"></i></div>
-                    <div className={`${tableStyles.tableHeaderCell} ${listStyles.actions} ${styles.revert} ${tableStyles.hideMobile}`}>Actions</div>
-                    <div className={`${tableStyles.tableHeaderCell} ${listStyles.actions} ${styles.revert} ${tableStyles.hideDesktop}`}></div>
+                    <div className={`${tableStyles.tableHeaderCell} ${listStyles.actions} ${tableStyles.hideMobile}`}>Actions</div>
+                    <div className={`${tableStyles.tableHeaderCell} ${listStyles.actions} ${tableStyles.hideDesktop}`}></div>
                 </div>
                 {this.props.renderCompletedItems()}
             </div>

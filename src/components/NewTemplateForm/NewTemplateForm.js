@@ -1,8 +1,6 @@
 import React from 'react';
 import { Button, Textarea, Input } from '../Utils/Utils'
 
-import styles from './NewTemplateForm.module.css';
-
 export default class NewTemplateForm extends React.Component {
     
     
