@@ -22,7 +22,7 @@ export default class NewTemplatePage extends React.Component {
         const template_content = e.target.template_content.value;
         
         const template = { template_name, template_subject, template_content }
-        console.log(template)
+        
         return fetch(`${config.API_ENDPOINT}/templates`, {
             method: 'POST',
             headers: {
