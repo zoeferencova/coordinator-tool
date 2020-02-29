@@ -54,7 +54,7 @@ export default class RegistrationForm extends React.Component {
                         <label className={styles.label} htmlFor="password">Password</label>
                         <Input  className={styles.input}required type="password" name='password' id='password' />
                     </div>
-                    <Link to='/'><Button className={`${styles.button} ${styles.cancel}`}>Cancel</Button></Link>
+                    <Link to='/'><Button type='button' className={`${styles.button} ${styles.cancel}`}>Cancel</Button></Link>
                     <Button type='submit' className={`${styles.button} ${styles.sign}`}>Create Account</Button>
                 </form>
             </main> 

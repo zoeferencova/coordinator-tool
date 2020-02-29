@@ -20,7 +20,7 @@ export default class LandingPage extends React.Component {
                 <header className={styles.banner} role="banner">
                     <h1 className={styles.h1}>Streamline your coordinator workflow.</h1>
                     <h2 className={styles.h2}>Let the coordinator tool take care of your project tracking, email composition, update emails and more.</h2>
-                    <Button className={styles.button}><Link to='/register'>Sign Up</Link></Button>
+                    <Link to='/register'><Button className={styles.button}>Sign Up</Button></Link>
                 </header>
                 <section className={`${styles.section} ${styles.section1}`}>
                     <div className={styles.sectionContent}>
