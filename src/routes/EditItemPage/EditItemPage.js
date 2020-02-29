@@ -6,7 +6,6 @@ import { Link } from 'react-router-dom'
 import { Button, Input, Textarea, Select } from '../../components/Utils/Utils'
 import styles from '../AddItemPage/AddItemPage.module.css'
 
-import './EditItemPage.css';
 import config from '../../config'
 
 export default class EditItemPage extends React.Component {
