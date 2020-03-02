@@ -27,7 +27,14 @@ export default class PieChart {
                     const arr = []
                     res.forEach(e => arr.push(parseInt(e.count)))
                     const total = arr.reduce((acc, el) => acc + el)
-                    res.map((d, i) => d.color = colors[i])
+                    if (res.length === 1) {
+                        res[0].color = '#66ba97'
+                    } else if (res.length === 2) {
+                        res[0].color = '#66ba97';
+                        res[1].color = '#fff5a8'
+                    } else {
+                        res.map((d, i) => d.color = colors[i])
+                    }
                     res.sort((a, b) => b.count - a.count)
                     vis.data = res;
                     vis.color = d3.scaleOrdinal()

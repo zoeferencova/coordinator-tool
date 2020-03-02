@@ -102,9 +102,9 @@ export default class AccountPage extends React.Component {
                         </section>
                         <section className={`${styles.pmSettings} ${styles.accountContainer}`}>
                             <h2>PM Settings</h2>
-                            <ul className={styles.pmList}>
+                            {this.context.pms.length === 0 ? <p className={styles.addMessage}>Add PM's here!</p> : (<ul className={styles.pmList}>
                                 {this.renderPms()}
-                            </ul>
+                            </ul>)}
                             {this.state.error && <p>{this.state.error}</p>}
                             <form onSubmit={e => this.handlePostPm(e)} className={styles.addPm}>
                                 <div>

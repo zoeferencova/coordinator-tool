@@ -9,6 +9,7 @@ import { Link } from 'react-router-dom';
 import config from '../../config'
 
 import styles from './EmailPage.module.css'
+import listStyles from '../MainListPage/MainListPage.module.css'
 
 export default class EmailPage extends React.Component {
     static contextType = AppContext;
@@ -98,6 +99,25 @@ export default class EmailPage extends React.Component {
         const template = this.context.templates.find(template => Number(template.id) === Number(val))
         this.setState({ currentTemplate: template, inputValues: template })
     }
+
+    renderTemplateInstructions() {
+        return (
+            <div className={listStyles.instructions}>
+                <p>To add a new template:</p>
+                <ul>
+                    <li>Click the <span className={listStyles.addButtonStyle}>+ New Template</span> button to open the new template form.</li>
+                    <li>Use [ADVISOR], [PM] and [PROJECT] to indicate the respective values in your template. These values will then be templated in when you use the email functionality in the main list.</li>
+                </ul>
+                <p>To use the templates:</p>
+                <ul>
+                    <li>Click the <i className={`${listStyles.tabStyle} fas fa-envelope`}></i> button on any list item in the main list page.</li>
+                    <li>Select the template that you want from the dropdown. You will then see a preview of the email populated with the advisor and project values.</li>
+                    <li>Click the <span className={listStyles.buttonStyle}>Open Email</span> button to open the email using your default email application</li>
+                </ul>
+                <p>Note: You must have a defualt email application set for the email and PM update features to work.</p>
+            </div>
+        )
+    }
     
     render() {
         return (
@@ -105,7 +125,8 @@ export default class EmailPage extends React.Component {
                 <main className="content">
                     <Header title={'Email Templates'} />
                     <div className={styles.pageContainer}>
-                        <div className={styles.templateContainer}>
+                        {this.context.templates.length === 0 ? this.renderTemplateInstructions() : 
+                        (<div className={styles.templateContainer}>
                             <div className={styles.templateList}>
                                 {this.renderTemplateTabs()}
                             </div>
@@ -143,7 +164,7 @@ export default class EmailPage extends React.Component {
                                     </div>
                                 </form> }
                             </div>
-                            </div>
+                            </div>)}
                         <Link to='/new-template'><Button className={styles.newButton}>+ New Template</Button></Link>
                     </div>
                 </main>

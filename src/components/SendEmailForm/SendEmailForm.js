@@ -2,6 +2,7 @@ import React from 'react';
 import AppContext from '../../contexts/contexts'
 import { Select, Input } from '../Utils/Utils'
 
+import listStyles from '../../routes/MainListPage/MainListPage.module.css'
 import styles from './SendEmailForm.module.css'
 
 export default class SendEmailForm extends React.Component {
@@ -53,7 +54,8 @@ export default class SendEmailForm extends React.Component {
                         <button onClick={this.props.closeEmailForm}  className={styles.xButton}><i className="fas fa-times"></i></button>
                         <h3 className={styles.title}>Send Email</h3>
                     </div>
-                    <form>
+                    {this.context.templates.length === 0 ? <p>You have no templates saved! You can create new templates in the <span className={listStyles.tabStyle}><i className="fas fa-envelope"></i> Templates</span> tab.</p> :
+                    (<form>
                         <div>
                             <label htmlFor="template">Template: </label>
                             <Select name="template" id="template" onChange={this.handleSelectChange}>
@@ -70,8 +72,8 @@ export default class SendEmailForm extends React.Component {
                             <p className={styles.templateBody}>{this.state.selectedTemplate !== '' ? this.formatTemplateBody() : ''}</p>
                         </div>
                         
-                        {this.state.selectedTemplate !== '' && <a href={`mailto:?Subject=${this.state.selectedTemplate !== '' ? this.context.templates[this.state.selectedTemplate].template_subject : ''}&Body=${this.state.selectedTemplate !== '' ? this.formatTemplateForEmail() : ''}`} className={styles.link}>Open in Outlook</a>}
-                    </form>
+                        {this.state.selectedTemplate !== '' && <a href={`mailto:?Subject=${this.state.selectedTemplate !== '' ? this.context.templates[this.state.selectedTemplate].template_subject : ''}&Body=${this.state.selectedTemplate !== '' ? this.formatTemplateForEmail() : ''}`} className={styles.link}>Open Email</a>}
+                    </form>)}
                 </main>
                 <div className={styles.overlay} onClick={this.props.closeEmailForm}></div>
             </div>
