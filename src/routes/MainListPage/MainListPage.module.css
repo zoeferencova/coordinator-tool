@@ -49,3 +49,9 @@
     color: white;
     border: 1px solid #7fba84;
 }
+
+@media only screen and (max-width: 800px) {
+    .instructions {
+        padding: 10px 5px;
+    }
+}

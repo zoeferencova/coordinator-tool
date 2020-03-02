@@ -16,6 +16,18 @@
     border: 1px solid #afb9bd;
 }
 
+.button:disabled {
+    color: #b5b5b5;
+    background-color: #e8e8e8;
+    border-color: white;
+}
+
+.button:disabled:hover {
+    color: #b5b5b5;
+    background-color: #e8e8e8;
+    border-color: white;
+}
+
 .button a {
     text-decoration: none;
     color: black;

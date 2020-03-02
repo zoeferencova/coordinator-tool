@@ -162,9 +162,9 @@ export default class MainListPage extends React.Component {
 
     renderNoItemMessage = () => {
         const nonCompletedItems = this.context.listItems.filter(item => item.status !== 'completed')
-        if (nonCompletedItems.length === 0 && this.context.pms.length > 0) {
+        if (nonCompletedItems.length === 0 && this.context.completedListItems.length > 0) {
             return <p>You have no items to do! :)</p>
-        } else if (nonCompletedItems.length === 0 && this.context.pms.length === 0) {
+        } else if (nonCompletedItems.length === 0 && this.context.completedListItems.length === 0) {
             return (
             <div className={styles.instructions}>
                 <p>Welcome to the coordinator tool! Here's how to get started:</p>
