@@ -163,7 +163,7 @@ export default class MainListPage extends React.Component {
     renderNoItemMessage = () => {
         const nonCompletedItems = this.context.listItems.filter(item => item.status !== 'completed')
         if (nonCompletedItems.length === 0 && this.context.completedListItems.length > 0) {
-            return <p>You have no items to do! :)</p>
+            return <p>You have no items to do! <i class="far fa-smile"></i></p>
         } else if (nonCompletedItems.length === 0 && this.context.completedListItems.length === 0) {
             return (
             <div className={styles.instructions}>

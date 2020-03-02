@@ -64,6 +64,10 @@
     margin-right: 5px;
 }
 
+.textArea {
+    min-height: 300px;
+}
+
 
 .input {
     width: 300px;

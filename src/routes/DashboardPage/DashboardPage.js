@@ -105,7 +105,7 @@ export default class DashboardPage extends React.Component {
                                 <PieChartWrapper />
                             </section>
                             <section className={`${styles.dashboardContainer} ${styles.chartContainer}`}>
-                                <h2>Completed Requests</h2>
+                                <h2>{`${(this.state.type).charAt(0).toUpperCase() + this.state.type.slice(1)} Requests`}</h2>
                                 <div className={styles.radioContainer}>
                                     <form className={styles.typeRadio}>
                                         <input className={styles.radioButton} type="radio" name="type" id="created" value="created" defaultChecked="checked" onChange={e => this.changeType(e.target.value)}></input>
