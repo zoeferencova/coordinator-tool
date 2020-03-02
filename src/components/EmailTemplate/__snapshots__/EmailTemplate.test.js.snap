@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EmailTemplate component renders a .EmailTemplate by default 1`] = `
+<div>
+  <div
+    className="templateItem current"
+    onClick={[Function]}
+  />
+</div>
+`;

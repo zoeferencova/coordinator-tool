@@ -1,0 +1,79 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MainListBody component renders a .MainListBody by default 1`] = `
+<div
+  className="table"
+>
+  <div
+    className="tableHeader"
+  >
+    <div
+      className="tableHeaderCell hideMobile check"
+    >
+      <input
+        id="header-checkbox"
+        onChange={[Function]}
+        type="checkbox"
+      />
+    </div>
+    <div
+      className="tableHeaderCell project"
+    >
+      Project 
+      <i
+        className="fas fa-sort"
+        onClick={[Function]}
+      />
+    </div>
+    <div
+      className="tableHeaderCell advisor"
+    >
+      Advisor 
+      <i
+        className="fas fa-sort"
+        onClick={[Function]}
+      />
+    </div>
+    <div
+      className="tableHeaderCell hideMobile"
+    >
+      PM 
+      <i
+        className="fas fa-sort"
+        onClick={[Function]}
+      />
+    </div>
+    <div
+      className="tableHeaderCell hideMobile"
+    >
+      Date 
+      <i
+        className="fas fa-sort"
+        onClick={[Function]}
+      />
+    </div>
+    <div
+      className="tableHeaderCell hideMobile"
+    >
+      Notes
+    </div>
+    <div
+      className="tableHeaderCell status"
+    >
+      Status 
+      <i
+        className="fas fa-sort"
+        onClick={[Function]}
+      />
+    </div>
+    <div
+      className="tableHeaderCell actions hideMobile"
+    >
+      Actions
+    </div>
+    <div
+      className="tableHeaderCell mobileActions hideDesktop"
+    />
+  </div>
+</div>
+`;

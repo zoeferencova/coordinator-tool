@@ -4,6 +4,8 @@ import Header from '../../components/Header/Header'
 import AppContext from '../../contexts/contexts'
 import NavBar from '../../components/NavBar/NavBar';
 import { Button, Input } from '../../components/Utils/Utils'
+import TokenService from '../../services/token-service'
+import { Link } from 'react-router-dom';
 
 import config from '../../config'
 
@@ -43,7 +45,7 @@ export default class AccountPage extends React.Component {
 
     handleDeletePm = (e) => {
         e.preventDefault()
-        if (window.confirm('Are you sure you wish to delete this PM?')) {
+        if (window.confirm('Are you sure you wish to delete this PM? All list items associated with this PM will also be deleted.')) {
             const pmId = ReactDOM.findDOMNode(e.target).getAttribute('pmid')
             fetch(`${config.API_ENDPOINT}/pms/${pmId}`, {
                 method: 'DELETE',
@@ -94,6 +96,11 @@ export default class AccountPage extends React.Component {
     closeInstructions = () => {
         this.setState({ userGuide: false })
     }
+
+    handleLogout = () => {
+        TokenService.clearAuthToken();
+        this.context.setLoggedIn(false)
+    }
     
     render() {
         return (
@@ -107,6 +114,7 @@ export default class AccountPage extends React.Component {
                             <p className={styles.name}>{this.context.user.full_name}</p>
                             <p className={styles.email}>{this.context.user.email}</p>
                             <Button onClick={() => this.setState({ userGuide: true })}>User Guide</Button>
+                            <Link to='/'><Button onClick={this.handleLogout}>Log Out</Button></Link>
                         </section>
                         <section className={`${styles.pmSettings} ${styles.accountContainer}`}>
                             <h2>PM Settings</h2>

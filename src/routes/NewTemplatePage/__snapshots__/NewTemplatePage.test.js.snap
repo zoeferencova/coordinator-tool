@@ -1,0 +1,83 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`NewTemplatePage component renders a .NewTemplatePage by default 1`] = `
+<div
+  className="container"
+>
+  <main
+    className="content"
+  >
+    <Header
+      title="New Template"
+    />
+    <form
+      onSubmit={[Function]}
+    >
+      <div>
+        <label
+          htmlFor="template_name"
+        >
+          Name: 
+        </label>
+        <Input
+          className="input"
+          id="template_name"
+          name="template_name"
+          type="text"
+        />
+      </div>
+      <div>
+        <label
+          htmlFor="template_subject"
+        >
+          Subject: 
+        </label>
+        <Input
+          className="input"
+          id="template_subject"
+          name="template_subject"
+          type="text"
+        />
+      </div>
+      <br />
+      <div
+        className="textAreaSection"
+      >
+        <label
+          className="textAreaLabel"
+          htmlFor="template_content"
+        >
+          Body: 
+        </label>
+        <Textarea
+          className="textArea"
+          id="template_content"
+          name="template_content"
+        />
+      </div>
+      <p
+        className="instructions"
+      >
+        Note: For template functionality, use [ADVISOR] for advisor name, [PROJECT] for project name, and [PM] for PM name.
+      </p>
+      <div>
+        <Link
+          to="/email"
+        >
+          <Button>
+            Cancel
+          </Button>
+        </Link>
+        <Button
+          type="submit"
+        >
+          Create Template
+        </Button>
+      </div>
+    </form>
+  </main>
+  <NavBar
+    className="nav"
+  />
+</div>
+`;

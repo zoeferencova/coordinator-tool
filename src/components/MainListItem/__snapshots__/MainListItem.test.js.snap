@@ -1,0 +1,173 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MainListItem component renders a .MainListItem by default 1`] = `
+<div
+  className="tableRow"
+>
+  <div
+    className="tableBodyCell hideMobile check"
+  >
+    <input
+      id="list-checkbox"
+      onChange={[Function]}
+      type="checkbox"
+    />
+  </div>
+  <div
+    className="tableBodyCell project"
+  >
+    <a
+      rel="noopener noreferrer"
+      target="_blank"
+    />
+  </div>
+  <div
+    className="tableBodyCell advisor"
+  >
+    <a
+      rel="noopener noreferrer"
+      target="_blank"
+    />
+  </div>
+  <div
+    className="tableBodyCell hideMobile pm"
+  />
+  <div
+    className="tableBodyCell hideMobile date"
+  />
+  <div
+    className="tableBodyCell hideMobile notes"
+  />
+  <div
+    className="tableBodyCell status"
+  >
+    <select
+      className="statusSelect "
+      onChange={[Function]}
+    >
+      <option
+        value="none"
+      />
+      <option
+        value="reached"
+      >
+        Pending
+      </option>
+      <option
+        value="completed"
+      >
+        Completed
+      </option>
+    </select>
+  </div>
+  <div
+    className="tableBodyCell hideMobile actions"
+  >
+    <button
+      className="icon"
+      onClick={[Function]}
+    >
+      <i
+        className="fas fa-envelope"
+      />
+    </button>
+    <Link
+      to={
+        Object {
+          "itemProps": Object {
+            "advisor": undefined,
+            "notes": undefined,
+            "pm_name": undefined,
+            "project": undefined,
+          },
+          "pathname": "/edit-item/undefined",
+        }
+      }
+    >
+      <button
+        className="icon"
+      >
+        <i
+          className="fas fa-edit"
+        />
+      </button>
+    </Link>
+    <button
+      className="icon"
+      onClick={[Function]}
+    >
+      <i
+        className="fas fa-trash"
+      />
+    </button>
+  </div>
+  <div
+    className="tableBodyCell hideDesktop mobileActions"
+  >
+    <div
+      onClick={[Function]}
+    >
+      <i
+        className="fas fa-ellipsis-h pointer"
+      />
+    </div>
+    <div
+      className="popup hidden"
+    >
+      <div
+        className="popupOverlay"
+        onClick={[Function]}
+      />
+      <div
+        className="popupContainer"
+      >
+        <div>
+          <div>
+            PM: 
+          </div>
+          <div>
+            Date: 
+          </div>
+          <div
+            className="pointer"
+            onClick={[Function]}
+          >
+            Email...
+          </div>
+          <Link
+            to={
+              Object {
+                "itemProps": Object {
+                  "advisor": undefined,
+                  "notes": undefined,
+                  "pm_name": undefined,
+                  "project": undefined,
+                },
+                "pathname": "/edit-item/undefined",
+              }
+            }
+          >
+            <div
+              className="popupLink"
+            >
+              Edit...
+            </div>
+          </Link>
+          <div
+            className="last pointer"
+            onClick={[Function]}
+          >
+            Delete
+          </div>
+        </div>
+        <div
+          className="cancel pointer"
+          onClick={[Function]}
+        >
+          Cancel
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
