@@ -31,7 +31,7 @@ The coordinator tool makes tracking reach-outs and organizing tasks extremely ea
 
 ![Account Page](src/images/account-screenshot.png)
 
-## Technology Used
+## Technologies Used
 
 ### Front-end:
 * React with CSS Modules
