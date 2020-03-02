@@ -1,11 +1,15 @@
-import React from 'react';
-import { shallow } from 'enzyme'
-import toJson from 'enzyme-to-json'
+import React from 'react'
+import ReactDOM from 'react-dom'
 import Header from './Header'
+import { BrowserRouter } from 'react-router-dom'
 
-describe(`Header component`, () => {
-  it('renders a .Header by default', () => {
-    const wrapper = shallow(<Header />)
-    expect(toJson(wrapper)).toMatchSnapshot()
-  })
+it('renders without crashing', () => {
+  const div = document.createElement('div')
+  ReactDOM.render(
+    <BrowserRouter>
+        <Header />
+    </BrowserRouter>,
+    div
+  )
+  ReactDOM.unmountComponentAtNode(div)
 })

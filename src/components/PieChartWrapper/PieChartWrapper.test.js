@@ -1,11 +1,15 @@
-import React from 'react';
-import { shallow } from 'enzyme'
-import toJson from 'enzyme-to-json'
+import React from 'react'
+import ReactDOM from 'react-dom'
 import PieChartWrapper from './PieChartWrapper'
+import { BrowserRouter } from 'react-router-dom'
 
-describe(`PieChartWrapper component`, () => {
-  it('renders a .PieChartWrapper by default', () => {
-    const wrapper = shallow(<PieChartWrapper />)
-    expect(toJson(wrapper)).toMatchSnapshot()
-  })
+it('renders without crashing', () => {
+  const div = document.createElement('div')
+  ReactDOM.render(
+    <BrowserRouter>
+        <PieChartWrapper />
+    </BrowserRouter>,
+    div
+  )
+  ReactDOM.unmountComponentAtNode(div)
 })

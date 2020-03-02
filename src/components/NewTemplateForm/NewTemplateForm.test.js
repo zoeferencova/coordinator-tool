@@ -1,11 +1,15 @@
-import React from 'react';
-import { shallow } from 'enzyme'
-import toJson from 'enzyme-to-json'
+import React from 'react'
+import ReactDOM from 'react-dom'
 import NewTemplateForm from './NewTemplateForm'
+import { BrowserRouter } from 'react-router-dom'
 
-describe(`NewTemplateForm component`, () => {
-  it('renders a .NewTemplateForm by default', () => {
-    const wrapper = shallow(<NewTemplateForm />)
-    expect(toJson(wrapper)).toMatchSnapshot()
-  })
+it('renders without crashing', () => {
+  const div = document.createElement('div')
+  ReactDOM.render(
+    <BrowserRouter>
+        <NewTemplateForm />
+    </BrowserRouter>,
+    div
+  )
+  ReactDOM.unmountComponentAtNode(div)
 })

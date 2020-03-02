@@ -1,11 +1,15 @@
-import React from 'react';
-import { shallow } from 'enzyme'
-import toJson from 'enzyme-to-json'
+import React from 'react'
+import ReactDOM from 'react-dom'
 import ChartWrapper from './ChartWrapper'
+import { BrowserRouter } from 'react-router-dom'
 
-describe(`Chart Wrapper component`, () => {
-  it('renders a .ChartWrapper by default', () => {
-    const wrapper = shallow(<ChartWrapper />)
-    expect(toJson(wrapper)).toMatchSnapshot()
-  })
+it('renders without crashing', () => {
+  const div = document.createElement('div')
+  ReactDOM.render(
+    <BrowserRouter>
+        <ChartWrapper />
+    </BrowserRouter>,
+    div
+  )
+  ReactDOM.unmountComponentAtNode(div)
 })

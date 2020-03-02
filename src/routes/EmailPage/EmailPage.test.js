@@ -1,18 +1,15 @@
-import React from 'react';
-import { shallow } from 'enzyme'
-import toJson from 'enzyme-to-json'
+import React from 'react'
+import ReactDOM from 'react-dom'
 import EmailPage from './EmailPage'
-import AppContext from '../../contexts/contexts'
+import { BrowserRouter } from 'react-router-dom'
 
-describe(`EmailPage component`, () => {
-  it('renders a .EmailPage by default', () => {
-    const context = { templates: [{
-        id: 24,
-        template_content: "hi",
-        template_name: "hi",
-        template_subject: "hi",
-        user_id: 8}] }
-    const wrapper = shallow(<EmailPage />, { context })
-    expect(toJson(wrapper)).toMatchSnapshot()
-  })
+it('renders without crashing', () => {
+  const div = document.createElement('div')
+  ReactDOM.render(
+    <BrowserRouter>
+        <EmailPage />
+    </BrowserRouter>,
+    div
+  )
+  ReactDOM.unmountComponentAtNode(div)
 })

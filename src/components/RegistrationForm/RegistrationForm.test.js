@@ -1,11 +1,15 @@
-import React from 'react';
-import { shallow } from 'enzyme'
-import toJson from 'enzyme-to-json'
+import React from 'react'
+import ReactDOM from 'react-dom'
 import RegistrationForm from './RegistrationForm'
+import { BrowserRouter } from 'react-router-dom'
 
-describe(`RegistrationForm component`, () => {
-  it('renders a .RegistrationForm by default', () => {
-    const wrapper = shallow(<RegistrationForm />)
-    expect(toJson(wrapper)).toMatchSnapshot()
-  })
+it('renders without crashing', () => {
+  const div = document.createElement('div')
+  ReactDOM.render(
+    <BrowserRouter>
+        <RegistrationForm />
+    </BrowserRouter>,
+    div
+  )
+  ReactDOM.unmountComponentAtNode(div)
 })

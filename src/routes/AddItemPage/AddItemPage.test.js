@@ -1,11 +1,15 @@
-import React from 'react';
-import { shallow } from 'enzyme'
-import toJson from 'enzyme-to-json'
+import React from 'react'
+import ReactDOM from 'react-dom'
 import AddItemPage from './AddItemPage'
+import { BrowserRouter } from 'react-router-dom'
 
-describe(`AddItemPage component`, () => {
-  it('renders a .AddItemPage by default', () => {
-    const wrapper = shallow(<AddItemPage />)
-    expect(toJson(wrapper)).toMatchSnapshot()
-  })
+it('renders without crashing', () => {
+  const div = document.createElement('div')
+  ReactDOM.render(
+    <BrowserRouter>
+        <AddItemPage />
+    </BrowserRouter>,
+    div
+  )
+  ReactDOM.unmountComponentAtNode(div)
 })

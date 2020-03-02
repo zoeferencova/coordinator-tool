@@ -11,11 +11,11 @@ export default class NewTemplateForm extends React.Component {
                     <h3>New Template Form</h3>
                     <div>
                         <label htmlFor="template_name">Name: </label>
-                        <Input type="text" class="block" id="template_name"></Input>
+                        <Input type="text" className="block" id="template_name"></Input>
                     </div>
                     <div>
                         <label htmlFor="template_subject">Subject: </label>
-                        <Input type="text" class="block" id="template_subject"></Input>
+                        <Input type="text" className="block" id="template_subject"></Input>
                     </div>
                     <div>
                         <label htmlFor="template_body">Body: </label>

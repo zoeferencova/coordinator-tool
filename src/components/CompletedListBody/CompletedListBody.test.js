@@ -1,15 +1,18 @@
-import React from 'react';
-import { shallow } from 'enzyme'
-import toJson from 'enzyme-to-json'
+import React from 'react'
+import ReactDOM from 'react-dom'
 import CompletedListBody from './CompletedListBody'
+import { BrowserRouter } from 'react-router-dom'
 
-describe(`Completed List Body component`, () => {
+it('renders without crashing', () => {
+  const div = document.createElement('div')
   const props = {
     renderCompletedItems: () => {}
   }
-
-  it('renders a .CompletedListbody by default', () => {
-    const wrapper = shallow(<CompletedListBody {...props} />)
-    expect(toJson(wrapper)).toMatchSnapshot()
-  })
+  ReactDOM.render(
+    <BrowserRouter>
+        <CompletedListBody {...props} />
+    </BrowserRouter>,
+    div
+  )
+  ReactDOM.unmountComponentAtNode(div)
 })

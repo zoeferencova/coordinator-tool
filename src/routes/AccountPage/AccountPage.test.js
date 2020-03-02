@@ -1,11 +1,15 @@
-import React from 'react';
-import { shallow } from 'enzyme'
-import toJson from 'enzyme-to-json'
+import React from 'react'
+import ReactDOM from 'react-dom'
 import AccountPage from './AccountPage'
+import { BrowserRouter } from 'react-router-dom'
 
-describe(`AccountPage component`, () => {
-  it('renders a .AccountPage by default', () => {
-    const wrapper = shallow(<AccountPage />)
-    expect(toJson(wrapper)).toMatchSnapshot()
-  })
+it('renders without crashing', () => {
+  const div = document.createElement('div')
+  ReactDOM.render(
+    <BrowserRouter>
+        <AccountPage />
+    </BrowserRouter>,
+    div
+  )
+  ReactDOM.unmountComponentAtNode(div)
 })

@@ -1,11 +1,15 @@
-import React from 'react';
-import { shallow } from 'enzyme'
-import toJson from 'enzyme-to-json'
+import React from 'react'
+import ReactDOM from 'react-dom'
 import EmailTemplateWindow from './EmailTemplateWindow'
+import { BrowserRouter } from 'react-router-dom'
 
-describe(`EmailTemplate component`, () => {
-  it('renders a .EmailTemplateWindow by default', () => {
-    const wrapper = shallow(<EmailTemplateWindow />)
-    expect(toJson(wrapper)).toMatchSnapshot()
-  })
+it('renders without crashing', () => {
+  const div = document.createElement('div')
+  ReactDOM.render(
+    <BrowserRouter>
+        <EmailTemplateWindow />
+    </BrowserRouter>,
+    div
+  )
+  ReactDOM.unmountComponentAtNode(div)
 })

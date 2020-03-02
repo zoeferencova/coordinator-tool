@@ -1,11 +1,15 @@
-import React from 'react';
-import { shallow } from 'enzyme'
-import toJson from 'enzyme-to-json'
+import React from 'react'
+import ReactDOM from 'react-dom'
 import MainListItem from './MainListItem'
+import { BrowserRouter } from 'react-router-dom'
 
-describe(`MainListItem component`, () => {
-  it('renders a .MainListItem by default', () => {
-    const wrapper = shallow(<MainListItem />)
-    expect(toJson(wrapper)).toMatchSnapshot()
-  })
+it('renders without crashing', () => {
+  const div = document.createElement('div')
+  ReactDOM.render(
+    <BrowserRouter>
+        <MainListItem />
+    </BrowserRouter>,
+    div
+  )
+  ReactDOM.unmountComponentAtNode(div)
 })
