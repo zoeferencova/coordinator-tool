@@ -33,15 +33,8 @@ The coordinator tool makes tracking reach-outs and organizing tasks extremely ea
 
 ## Technologies Used
 
-### Front-end:
 * React with CSS Modules
 * D3 for visualizations
-
-### Back-end:
-* Node.js with Express
-* PostgreSQL with Knex
-* JWT for authentication
-* Mocha for testing
 
 ## Demo Account
 
