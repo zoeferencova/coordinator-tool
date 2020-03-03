@@ -43,7 +43,7 @@ export default class AddItemPage extends React.Component {
         e.preventDefault();
         for (let i=0; i < this.state.numberOfContactInputs; i++) {
             const project = e.target.project.value.trim();
-            const project_url = e.target.project_url.value.includes('https://' || 'http://') ? e.target.project_url.value : `https://${e.target.project_url.value}`;
+            const project_url = (!e.target.project_url.value.includes('https://' || 'http://') && e.target.project_url.value.length !== 0) ? `https://${e.target.project_url.value}` :  e.target.project_url.value;
             const contact = document.getElementById(`contact${i}`).value.trim();
             const contact_url = document.getElementById(`contact${i}_url`).value;
             const pm = this.context.pms.find(pm => pm.pm_name === e.target.pm.value);
