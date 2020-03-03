@@ -95,29 +95,29 @@ export default class EditItemPage extends React.Component {
                     {this.state.error && <p>{this.state.error}</p>}
                     <form onSubmit={e => this.handlePatchItem(e)}>
                         <div className={styles.formSection}>
-                            <div>
-                                <label htmlFor="project">Project Name: </label>
-                                <Input type="text" name='project' id='project' defaultValue={this.state.inputValues.project|| ''} onChange={e => this.handleChangeProject(e.target.value.trim())}></Input>
+                            <div className={styles.formPair}>
+                                <label htmlFor="project">Project Name</label>
+                                <Input required type="text" name='project' id='project' defaultValue={this.state.inputValues.project|| ''} onChange={e => this.handleChangeProject(e.target.value.trim())}></Input>
                             </div>
-                            <div>
-                                <label htmlFor="project_url">Project URL: </label>
+                            <div className={styles.formPair}>
+                                <label htmlFor="project_url">Project URL (optional)</label>
                                 <Input type="text" name='project_url' id='project_url' defaultValue={this.state.inputValues.project_url || ''} onChange={e => this.handleChangeProjectURL(e.target.value)}></Input>
                             </div>
                         </div>
                         <div className={styles.formSection}>
-                            <div>
-                                <label htmlFor="adv-name">Advisor Name: </label>
-                                <Input type="text" name='adv-name' id='adv-name' defaultValue={this.state.inputValues.advisor || ''} onChange={e => this.handleChangeAdvisor(e.target.value.trim())}></Input>
+                            <div className={styles.formPair}>
+                                <label htmlFor="adv-name">Advisor Name</label>
+                                <Input required type="text" name='adv-name' id='adv-name' defaultValue={this.state.inputValues.advisor || ''} onChange={e => this.handleChangeAdvisor(e.target.value.trim())}></Input>
                             </div>
-                            <div>
-                                <label htmlFor="adv-url">Advisor URL: </label>
+                            <div className={styles.formPair}>
+                                <label htmlFor="adv-url">Advisor URL (optional)</label>
                                 <Input type="text" name='adv-url' id='adv-url' defaultValue={this.state.inputValues.advisor_url || ''} onChange={e => this.handleChangeAdvisorURL(e.target.value)}></Input>
                             </div>
                         </div>
                         
                         <div className={styles.pm}>
                             <label htmlFor="pm">Project Manager: </label>
-                            <Select name="pm" id="pm" value={this.state.inputValues.pm_name} onChange={e => this.handleChangePm(e.target.value)}>
+                            <Select required name="pm" id="pm" value={this.state.inputValues.pm_name} onChange={e => this.handleChangePm(e.target.value)}>
                                 <option value={'none'}></option>
                                 {this.context.pms.map(pm => 
                                         <option value={pm.pm_name} key={pm.id}>{pm.pm_name}</option>

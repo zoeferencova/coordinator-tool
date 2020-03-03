@@ -20,12 +20,12 @@ export default class AddItemPage extends React.Component {
         const { numberOfAdvisorInputs } = this.state;
         const arr = []
         for (let i=0; i < numberOfAdvisorInputs; i++) {
-            arr.push(<div key={i} className={styles.formSection}><div>
-                <label htmlFor={`advisor${i}`}>Advisor Name: </label>
-                <Input type="text" name={`advisor${i}`} id={`advisor${i}`}></Input>
+            arr.push(<div key={i} className={styles.formSection}><div className={styles.formPair}>
+                <label htmlFor={`advisor${i}`}>Advisor Name</label>
+                <Input required={i === 0 ? true : false} type="text" name={`advisor${i}`} id={`advisor${i}`}></Input>
             </div>
-            <div>
-                <label htmlFor={`advisor${i}_url`}>Advisor URL: </label>
+            <div className={styles.formPair}>
+                <label htmlFor={`advisor${i}_url`}>Advisor URL (optional)</label>
                 <Input type="text" name={`advisor${i}_url`} id={`advisor${i}_url`}></Input>
             </div></div>)
         }
@@ -52,25 +52,26 @@ export default class AddItemPage extends React.Component {
             const notes = e.target.notes.value;
             
             const item = { project, project_url, advisor, advisor_url, pm_id, notes, status: 'none' }
-            
-            fetch(`${config.API_ENDPOINT}/list`, {
-                method: 'POST',
-                headers: {
-                    'content-type': 'application/json',
-                    'Authorization': `Bearer ${window.sessionStorage.getItem(config.TOKEN_KEY)}`
-                },
-                body: JSON.stringify(item)
-            })
-                .then(res => 
-                    (!res.ok)
-                        ? res.json().then(e => Promise.reject(e))
-                        : res.json()
-                )
-                .then(item => this.handlePostSuccess(item))
-                .catch(res => {
-                    this.setState({ error: res.error.message })
+            if (item.advisor !== '') {
+                fetch(`${config.API_ENDPOINT}/list`, {
+                    method: 'POST',
+                    headers: {
+                        'content-type': 'application/json',
+                        'Authorization': `Bearer ${window.sessionStorage.getItem(config.TOKEN_KEY)}`
+                    },
+                    body: JSON.stringify(item)
                 })
+                    .then(res => 
+                        (!res.ok)
+                            ? res.json().then(e => Promise.reject(e))
+                            : res.json()
+                    )
+                    .then(item => this.handlePostSuccess(item))
+                    .catch(res => {
+                        this.setState({ error: res.error.message })
+                    })
             }
+        }
     }
 
     handlePostSuccess = (item) => {
@@ -91,12 +92,12 @@ export default class AddItemPage extends React.Component {
                     {this.state.error && <p>{this.state.error}</p>}
                     <form onSubmit={e => this.handlePostItem(e)}>
                         <div className={styles.formSection}>
-                            <div>
-                                <label htmlFor="project">Project Name: </label>
-                                <Input type="text" name='project' id='project'></Input>
+                            <div className={styles.formPair}>
+                                <label htmlFor="project">Project Name</label>
+                                <Input required type="text" name='project' id='project'></Input>
                             </div>
-                            <div>
-                                <label htmlFor="project_url">Project URL: </label>
+                            <div className={styles.formPair}>
+                                <label htmlFor="project_url">Project URL (optional)</label>
                                 <Input type="text" name='project_url' id='project_url'></Input>
                             </div>
                         </div>
@@ -104,7 +105,7 @@ export default class AddItemPage extends React.Component {
                         <Button onClick={e => this.setAdvisorInputNumber(e)}>+ Additional Advisors</Button>
                         <div className={styles.pm}>
                             <label htmlFor="pm">Project Manager: </label>
-                            <Select name="pm" id="pm" >
+                            <Select required name="pm" id="pm" >
                                 <option value='none'></option>
                                 {this.context.pms.map(pm => 
                                      <option value={pm.pm_name} key={pm.id}>{pm.pm_name}</option>

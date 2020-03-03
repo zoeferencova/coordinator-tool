@@ -1,11 +1,18 @@
 .formSection {
     display: flex;
     justify-content: center;
-    padding: 15px;
+    margin-bottom: 18px;
 }
 
-.formSection label {
-    margin-left: 10px;
+.formPair {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    margin: 0px 10px;
+}
+
+.formPair label {
+    margin-bottom: 5px;
 }
 
 .notesLabel {
@@ -20,4 +27,5 @@
 
 .pm {
     margin-top: 30px;
+    margin-bottom: 20px;
 }
