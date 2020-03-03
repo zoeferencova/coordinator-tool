@@ -46,12 +46,13 @@ export default class AddItemPage extends React.Component {
             const project_url = (!e.target.project_url.value.includes('https://' || 'http://') && e.target.project_url.value.length !== 0) ? `https://${e.target.project_url.value}` :  e.target.project_url.value;
             const contact = document.getElementById(`contact${i}`).value.trim();
             const contact_url = document.getElementById(`contact${i}_url`).value;
+            const fixedContactUrl = (!contact_url.includes('https://' || 'http://') && contact_url.length !== 0) ? `https://${contact_url}` :  contact_url;
             const pm = this.context.pms.find(pm => pm.pm_name === e.target.pm.value);
             let pm_id;
             pm === undefined ? pm_id = '' : pm_id = pm.id;
             const notes = e.target.notes.value;
             
-            const item = { project, project_url, contact, contact_url, pm_id, notes, status: 'none' }
+            const item = { project, project_url, contact, contact_url: fixedContactUrl, pm_id, notes, status: 'none' }
             if (item.contact !== '') {
                 fetch(`${config.API_ENDPOINT}/list`, {
                     method: 'POST',

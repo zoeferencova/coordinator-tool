@@ -35,8 +35,10 @@ export default class EditItemPage extends React.Component {
         pm === undefined ? pmId = '' : pmId = pm.id;
         const updateValues = {...this.state.inputValues, pm_id: pmId }
         const fixedProjectUrl = (!this.state.inputValues.project_url.includes('https://' || 'http://') && this.state.inputValues.project_url.length !== 0) ? `https://${this.state.inputValues.project_url}` :  this.state.inputValues.project_url;
+        const fixedContactUrl = (!this.state.inputValues.contact_url.includes('https://' || 'http://') && this.state.inputValues.contact_url.length !== 0) ? `https://${this.state.inputValues.contact_url}` :  this.state.inputValues.contact_url;
         updateValues.project_url = fixedProjectUrl;
-        this.setState({ inputValues: {...this.state.inputValues, project_url: fixedProjectUrl} })
+        updateValues.contact_url = fixedContactUrl;
+        this.setState({ inputValues: {...this.state.inputValues, project_url: fixedProjectUrl, contact_url: fixedContactUrl} })
 
         delete updateValues.pm_name;
         delete updateValues.pm_email;
