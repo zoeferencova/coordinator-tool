@@ -1,6 +1,6 @@
 import React from 'react';
 import AppContext from '../../contexts/contexts'
-import { Select, Input } from '../Utils/Utils'
+import { Select } from '../Utils/Utils'
 
 import listStyles from '../../routes/MainListPage/MainListPage.module.css'
 import styles from './SendEmailForm.module.css'
@@ -32,6 +32,15 @@ export default class SendEmailForm extends React.Component {
         const numWords = word => splitWord(word).length;
         const formattedTemplate = unformattedTemplate.replace('[PROJECT]', (splitWord(project)[numWords(project) - 1] === 'Space' || splitWord(project)[numWords(project) - 1] === 'Industry') ? `the ${project}` : project).replace('[PM]', pm_name).replace('[CONTACT]', this.state.doctor ? `Dr. ${splitWord(contact)[numWords(contact) - 1]}` : splitWord(contact)[0]);
         return formattedTemplate;
+    }
+
+    formatTemplateSubject = () => {
+        const unformattedSubject = this.context.templates[this.state.selectedTemplate].template_subject;
+        const { project, contact, pm_name } = this.props;
+        const splitWord = word => word.split(' ');
+        const numWords = word => splitWord(word).length;
+        const formattedSubject = unformattedSubject.replace('[PROJECT]', (splitWord(project)[numWords(project) - 1] === 'Space' || splitWord(project)[numWords(project) - 1] === 'Industry') ? `the ${project}` : project).replace('[PM]', pm_name).replace('[CONTACT]', this.state.doctor ? `Dr. ${splitWord(contact)[numWords(contact) - 1]}` : splitWord(contact)[0]);
+        return formattedSubject;
     }
 
     formatTemplateForEmail = () => {
@@ -72,7 +81,7 @@ export default class SendEmailForm extends React.Component {
                             <p className={styles.templateBody}>{this.state.selectedTemplate !== '' ? this.formatTemplateBody() : ''}</p>
                         </div>
                         
-                        {this.state.selectedTemplate !== '' && <a target="_blank" href={`mailto:?Subject=${this.state.selectedTemplate !== '' ? this.context.templates[this.state.selectedTemplate].template_subject : ''}&Body=${this.state.selectedTemplate !== '' ? this.formatTemplateForEmail() : ''}`} className={styles.link}>Open Email</a>}
+                        {this.state.selectedTemplate !== '' && <a target="_blank" href={`mailto:?Subject=${this.state.selectedTemplate !== '' ? this.formatTemplateSubject() : ''}&Body=${this.state.selectedTemplate !== '' ? this.formatTemplateForEmail() : ''}`} className={styles.link}>Open Email</a>}
                     </form>)}
                 </main>
                 <div className={styles.overlay} onClick={this.props.closeEmailForm}></div>
