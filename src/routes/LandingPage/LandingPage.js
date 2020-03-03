@@ -25,7 +25,7 @@ export default class LandingPage extends React.Component {
                 <section className={`${styles.section} ${styles.section1}`}>
                     <div className={styles.sectionContent}>
                         <h3 className={styles.sectionHeader}>All of your tasks in one place</h3>
-                        <p className={styles.text}>Keep track of advisors that you reach out to and projects that you are assisting on using the main task list.</p>
+                        <p className={styles.text}>Keep track of contacts that you reach out to and projects that you are assisting on using the main task list.</p>
                     </div>
                     <div className={styles.deviceMacbook}>
                         <img className={styles.list} src={require('../../images/list2.png')}></img>
@@ -38,7 +38,7 @@ export default class LandingPage extends React.Component {
                         <img className={styles.iphone} src={require('../../images/iphonex.svg')}></img>
                     </div>
                     <div className={styles.sectionContent}>
-                        <h3 className={styles.sectionHeader}>Automate PM update emails and email advisors using smart templates</h3>
+                        <h3 className={styles.sectionHeader}>Automate PM update emails and email contacts using smart templates</h3>
                         <p className={styles.text}>Never write an email again! Compose emails with one click using the Outlook email generator tools.</p>
                     </div>
                 </section>

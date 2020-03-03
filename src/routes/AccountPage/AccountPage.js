@@ -145,7 +145,7 @@ export default class AccountPage extends React.Component {
                                     <ol>
                                         <li>Add your Project Manager names and emails in the <span className={listStyles.tabStyle}><i className="fas fa-user-circle"></i> Account</span> tab PM Settings section.</li>
                                         <li>Create some email templates in the <span className={listStyles.tabStyle}><i className="fas fa-envelope"></i> Templates</span> tab.</li>
-                                        <li>Add your first list item! Use the <span className={listStyles.addButtonStyle}>+ Add Item</span> button to start adding list items. You can include URL's for the CRM advisor or project page which will link the list item values to the external pages for quick navigation in the future.</li>
+                                        <li>Add your first list item! Use the <span className={listStyles.addButtonStyle}>+ Add Item</span> button to start adding list items. You can include URL's for the contact or project page which will link the list item values to the external pages for quick navigation in the future.</li>
                                         <li>Other tips:</li>
                                             <ul>
                                                 <li>Use the <span className={listStyles.buttonStyle}>PM Update</span> button to automatically generate an email with all of your current list items categorized by PM. This can be used to send an update email to all of your PM's whenever you need to.</li>

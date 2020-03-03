@@ -15,7 +15,7 @@ div.status.tableBodyCell {
     max-width: 150px;
 }
 
-.advisor {
+.contact {
     max-width: 90px;
 }
 
@@ -36,13 +36,13 @@ div.status.tableBodyCell {
     width: 90px
 }
 
-.project, .advisor, .notes, .pm {
+.project, .contact, .notes, .pm {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
 }
 
-div .notes, div .advisor, div .project, div .date, div .pm {
+div .notes, div .contact, div .project, div .date, div .pm {
     padding: 0 10px;
     text-align: left;
 }
@@ -61,7 +61,7 @@ div.actions, div.status, div.check {
         max-width: 80px;
     }
 
-    .advisor {
+    .contact {
         max-width: 50px;
     }
 

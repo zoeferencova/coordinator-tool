@@ -105,7 +105,7 @@ export default class AuthenticatedApp extends Component {
   }
 
   updateDateCompleted = (updatedItem, date) => {
-    const { advisor, project } = updatedItem;
+    const { contact, project } = updatedItem;
     const foundPm = this.state.pms.find(pm => pm.pm_email === updatedItem.pm_email);
     const pmId = foundPm.id;
     fetch(`${config.API_ENDPOINT}/list/${updatedItem.id}`, {
@@ -114,7 +114,7 @@ export default class AuthenticatedApp extends Component {
           'content-type': 'application/json',
           'Authorization': `Bearer ${window.sessionStorage.getItem(config.TOKEN_KEY)}`
       },
-      body: JSON.stringify({ date_completed: new Date(date), advisor, project, pm_id: pmId })
+      body: JSON.stringify({ date_completed: new Date(date), contact, project, pm_id: pmId })
     })
   }
 

@@ -24,7 +24,7 @@ export default class MainListTools extends React.Component {
         const updateArray = []
         
         for (let [key, value] of Object.entries(allItems)) {
-            updateArray.push(`${key}%0A%0A${value.map(item => `${item.project.replace('&', 'and')} - ${item.advisor}%0A`).join('')}`)
+            updateArray.push(`${key}%0A%0A${value.map(item => `${item.project.replace('&', 'and')} - ${item.contact}%0A`).join('')}`)
         }
 
         return updateArray.join('%0A%0A')
@@ -50,14 +50,14 @@ export default class MainListTools extends React.Component {
                 const item = this.context.listItems.find(item => item.id === itemId)
                 const foundPm = this.context.pms.find(pm => pm.pm_email === item.pm_email)
                 const pmId = foundPm.id;
-                const { project, advisor } = item;
+                const { project, contact } = item;
                 fetch(`${config.API_ENDPOINT}/list/${itemId}`, {
                     method: 'PATCH',
                     headers: {
                         'content-type': 'application/json',
                         'Authorization': `Bearer ${window.sessionStorage.getItem(config.TOKEN_KEY)}`
                     },
-                    body: JSON.stringify({ status, project, advisor, pm_id: pmId })
+                    body: JSON.stringify({ status, project, contact, pm_id: pmId })
                 })
                     .then(res => 
                         (!res.ok)
@@ -72,14 +72,14 @@ export default class MainListTools extends React.Component {
                     const item = this.context.listItems.find(item => item.id === itemId)
                     const foundPm = this.context.pms.find(pm => pm.pm_email === item.pm_email)
                     const pmId = foundPm.id;
-                    const { project, advisor } = item;
+                    const { project, contact } = item;
                     fetch(`${config.API_ENDPOINT}/list/${itemId}`, {
                         method: 'PATCH',
                         headers: {
                             'content-type': 'application/json',
                             'Authorization': `Bearer ${window.sessionStorage.getItem(config.TOKEN_KEY)}`
                         },
-                        body: JSON.stringify({ status, project, advisor, pm_id: pmId })
+                        body: JSON.stringify({ status, project, contact, pm_id: pmId })
                     })
                         .then(res => 
                             (!res.ok)
@@ -112,7 +112,7 @@ export default class MainListTools extends React.Component {
             
         } else if (status === 'reset') {
             this.context.listItems.forEach(item => {
-                const { project, advisor } = item
+                const { project, contact } = item
                 const foundPm = this.context.pms.find(pm => pm.pm_email === item.pm_email)
                 const pmId = foundPm.id;
                 const itemId = item.id;
@@ -122,7 +122,7 @@ export default class MainListTools extends React.Component {
                         'content-type': 'application/json',
                         'Authorization': `Bearer ${window.sessionStorage.getItem(config.TOKEN_KEY)}`
                     },
-                    body: JSON.stringify({ project, advisor, pm_id: pmId, status: 'none' })
+                    body: JSON.stringify({ project, contact, pm_id: pmId, status: 'none' })
                 })
                     .then(res => this.context.updateItemStatus(itemId, 'none'))
                     .then(this.props.clearChecked())

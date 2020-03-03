@@ -16,19 +16,19 @@ export default class MainListPage extends React.Component {
     state = {
         emailFormOpen: false,
         emailProject: '',
-        emailAdvisor: '',
+        emailContact: '',
         emailPmName: '',
         query: '',
         sort: 'date-asc',
         checkedItems: []
     }
 
-    openEmailForm = (project, advisor, pm_name, pm_email) => {
+    openEmailForm = (project, contact, pm_name, pm_email) => {
         const fixedproj = project.replace('&', 'and')
         this.setState({ emailFormOpen: true })
         this.setState({
             emailProject: fixedproj,
-            emailAdvisor: advisor,
+            emailContact: contact,
             emailPmName: pm_name,
             emailPmEmail: pm_email
         })
@@ -46,7 +46,7 @@ export default class MainListPage extends React.Component {
         this.setState({
             emailFormOpen: false,
             emailProject: '',
-            emailAdvisor: '',
+            emailContact: '',
             emailPmName: '',
         })
     }
@@ -74,8 +74,8 @@ export default class MainListPage extends React.Component {
         const ASC = 'ascending';
         const DSC = 'descending';
 
-        const sortByAdvisor = (a, b, order=ASC) => {
-            const diff = a.props.advisor.toLowerCase().localeCompare(b.props.advisor.toLowerCase());
+        const sortByContact = (a, b, order=ASC) => {
+            const diff = a.props.contact.toLowerCase().localeCompare(b.props.contact.toLowerCase());
             return order === ASC ? diff : -1 * diff
         } 
         const sortByProject = (a, b, order=ASC) => {
@@ -95,10 +95,10 @@ export default class MainListPage extends React.Component {
             return order === ASC ? diff : -1 * diff
         } 
                 
-        if (sort === 'advisor-asc') {
-            return inputItems.sort((a, b) => sortByAdvisor(a, b, ASC))
-        } else if (sort === 'advisor-desc') {
-            return inputItems.sort((a, b) => sortByAdvisor(a, b, DSC))
+        if (sort === 'contact-asc') {
+            return inputItems.sort((a, b) => sortByContact(a, b, ASC))
+        } else if (sort === 'contact-desc') {
+            return inputItems.sort((a, b) => sortByContact(a, b, DSC))
         } else if (sort === 'project-asc') {
             return inputItems.sort((a, b) => sortByProject(a, b, ASC))
         } else if (sort === 'project-desc') {
@@ -121,7 +121,7 @@ export default class MainListPage extends React.Component {
     searchItems = (inputItems, query) => {
         let items;
         if (query !== '') {
-            items = inputItems.filter(item => item.props.advisor.toLowerCase().includes(query) || item.props.project.toLowerCase().includes(query))
+            items = inputItems.filter(item => item.props.contact.toLowerCase().includes(query) || item.props.project.toLowerCase().includes(query))
         } else if (query === '') {
             items = inputItems
         }
@@ -139,8 +139,8 @@ export default class MainListPage extends React.Component {
                 status={item.status}
                 project={item.project}
                 project_url={item.project_url}
-                advisor={item.advisor}
-                advisor_url={item.advisor_url}
+                contact={item.contact}
+                contact_url={item.contact_url}
                 pm_name={item.pm_name}
                 pm_email={item.pm_email}
                 date_created={new Date(item.date_created).toLocaleDateString('en-US', this.context.dateOptions)}
@@ -171,7 +171,7 @@ export default class MainListPage extends React.Component {
                 <ol>
                     <li>Add your Project Manager names and emails in the <span className={styles.tabStyle}><i className="fas fa-user-circle"></i> Account</span> tab PM Settings section.</li>
                     <li>Create some email templates in the <span className={styles.tabStyle}><i className="fas fa-envelope"></i> Templates</span> tab.</li>
-                    <li>Add your first list item! Use the <span className={styles.addButtonStyle}>+ Add Item</span> button to start adding list items. You can include URL's for the CRM advisor or project page which will link the list item values to the external pages for quick navigation in the future.</li>
+                    <li>Add your first list item! Use the <span className={styles.addButtonStyle}>+ Add Item</span> button to start adding list items. You can include URL's for the contact or project page which will link the list item values to the external pages for quick navigation in the future.</li>
                     <li>Other tips:</li>
                         <ul>
                             <li>Use the <span className={styles.buttonStyle}>PM Update</span> button to automatically generate an email with all of your current list items categorized by PM. This can be used to send an update email to all of your PM's whenever you need to.</li>
@@ -180,7 +180,6 @@ export default class MainListPage extends React.Component {
                             <li>Use the <span className={styles.tabStyle}><i className="fas fa-chart-pie"></i> Dashboard</span> tab to keep track of metrics and gain insight into trends related to your workflow.</li>
                             <li>You can see these instructions any time by clicking on the "User Guide" button in the <span className={styles.tabStyle}><i className="fas fa-user-circle"></i> Account</span> tab.</li>
                         </ul>
-                        {/* You can reference PM's, advisor names, and project names using [PM], [ADVISOR] and [PROJECT] which will then template in the respective values when you use the email functionality. Note that you will have to have a default email set up on your device for the email functionality to work! */}
                 </ol>
             </div>
             )
@@ -203,7 +202,7 @@ export default class MainListPage extends React.Component {
                             {!this.context.loading && this.renderNoItemMessage()}
                         </div>
                     </div>
-                    {this.state.emailFormOpen && <SendEmailForm project={this.state.emailProject} advisor={this.state.emailAdvisor} pm_name={this.state.emailPmName} closeEmailForm={this.closeEmailForm} />}
+                    {this.state.emailFormOpen && <SendEmailForm project={this.state.emailProject} contact={this.state.emailContact} pm_name={this.state.emailPmName} closeEmailForm={this.closeEmailForm} />}
                 </main>
                 <NavBar />
             </div>

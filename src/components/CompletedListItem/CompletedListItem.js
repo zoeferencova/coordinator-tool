@@ -13,7 +13,7 @@ export default class CompletedListItem extends React.Component {
     handleRevert = (e, itemId) => {
         e.preventDefault();
         const item = this.context.completedListItems.find(item => item.id === itemId)
-        const { project, advisor } = item;
+        const { project, contact } = item;
         const foundPm = this.context.pms.find(pm => pm.pm_email === item.pm_email)
         const pmId = foundPm.id;
         const status = 'none'
@@ -23,7 +23,7 @@ export default class CompletedListItem extends React.Component {
                 'content-type': 'application/json',
                 'Authorization': `Bearer ${window.sessionStorage.getItem(config.TOKEN_KEY)}`
             },
-            body: JSON.stringify({ status, project, advisor, pm_id: pmId })
+            body: JSON.stringify({ status, project, contact, pm_id: pmId })
         })
             .then(res => 
                 (!res.ok)
@@ -38,7 +38,7 @@ export default class CompletedListItem extends React.Component {
         return (
             <div className={tableStyles.tableRow}>
                 <div className={`${tableStyles.tableBodyCell} ${listStyles.project}`}>{this.props.project_url !== '' ? <a target="_blank" href={this.props.project_url} rel="noopener noreferrer">{this.props.project}</a> : this.props.project}</div>
-                <div className={`${tableStyles.tableBodyCell} ${listStyles.advisor}`}>{this.props.advisor_url !== '' ? <a target="_blank" href={this.props.advisor_url} rel="noopener noreferrer">{this.props.advisor}</a> : this.props.advisor}</div>
+                <div className={`${tableStyles.tableBodyCell} ${listStyles.contact}`}>{this.props.contact_url !== '' ? <a target="_blank" href={this.props.contact_url} rel="noopener noreferrer">{this.props.contact}</a> : this.props.contact}</div>
                 <div className={`${tableStyles.tableBodyCell} ${listStyles.pm}`}>{this.props.pm_name}</div>
                 <div className={`${tableStyles.tableBodyCell} ${listStyles.date} ${tableStyles.hideMobile}`}>{new Date((this.props.unformatted_date)).toLocaleDateString('en-US', this.context.dateOptions)}</div>
                 <div className={`${tableStyles.tableBodyCell} ${listStyles.actions}`}>

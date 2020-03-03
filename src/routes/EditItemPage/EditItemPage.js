@@ -67,8 +67,8 @@ export default class EditItemPage extends React.Component {
         this.setState({ inputValues: { ...this.state.inputValues, project: val } })
     }
 
-    handleChangeAdvisor = val => {
-        this.setState({ inputValues: {...this.state.inputValues, advisor: val } })
+    handleChangeContact = val => {
+        this.setState({ inputValues: {...this.state.inputValues, contact: val } })
     }
 
     handleChangePm = val => {
@@ -79,8 +79,8 @@ export default class EditItemPage extends React.Component {
         this.setState({ inputValues: { ...this.state.inputValues, notes: val } })
     }
 
-    handleChangeAdvisorURL = val => {
-        this.setState({ inputValues: { ...this.state.inputValues, advisor_url: val } })
+    handleChangeContactURL = val => {
+        this.setState({ inputValues: { ...this.state.inputValues, contact_url: val } })
     }
 
     handleChangeProjectURL = val => {
@@ -106,12 +106,12 @@ export default class EditItemPage extends React.Component {
                         </div>
                         <div className={styles.formSection}>
                             <div className={styles.formPair}>
-                                <label htmlFor="adv-name">Advisor Name</label>
-                                <Input required type="text" name='adv-name' id='adv-name' defaultValue={this.state.inputValues.advisor || ''} onChange={e => this.handleChangeAdvisor(e.target.value.trim())}></Input>
+                                <label htmlFor="adv-name">Contact Name</label>
+                                <Input required type="text" name='adv-name' id='adv-name' defaultValue={this.state.inputValues.contact || ''} onChange={e => this.handleChangeContact(e.target.value.trim())}></Input>
                             </div>
                             <div className={styles.formPair}>
-                                <label htmlFor="adv-url">Advisor URL (optional)</label>
-                                <Input type="text" name='adv-url' id='adv-url' defaultValue={this.state.inputValues.advisor_url || ''} onChange={e => this.handleChangeAdvisorURL(e.target.value)}></Input>
+                                <label htmlFor="adv-url">Contact URL (optional)</label>
+                                <Input type="text" name='adv-url' id='adv-url' defaultValue={this.state.inputValues.contact_url || ''} onChange={e => this.handleChangeContactURL(e.target.value)}></Input>
                             </div>
                         </div>
                         

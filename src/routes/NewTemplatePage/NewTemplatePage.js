@@ -68,7 +68,7 @@ export default class NewTemplatePage extends React.Component {
                             <label htmlFor="template_content" className={styles.textAreaLabel}>Body: </label>
                             <Textarea name="template_content" id="template_content" className={styles.textArea}></Textarea>
                         </div>
-                        <p className={styles.instructions}>Note: For template functionality, use [ADVISOR] for advisor name, [PROJECT] for project name, and [PM] for PM name.</p>
+                        <p className={styles.instructions}>Note: For template functionality, use [CONTACT] for contact name, [PROJECT] for project name, and [PM] for PM name.</p>
                         <div>
                             <Link to='/email'><Button>Cancel</Button></Link>
                             <Button type='submit'>Create Template</Button>

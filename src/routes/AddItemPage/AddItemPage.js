@@ -12,47 +12,47 @@ export default class AddItemPage extends React.Component {
     static contextType = AppContext;
 
     state = {
-        numberOfAdvisorInputs: 1,
+        numberOfContactInputs: 1,
         error: null
     }
 
-    renderAdvisorInputs = () => {
-        const { numberOfAdvisorInputs } = this.state;
+    renderContactInputs = () => {
+        const { numberOfContactInputs } = this.state;
         const arr = []
-        for (let i=0; i < numberOfAdvisorInputs; i++) {
+        for (let i=0; i < numberOfContactInputs; i++) {
             arr.push(<div key={i} className={styles.formSection}><div className={styles.formPair}>
-                <label htmlFor={`advisor${i}`}>Advisor Name</label>
-                <Input required={i === 0 ? true : false} type="text" name={`advisor${i}`} id={`advisor${i}`}></Input>
+                <label htmlFor={`contact${i}`}>Contact Name</label>
+                <Input required={i === 0 ? true : false} type="text" name={`contact${i}`} id={`contact${i}`}></Input>
             </div>
             <div className={styles.formPair}>
-                <label htmlFor={`advisor${i}_url`}>Advisor URL (optional)</label>
-                <Input type="text" name={`advisor${i}_url`} id={`advisor${i}_url`}></Input>
+                <label htmlFor={`contact${i}_url`}>Contact URL (optional)</label>
+                <Input type="text" name={`contact${i}_url`} id={`contact${i}_url`}></Input>
             </div></div>)
         }
 
         return arr;
     }
 
-    setAdvisorInputNumber = e => {
+    setContactInputNumber = e => {
         e.preventDefault()
-        let newNumber = this.state.numberOfAdvisorInputs + 1;
-        this.setState({ numberOfAdvisorInputs: newNumber })
+        let newNumber = this.state.numberOfContactInputs + 1;
+        this.setState({ numberOfContactInputs: newNumber })
     }
 
     handlePostItem(e) {
         e.preventDefault();
-        for (let i=0; i < this.state.numberOfAdvisorInputs; i++) {
+        for (let i=0; i < this.state.numberOfContactInputs; i++) {
             const project = e.target.project.value.trim();
             const project_url = e.target.project_url.value.includes('https://' || 'http://') ? e.target.project_url.value : `https://${e.target.project_url.value}`;
-            const advisor = document.getElementById(`advisor${i}`).value.trim();
-            const advisor_url = document.getElementById(`advisor${i}_url`).value;
+            const contact = document.getElementById(`contact${i}`).value.trim();
+            const contact_url = document.getElementById(`contact${i}_url`).value;
             const pm = this.context.pms.find(pm => pm.pm_name === e.target.pm.value);
             let pm_id;
             pm === undefined ? pm_id = '' : pm_id = pm.id;
             const notes = e.target.notes.value;
             
-            const item = { project, project_url, advisor, advisor_url, pm_id, notes, status: 'none' }
-            if (item.advisor !== '') {
+            const item = { project, project_url, contact, contact_url, pm_id, notes, status: 'none' }
+            if (item.contact !== '') {
                 fetch(`${config.API_ENDPOINT}/list`, {
                     method: 'POST',
                     headers: {
@@ -80,7 +80,7 @@ export default class AddItemPage extends React.Component {
     }
 
     componentWillUnmount() {
-        this.setState({numberOfAdvisorInputs: 1})
+        this.setState({numberOfContactInputs: 1})
     }
 
     render() {
@@ -101,8 +101,8 @@ export default class AddItemPage extends React.Component {
                                 <Input type="text" name='project_url' id='project_url'></Input>
                             </div>
                         </div>
-                        {this.renderAdvisorInputs()}
-                        <Button onClick={e => this.setAdvisorInputNumber(e)}>+ Additional Advisors</Button>
+                        {this.renderContactInputs()}
+                        <Button onClick={e => this.setContactInputNumber(e)}>+ Additional Contacts</Button>
                         <div className={styles.pm}>
                             <label htmlFor="pm">Project Manager: </label>
                             <Select required name="pm" id="pm" >

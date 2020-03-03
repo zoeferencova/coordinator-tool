@@ -19,7 +19,7 @@ export default class CompletedListPage extends React.Component {
     searchItems = (inputItems, query) => {
         let items;
         if (query !== '') {
-            items = inputItems.filter(item => item.props.advisor.toLowerCase().includes(query) || item.props.project.toLowerCase().includes(query))
+            items = inputItems.filter(item => item.props.contact.toLowerCase().includes(query) || item.props.project.toLowerCase().includes(query))
         } else if (query === '') {
             items = inputItems
         }
@@ -30,8 +30,8 @@ export default class CompletedListPage extends React.Component {
         const ASC = 'ascending';
         const DSC = 'descending';
 
-        const sortByAdvisor = (a, b, order=ASC) => {
-            const diff = a.props.advisor.toLowerCase().localeCompare(b.props.advisor.toLowerCase());
+        const sortByContact = (a, b, order=ASC) => {
+            const diff = a.props.contact.toLowerCase().localeCompare(b.props.contact.toLowerCase());
             return order === ASC ? diff : -1 * diff
         } 
         const sortByProject = (a, b, order=ASC) => {
@@ -51,10 +51,10 @@ export default class CompletedListPage extends React.Component {
             return order === ASC ? diff : -1 * diff
         } 
                 
-        if (sort === 'advisor-asc') {
-            return inputItems.sort((a, b) => sortByAdvisor(a, b, ASC))
-        } else if (sort === 'advisor-desc') {
-            return inputItems.sort((a, b) => sortByAdvisor(a, b, DSC))
+        if (sort === 'contact-asc') {
+            return inputItems.sort((a, b) => sortByContact(a, b, ASC))
+        } else if (sort === 'contact-desc') {
+            return inputItems.sort((a, b) => sortByContact(a, b, DSC))
         } else if (sort === 'project-asc') {
             return inputItems.sort((a, b) => sortByProject(a, b, ASC))
         } else if (sort === 'project-desc') {
@@ -94,8 +94,8 @@ export default class CompletedListPage extends React.Component {
                 status={item.status}
                 project={item.project}
                 project_url={item.project_url}
-                advisor={item.advisor}
-                advisor_url={item.advisor_url}
+                contact={item.contact}
+                contact_url={item.contact_url}
                 pm_name={item.pm_name}
                 pm_email={item.pm_email}
                 date_created={new Date(item.date_created).toLocaleDateString('en-US', this.context.dateOptions)}
