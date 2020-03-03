@@ -93,7 +93,9 @@ export default class CompletedListPage extends React.Component {
                 id={item.id}
                 status={item.status}
                 project={item.project}
+                project_url={item.project_url}
                 advisor={item.advisor}
+                advisor_url={item.advisor_url}
                 pm_name={item.pm_name}
                 pm_email={item.pm_email}
                 date_created={new Date(item.date_created).toLocaleDateString('en-US', this.context.dateOptions)}

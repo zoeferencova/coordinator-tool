@@ -37,8 +37,8 @@ export default class CompletedListItem extends React.Component {
     render() {
         return (
             <div className={tableStyles.tableRow}>
-                <div className={`${tableStyles.tableBodyCell} ${listStyles.project}`}>{this.props.project}</div>
-                <div className={`${tableStyles.tableBodyCell} ${listStyles.advisor}`}>{this.props.advisor}</div>
+                <div className={`${tableStyles.tableBodyCell} ${listStyles.project}`}>{this.props.project_url !== '' ? <a target="_blank" href={this.props.project_url} rel="noopener noreferrer">{this.props.project}</a> : this.props.project}</div>
+                <div className={`${tableStyles.tableBodyCell} ${listStyles.advisor}`}>{this.props.advisor_url !== '' ? <a target="_blank" href={this.props.advisor_url} rel="noopener noreferrer">{this.props.advisor}</a> : this.props.advisor}</div>
                 <div className={`${tableStyles.tableBodyCell} ${listStyles.pm}`}>{this.props.pm_name}</div>
                 <div className={`${tableStyles.tableBodyCell} ${listStyles.date} ${tableStyles.hideMobile}`}>{new Date((this.props.unformatted_date)).toLocaleDateString('en-US', this.context.dateOptions)}</div>
                 <div className={`${tableStyles.tableBodyCell} ${listStyles.actions}`}>
