@@ -28,9 +28,9 @@ export default class SendEmailForm extends React.Component {
     formatTemplateBody = () => {
         const unformattedTemplate = this.context.templates[this.state.selectedTemplate].template_content;
         const { project, advisor, pm_name } = this.props;
-        const splitAdvisor = advisor.split(' ')
-        const numOfAdvisorNames = splitAdvisor.length;
-        const formattedTemplate = unformattedTemplate.replace('[PROJECT]', project).replace('[PM]', pm_name).replace('[ADVISOR]', this.state.doctor ? `Dr. ${splitAdvisor[numOfAdvisorNames - 1]}` : splitAdvisor[0]);
+        const splitWord = word => word.split(' ');
+        const numWords = word => splitWord(word).length;
+        const formattedTemplate = unformattedTemplate.replace('[PROJECT]', (splitWord(project)[numWords(project) - 1] === 'Space' || splitWord(project)[numWords(project) - 1] === 'Industry') ? `the ${project}` : project).replace('[PM]', pm_name).replace('[ADVISOR]', this.state.doctor ? `Dr. ${splitWord(advisor)[numWords(advisor) - 1]}` : splitWord(advisor)[0]);
         return formattedTemplate;
     }
 
