@@ -5,6 +5,7 @@ import ChartWrapper from '../../components/ChartWrapper/ChartWrapper';
 import PieChartWrapper from '../../components/PieChartWrapper/PieChartWrapper'
 import * as d3 from 'd3';
 import config from '../../config'
+import DashboardService from '../../services/dashboard-service'
 
 import styles from './DashboardPage.module.css'
 
@@ -21,45 +22,14 @@ export default class DashboardPage extends React.Component {
 
     componentDidMount() {
         d3.json(`${config.API_ENDPOINT}/data/time-completed-data`, { headers: { "Authorization": `Bearer ${window.sessionStorage.getItem(config.TOKEN_KEY)}` } })
-            .then(res => res[0].length === 0 ? this.setState({ completionTime: { hour: "--", minute: "--"} }) : this.getHourMinute(res[0].map(item => this.getMinutes(item)).reduce((acc, el) => acc + el)/res[0].length))
+            .then(res => res[0].length === 0 ? this.setState({ completionTime: { hour: "--", minute: "--"} }) : DashboardService.getHourMinute(res[0].map(item => DashboardService.getMinutes(item)).reduce((acc, el) => acc + el)/res[0].length))
             .then(item => item !== undefined ? this.setState({ completionTime: item }) : item)
 
         d3.json(`${config.API_ENDPOINT}/data/dashboard-data`, { headers: { "Authorization": `Bearer ${window.sessionStorage.getItem(config.TOKEN_KEY)}` } })
-            .then(res => this.formatDashData(res))
+            .then(res => this.setDashData(res))
     }
 
-    getMinutes(item) {
-        let minutes = 0;
-        if (item.difference.months) {
-            minutes += item.difference.months*4*7*24*60 
-        }
-        if (item.difference.weeks) {
-            minutes += item.difference.weeks*7*24*60
-        }
-        if (item.difference.days) {
-            minutes += item.difference.days*24*60 
-        }
-        if (item.difference.hours) {
-            minutes += item.difference.hours*60
-        }
-        if (item.difference.minutes) {
-            minutes += item.difference.minutes
-        }
-        if (item.difference.seconds) {
-            minutes += 0
-        }
-        item = minutes
-
-        return item
-    }
-    
-    getHourMinute(item) {
-        const minute = Number(item) % 60;
-        const hour = Number(item)/60
-        return { hour: parseInt(hour), minute: parseInt(minute) }
-    }
-
-    formatDashData(data) {
+    setDashData(data) {
         this.setState({ pending: Number(data[0][0].pending) })
         if (Number(data[2][0].completed) === 0) {
             this.setState({ completion: 0 })
