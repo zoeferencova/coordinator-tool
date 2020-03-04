@@ -25,26 +25,19 @@ export default class SendEmailForm extends React.Component {
         this.setState({ selectedTemplate: event.target.value })
     }
 
-    formatTemplateBody = () => {
+    formatTemplate = () => {
         const unformattedTemplate = this.context.templates[this.state.selectedTemplate].template_content;
-        const { project, contact, pm_name } = this.props;
-        const splitWord = word => word.split(' ');
-        const numWords = word => splitWord(word).length;
-        const formattedTemplate = unformattedTemplate.replace('[PROJECT]', (splitWord(project)[numWords(project) - 1] === 'Space' || splitWord(project)[numWords(project) - 1] === 'Industry') ? `the ${project}` : project).replace('[PM]', pm_name).replace('[CONTACT]', this.state.doctor ? `Dr. ${splitWord(contact)[numWords(contact) - 1]}` : splitWord(contact)[0]);
-        return formattedTemplate;
-    }
-
-    formatTemplateSubject = () => {
         const unformattedSubject = this.context.templates[this.state.selectedTemplate].template_subject;
         const { project, contact, pm_name } = this.props;
         const splitWord = word => word.split(' ');
         const numWords = word => splitWord(word).length;
-        const formattedSubject = unformattedSubject.replace('[PROJECT]', (splitWord(project)[numWords(project) - 1] === 'Space' || splitWord(project)[numWords(project) - 1] === 'Industry') ? `the ${project}` : project).replace('[PM]', pm_name).replace('[CONTACT]', this.state.doctor ? `Dr. ${splitWord(contact)[numWords(contact) - 1]}` : splitWord(contact)[0]);
-        return formattedSubject;
+        const arr = [unformattedTemplate, unformattedSubject]
+        const formattedArr = arr.map(item => item.replace('[PROJECT]', (splitWord(project)[numWords(project) - 1] === 'Space' || splitWord(project)[numWords(project) - 1] === 'Industry') ? `the ${project}` : project).replace('[PM]', pm_name).replace('[CONTACT]', this.state.doctor ? `Dr. ${splitWord(contact)[numWords(contact) - 1]}` : splitWord(contact)[0]));
+        return formattedArr;
     }
 
     formatTemplateForEmail = () => {
-        const regularFormattedTemplate = this.formatTemplateBody()
+        const regularFormattedTemplate = this.formatTemplate()[0]
         return regularFormattedTemplate.replace(/\n/g, '%0A')
     }
 
@@ -78,10 +71,10 @@ export default class SendEmailForm extends React.Component {
                         </div>
                         <div>
                             {this.state.selectedTemplate !== '' && <h4 className={styles.preview}>Preview:</h4>}
-                            <p className={styles.templateBody}>{this.state.selectedTemplate !== '' ? this.formatTemplateBody() : ''}</p>
+                            <p className={styles.templateBody}>{this.state.selectedTemplate !== '' ? this.formatTemplate()[0] : ''}</p>
                         </div>
                         
-                        {this.state.selectedTemplate !== '' && <a target="_blank" href={`mailto:?Subject=${this.state.selectedTemplate !== '' ? this.formatTemplateSubject() : ''}&Body=${this.state.selectedTemplate !== '' ? this.formatTemplateForEmail() : ''}`} className={styles.link}>Open Email</a>}
+                        {this.state.selectedTemplate !== '' && <a target="_blank" href={`mailto:?Subject=${this.state.selectedTemplate !== '' ? this.formatTemplate()[1] : ''}&Body=${this.state.selectedTemplate !== '' ? this.formatTemplateForEmail() : ''}`} className={styles.link}>Open Email</a>}
                     </form>)}
                 </main>
                 <div className={styles.overlay} onClick={this.props.closeEmailForm}></div>
