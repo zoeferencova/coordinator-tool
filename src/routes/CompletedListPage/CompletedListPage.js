@@ -61,10 +61,13 @@ export default class CompletedListPage extends React.Component {
             <div className="container">
                 <main className="content">
                     <Header title={"Completed"} />
-                    <div className={tableStyles.listContainer}>
+                    <div className={`${tableStyles.listContainer}`}>
                         <CompletedListTools setQuery={this.setQuery}  />
                         <br></br>
-                        <CompletedListBody currentSort={this.state.sort} setSort={this.setSort} renderCompletedItems={this.renderCompletedItems} />
+                        <span className={`${tableStyles.hideDesktop} ${tableStyles.scroll}`}>Scroll for more <i className="fas fa-arrow-right"></i></span>
+                        <div className={tableStyles.tableBodyContainer}>
+                            <CompletedListBody currentSort={this.state.sort} setSort={this.setSort} renderCompletedItems={this.renderCompletedItems} />
+                        </div>
                     </div>
                 </main>
                 <NavBar />

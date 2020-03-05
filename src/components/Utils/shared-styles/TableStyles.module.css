@@ -103,6 +103,19 @@
     .hideDesktop {
         display: table-cell
     }
+
+    .scroll {
+        font-size: 10px;
+        text-transform: uppercase;
+        padding-bottom: 10px;
+        text-align: center;
+        display: block;
+        color: #8193a1;
+    }
+
+    .scroll i {
+        margin-left: 3px;
+    }
 }
 
 @media only screen and (max-width: 500px) {

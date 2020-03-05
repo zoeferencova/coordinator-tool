@@ -30,16 +30,6 @@ div .project, div .contact, div .pm {
 }
 
 @media only screen and (max-width: 810px) {
-    .project {
-        max-width: 120px;
-    }
-
-    .contact {
-        max-width: 50px;
-    }
-
-    .actions {
-        max-width: 50px;
-    }
+    
 
 }
