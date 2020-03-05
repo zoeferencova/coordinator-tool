@@ -72,9 +72,9 @@ export default class MainListItem extends React.Component {
                     </select>
                 </div>
                 <div className={`${tableStyles.tableBodyCell} ${tableStyles.hideMobile} ${listStyles.actions}`}>
-                    <button className={`${styles.icon}`} onClick={() => this.props.openEmailForm(project, contact, pm_name, pm_email)}><i className="fas fa-envelope"></i></button>
-                    <Link to={{pathname:`/edit-item/${id}`, itemProps: {project, contact, pm_name, notes}}} ><button className={`${styles.icon}`}  onClick={this.handleEditItem}><i className="fas fa-edit"></i></button></Link>
-                    <button className={`${styles.icon}`} itemkey={id} onClick={e => this.handleDeleteItem(e)}><i className="fas fa-trash"></i></button>
+                    <button className={`${styles.icon}`} onClick={() => this.props.openEmailForm(project, contact, pm_name, pm_email)}><i className="fas fa-envelope"></i><span className={styles.srOnly}>send email</span></button>
+                    <Link to={{pathname:`/edit-item/${id}`, itemProps: {project, contact, pm_name, notes}}} ><button className={`${styles.icon}`}  onClick={this.handleEditItem}><i className="fas fa-edit"></i><span className={styles.srOnly}>edit item</span></button></Link>
+                    <button className={`${styles.icon}`} itemkey={id} onClick={e => this.handleDeleteItem(e)}><i className="fas fa-trash"></i><span className={styles.srOnly}>delete item</span></button>
                 </div>
                 <div className={`${tableStyles.tableBodyCell} ${tableStyles.hideDesktop} ${listStyles.mobileActions}`}>
                     <div 
