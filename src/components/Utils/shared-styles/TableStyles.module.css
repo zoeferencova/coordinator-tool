@@ -37,10 +37,6 @@
     font-size: 12px;
 }
 
-/* div .tableHeaderCell {
-    height: 25px;
-} */
-
 .tableRow {
     display: table-row;
     font-size: 13px;
@@ -112,6 +108,10 @@
 @media only screen and (max-width: 500px) {
     .tableBodyCell {
         font-size: 11px;
+    }
+
+    .tableBodyContainer {
+        overflow-x: scroll;
     }
 }
 

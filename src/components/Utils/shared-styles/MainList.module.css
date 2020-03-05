@@ -57,12 +57,12 @@ div.actions, div.status, div.check {
         display: table-cell;
     }
 
-    .project {
-        max-width: 80px;
+    div .status {
+        min-width: 90px;
     }
 
-    .contact {
-        max-width: 50px;
+    div .contact {
+        min-width: 100px;
     }
 
 }
