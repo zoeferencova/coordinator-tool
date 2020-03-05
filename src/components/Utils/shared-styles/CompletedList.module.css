@@ -28,8 +28,3 @@ div .project, div .contact, div .pm {
     overflow: hidden;
     text-overflow: ellipsis;
 }
-
-@media only screen and (max-width: 810px) {
-    
-
-}
