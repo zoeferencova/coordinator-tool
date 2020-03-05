@@ -79,7 +79,7 @@ export default class SendEmailForm extends React.Component {
                             <p className={styles.templateBody}>{this.state.selectedTemplate !== '' ? this.formatTemplate()[0] : ''}</p>
                         </div>
                         
-                        {this.state.selectedTemplate !== '' && <a target="_blank" href={`mailto:?Subject=${this.state.selectedTemplate !== '' ? this.formatTemplate()[1] : ''}&Body=${this.state.selectedTemplate !== '' ? this.formatTemplateForEmail() : ''}`} className={styles.link}>Open Email</a>}
+                        {this.state.selectedTemplate !== '' && <a target="_blank" rel="noopener noreferrer" href={`mailto:?Subject=${this.state.selectedTemplate !== '' ? this.formatTemplate()[1] : ''}&Body=${this.state.selectedTemplate !== '' ? this.formatTemplateForEmail() : ''}`} className={styles.link}>Open Email</a>}
                     </form>)}
                 </main>
                 <div className={styles.overlay} onClick={this.props.closeEmailForm}></div>

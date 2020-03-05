@@ -11,7 +11,6 @@ import config from '../../config'
 
 import styles from './AccountPage.module.css'
 import modalStyles from '../../components/SendEmailForm/SendEmailForm.module.css'
-import listStyles from '../MainListPage/MainListPage.module.css'
 
 export default class AccountPage extends React.Component {
     static contextType = AppContext;

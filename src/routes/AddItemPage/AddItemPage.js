@@ -123,7 +123,7 @@ export default class AddItemPage extends React.Component {
                         </div>
                         <div className={styles.formSection}>
                             <label htmlFor="notes" className={styles.notesLabel}>Notes: </label>
-                            <textarea name="notes" id="notes" className={styles.notes}></textarea>
+                            <Textarea name="notes" id="notes" className={styles.notes}></Textarea>
                         </div>
                         <div>
                             <Link to='/main'><Button>Cancel</Button></Link>

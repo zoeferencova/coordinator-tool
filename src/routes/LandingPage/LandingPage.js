@@ -35,7 +35,7 @@ export default class LandingPage extends React.Component {
                 <section className={`${styles.section} ${styles.section2}`}>
                     <div className={styles.deviceIphone}>
                         <img className={styles.templates} alt="templates mobile screenshot" src={require('../../images/templates.png')}></img>
-                        <img className={styles.iphone} src={require('../../images/iphonex.svg')}></img>
+                        <img className={styles.iphone} alt="mobile phone mockup" src={require('../../images/iphonex.svg')}></img>
                     </div>
                     <div className={styles.sectionContent}>
                         <h3 className={styles.sectionHeader}>Automate PM update emails and email contacts using smart templates</h3>
