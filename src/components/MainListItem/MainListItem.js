@@ -13,7 +13,7 @@ export default class MainListItem extends React.Component {
     static contextType = AppContext;
     
     state = {
-        expanded: false
+        popup: false
     }
 
     handleStatusClick(status, id, project, contact, pmEmail) {
@@ -53,6 +53,7 @@ export default class MainListItem extends React.Component {
         
     }
 
+    //Renders separate actions column ellipsis icon for mobile view that triggers a modal with additional information and actions
     render() {
         const { id, project, project_url, contact, contact_url, pm_name, pm_email, notes, status, date_created } = this.props;
         return (
@@ -91,7 +92,7 @@ export default class MainListItem extends React.Component {
                                 <div>Date: {date_created}</div>
                                 {this.props.notes && <div>Notes: {notes}</div>}
                                 <div className={tableStyles.pointer} onClick={() => {this.props.openEmailForm(project, contact, pm_name, pm_email); this.setState({ popup: false })}} >Email...</div>
-                                <Link to={{pathname:`/edit-item/${id}`, itemProps: {project, contact, pm_name, notes}}} ><div className={styles.popupLink} onClick={this.handleEditItem}>Edit...</div></Link>
+                                <Link to={{pathname:`/edit-item/${id}`, itemProps: {project, contact, pm_name, notes}}} ><div className={styles.popupLink}>Edit...</div></Link>
                                 <div className={`${styles.last} ${tableStyles.pointer}`} itemkey={id} onClick={e => this.handleDeleteItem(e)}>Delete</div>
                             </div>
     

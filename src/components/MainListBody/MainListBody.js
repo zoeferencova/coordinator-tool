@@ -11,6 +11,8 @@ export default class MainListBody extends React.Component {
         checked: false
     }
 
+    //Uses setChecked method from the MainListPage component to check or uncheck all checkboxes depending on their previous state
+    //Sets the 'check all' functionality for the checkbox in the table header
     setCheckedState = () => {
         this.state.checked === false ? this.setState({ checked: true }) : this.setState({ checked: false })
         const listCheckboxes = document.querySelectorAll('#list-checkbox')
@@ -24,10 +26,7 @@ export default class MainListBody extends React.Component {
         }
     }
 
-    uncheckAll = () => {
-        this.setState({ checked: false })
-    }
-    
+    //Table headers with the sort icon use setSort function from MainListPage to sort list items on click
     render() {
         return (
             <div className={tableStyles.table}>

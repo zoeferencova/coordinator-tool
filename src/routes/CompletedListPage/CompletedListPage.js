@@ -17,6 +17,7 @@ export default class CompletedListPage extends React.Component {
         sort: 'date-desc'
     }
 
+    //Sets query state on change of search input
     setQuery = (query) => {
         const lowerCaseQuery = query.toLowerCase()
         this.setState({ query: lowerCaseQuery })
@@ -26,6 +27,8 @@ export default class CompletedListPage extends React.Component {
         this.setState({ sort })
     }
 
+    //Items are rendered based on search and sort queries
+    //Search and sort functions are stored in the list-service.js file
     renderCompletedItems = () => { 
         const { query, sort } = this.state;
         const { completedListItems } = this.context;

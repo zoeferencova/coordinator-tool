@@ -8,16 +8,15 @@ import styles from './LoginForm.module.css'
 
 export default class LoginForm extends React.Component {
     static contextType = AppContext;
-    
-    static defaultProps = {
-        onLoginSuccess: () => {}
-    }
 
     state = { 
         error: null,
         toMain: false, 
     }
 
+    //Calls postLogin method from AuthApiService with login values from the user
+    //Logs user in on success, otherwise displays error to user
+    //Redirects user to MainListPage route '/main'
     handleSubmitJwtAuth = e => {
         e.preventDefault()
         this.setState({ error: null })
@@ -36,12 +35,6 @@ export default class LoginForm extends React.Component {
             .catch(res => {
                 this.setState({ error: res.error })
             })
-    }
-
-    handleEnter = e => {
-        if (e.key === 'Enter') {
-            return this.handleSubmitJwtAuth(e)
-        }
     }
     
     render() {

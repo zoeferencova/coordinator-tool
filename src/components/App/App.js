@@ -10,6 +10,8 @@ export default class App extends Component {
       isLoggedIn: TokenService.hasAuthToken() ? true : false,
   }
 
+  //Passed as a prop to AuthenticatedApp and UnauthenticatedApp
+  //Sets isLoggedIn state to true or false which conditionally renders the Authenticated and Unauthenticated App components based on whether an Auth Token is present
   setLoggedIn = (status) =>  {
     this.setState({ isLoggedIn: status })
   }

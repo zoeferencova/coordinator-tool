@@ -20,6 +20,7 @@ export default class EmailPage extends React.Component {
         inputValues: {}
     }
 
+    //Renders tabs used to select template
     renderTemplateTabs() {
         return this.context.templates.map(template => 
             <EmailTemplate
@@ -34,6 +35,7 @@ export default class EmailPage extends React.Component {
         )
     }
 
+    //Renders select for templates, only visible for mobile
     renderTemplateSelect() {
         return this.context.templates.map(template => 
             <option value={template.id} key={template.id}>
@@ -100,6 +102,8 @@ export default class EmailPage extends React.Component {
         this.setState({ currentTemplate: template, inputValues: template })
     }
 
+    //Instructions for how to get started with templates
+    //Rendered if no templates are currently saved for user
     renderTemplateInstructions() {
         return (
             <div className={listStyles.instructions}>

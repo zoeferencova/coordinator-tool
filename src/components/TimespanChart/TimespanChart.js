@@ -6,6 +6,8 @@ const WIDTH = 550 - MARGIN.LEFT - MARGIN.RIGHT;
 const HEIGHT = 350 - MARGIN.TOP - MARGIN.BOTTOM;
 
 export default class TimespanChart {
+    //Formats timespan data 
+    //Groups data in to separate arrays for days, weeks and months and returns objects with arrays for each
     fixTimeSpanData = (data) => {
         const fixed = data.map(d => d[0])
         const keys = fixed.map(d => Object.keys(d))
@@ -43,8 +45,6 @@ export default class TimespanChart {
         vis.svg = d3.select(element)
             .append("svg")
                 .attr("viewBox", `0, 0, ${WIDTH + MARGIN.LEFT + MARGIN.RIGHT}, ${HEIGHT + MARGIN.TOP + MARGIN.BOTTOM}`)
-                // .attr("width", WIDTH + MARGIN.LEFT + MARGIN.RIGHT)
-                // .attr("height", HEIGHT + MARGIN.TOP + MARGIN.BOTTOM)
             .append("g")
                 .attr("transform", `translate(${MARGIN.LEFT}, ${MARGIN.TOP})`)
             
@@ -82,6 +82,7 @@ export default class TimespanChart {
         
     }
 
+    //Updates values based on user input dataType passed in from DashboardPage component through the ChartWrapper component
     update(dataType) {
         const vis = this;
         if (dataType === 'created_days') {
@@ -132,11 +133,11 @@ export default class TimespanChart {
                 .duration(500)
                 .call(yAxisCall)
 
-            //DATA JOIN
+            //Data Join
             const rects = vis.svg.selectAll("rect")
                 .data(vis.data)
 
-            //EXIT
+            //Exit
             rects
                 .exit()
                 .transition().duration(500)
@@ -144,7 +145,7 @@ export default class TimespanChart {
                     .attr("y", HEIGHT)
                     .remove()
 
-            //UPDATE
+            //Update
             rects
                 .transition().duration(500)
                 .attr("x", d => x(d.span))
@@ -152,7 +153,7 @@ export default class TimespanChart {
                 .attr("width", x.bandwidth)
                 .attr("height", d => HEIGHT - y(d.count))
 
-            //ENTER
+            //Enter
             rects.enter()
                 .append("rect")
                     .attr("x", d => x(d.span))

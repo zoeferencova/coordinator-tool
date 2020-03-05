@@ -39,11 +39,15 @@ export default class DashboardPage extends React.Component {
         }
     }
 
+    //Changes values that are passed into the TimespanChart
+    //Values can either be 'completed' or 'created' based on input
     changeType = (type) => {
         const dataType = `${type}_${this.state.span}`
         this.setState({ dataType, type })
     }
 
+    //Changes values that are passed into the TimespanChart
+    //Values can either be 'days', 'weeks' or 'months' based on input
     changeSpan = (span) => {
         const dataType = `${this.state.type}_${span}`
         this.setState({ dataType, span })

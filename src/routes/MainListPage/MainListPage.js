@@ -25,14 +25,14 @@ export default class MainListPage extends React.Component {
         checkedItems: []
     }
 
-    openEmailForm = (project, contact, pm_name, pm_email) => {
+    //Opens SendEmail form component modal
+    openEmailForm = (project, contact, pm_name) => {
         const fixedproj = project.replace('&', 'and')
         this.setState({ emailFormOpen: true })
         this.setState({
             emailProject: fixedproj,
             emailContact: contact,
             emailPmName: pm_name,
-            emailPmEmail: pm_email
         })
     }
 
@@ -44,6 +44,7 @@ export default class MainListPage extends React.Component {
         this.setState({ sort })
     }
 
+    //Closes SendEmail form component and resets values for current list item
     closeEmailForm = () => {
         this.setState({
             emailFormOpen: false,
@@ -53,6 +54,10 @@ export default class MainListPage extends React.Component {
         })
     }
 
+    //Id's of checked items are stored in checkedItemsArray
+    //On checkbox click for each list item, the click unchecks item if item is already checked
+    //Otherwise if there is only one item being checked (checkedItems type would not be object (array)), the new checked item is added to the checkedItems array
+    //Otherwise if there are multiple items being checked at once using the header checkbox (checkedItems type would be object (array)), the checkedItems array is replaced with an array of all checked items
     setChecked = (id) => {
         if (this.state.checkedItems.includes(id)) {
             const newItems = this.state.checkedItems.filter(item => item !== id)
@@ -64,6 +69,7 @@ export default class MainListPage extends React.Component {
         }
     }
 
+    //Sets all checkboxes back to unchecked and clears checkedItems values in state
     clearChecked = () => {
         this.setState({ checkedItems: [] })
         const listCheckboxes = document.querySelectorAll('#list-checkbox')
@@ -104,6 +110,8 @@ export default class MainListPage extends React.Component {
         }
     }
 
+    //If there are no items that do not have status 'completed' but there are completed items return no item message
+    //If there are no items that do not have status 'completed' and no completed items return user guide from Utils for new users
     renderNoItemMessage = () => {
         const nonCompletedItems = this.context.listItems.filter(item => item.status !== 'completed')
         if (nonCompletedItems.length === 0 && this.context.completedListItems.length > 0) {

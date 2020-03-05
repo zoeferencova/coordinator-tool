@@ -16,6 +16,8 @@ export default class AddItemPage extends React.Component {
         error: null
     }
 
+    //Renders contact name and contact url form inputs based on the number of contact inputs from state
+    //For cases where user has multiple contacts to reach out to on the same project to avoid having to add an individual list item for each contact manually
     renderContactInputs = () => {
         const { numberOfContactInputs } = this.state;
         const arr = []
@@ -33,12 +35,17 @@ export default class AddItemPage extends React.Component {
         return arr;
     }
 
+    //Increments numberOfContactInputs on click of additional contacts button
     setContactInputNumber = e => {
         e.preventDefault()
         let newNumber = this.state.numberOfContactInputs + 1;
         this.setState({ numberOfContactInputs: newNumber })
     }
 
+    //Post request for list item(s)
+    //If multiple contacts exist in the form, a separate post request is sent for each contact
+    //If there is a blank contact input it is ignored
+    //If the project url or advisor url values do not begin with https:// or http:// it is added to the value to create a valid URL
     handlePostItem(e) {
         e.preventDefault();
         for (let i=0; i < this.state.numberOfContactInputs; i++) {
@@ -80,6 +87,7 @@ export default class AddItemPage extends React.Component {
         this.props.history.push('/main')
     }
 
+    //Resets numberOfContact inputs when component unmounts
     componentWillUnmount() {
         this.setState({numberOfContactInputs: 1})
     }

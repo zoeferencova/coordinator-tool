@@ -18,7 +18,6 @@ export default class AccountPage extends React.Component {
 
     state = {
         error: null,
-        confirm: false,
         userGuide: false
     }
     
@@ -32,15 +31,6 @@ export default class AccountPage extends React.Component {
                 <Button onClick={(e) => this.handleDeletePm(e) } pmid={pm.id} className={styles.delete}>Delete</Button>
             </li>
         )
-    }
-        
-
-    close = () => {
-        this.setState({ confirm: false })
-    }
-
-    open = () => {
-        this.setState({ confirm: true })
     }
 
     handleDeletePm = (e) => {
@@ -97,6 +87,7 @@ export default class AccountPage extends React.Component {
         this.setState({ userGuide: false })
     }
 
+    //Clears Auth Token and sets App component's state isLoggedIn to false to render the UnauthenticatedApp component
     handleLogout = () => {
         TokenService.clearAuthToken();
         this.context.setLoggedIn(false)

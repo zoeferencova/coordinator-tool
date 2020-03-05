@@ -6,10 +6,6 @@ import { Button, Input } from '../Utils/Utils'
 import styles from '../LoginForm/LoginForm.module.css'
 
 export default class RegistrationForm extends React.Component {
-    static defaultProps = {
-        onRegistrationSuccess: () => {}
-    }
-
     state = { error: null };
 
     handleSubmit = e => {

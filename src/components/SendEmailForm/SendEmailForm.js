@@ -25,6 +25,8 @@ export default class SendEmailForm extends React.Component {
         this.setState({ selectedTemplate: event.target.value })
     }
 
+    //Gets current selected template from context and replaces values of template strings [PROJECT], [CONTACT] and [PM] with values from the listItem that are passed in as props
+    //Returns array with format [[formatted template content], [formatted template subject]]
     formatTemplate = () => {
         const unformattedTemplate = this.context.templates[this.state.selectedTemplate].template_content;
         const unformattedSubject = this.context.templates[this.state.selectedTemplate].template_subject;
@@ -36,11 +38,14 @@ export default class SendEmailForm extends React.Component {
         return formattedArr;
     }
 
+    //Replaces characters used for new line to be compatible with mailto
     formatTemplateForEmail = () => {
-        const regularFormattedTemplate = this.formatTemplate()[0]
-        return regularFormattedTemplate.replace(/\n/g, '%0A')
+        const template = this.formatTemplate()[0]
+        return template.replace(/\n/g, '%0A')
     }
 
+    //Used for 'Set Doctor' checkbox
+    //If doctor state is true, the formatTemplate function replaces [CONTACT] with `Dr. [contact last name]` instead of [contact first name]
     setDoctor = () => {
         !this.state.doctor 
             ? this.setState({ doctor: true })
