@@ -85,19 +85,22 @@ export default class MainListItem extends React.Component {
                         <i className={`fas fa-ellipsis-h ${tableStyles.pointer}`}></i>
                     </div>
                     <div className={`${styles.popup} ${this.state.popup ? tableStyles.show : tableStyles.hidden}`}>
-                        <div className={styles.popupOverlay} onClick={() => this.setState({ popup: false })}></div>
-                        <div className={styles.popupContainer}>
-                            <div itemkey={id}>
-                                <div>PM: {pm_name}</div>
-                                <div>Date: {date_created}</div>
-                                {this.props.notes && <div>Notes: {notes}</div>}
-                                <div className={tableStyles.pointer} onClick={() => {this.props.openEmailForm(project, contact, pm_name, pm_email); this.setState({ popup: false })}} >Email...</div>
-                                <Link to={{pathname:`/edit-item/${id}`, itemProps: {project, contact, pm_name, notes}}} ><div className={styles.popupLink}>Edit...</div></Link>
-                                <div className={`${styles.last} ${tableStyles.pointer}`} itemkey={id} onClick={e => this.handleDeleteItem(e)}>Delete</div>
+                            <i onClick={() => this.setState({ popup: false })} className={` ${tableStyles.pointer} ${styles.close} fas fa-times`}></i>
+                            <p className={`${styles.heading} ${styles.first}`}>Item Info</p>
+                            <div className={styles.info}> 
+                                <p><span className={styles.columnName}>Project</span> {project_url !== '' ? <a href={project_url} target="_blank" rel="noopener noreferrer">{project}</a> : project}</p>
+                                <p><span className={styles.columnName}>Contact</span> {contact_url !== '' ? <a href={contact_url} target="_blank" rel="noopener noreferrer">{contact}</a> : contact}</p>
+                                <p><span className={styles.columnName}>PM</span> {pm_name}</p>
+                                <p><span className={styles.columnName}>Date Created</span>  {date_created}</p>
+                                
+                                {this.props.notes && <p>Notes: {notes}</p>}
                             </div>
-    
-                            <div className={`${styles.cancel} ${tableStyles.pointer}`} onClick={() => this.setState({ popup: false })}>Cancel</div>
-                        </div>
+                            <div className={styles.popupActions}>
+                                <p className={styles.heading}>Actions</p>
+                                <button className={`${styles.icon}`} itemkey={id} onClick={() => {this.props.openEmailForm(project, contact, pm_name, pm_email); this.setState({ popup: false })}}><i className="fas fa-envelope"></i></button>
+                                <Link to={{pathname:`/edit-item/${id}`, itemProps: {project, contact, pm_name, notes}}} ><button className={`${styles.icon}`}  onClick={this.handleEditItem}><i className="fas fa-edit"></i></button></Link>
+                                <button className={`${styles.icon}`} itemkey={id}  onClick={e => this.handleDeleteItem(e)}><i className="fas fa-trash"></i></button>
+                            </div>
                     </div>
                 </div>
             </div>
