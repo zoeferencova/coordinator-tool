@@ -82,7 +82,8 @@ export default class MainListItem extends React.Component {
                             ? this.setState({ popup: false }) 
                             : this.setState({popup: true})}
                     >
-                        <i className={`fas fa-ellipsis-h ${tableStyles.pointer}`}></i>
+                        <i className={`fas fa-ellipsis-h ${tableStyles.pointer} `}></i>
+                        <span className={styles.srOnly}>get more info on list item</span>
                     </div>
                     <div className={`${styles.popup} ${this.state.popup ? tableStyles.show : tableStyles.hidden}`}>
                             <i onClick={() => this.setState({ popup: false })} className={` ${tableStyles.pointer} ${styles.close} fas fa-times`}></i>
@@ -97,9 +98,9 @@ export default class MainListItem extends React.Component {
                             </div>
                             <div className={styles.popupActions}>
                                 <p className={styles.heading}>Actions</p>
-                                <button className={`${styles.icon}`} itemkey={id} onClick={() => {this.props.openEmailForm(project, contact, pm_name, pm_email); this.setState({ popup: false })}}><i className="fas fa-envelope"></i></button>
-                                <Link to={{pathname:`/edit-item/${id}`, itemProps: {project, contact, pm_name, notes}}} ><button className={`${styles.icon}`}  onClick={this.handleEditItem}><i className="fas fa-edit"></i></button></Link>
-                                <button className={`${styles.icon}`} itemkey={id}  onClick={e => this.handleDeleteItem(e)}><i className="fas fa-trash"></i></button>
+                                <button className={`${styles.icon}`} itemkey={id} onClick={() => {this.props.openEmailForm(project, contact, pm_name, pm_email); this.setState({ popup: false })}}><i className="fas fa-envelope"></i><span className={styles.srOnly}>send email</span></button>
+                                <Link to={{pathname:`/edit-item/${id}`, itemProps: {project, contact, pm_name, notes}}} ><button className={`${styles.icon}`}  onClick={this.handleEditItem}><i className="fas fa-edit"></i><span className={styles.srOnly}>edit item</span></button></Link>
+                                <button className={`${styles.icon}`} itemkey={id}  onClick={e => this.handleDeleteItem(e)}><i className="fas fa-trash"></i><span className={styles.srOnly}>delete item</span></button>
                             </div>
                     </div>
                 </div>

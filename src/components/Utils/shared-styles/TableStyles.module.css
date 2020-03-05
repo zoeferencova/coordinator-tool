@@ -90,6 +90,10 @@
     margin-bottom: 50px;
 }
 
+.scroll {
+    display: none;
+}
+
 @media only screen and (max-width: 810px) {
     .hideMobile {
         display: none;
@@ -104,6 +108,18 @@
         display: table-cell
     }
 
+    
+}
+
+@media only screen and (max-width: 500px) {
+    .tableBodyCell {
+        font-size: 11px;
+    }
+
+    .tableBodyContainer {
+        overflow-x: scroll;
+    }
+
     .scroll {
         font-size: 10px;
         text-transform: uppercase;
@@ -115,16 +131,6 @@
 
     .scroll i {
         margin-left: 3px;
-    }
-}
-
-@media only screen and (max-width: 500px) {
-    .tableBodyCell {
-        font-size: 11px;
-    }
-
-    .tableBodyContainer {
-        overflow-x: scroll;
     }
 }
 

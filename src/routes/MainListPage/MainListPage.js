@@ -131,7 +131,7 @@ export default class MainListPage extends React.Component {
                     <Header title={title} />
                     <div className={tableStyles.listContainer}>
                         <MainListTools setQuery={this.setQuery} checkedItems={this.state.checkedItems} clearChecked={this.clearChecked} />
-                        <span className={`${tableStyles.hideDesktop} ${tableStyles.scroll}`}>Scroll for more <i className="fas fa-arrow-right"></i></span>
+                        <span className={`${tableStyles.scroll}`}>Scroll for more <i className="fas fa-arrow-right"></i></span>
                         <div className={tableStyles.tableBodyContainer}>
                             <MainListBody setSort={this.setSort} currentSort={this.state.sort} renderListItems={this.renderListItems} openEmailForm={this.openEmailForm} closeEmailForm={this.closeEmailForm} setChecked={this.setChecked} clearChecked={this.clearChecked} />
                             {this.context.loading && <img src={require('../../images/loader.gif')} alt="loader" className={styles.loader}></img>}
