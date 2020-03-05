@@ -31,17 +31,18 @@ export default class SendEmailForm extends React.Component {
         const unformattedTemplate = this.context.templates[this.state.selectedTemplate].template_content;
         const unformattedSubject = this.context.templates[this.state.selectedTemplate].template_subject;
         const { project, contact, pm_name } = this.props;
+        const fixedproject = project.replace('&', '%26')
         const splitWord = word => word.split(' ');
         const numWords = word => splitWord(word).length;
         const arr = [unformattedTemplate, unformattedSubject]
-        const formattedArr = arr.map(item => item.replace('[PROJECT]', (splitWord(project)[numWords(project) - 1] === 'Space' || splitWord(project)[numWords(project) - 1] === 'Industry') ? `the ${project}` : project).replace('[PM]', pm_name).replace('[CONTACT]', this.state.doctor ? `Dr. ${splitWord(contact)[numWords(contact) - 1]}` : splitWord(contact)[0]));
+        const formattedArr = arr.map(item => item.replace('[PROJECT]', (splitWord(fixedproject)[numWords(fixedproject) - 1] === 'Space' || splitWord(fixedproject)[numWords(fixedproject) - 1] === 'Industry') ? `the ${fixedproject}` : fixedproject).replace('[PM]', pm_name).replace('[CONTACT]', this.state.doctor ? `Dr. ${splitWord(contact)[numWords(contact) - 1]}` : splitWord(contact)[0]));
         return formattedArr;
     }
 
     //Replaces characters used for new line to be compatible with mailto
     formatTemplateForEmail = () => {
         const template = this.formatTemplate()[0]
-        return template.replace(/\n/g, '%0A')
+        return template.replace(/\n/g, '%0D%0A')
     }
 
     //Used for 'Set Doctor' checkbox
@@ -76,7 +77,7 @@ export default class SendEmailForm extends React.Component {
                         </div>
                         <div>
                             {this.state.selectedTemplate !== '' && <h4 className={styles.preview}>Preview:</h4>}
-                            <p className={styles.templateBody}>{this.state.selectedTemplate !== '' ? this.formatTemplate()[0] : ''}</p>
+                            <p className={styles.templateBody}>{this.state.selectedTemplate !== '' ? this.formatTemplate()[0].replace('%26', '&') : ''}</p>
                         </div>
                         
                         {this.state.selectedTemplate !== '' && <a target="_blank" rel="noopener noreferrer" href={`mailto:?Subject=${this.state.selectedTemplate !== '' ? this.formatTemplate()[1] : ''}&Body=${this.state.selectedTemplate !== '' ? this.formatTemplateForEmail() : ''}`} className={styles.link}>Open Email</a>}

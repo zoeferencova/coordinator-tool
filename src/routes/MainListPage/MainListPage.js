@@ -27,10 +27,9 @@ export default class MainListPage extends React.Component {
 
     //Opens SendEmail form component modal
     openEmailForm = (project, contact, pm_name) => {
-        const fixedproj = project.replace('&', 'and')
         this.setState({ emailFormOpen: true })
         this.setState({
-            emailProject: fixedproj,
+            emailProject: project,
             emailContact: contact,
             emailPmName: pm_name,
         })
