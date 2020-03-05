@@ -94,7 +94,7 @@ export default class MainListItem extends React.Component {
                                 <p><span className={styles.columnName}>PM</span> {pm_name}</p>
                                 <p><span className={styles.columnName}>Date Created</span>  {date_created}</p>
                                 
-                                {this.props.notes && <p>Notes: {notes}</p>}
+                                {this.props.notes && <p><span className={styles.columnName}>Notes</span> {notes}</p>}
                             </div>
                             <div className={styles.popupActions}>
                                 <p className={styles.heading}>Actions</p>
