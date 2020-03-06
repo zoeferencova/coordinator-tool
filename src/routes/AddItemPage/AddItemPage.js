@@ -76,7 +76,8 @@ export default class AddItemPage extends React.Component {
                     )
                     .then(item => this.handlePostSuccess(item))
                     .catch(res => {
-                        this.setState({ error: res.error.message })
+                        res.error.message === `Missing 'pm_id' in request body` ? this.setState({ error: 'Please select a Project Manager' })
+                        : this.setState({ error: res.error.message })
                     })
             }
         }
