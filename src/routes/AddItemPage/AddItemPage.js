@@ -13,7 +13,8 @@ export default class AddItemPage extends React.Component {
 
     state = {
         numberOfContactInputs: 1,
-        error: null
+        error: null,
+        pmError: null,
     }
 
     //Renders contact name and contact url form inputs based on the number of contact inputs from state
@@ -60,7 +61,7 @@ export default class AddItemPage extends React.Component {
             const notes = e.target.notes.value;
             
             const item = { project, project_url, contact, contact_url: fixedContactUrl, pm_id, notes, status: 'none' }
-            if (item.contact !== '') {
+            if (item.contact !== '' && item.project !== '' && item.pm_id !== '') {
                 fetch(`${config.API_ENDPOINT}/list`, {
                     method: 'POST',
                     headers: {
@@ -79,6 +80,8 @@ export default class AddItemPage extends React.Component {
                         res.error.message === `Missing 'pm_id' in request body` ? this.setState({ error: 'Please select a Project Manager' })
                         : this.setState({ error: res.error.message })
                     })
+            } else if (item.pm_id === '') {
+                this.setState({ pmError: 'Please select a PM' })
             }
         }
     }
@@ -113,14 +116,15 @@ export default class AddItemPage extends React.Component {
                         </div>
                         {this.renderContactInputs()}
                         <Button onClick={e => this.setContactInputNumber(e)}>+ Additional Contacts</Button>
-                        <div className={styles.pm}>
+                        <div className={`${styles.pm} ${this.state.pmError !== null && styles.pmError}`}>
                             <label htmlFor="pm">Project Manager: </label>
-                            <Select required name="pm" id="pm" >
+                            <Select name="pm" id="pm" onChange={() => this.setState({pmError: null})}>
                                 <option value='none'></option>
                                 {this.context.pms.map(pm => 
-                                     <option value={pm.pm_name} key={pm.id}>{pm.pm_name}</option>
+                                     <option value={pm.pm_name} key={pm.id} >{pm.pm_name}</option>
                                 )}
                             </Select>
+                            <div className={styles.pmError}><span>{this.state.pmError !== null && this.state.pmError}</span></div>
                         </div>
                         <div className={styles.formSection}>
                             <label htmlFor="notes" className={styles.notesLabel}>Notes: </label>
