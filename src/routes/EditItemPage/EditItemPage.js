@@ -13,7 +13,8 @@ export default class EditItemPage extends React.Component {
     
     state = {
         inputValues: {},
-        error: null
+        error: null,
+        pmError: null,
     }
 
     componentDidMount() {
@@ -30,6 +31,7 @@ export default class EditItemPage extends React.Component {
     }
 
     handlePatchItem(e) {
+        e.preventDefault()
         const pm = this.context.pms.find(pm => pm.pm_name === this.state.inputValues.pm_name)
         let pmId;
         pm === undefined ? pmId = '' : pmId = pm.id;
@@ -43,23 +45,28 @@ export default class EditItemPage extends React.Component {
         delete updateValues.pm_name;
         delete updateValues.pm_email;
 
-        e.preventDefault()
-        fetch(`${config.API_ENDPOINT}/list/${this.props.match.params.id}`, {
-            method: 'PATCH',
-            headers: {
-                'content-type': 'application/json',
-                'Authorization': `Bearer ${window.sessionStorage.getItem(config.TOKEN_KEY)}`
-            },
-            body: JSON.stringify(updateValues)
-        })
-            .then(res => 
-                (!res.ok)
-                    ? res.json().then(e => Promise.reject(e))
-                    : this.handlePatchSuccess()
-            )
-            .catch(res => {
-                this.setState({ error: res.error.message })
+        if (updateValues.project !== '' && updateValues.contact !== '' && updateValues.pm_id !== '') {
+            
+            fetch(`${config.API_ENDPOINT}/list/${this.props.match.params.id}`, {
+                method: 'PATCH',
+                headers: {
+                    'content-type': 'application/json',
+                    'Authorization': `Bearer ${window.sessionStorage.getItem(config.TOKEN_KEY)}`
+                },
+                body: JSON.stringify(updateValues)
             })
+                .then(res => 
+                    (!res.ok)
+                        ? res.json().then(e => Promise.reject(e))
+                        : this.handlePatchSuccess()
+                )
+                .catch(res => {
+                    this.setState({ error: res.error.message })
+                })
+        } else if (updateValues.pm_id === '') {
+            this.setState({ pmError: 'Please select a PM' })
+        }
+       
     }
 
     handlePatchSuccess = () => {
@@ -77,6 +84,7 @@ export default class EditItemPage extends React.Component {
     }
 
     handleChangePm = val => {
+        this.setState({pmError: null})
         this.setState({ inputValues: { ...this.state.inputValues, pm_name: val } })
     }
 
@@ -120,14 +128,15 @@ export default class EditItemPage extends React.Component {
                             </div>
                         </div>
                         
-                        <div className={styles.pm}>
+                        <div className={`${styles.pm} ${this.state.pmError !== null && styles.pmError}`}>
                             <label htmlFor="pm">Project Manager: </label>
-                            <Select required name="pm" id="pm" value={this.state.inputValues.pm_name} onChange={e => this.handleChangePm(e.target.value)}>
-                                <option value={'none'}></option>
+                            <Select name="pm" id="pm" value={this.state.inputValues.pm_name} onChange={e => this.handleChangePm(e.target.value)}>
+                                <option value='none'></option>
                                 {this.context.pms.map(pm => 
-                                        <option value={pm.pm_name} key={pm.id}>{pm.pm_name}</option>
-                                )}                            
-                                </Select>
+                                     <option value={pm.pm_name} key={pm.id} >{pm.pm_name}</option>
+                                )}
+                            </Select>
+                            <div className={styles.pmError}><span>{this.state.pmError !== null && this.state.pmError}</span></div>
                         </div>
                         <div className={styles.formSection}>
                             <label htmlFor="notes" className={styles.notesLabel}>Notes: </label>
