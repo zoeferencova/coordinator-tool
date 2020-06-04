@@ -16,7 +16,9 @@
 
 .tableHeader div {
     background-color: #f0f4f7;
-    padding: 12px 10px;
+    padding: 12px 5px;
+    padding-top: 12px !important;
+    padding-bottom: 12px !important;
     text-align: left;
     text-transform: uppercase;
     color: #8193a1;
@@ -24,6 +26,8 @@
     font-size: 11px;
     letter-spacing: 0.5px
 }
+
+
 
 .tableHeaderCell {
     display: table-cell;
@@ -43,7 +47,7 @@
 
 .tableRow {
     display: table-row;
-    font-size: 13px;
+    font-size: 12.5px;
 }
 
 .tableRow i {
@@ -94,7 +98,17 @@
     margin-bottom: 50px;
 }
 
-@media only screen and (max-width: 810px) {
+@media only screen and (max-width: 800px) {
+    .hideTablet {
+        display: none;
+    }
+
+    .projectHeader div {
+        padding-left: 15px !important;
+    }
+}
+
+@media only screen and (max-width: 600px) {
     .hideMobile {
         display: none;
     }

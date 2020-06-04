@@ -6,17 +6,18 @@
     cursor: pointer;
 }
 
-div.status.tableBodyCell {
-    width: 45px;
+div.status {
     padding: 0;
 }
 
 .project {
     max-width: 150px;
+    min-width: 130px;
 }
 
 .contact {
-    max-width: 90px;
+    min-width: 80px;
+    max-width: 110px;
 }
 
 .pm {
@@ -51,7 +52,7 @@ div.actions, div.status, div.check {
     text-align: center;
 }
 
-@media only screen and (max-width: 811px) {
+@media only screen and (max-width: 600px) {
     div .mobileActions {
         width: 40px;
         display: table-cell;

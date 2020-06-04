@@ -32,12 +32,12 @@ export default class MainListBody extends React.Component {
         return (
             <div className={tableStyles.table}>
                 <div className={tableStyles.tableHeader}>
-                    <div className={`${tableStyles.tableHeaderCell} ${tableStyles.hideMobile} ${listStyles.check}`}><input type="checkbox" id="header-checkbox" onChange={this.setCheckedState}></input></div>
-                    <div className={`${tableStyles.tableHeaderCell} ${listStyles.project}`}>Project <i onClick={() => this.props.currentSort === 'project-asc' ? this.props.setSort('project-desc') : this.props.setSort('project-asc')} className="fas fa-sort"></i></div>
+                    <div className={`${tableStyles.tableHeaderCell} ${listStyles.check} ${tableStyles.hideTablet}`}><input type="checkbox" id="header-checkbox" onChange={this.setCheckedState}></input></div>
+                    <div className={`${tableStyles.tableHeaderCell} ${tableStyles.projectHeader} ${listStyles.project}`}>Project <i onClick={() => this.props.currentSort === 'project-asc' ? this.props.setSort('project-desc') : this.props.setSort('project-asc')} className="fas fa-sort"></i></div>
                     <div className={`${tableStyles.tableHeaderCell} ${listStyles.contact}`}>Contact <i onClick={() => this.props.currentSort === 'contact-asc' ? this.props.setSort('contact-desc') : this.props.setSort('contact-asc')} className="fas fa-sort"></i></div>
                     <div className={`${tableStyles.tableHeaderCell} ${tableStyles.hideMobile}`}>PM <i onClick={() => this.props.currentSort === 'pm-asc' ? this.props.setSort('pm-desc') : this.props.setSort('pm-asc')} className="fas fa-sort"></i></div>
                     <div className={`${tableStyles.tableHeaderCell} ${tableStyles.hideMobile}`}>Date <i onClick={() => this.props.currentSort === 'date-asc' ? this.props.setSort('date-desc') : this.props.setSort('date-asc')} className="fas fa-sort"></i></div>
-                    <div className={`${tableStyles.tableHeaderCell} ${tableStyles.hideMobile}`}>Notes</div>
+                    <div className={`${tableStyles.tableHeaderCell} ${tableStyles.hideTablet}`}>Notes</div>
                     <div className={`${tableStyles.tableHeaderCell} ${listStyles.status}`}>Status <i onClick={() => this.props.currentSort === 'status-asc' ? this.props.setSort('status-desc') : this.props.setSort('status-asc')} className="fas fa-sort"></i></div>
                     <div className={`${tableStyles.tableHeaderCell} ${listStyles.actions} ${tableStyles.hideMobile}`}>Actions</div>
                     <div className={`${tableStyles.tableHeaderCell} ${listStyles.mobileActions} ${tableStyles.hideDesktop}`}></div>

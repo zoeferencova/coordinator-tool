@@ -57,12 +57,12 @@ export default class MainListItem extends React.Component {
         const { id, project, project_url, contact, contact_url, pm_name, pm_email, notes, status, date_created } = this.props;
         return (
             <div className={`${tableStyles.tableRow}`}>
-                <div className={`${tableStyles.tableBodyCell} ${tableStyles.hideMobile} ${listStyles.check}`}><input type="checkbox" id="list-checkbox" onChange={e => this.props.setChecked(id)}></input></div>
+                <div className={`${tableStyles.tableBodyCell} ${listStyles.check} ${tableStyles.hideTablet}`}><input type="checkbox" id="list-checkbox" onChange={e => this.props.setChecked(id)}></input></div>
                 <div className={`${tableStyles.tableBodyCell} ${listStyles.project}`}>{project_url !== '' ? <a href={project_url} target="_blank" rel="noopener noreferrer">{project}</a> : project}</div>
                 <div className={`${tableStyles.tableBodyCell} ${listStyles.contact}`}>{contact_url !== '' ? <a href={contact_url} target="_blank" rel="noopener noreferrer">{contact}</a> : contact}</div>
                 <div className={`${tableStyles.tableBodyCell} ${tableStyles.hideMobile} ${listStyles.pm}`}>{pm_name}</div>
                 <div className={`${tableStyles.tableBodyCell} ${tableStyles.hideMobile} ${listStyles.date}`}>{date_created}</div>
-                <div className={`${tableStyles.tableBodyCell} ${tableStyles.hideMobile} ${listStyles.notes}`}>{notes}</div>
+                <div className={`${tableStyles.tableBodyCell} ${tableStyles.hideTablet} ${listStyles.notes}`}>{notes}</div>
                 <div className={`${tableStyles.tableBodyCell} ${listStyles.status}`}>
                     <select className={`${styles.statusSelect} ${status === 'reached' ? styles.pending : ''}`} value={status} onChange={(e) => this.handleStatusClick(e.target.value, this.props.id, project, contact, pm_email)}>
                         <option value='none'></option>
