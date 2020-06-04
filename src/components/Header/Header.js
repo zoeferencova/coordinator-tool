@@ -9,6 +9,7 @@ import styles from './Header.module.css'
 export default class Header extends React.Component {
     static contextType = AppContext;
 
+    //Clears Auth Token and sets App component's state isLoggedIn to false to render the UnauthenticatedApp component
     handleLogout = () => {
         TokenService.clearAuthToken();
         this.context.setLoggedIn(false)

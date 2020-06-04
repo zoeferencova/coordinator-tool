@@ -41,11 +41,12 @@ export default class AuthenticatedApp extends Component {
         }
     }  
 
-
+  
   componentDidMount() {
     this.fetchUserData()
   }
 
+  //Fetches all data for the logged in user and adds it component's state
   fetchUserData() {
     fetch(`${config.API_ENDPOINT}/user-data`, {
       method: 'GET',
@@ -71,6 +72,7 @@ export default class AuthenticatedApp extends Component {
     this.setState({ loading: false })
   }
 
+  //Clears all values in state - used when the user logs out
   setInitialState = () => {
     this.setState({
       listItems: [],
@@ -81,6 +83,8 @@ export default class AuthenticatedApp extends Component {
     })
   }
 
+  //Functions for adding, deleting and updating data in state/context
+  //Used through context in child components to update values after fetch calls
   addItem = (item) => {
     this.setState({ listItems: [...this.state.listItems, item] })
   }
@@ -166,6 +170,7 @@ export default class AuthenticatedApp extends Component {
     this.setState({ pms: newPms })
   }
 
+  //Setting context values using AuthenticatedApp's states, providing those context values to all children
   render() {
     const value = { ...this.state }
 

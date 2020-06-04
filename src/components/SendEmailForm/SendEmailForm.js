@@ -25,29 +25,28 @@ export default class SendEmailForm extends React.Component {
         this.setState({ selectedTemplate: event.target.value })
     }
 
-    formatTemplateBody = () => {
+    //Gets current selected template from context and replaces values of template strings [PROJECT], [CONTACT] and [PM] with values from the listItem that are passed in as props
+    //Returns array with format [[formatted template content], [formatted template subject]]
+    formatTemplate = () => {
         const unformattedTemplate = this.context.templates[this.state.selectedTemplate].template_content;
-        const { project, contact, pm_name } = this.props;
-        const splitWord = word => word.split(' ');
-        const numWords = word => splitWord(word).length;
-        const formattedTemplate = unformattedTemplate.replace('[PROJECT]', (splitWord(project)[numWords(project) - 1] === 'Space' || splitWord(project)[numWords(project) - 1] === 'Industry') ? `the ${project}` : project).replace('[PM]', pm_name).replace('[CONTACT]', this.state.doctor ? `Dr. ${splitWord(contact)[numWords(contact) - 1]}` : splitWord(contact)[0]);
-        return formattedTemplate;
-    }
-
-    formatTemplateSubject = () => {
         const unformattedSubject = this.context.templates[this.state.selectedTemplate].template_subject;
         const { project, contact, pm_name } = this.props;
+        const fixedproject = project.replace('&', '%26')
         const splitWord = word => word.split(' ');
         const numWords = word => splitWord(word).length;
-        const formattedSubject = unformattedSubject.replace('[PROJECT]', (splitWord(project)[numWords(project) - 1] === 'Space' || splitWord(project)[numWords(project) - 1] === 'Industry') ? `the ${project}` : project).replace('[PM]', pm_name).replace('[CONTACT]', this.state.doctor ? `Dr. ${splitWord(contact)[numWords(contact) - 1]}` : splitWord(contact)[0]);
-        return formattedSubject;
+        const arr = [unformattedTemplate, unformattedSubject]
+        const formattedArr = arr.map(item => item.replace('[PROJECT]', (splitWord(fixedproject)[numWords(fixedproject) - 1] === 'Space' || splitWord(fixedproject)[numWords(fixedproject) - 1] === 'Industry') ? `the ${fixedproject}` : fixedproject).replace('[PM]', pm_name).replace('[CONTACT]', this.state.doctor ? `Dr. ${splitWord(contact)[numWords(contact) - 1]}` : splitWord(contact)[0]));
+        return formattedArr;
     }
 
+    //Replaces characters used for new line to be compatible with mailto
     formatTemplateForEmail = () => {
-        const regularFormattedTemplate = this.formatTemplateBody()
-        return regularFormattedTemplate.replace(/\n/g, '%0A')
+        const template = this.formatTemplate()[0]
+        return template.replace(/\n/g, '%0D%0A')
     }
 
+    //Used for 'Set Doctor' checkbox
+    //If doctor state is true, the formatTemplate function replaces [CONTACT] with `Dr. [contact last name]` instead of [contact first name]
     setDoctor = () => {
         !this.state.doctor 
             ? this.setState({ doctor: true })
@@ -78,10 +77,10 @@ export default class SendEmailForm extends React.Component {
                         </div>
                         <div>
                             {this.state.selectedTemplate !== '' && <h4 className={styles.preview}>Preview:</h4>}
-                            <p className={styles.templateBody}>{this.state.selectedTemplate !== '' ? this.formatTemplateBody() : ''}</p>
+                            <p className={styles.templateBody}>{this.state.selectedTemplate !== '' ? this.formatTemplate()[0].replace('%26', '&') : ''}</p>
                         </div>
                         
-                        {this.state.selectedTemplate !== '' && <a target="_blank" href={`mailto:?Subject=${this.state.selectedTemplate !== '' ? this.formatTemplateSubject() : ''}&Body=${this.state.selectedTemplate !== '' ? this.formatTemplateForEmail() : ''}`} className={styles.link}>Open Email</a>}
+                        {this.state.selectedTemplate !== '' && <a target="_blank" rel="noopener noreferrer" href={`mailto:?Subject=${this.state.selectedTemplate !== '' ? this.formatTemplate()[1] : ''}&Body=${this.state.selectedTemplate !== '' ? this.formatTemplateForEmail() : ''}`} className={styles.link}>Open Email</a>}
                     </form>)}
                 </main>
                 <div className={styles.overlay} onClick={this.props.closeEmailForm}></div>

@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import Header from '../../components/Header/Header'
 import AppContext from '../../contexts/contexts'
 import NavBar from '../../components/NavBar/NavBar';
-import { Button, Input } from '../../components/Utils/Utils'
+import { Button, Input, UserGuide } from '../../components/Utils/Utils'
 import TokenService from '../../services/token-service'
 import { Link } from 'react-router-dom';
 
@@ -11,14 +11,12 @@ import config from '../../config'
 
 import styles from './AccountPage.module.css'
 import modalStyles from '../../components/SendEmailForm/SendEmailForm.module.css'
-import listStyles from '../MainListPage/MainListPage.module.css'
 
 export default class AccountPage extends React.Component {
     static contextType = AppContext;
 
     state = {
         error: null,
-        confirm: false,
         userGuide: false
     }
     
@@ -32,15 +30,6 @@ export default class AccountPage extends React.Component {
                 <Button onClick={(e) => this.handleDeletePm(e) } pmid={pm.id} className={styles.delete}>Delete</Button>
             </li>
         )
-    }
-        
-
-    close = () => {
-        this.setState({ confirm: false })
-    }
-
-    open = () => {
-        this.setState({ confirm: true })
     }
 
     handleDeletePm = (e) => {
@@ -97,6 +86,7 @@ export default class AccountPage extends React.Component {
         this.setState({ userGuide: false })
     }
 
+    //Clears Auth Token and sets App component's state isLoggedIn to false to render the UnauthenticatedApp component
     handleLogout = () => {
         TokenService.clearAuthToken();
         this.context.setLoggedIn(false)
@@ -140,21 +130,7 @@ export default class AccountPage extends React.Component {
                             <button onClick={this.closeInstructions}  className={modalStyles.xButton}><i className="fas fa-times"></i></button>
                             <div className={styles.instructionContent}>
                                 <h3 className={modalStyles.title}>User Guide</h3>
-                                <div className={`${listStyles.instructions}`}>
-                                    <p>Welcome to the coordinator tool! Here's how to get started:</p>
-                                    <ol>
-                                        <li>Add your Project Manager names and emails in the <span className={listStyles.tabStyle}><i className="fas fa-user-circle"></i> Account</span> tab PM Settings section.</li>
-                                        <li>Create some email templates in the <span className={listStyles.tabStyle}><i className="fas fa-envelope"></i> Templates</span> tab.</li>
-                                        <li>Add your first list item! Use the <span className={listStyles.addButtonStyle}>+ Add Item</span> button to start adding list items. You can include URL's for the contact or project page which will link the list item values to the external pages for quick navigation in the future.</li>
-                                        <li>Other tips:</li>
-                                            <ul>
-                                                <li>Use the <span className={listStyles.buttonStyle}>PM Update</span> button to automatically generate an email with all of your current list items categorized by PM. This can be used to send an update email to all of your PM's whenever you need to.</li>
-                                                <li>The <span className={listStyles.buttonStyle}>Reset</span> button can be used to reset the status of all of the list items back to no status. You can use this in the beginning of the day to mark all items as no longer pending from the previous day.</li>
-                                                <li>When you mark a list item completed, it will automatically get moved into the <span className={listStyles.tabStyle}><i className="fas fa-check-square"></i> Completed</span> tab where you can revert the status of any completed item if needed and move it back into your main list.</li>
-                                                <li>Use the <span className={listStyles.tabStyle}><i className="fas fa-chart-pie"></i> Dashboard</span> tab to keep track of metrics and gain insight into trends related to your workflow.</li>
-                                            </ul>
-                                    </ol>
-                                </div>
+                                <UserGuide />
                             </div>
                             
                         </div>

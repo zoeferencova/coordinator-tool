@@ -5,12 +5,8 @@ import RegistrationForm from '../../components/RegistrationForm/RegistrationForm
 import styles from '../LoginPage/LoginPage.module.css'
 
 export default class RegistrationPage extends React.Component {
-    static defaultProps = {
-        history: {
-            push: () => {},
-        },
-    }
-
+    
+    //Redirects user to login form after successful registration
     handleRegistrationSuccess = user => {
         const { history } = this.props;
         history.push('/login')

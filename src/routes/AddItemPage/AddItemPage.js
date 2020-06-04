@@ -13,9 +13,12 @@ export default class AddItemPage extends React.Component {
 
     state = {
         numberOfContactInputs: 1,
-        error: null
+        error: null,
+        pmError: null,
     }
 
+    //Renders contact name and contact url form inputs based on the number of contact inputs from state
+    //For cases where user has multiple contacts to reach out to on the same project to avoid having to add an individual list item for each contact manually
     renderContactInputs = () => {
         const { numberOfContactInputs } = this.state;
         const arr = []
@@ -33,12 +36,17 @@ export default class AddItemPage extends React.Component {
         return arr;
     }
 
+    //Increments numberOfContactInputs on click of additional contacts button
     setContactInputNumber = e => {
         e.preventDefault()
         let newNumber = this.state.numberOfContactInputs + 1;
         this.setState({ numberOfContactInputs: newNumber })
     }
 
+    //Post request for list item(s)
+    //If multiple contacts exist in the form, a separate post request is sent for each contact
+    //If there is a blank contact input it is ignored
+    //If the project url or advisor url values do not begin with https:// or http:// it is added to the value to create a valid URL
     handlePostItem(e) {
         e.preventDefault();
         for (let i=0; i < this.state.numberOfContactInputs; i++) {
@@ -53,7 +61,7 @@ export default class AddItemPage extends React.Component {
             const notes = e.target.notes.value;
             
             const item = { project, project_url, contact, contact_url: fixedContactUrl, pm_id, notes, status: 'none' }
-            if (item.contact !== '') {
+            if (item.contact !== '' && item.project !== '' && item.pm_id !== '') {
                 fetch(`${config.API_ENDPOINT}/list`, {
                     method: 'POST',
                     headers: {
@@ -69,8 +77,11 @@ export default class AddItemPage extends React.Component {
                     )
                     .then(item => this.handlePostSuccess(item))
                     .catch(res => {
-                        this.setState({ error: res.error.message })
+                        res.error.message === `Missing 'pm_id' in request body` ? this.setState({ error: 'Please select a Project Manager' })
+                        : this.setState({ error: res.error.message })
                     })
+            } else if (item.pm_id === '') {
+                this.setState({ pmError: 'Please select a PM' })
             }
         }
     }
@@ -80,6 +91,7 @@ export default class AddItemPage extends React.Component {
         this.props.history.push('/main')
     }
 
+    //Resets numberOfContact inputs when component unmounts
     componentWillUnmount() {
         this.setState({numberOfContactInputs: 1})
     }
@@ -104,18 +116,19 @@ export default class AddItemPage extends React.Component {
                         </div>
                         {this.renderContactInputs()}
                         <Button onClick={e => this.setContactInputNumber(e)}>+ Additional Contacts</Button>
-                        <div className={styles.pm}>
+                        <div className={`${styles.pm} ${this.state.pmError !== null && styles.pmError}`}>
                             <label htmlFor="pm">Project Manager: </label>
-                            <Select required name="pm" id="pm" >
+                            <Select name="pm" id="pm" onChange={() => this.setState({pmError: null})}>
                                 <option value='none'></option>
                                 {this.context.pms.map(pm => 
-                                     <option value={pm.pm_name} key={pm.id}>{pm.pm_name}</option>
+                                     <option value={pm.pm_name} key={pm.id} >{pm.pm_name}</option>
                                 )}
                             </Select>
+                            <div className={styles.pmError}><span>{this.state.pmError !== null && this.state.pmError}</span></div>
                         </div>
                         <div className={styles.formSection}>
                             <label htmlFor="notes" className={styles.notesLabel}>Notes: </label>
-                            <textarea name="notes" id="notes" className={styles.notes}></textarea>
+                            <Textarea name="notes" id="notes" className={styles.notes}></Textarea>
                         </div>
                         <div>
                             <Link to='/main'><Button>Cancel</Button></Link>

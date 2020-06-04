@@ -29,3 +29,19 @@
     margin-top: 30px;
     margin-bottom: 20px;
 }
+
+.pmError {
+    color: red;
+    
+}
+
+.pmError select {
+    border: 1px solid red;
+}
+
+.pmError span {
+    font-size: 11px;
+    margin-left: 108px;
+    margin-top: 10px;
+    display: block;
+}

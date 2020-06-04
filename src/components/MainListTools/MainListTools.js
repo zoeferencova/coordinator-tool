@@ -9,6 +9,8 @@ import styles from './MainListTools.module.css'
 export default class MainListTools extends React.Component {
     static contextType = AppContext;
 
+    //Creates allItems object that collects all listItems from context grouped by PM name
+    //Formats each list item as [Project Name] - [Advisor Name] and pushes to an array which is then joined to create a string containing the body of the PM update email
     formatEmailUpdate = () => {
         const { listItems } = this.context;
         const allItems = {}
@@ -24,12 +26,13 @@ export default class MainListTools extends React.Component {
         const updateArray = []
         
         for (let [key, value] of Object.entries(allItems)) {
-            updateArray.push(`${key}%0A%0A${value.map(item => `${item.project.replace('&', 'and')} - ${item.contact}%0A`).join('')}`)
+            updateArray.push(`${key}%0A%0A${value.map(item => `${item.project.replace('&', '%26')} - ${item.contact}%0A`).join('')}`)
         }
 
         return updateArray.join('%0A%0A')
     }
 
+    //Gets all the email addresses of all PMs with current list items and joins into a string of emails to be supplied to the mailto
     formatUpdateEmailAddresses = () => {
         const { listItems } = this.context;
         const pmEmails = []
@@ -43,6 +46,9 @@ export default class MainListTools extends React.Component {
         return pmEmails.join('; ')
     }
 
+    //Conditionally updates the status or deletes items that are checked off on the list.
+    //Checked items are passed in as props from the MainListPage component in the form of an array containing the id's of all checked items
+    //Uses window.confirm(...) to confirm deletion/completion of all checked items
     fireAction(status) {
         const checked = this.props.checkedItems;
         if (status === 'reached') {

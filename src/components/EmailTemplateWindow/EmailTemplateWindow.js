@@ -7,20 +7,6 @@ import { style } from 'd3';
 export default class EmailTemplateWindow extends React.Component {
     static contextType = AppContext;
 
-
-
-    handleChangeName = val => {
-        this.setState({ inputValues: { ...this.state.inputValues, template_name: val } })
-    }
-
-    handleChangeSubject = val => {
-        this.setState({ inputValues: {...this.state.inputValues, template_subject: val } })
-    }
-
-    handleChangeContent = val => {
-        this.setState({ inputValues: { ...this.state.inputValues, template_content: val } })
-    }
-    
     render() {
         return (
             <div className={style.box}>

@@ -41,10 +41,6 @@
     font-size: 12px;
 }
 
-/* div .tableHeaderCell {
-    height: 25px;
-} */
-
 .tableRow {
     display: table-row;
     font-size: 12.5px;
@@ -92,10 +88,11 @@
     padding: 20px;
     border-radius: 7px;
     box-shadow: 2px 2px 40px -20px lightgray;
+    margin-bottom: 50px;
 }
 
-.listContainer {
-    margin-bottom: 50px;
+.scroll {
+    display: none;
 }
 
 @media only screen and (max-width: 800px) {
@@ -121,11 +118,30 @@
     .hideDesktop {
         display: table-cell
     }
+
+    
 }
 
 @media only screen and (max-width: 500px) {
     .tableBodyCell {
         font-size: 11px;
+    }
+
+    .tableBodyContainer {
+        overflow-x: scroll;
+    }
+
+    .scroll {
+        font-size: 10px;
+        text-transform: uppercase;
+        padding-bottom: 10px;
+        text-align: center;
+        display: block;
+        color: #8193a1;
+    }
+
+    .scroll i {
+        margin-left: 3px;
     }
 }
 

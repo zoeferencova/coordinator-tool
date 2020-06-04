@@ -6,6 +6,8 @@ import NavBar from '../../components/NavBar/NavBar'
 import Header from '../../components/Header/Header';
 import SendEmailForm from '../../components/SendEmailForm/SendEmailForm'
 import MainListItem from '../../components/MainListItem/MainListItem'
+import ListService from '../../services/list-service';
+import { UserGuide } from '../../components/Utils/Utils'
 
 import tableStyles from '../../components/Utils/shared-styles/TableStyles.module.css'
 import styles from './MainListPage.module.css'
@@ -23,14 +25,13 @@ export default class MainListPage extends React.Component {
         checkedItems: []
     }
 
-    openEmailForm = (project, contact, pm_name, pm_email) => {
-        const fixedproj = project.replace('&', 'and')
+    //Opens SendEmail form component modal
+    openEmailForm = (project, contact, pm_name) => {
         this.setState({ emailFormOpen: true })
         this.setState({
-            emailProject: fixedproj,
+            emailProject: project,
             emailContact: contact,
             emailPmName: pm_name,
-            emailPmEmail: pm_email
         })
     }
 
@@ -42,6 +43,7 @@ export default class MainListPage extends React.Component {
         this.setState({ sort })
     }
 
+    //Closes SendEmail form component and resets values for current list item
     closeEmailForm = () => {
         this.setState({
             emailFormOpen: false,
@@ -51,6 +53,10 @@ export default class MainListPage extends React.Component {
         })
     }
 
+    //Id's of checked items are stored in checkedItemsArray
+    //On checkbox click for each list item, the click unchecks item if item is already checked
+    //Otherwise if there is only one item being checked (checkedItems type would not be object (array)), the new checked item is added to the checkedItems array
+    //Otherwise if there are multiple items being checked at once using the header checkbox (checkedItems type would be object (array)), the checkedItems array is replaced with an array of all checked items
     setChecked = (id) => {
         if (this.state.checkedItems.includes(id)) {
             const newItems = this.state.checkedItems.filter(item => item !== id)
@@ -62,70 +68,13 @@ export default class MainListPage extends React.Component {
         }
     }
 
+    //Sets all checkboxes back to unchecked and clears checkedItems values in state
     clearChecked = () => {
         this.setState({ checkedItems: [] })
         const listCheckboxes = document.querySelectorAll('#list-checkbox')
         const headerCheckbox = document.querySelector('#header-checkbox')
         listCheckboxes.forEach(item => item.checked = false)
         headerCheckbox.checked = false;
-    }
-
-    sortItems = (inputItems, sort) => {
-        const ASC = 'ascending';
-        const DSC = 'descending';
-
-        const sortByContact = (a, b, order=ASC) => {
-            const diff = a.props.contact.toLowerCase().localeCompare(b.props.contact.toLowerCase());
-            return order === ASC ? diff : -1 * diff
-        } 
-        const sortByProject = (a, b, order=ASC) => {
-            const diff = a.props.project.toLowerCase().localeCompare(b.props.project.toLowerCase());
-            return order === ASC ? diff : -1 * diff
-        }
-        const sortByPM = (a, b, order=ASC) => {
-            const diff = a.props.pm_name.toLowerCase().localeCompare(b.props.pm_name.toLowerCase());
-            return order === ASC ? diff : -1 * diff
-        } 
-        const sortByDate = (a, b, order=ASC) => {
-            const diff = new Date(a.props.unformatted_date) - new Date(b.props.unformatted_date);
-            return order === ASC ? diff : -1 * diff
-        };
-        const sortByStatus = (a, b, order=ASC) => {
-            const diff = a.props.status.toLowerCase().localeCompare(b.props.status.toLowerCase());
-            return order === ASC ? diff : -1 * diff
-        } 
-                
-        if (sort === 'contact-asc') {
-            return inputItems.sort((a, b) => sortByContact(a, b, ASC))
-        } else if (sort === 'contact-desc') {
-            return inputItems.sort((a, b) => sortByContact(a, b, DSC))
-        } else if (sort === 'project-asc') {
-            return inputItems.sort((a, b) => sortByProject(a, b, ASC))
-        } else if (sort === 'project-desc') {
-            return inputItems.sort((a, b) => sortByProject(a, b, DSC))
-        } else if (sort === 'pm-asc') {
-            return inputItems.sort((a, b) => sortByPM(a, b, ASC))
-        } else if (sort === 'pm-desc') {
-            return inputItems.sort((a, b) => sortByPM(a, b, DSC))
-        } else if (sort === 'date-asc') {
-            return inputItems.sort((a, b) => sortByDate(a, b, ASC))
-        } else if (sort === 'date-desc') {
-            return inputItems.sort((a, b) => sortByDate(a, b, DSC))
-        } else if (sort === 'status-asc') {
-            return inputItems.sort((a, b) => sortByStatus(a, b, ASC))
-        } else if (sort === 'status-desc') {
-            return inputItems.sort((a, b) => sortByStatus(a, b, DSC))
-        }
-    }
-    
-    searchItems = (inputItems, query) => {
-        let items;
-        if (query !== '') {
-            items = inputItems.filter(item => item.props.contact.toLowerCase().includes(query) || item.props.project.toLowerCase().includes(query))
-        } else if (query === '') {
-            items = inputItems
-        }
-        return items;
     }
 
     renderListItems = () => { 
@@ -152,37 +101,22 @@ export default class MainListPage extends React.Component {
                 
             />
         )
-        const searchedItems = this.searchItems(itemArray, query)
+        const searchedItems = ListService.searchItems(itemArray, query)
         if (sort === 'none') {
             return searchedItems;
         } else {
-            return this.sortItems(searchedItems, sort)
+            return ListService.sortItems(searchedItems, sort)
         }
     }
 
+    //If there are no items that do not have status 'completed' but there are completed items return no item message
+    //If there are no items that do not have status 'completed' and no completed items return user guide from Utils for new users
     renderNoItemMessage = () => {
         const nonCompletedItems = this.context.listItems.filter(item => item.status !== 'completed')
         if (nonCompletedItems.length === 0 && this.context.completedListItems.length > 0) {
             return <p>You have no items to do! <i class="far fa-smile"></i></p>
         } else if (nonCompletedItems.length === 0 && this.context.completedListItems.length === 0) {
-            return (
-            <div className={styles.instructions}>
-                <p>Welcome to the coordinator tool! Here's how to get started:</p>
-                <ol>
-                    <li>Add your Project Manager names and emails in the <span className={styles.tabStyle}><i className="fas fa-user-circle"></i> Account</span> tab PM Settings section.</li>
-                    <li>Create some email templates in the <span className={styles.tabStyle}><i className="fas fa-envelope"></i> Templates</span> tab.</li>
-                    <li>Add your first list item! Use the <span className={styles.addButtonStyle}>+ Add Item</span> button to start adding list items. You can include URL's for the contact or project page which will link the list item values to the external pages for quick navigation in the future.</li>
-                    <li>Other tips:</li>
-                        <ul>
-                            <li>Use the <span className={styles.buttonStyle}>PM Update</span> button to automatically generate an email with all of your current list items categorized by PM. This can be used to send an update email to all of your PM's whenever you need to.</li>
-                            <li>The <span className={styles.buttonStyle}>Reset</span> button can be used to reset the status of all of the list items back to no status. You can use this in the beginning of the day to mark all items as no longer pending from the previous day.</li>
-                            <li>When you mark a list item completed, it will automatically get moved into the <span className={styles.tabStyle}><i className="fas fa-check-square"></i> Completed</span> tab where you can revert the status of any completed item if needed and move it back into your main list.</li>
-                            <li>Use the <span className={styles.tabStyle}><i className="fas fa-chart-pie"></i> Dashboard</span> tab to keep track of metrics and gain insight into trends related to your workflow.</li>
-                            <li>You can see these instructions any time by clicking on the "User Guide" button in the <span className={styles.tabStyle}><i className="fas fa-user-circle"></i> Account</span> tab.</li>
-                        </ul>
-                </ol>
-            </div>
-            )
+            return <UserGuide />
         }
     }
 
@@ -196,7 +130,8 @@ export default class MainListPage extends React.Component {
                     <Header title={title} />
                     <div className={tableStyles.listContainer}>
                         <MainListTools setQuery={this.setQuery} checkedItems={this.state.checkedItems} clearChecked={this.clearChecked} />
-                        <div>
+                        <span className={`${tableStyles.scroll}`}>Scroll for more <i className="fas fa-arrow-right"></i></span>
+                        <div className={tableStyles.tableBodyContainer}>
                             <MainListBody setSort={this.setSort} currentSort={this.state.sort} renderListItems={this.renderListItems} openEmailForm={this.openEmailForm} closeEmailForm={this.closeEmailForm} setChecked={this.setChecked} clearChecked={this.clearChecked} />
                             {this.context.loading && <img src={require('../../images/loader.gif')} alt="loader" className={styles.loader}></img>}
                             {!this.context.loading && this.renderNoItemMessage()}
