@@ -144,16 +144,15 @@ export default class MainListTools extends React.Component {
             <div className={styles.tools}>
                 <div className={styles.flex}>
                     <div>
-                        <label htmlFor="search">Search: </label>
-                        <Input type="text" id="search" onChange={e => this.props.setQuery(e.target.value)}></Input>
+                        <label htmlFor="search" className={styles.hide}>Search: </label>
+                        <Input type="text" id="search" className={styles.search} placeholder={"Search..."} onChange={e => this.props.setQuery(e.target.value)}></Input>
                     </div>
                     
                 </div>
                 <div className={styles.flex}>
                     <div>
-                        <label htmlFor="action" className={styles.hideMobile}>Actions: </label>
                         <Select className={`${styles.hideMobile} ${styles.select}`} name="action" id="action" value={'none'} onChange={e => this.fireAction(e.target.value)}>
-                            <option value="none"></option>
+                            <option value="none" disabled>Bulk actions</option>
                             <option value="completed">Mark Completed</option>
                             <option value="reached">Mark Pending</option>
                             <option value="delete">Delete</option>

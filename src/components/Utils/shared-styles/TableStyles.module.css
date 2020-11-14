@@ -22,9 +22,10 @@
     text-align: left;
     text-transform: uppercase;
     color: #8193a1;
-    font-weight: 700;
+    /* font-weight: 700; */
+    font-family: "Eina Semibold";
     font-size: 11px;
-    letter-spacing: 0.5px
+    letter-spacing: 1px
 }
 
 
@@ -46,6 +47,11 @@
     font-size: 12.5px;
 }
 
+.tableRow:hover {
+    background-color: #f7f9fc;
+    
+}
+
 .tableRow i {
     font-size: 15px;
     margin: 0 4px;
@@ -58,7 +64,7 @@
 
 .tableBodyCell {
     display: table-cell;
-    padding-top: 23px;
+    padding: 12px 0px;
 }
 
 .tableBodyCell button {

@@ -64,11 +64,12 @@ export default class MainListItem extends React.Component {
                 <div className={`${tableStyles.tableBodyCell} ${tableStyles.hideMobile} ${listStyles.pm}`}>{pm_name}</div>
                 <div className={`${tableStyles.tableBodyCell} ${tableStyles.hideMobile} ${listStyles.date}`}>{date_created}</div>
                 <div className={`${tableStyles.tableBodyCell} ${tableStyles.hideTablet} ${listStyles.notes}`}>{notes}</div>
-                <div className={`${tableStyles.tableBodyCell} ${listStyles.status}`}>
+                <div className={`${tableStyles.tableBodyCell} ${listStyles.status} ${styles.status}`}>
+                    <div className={`${status === 'reached' ? styles.pendingBullet : styles.newBullet}`}>●</div>
                     <select className={`${styles.statusSelect} ${status === 'reached' ? styles.pending : ''}`} value={status} onChange={(e) => this.handleStatusClick(e.target.value, this.props.id, project, contact, pm_email)}>
-                        <option value='none'></option>
-                        <option value='reached'>Pending</option>
-                        <option value='completed'>Completed</option>
+                        <option value='none'>new</option>
+                        <option value='reached'>pending</option>
+                        <option value='completed'>completed</option>
                     </select>
                 </div>
                 <div className={`${tableStyles.tableBodyCell} ${tableStyles.hideMobile} ${listStyles.actions}`}>

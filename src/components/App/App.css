@@ -1,12 +1,28 @@
-@import url('https://fonts.googleapis.com/css?family=Nunito:400,600,700,800&display=swap');
+@font-face {
+    font-family: 'Eina';
+    font-style: normal;
+    font-weight: 400;
+    src: url('../../components/Utils/fonts/Eina01-Regular.ttf')
+}
+
+@font-face {
+    font-family: 'Eina Light';
+    src: url('../../components/Utils/fonts/Eina01-Light.ttf')
+}
+
+@font-face {
+    font-family: 'Eina Semibold';
+    src: url('../../components/Utils/fonts/Eina01-SemiBold.ttf')
+}
 
 .App {
-    font-family: "Nunito";
+    font-family: "Eina";
     padding-top: 20px;
     padding-bottom: 20px;
     width: 90%;
     margin: 0 auto;
     text-align: center;
+    letter-spacing: 0.02em;
 }
 
 h2 {
@@ -26,7 +42,7 @@ label {
     display: flex;
     flex-direction: row-reverse;
     justify-content: center;
-    margin-left: 220px;
+    margin-left: 240px;
     position: absolute;
     right: 0;
     top: 0;

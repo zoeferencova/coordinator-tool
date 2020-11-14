@@ -1,8 +1,8 @@
 @font-face {
-    font-family: 'HK Grotesk Reg';
+    font-family: 'Eina';
     font-style: normal;
     font-weight: 400;
-    src: url('../../components/Utils/TTF/HKGrotesk-Regular.ttf')
+    src: url('../../components/Utils/fonts/Eina01-Light.ttf')
 }
 
 .nav {
@@ -15,7 +15,7 @@
 }
 
 .h1, .text, .h2, .sectionHeader, .button {
-    font-family: 'HK Grotesk Reg';
+    font-family: 'Eina';
 }
 
 .h1 {

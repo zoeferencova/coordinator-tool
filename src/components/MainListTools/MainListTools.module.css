@@ -5,6 +5,10 @@
     margin-bottom: 15px;
 }
 
+.search {
+    width: 230px;
+}
+
 .flex {
     display: flex;
     flex-direction: row;
@@ -12,6 +16,7 @@
 }
 
 .select {
+    color: #828282;
     margin-right: 5px;
 }
 
@@ -28,6 +33,10 @@ a {
 .addButton:hover {
     background-color: #3e8044;
     border: 1px solid #3e8044;
+}
+
+.hide {
+    display: none;
 }
 
 
