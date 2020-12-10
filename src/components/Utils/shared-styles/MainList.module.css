@@ -13,12 +13,12 @@ div.status {
 
 .project {
     max-width: 150px;
-    min-width: 130px;
+    min-width: 110px;
 }
 
 .contact {
-    min-width: 80px;
-    max-width: 110px;
+    min-width: 70px;
+    max-width: 100px;
 }
 
 .pm {
@@ -31,12 +31,13 @@ div.status {
 }
 
 .date {
-    width: 80px;
+    min-width: 70px;
+    max-width: 80px;
 }
 
 .actions {
     width: 120px;
-    padding-right: 15px;
+    padding-left: 15px;
 }
 
 .project, .contact, .notes, .pm {
@@ -46,7 +47,7 @@ div.status {
 }
 
 div .notes, div .contact, div .project, div .date, div .pm {
-    padding: 0 12px;
+    padding: 0 11px;
     text-align: left;
 }
 
@@ -68,7 +69,7 @@ div .check {
     }
 
     div .actions {
-        width: 95px;
+        width: 100px;
     }
 }
 

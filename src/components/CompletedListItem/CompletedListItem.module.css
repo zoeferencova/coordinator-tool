@@ -8,3 +8,11 @@
     background-color: #f2f6ff !important;
     cursor: pointer;
 }
+
+.project {
+    padding-left: 25px !important;
+}
+
+.actions {
+    padding-right: 20px !important;
+}

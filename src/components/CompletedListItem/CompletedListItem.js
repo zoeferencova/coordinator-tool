@@ -36,12 +36,12 @@ export default class CompletedListItem extends React.Component {
 
     render() {
         return (
-            <div className={tableStyles.tableRow}>
-                <div className={`${tableStyles.tableBodyCell} ${listStyles.project}`}>{this.props.project_url !== '' ? <a target="_blank" href={this.props.project_url} rel="noopener noreferrer">{this.props.project}</a> : this.props.project}</div>
+            <div className={`${tableStyles.tableRow}`}>
+                <div className={`${tableStyles.tableBodyCell} ${listStyles.project} ${styles.project}`}>{this.props.project_url !== '' ? <a target="_blank" href={this.props.project_url} rel="noopener noreferrer">{this.props.project}</a> : this.props.project}</div>
                 <div className={`${tableStyles.tableBodyCell} ${listStyles.contact}`}>{this.props.contact_url !== '' ? <a target="_blank" href={this.props.contact_url} rel="noopener noreferrer">{this.props.contact}</a> : this.props.contact}</div>
                 <div className={`${tableStyles.tableBodyCell} ${listStyles.pm}`}>{this.props.pm_name}</div>
                 <div className={`${tableStyles.tableBodyCell} ${listStyles.date} ${tableStyles.hideMobile}`}>{new Date((this.props.unformatted_date)).toLocaleDateString('en-US', this.context.dateOptions)}</div>
-                <div className={`${tableStyles.tableBodyCell} ${listStyles.actions}`}>
+                <div className={`${tableStyles.tableBodyCell} ${listStyles.actions} ${styles.actions}`}>
                     <button onClick={e => this.handleRevert(e, this.props.id)} className={styles.revertButton}>Revert</button>
                 </div>
             </div>
