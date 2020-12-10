@@ -58,9 +58,8 @@ export default class SendEmailForm extends React.Component {
             <div >
                 
                 <main role="main" className={styles.formContainer}>
-                    <div>
+                    <div className={styles.header}>
                         <button onClick={this.props.closeEmailForm}  className={styles.xButton}><i className="fas fa-times"></i></button>
-                        <h3 className={styles.title}>Send Email</h3>
                     </div>
                     {this.context.templates.length === 0 ? <p>You have no templates saved! You can create new templates in the <span className={listStyles.tabStyle}><i className="fas fa-envelope"></i> Templates</span> tab.</p> :
                     (<form>
@@ -75,8 +74,7 @@ export default class SendEmailForm extends React.Component {
                             <label htmlFor="doctor">Doctor: </label>
                             <input type="checkbox" id="doctor" onChange={this.setDoctor}></input>
                         </div>
-                        <div>
-                            {this.state.selectedTemplate !== '' && <h4 className={styles.preview}>Preview:</h4>}
+                        <div className={styles.templateContainer}>
                             <p className={styles.templateBody}>{this.state.selectedTemplate !== '' ? this.formatTemplate()[0].replace('%26', '&') : ''}</p>
                         </div>
                         

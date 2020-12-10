@@ -7,8 +7,8 @@ export default class CompletedListTools extends React.Component {
         return (
             <div className={styles.tools}>
                 <div>
-                    <label htmlFor="search">Search: </label>
-                    <Input type="text" id="search" onChange={e => this.props.setQuery(e.target.value)}></Input>
+                    <label htmlFor="search" className={styles.hide}>Search: </label>
+                    <Input type="text" id="search" placeholder="Search"  onChange={e => this.props.setQuery(e.target.value)}></Input>
                 </div>
             </div>
         )

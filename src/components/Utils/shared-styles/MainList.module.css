@@ -8,7 +8,7 @@
 
 div.status {
     padding: 0;
-    width: 110px;
+    width: 90px;
 }
 
 .project {
@@ -22,7 +22,7 @@ div.status {
 }
 
 .pm {
-    max-width: 60px;
+    max-width: 65px;
     min-width: 20px;
 }
 
@@ -35,7 +35,8 @@ div.status {
 }
 
 .actions {
-    width: 90px
+    width: 120px;
+    padding-right: 15px;
 }
 
 .project, .contact, .notes, .pm {
@@ -45,12 +46,30 @@ div.status {
 }
 
 div .notes, div .contact, div .project, div .date, div .pm {
-    padding: 0 10px;
+    padding: 0 12px;
     text-align: left;
 }
 
 div.actions, div.status, div.check {
     text-align: center;
+}
+
+div .actions {
+    padding-right: 15px;
+}
+
+div .check {
+    padding-left: 22px;
+}
+
+@media only screen and (max-width: 800px) {
+    div .project {
+        padding-left: 20px;
+    }
+
+    div .actions {
+        width: 95px;
+    }
 }
 
 @media only screen and (max-width: 600px) {

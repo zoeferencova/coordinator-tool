@@ -1,8 +1,7 @@
 .table {
     width: 100%;
     display: table;
-    margin: 0 auto;
-    
+    margin: 0px;
 }
 
 .table a {
@@ -12,6 +11,8 @@
 
 .tableHeader {
     display: table-header-group;
+    border: 0px;
+    margin-left: 0px;
 }
 
 .tableHeader div {
@@ -25,7 +26,7 @@
     /* font-weight: 700; */
     font-family: "Eina Semibold";
     font-size: 11px;
-    letter-spacing: 1px
+    letter-spacing: 1px;
 }
 
 
@@ -44,7 +45,7 @@
 
 .tableRow {
     display: table-row;
-    font-size: 12.5px;
+    font-size: 12px;
 }
 
 .tableRow:hover {
@@ -91,10 +92,11 @@
 
 .listContainer {
     background-color: white;
-    padding: 20px;
     border-radius: 7px;
     box-shadow: 2px 2px 40px -20px lightgray;
     margin-bottom: 50px;
+    padding: 20px 0px;
+    border: 0px;
 }
 
 .scroll {

@@ -145,7 +145,7 @@ export default class MainListTools extends React.Component {
                 <div className={styles.flex}>
                     <div>
                         <label htmlFor="search" className={styles.hide}>Search: </label>
-                        <Input type="text" id="search" className={styles.search} placeholder={"Search..."} onChange={e => this.props.setQuery(e.target.value)}></Input>
+                        <Input type="text" id="search" className={styles.search} placeholder={"Search"} onChange={e => this.props.setQuery(e.target.value)}></Input>
                     </div>
                     
                 </div>
