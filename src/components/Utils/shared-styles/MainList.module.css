@@ -31,8 +31,8 @@ div.status {
 }
 
 .date {
-    min-width: 70px;
-    max-width: 80px;
+    min-width: 40px;
+    max-width: 65px;
 }
 
 .actions {
