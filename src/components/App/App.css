@@ -46,16 +46,24 @@ label {
     position: absolute;
     right: 0;
     top: 0;
-    bottom: 0;
     left: 0;
+    bottom: 0;
     background: #F9FBFD;
     padding: 0 15px;
-    height: 100%;
     overflow-y: scroll;
+    height: auto;
 }
 
 .content {
+    height: auto;
     width: 95%;
+}
+
+.content:after {
+    content: " ";
+    clear: both;
+    height: 40px;
+    display: block;
 }
 
 @media only screen and (max-width: 1065px) {

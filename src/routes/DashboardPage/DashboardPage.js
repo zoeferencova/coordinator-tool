@@ -55,7 +55,7 @@ export default class DashboardPage extends React.Component {
     
     render() {
         return (
-            <div className="container">
+            <div className={`${styles.container} container`}>
                 <main className="content">
                     <Header title={'Dashboard'} />
                     <div className={styles.dashboard}>

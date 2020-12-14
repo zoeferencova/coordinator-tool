@@ -29,8 +29,6 @@
     letter-spacing: 1px;
 }
 
-
-
 .tableHeaderCell {
     display: table-cell;
     
@@ -93,7 +91,6 @@
     background-color: white;
     border-radius: 7px;
     box-shadow: 2px 2px 40px -20px lightgray;
-    margin-bottom: 50px;
     padding: 20px 0px;
     border: 0px;
 }
