@@ -75,6 +75,7 @@ export default class SendEmailForm extends React.Component {
                             <input type="checkbox" id="doctor" onChange={this.setDoctor}></input>
                         </div>
                         <div className={styles.templateContainer}>
+                            <h2 className={styles.templateSubject}>{this.state.selectedTemplate !== '' && this.context.templates[this.state.selectedTemplate].template_subject}</h2>
                             <p className={styles.templateBody}>{this.state.selectedTemplate !== '' ? this.formatTemplate()[0].replace('%26', '&') : ''}</p>
                         </div>
                         
