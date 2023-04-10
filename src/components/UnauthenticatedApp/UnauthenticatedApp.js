@@ -1,22 +1,19 @@
-import React, { Component } from 'react';
-import { Switch, Route } from 'react-router-dom';
+import React from 'react';
+import { Routes, Route } from 'react-router-dom';
 import LandingPage from '../../routes/LandingPage/LandingPage';
 import LoginPage from '../../routes/LoginPage/LoginPage';
 import RegistrationPage from '../../routes/RegistrationPage/RegistrationPage';
 import NotFoundPage from '../../routes/NotFoundPage/NotFoundPage';
 
-export default class UnauthenticatedApp extends Component {
+const UnauthenticatedApp = ({ setLoggedIn }) => (
+  <main className='App'>
+    <Routes>
+      <Route exact path={'/'} element={<LandingPage />} />
+      <Route path={'/login'} element={<LoginPage setLoggedIn={setLoggedIn} />} />
+      <Route path={'/register'} element={<RegistrationPage />} />
+      <Route element={NotFoundPage} />
+    </Routes>
+  </main>
+)
 
-  render() {
-    return ( 
-        <main className='App'>
-          <Switch>
-            <Route exact path={'/'} component={LandingPage} />
-            <Route path={'/login'} component={() => <LoginPage setLoggedIn={this.props.setLoggedIn} />} />
-            <Route path={'/register'} component={RegistrationPage} />
-            <Route component={NotFoundPage} />
-          </Switch>
-        </main>
-    );
-  }
-}
+export default UnauthenticatedApp;

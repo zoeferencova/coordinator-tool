@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Switch, Route } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import MainListPage from '../../routes/MainListPage/MainListPage';
 import CompletedListPage from '../../routes/CompletedListPage/CompletedListPage';
 import DashboardPage from '../../routes/DashboardPage/DashboardPage';
@@ -9,67 +9,53 @@ import NewTemplatePage from '../../routes/NewTemplatePage/NewTemplatePage';
 import EmailPage from '../../routes/EmailPage/EmailPage';
 import NotFoundPage from '../../routes/NotFoundPage/NotFoundPage';
 import EditItemPage from '../../routes/EditItemPage/EditItemPage'
-import config from '../../config'
-
+import UserDataService from '../../services/user-data-service';
+import ListService from '../../services/list-service';
 import AppContext from '../../contexts/contexts';
 
 export default class AuthenticatedApp extends Component {
-    constructor(props) {
-        super(props)
-        this.state = {
-            listItems: [],
-            completedListItems: [],
-            pms: [],
-            user: [],
-            templates: [],
-            data: { pm_data: [], timespan_data: [], time_completed_data: [] },  
-            dateOptions: { month: 'short', day: 'numeric' },
-            deleteItem: this.deleteItem,
-            addItem: this.addItem,
-            addItemById: this.addItemById,
-            updateItem: this.updateItem,
-            updateItemStatus: this.updateItemStatus,
-            addTemplate: this.addTemplate,
-            deleteTemplate: this.deleteTemplate,
-            updateTemplate: this.updateTemplate,
-            addPm: this.addPm,
-            deletePm: this.deletePm,
-            revertCompleted: this.revertCompleted,
-            setInitialState: this.setInitialState,
-            setLoggedIn: this.props.setLoggedIn,
-            loading: true
-        }
-    }  
-
-  
-  componentDidMount() {
-    this.fetchUserData()
+  constructor(props) {
+    super(props)
+    this.state = {
+      listItems: [],
+      completedListItems: [],
+      pms: [],
+      user: [],
+      templates: [],
+      data: { pm_data: [], timespan_data: [], time_completed_data: [] },
+      dateOptions: { month: 'short', day: 'numeric' },
+      deleteItem: this.deleteItem,
+      addItem: this.addItem,
+      addItemById: this.addItemById,
+      updateItem: this.updateItem,
+      updateItemStatus: this.updateItemStatus,
+      addTemplate: this.addTemplate,
+      deleteTemplate: this.deleteTemplate,
+      updateTemplate: this.updateTemplate,
+      addPm: this.addPm,
+      deletePm: this.deletePm,
+      revertCompleted: this.revertCompleted,
+      setInitialState: this.setInitialState,
+      setLoggedIn: this.props.setLoggedIn,
+      loading: true
+    }
   }
 
-  //Fetches all data for the logged in user and adds it component's state
-  fetchUserData() {
-    fetch(`${config.API_ENDPOINT}/user-data`, {
-      method: 'GET',
-      headers: {
-          'content-type': 'application/json',
-          'Authorization': `Bearer ${window.sessionStorage.getItem(config.TOKEN_KEY)}`
-      }
-      })
-          .then(res => 
-            (!res.ok)
-              ? res.json().then(e => Promise.reject(e))
-              : res.json()
-          )
-          .then(resJson => this.setUserData(resJson))
+
+  componentDidMount() {
+    UserDataService.getUserData()
+      .then(res => this.setUserData(res))
   }
 
   setUserData = data => {
-    this.setState({ listItems: data[0] })
-    this.setState({ pms: data[1] })
-    this.setState({ templates: data[2] })
-    this.setState({ completedListItems: data[3] })
-    this.setState({ user: data[4] })
-    this.setState({ loading: false })
+    this.setState({
+      listItems: data[0],
+      pms: data[1],
+      templates: data[2],
+      completedListItems: data[3],
+      user: data[4],
+      loading: false
+    })
   }
 
   //Clears all values in state - used when the user logs out
@@ -85,57 +71,52 @@ export default class AuthenticatedApp extends Component {
 
   //Functions for adding, deleting and updating data in state/context
   //Used through context in child components to update values after fetch calls
-  addItem = (item) => {
+  addItem = item => {
     this.setState({ listItems: [...this.state.listItems, item] })
   }
 
-  addItemById = (itemId) => {
+  addItemById = itemId => {
     const item = this.state.listItems.find(item => item.id === itemId)
     this.setState({ listItems: [...this.state.listItems, item] })
   }
-  
-  deleteItem = (itemId) => {
-    const newItems = this.state.listItems.filter(listItem => Number(listItem.id) !== Number(itemId))
+
+  deleteItem = itemId => {
+    const newItems = this.state.listItems.filter(listItem => +listItem.id !== +itemId)
     this.setState({ listItems: newItems })
   }
 
   updateItem = (updatedItem) => {
-    const newItems = this.state.listItems.map(item => 
+    const newItems = this.state.listItems.map(item =>
       (item.id === updatedItem.id)
         ? updatedItem
-        : item 
+        : item
     )
     this.setState({ listItems: newItems })
   }
 
   updateDateCompleted = (updatedItem, date) => {
-    const { contact, project } = updatedItem;
+    const { contact, project, id } = updatedItem;
     const foundPm = this.state.pms.find(pm => pm.pm_email === updatedItem.pm_email);
     const pmId = foundPm.id;
-    fetch(`${config.API_ENDPOINT}/list/${updatedItem.id}`, {
-      method: 'PATCH',
-      headers: {
-          'content-type': 'application/json',
-          'Authorization': `Bearer ${window.sessionStorage.getItem(config.TOKEN_KEY)}`
-      },
-      body: JSON.stringify({ date_completed: new Date(date), contact, project, pm_id: pmId })
-    })
+    ListService.updateDateCompleted(id, date, contact, project, pmId);
   }
 
   updateItemStatus = (updatedItemId, status) => {
     const item = this.state.listItems.find(item => item.id === updatedItemId)
     item.status = status;
-    if(status === 'completed') {
+
+    if (status === 'completed') {
       const newItems = this.state.listItems.filter(item => item.id !== updatedItemId)
       this.setState({ listItems: newItems })
-      item.date_completed = Date.now()
+      item.date_completed = Date.now();
       this.setState({ completedListItems: [item, ...this.state.completedListItems] })
       this.updateDateCompleted(item, Date.now())
+    } else {
+      this.setState({ listItems: this.state.listItems })
     }
-    this.setState({ listItems: this.state.listItems })
   }
 
-  revertCompleted = (itemId) => {
+  revertCompleted = itemId => {
     const item = this.state.completedListItems.find(item => item.id === itemId)
     const newCompleted = this.state.completedListItems.filter(item => item.id !== itemId)
     this.setState({ completedListItems: newCompleted })
@@ -153,10 +134,10 @@ export default class AuthenticatedApp extends Component {
   }
 
   updateTemplate = (updatedTemplate) => {
-    const newTemplates = this.state.templates.map(template => 
+    const newTemplates = this.state.templates.map(template =>
       (template.id === updatedTemplate.id)
         ? updatedTemplate
-        : template 
+        : template
     )
     this.setState({ templates: newTemplates })
   }
@@ -172,25 +153,23 @@ export default class AuthenticatedApp extends Component {
 
   //Setting context values using AuthenticatedApp's states, providing those context values to all children
   render() {
-    const value = { ...this.state }
-
-    return ( 
-      <AppContext.Provider value={value}>
+    return (
+      <AppContext.Provider value={{ ...this.state }}>
         <main>
-          <Switch>
-            <Route path={'/main'} component={MainListPage} />
-            <Route path={'/completed'} component={CompletedListPage} />
-            <Route path={'/dashboard'} component={DashboardPage} />
-            <Route path={'/account'} component={AccountPage} />
-            <Route path={'/add-item'} component={AddItemPage} />
-            <Route path={`/edit-item/:id`} component={EditItemPage} />
-            <Route path={'/new-template'} component={NewTemplatePage} />
-            <Route path={'/email'} component={EmailPage} />
-            <Route component={NotFoundPage} />
-          </Switch>
+          <Routes>
+            <Route path={'/main'} element={<MainListPage />} />
+            <Route path={'/completed'} element={<CompletedListPage />} />
+            <Route path={'/dashboard'} element={<DashboardPage />} />
+            <Route path={'/account'} element={<AccountPage />} />
+            <Route path={'/add-item'} element={<AddItemPage />} />
+            <Route path={`/edit-item/:id`} element={<EditItemPage />} />
+            <Route path={'/new-template'} element={<NewTemplatePage />} />
+            <Route path={'/email'} element={<EmailPage />} />
+            <Route element={<NotFoundPage />} />
+          </Routes>
         </main>
       </AppContext.Provider>
-      
+
     );
   }
 }

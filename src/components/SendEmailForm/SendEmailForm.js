@@ -1,89 +1,56 @@
-import React from 'react';
+import React, { useState, useContext } from 'react';
 import AppContext from '../../contexts/contexts'
 import { Select } from '../Utils/Utils'
+import TemplateService from '../../services/template-service';
 
 import listStyles from '../../routes/MainListPage/MainListPage.module.css'
 import styles from './SendEmailForm.module.css'
 
-export default class SendEmailForm extends React.Component {
-    static contextType = AppContext;
+const SendEmailForm = ({ data, closeEmailForm }) => {
+    const context = useContext(AppContext);
+    const [selectedTemplate, setSelectedTemplate] = useState("");
+    const [doctor, setDoctor] = useState(false);
 
-    state = {
-        selectedTemplate: '',
-        doctor: false
-    }
+    const templateSelect = context.templates.map((template, i) => <option key={i} value={i}>{template.template_name}</option>)
 
-    renderTemplateSelect = () => {
-        const templateArray = this.context.templates.map((template, i) => {
-           return  <option key={i} value={i}>{template.template_name}</option>
-        })
+    const currentTemplate = context.templates[selectedTemplate];
+    const emailHref = `mailto:?Subject=${selectedTemplate !== '' ? TemplateService.formatTemplate(currentTemplate.template_content, currentTemplate.template_subject, data, doctor)[1] : ''}&Body=${selectedTemplate !== '' ? TemplateService.formatTemplateForEmail(currentTemplate.template_content, currentTemplate.template_subject, data, doctor) : ''}`
 
-        return templateArray;
-    }
-
-    handleSelectChange = (event) => {
-        this.setState({ selectedTemplate: event.target.value })
-    }
-
-    //Gets current selected template from context and replaces values of template strings [PROJECT], [CONTACT] and [PM] with values from the listItem that are passed in as props
-    //Returns array with format [[formatted template content], [formatted template subject]]
-    formatTemplate = () => {
-        const unformattedTemplate = this.context.templates[this.state.selectedTemplate].template_content;
-        const unformattedSubject = this.context.templates[this.state.selectedTemplate].template_subject;
-        const { project, contact, pm_name } = this.props;
-        const fixedproject = project.replace('&', '%26')
-        const splitWord = word => word.split(' ');
-        const numWords = word => splitWord(word).length;
-        const arr = [unformattedTemplate, unformattedSubject]
-        const formattedArr = arr.map(item => item.replace('[PROJECT]', (splitWord(fixedproject)[numWords(fixedproject) - 1] === 'Space' || splitWord(fixedproject)[numWords(fixedproject) - 1] === 'Industry') ? `the ${fixedproject}` : fixedproject).replace('[PM]', pm_name).replace('[CONTACT]', this.state.doctor ? `Dr. ${splitWord(contact)[numWords(contact) - 1]}` : splitWord(contact)[0]));
-        return formattedArr;
-    }
-
-    //Replaces characters used for new line to be compatible with mailto
-    formatTemplateForEmail = () => {
-        const template = this.formatTemplate()[0]
-        return template.replace(/\n/g, '%0D%0A')
-    }
-
-    //Used for 'Set Doctor' checkbox
-    //If doctor state is true, the formatTemplate function replaces [CONTACT] with `Dr. [contact last name]` instead of [contact first name]
-    setDoctor = () => {
-        !this.state.doctor 
-            ? this.setState({ doctor: true })
-            : this.setState({ doctor: false })
-    }
-    
-    render() {
-        return (
-            <div >
-                
-                <main role="main" className={styles.formContainer}>
-                    <div className={styles.header}>
-                        <button onClick={this.props.closeEmailForm}  className={styles.xButton}><i className="fas fa-times"></i></button>
-                    </div>
-                    {this.context.templates.length === 0 ? <p>You have no templates saved! You can create new templates in the <span className={listStyles.tabStyle}><i className="fas fa-envelope"></i> Templates</span> tab.</p> :
-                    (<form>
+    return (
+        <div>
+            <main role="main" className={styles.formContainer}>
+                <div className={styles.header}>
+                    <button onClick={closeEmailForm} className={styles.xButton}>
+                        <i className="fas fa-times"></i>
+                    </button>
+                </div>
+                {context.templates.length === 0 ?
+                    <p>You have no templates saved! You can create new templates in the
+                        <span className={listStyles.tabStyle}><i className="fas fa-envelope"></i> Templates</span> tab.</p>
+                    :
+                    <form>
                         <div>
                             <label htmlFor="template">Template: </label>
-                            <Select name="template" id="template" onChange={this.handleSelectChange}>
+                            <Select name="template" id="template" onChange={e => setSelectedTemplate(e.target.value)}>
                                 <option></option>
-                                {this.renderTemplateSelect()}
+                                {templateSelect}
                             </Select>
                         </div>
                         <div className={styles.doctor}>
                             <label htmlFor="doctor">Doctor: </label>
-                            <input type="checkbox" id="doctor" onChange={this.setDoctor}></input>
+                            <input type="checkbox" id="doctor" onChange={() => setDoctor(!doctor)}></input>
                         </div>
                         <div className={styles.templateContainer}>
-                            <h2 className={styles.templateSubject}>{this.state.selectedTemplate !== '' && this.context.templates[this.state.selectedTemplate].template_subject}</h2>
-                            <p className={styles.templateBody}>{this.state.selectedTemplate !== '' ? this.formatTemplate()[0].replace('%26', '&') : ''}</p>
+                            <h2 className={styles.templateSubject}>{selectedTemplate !== '' && currentTemplate.template_subject}</h2>
+                            <p className={styles.templateBody}>{selectedTemplate !== '' ? TemplateService.formatTemplate(currentTemplate.template_content, currentTemplate.template_subject, data, doctor)[0].replace('%26', '&') : ''}</p>
                         </div>
-                        
-                        {this.state.selectedTemplate !== '' && <a target="_blank" rel="noopener noreferrer" href={`mailto:?Subject=${this.state.selectedTemplate !== '' ? this.formatTemplate()[1] : ''}&Body=${this.state.selectedTemplate !== '' ? this.formatTemplateForEmail() : ''}`} className={styles.link}>Open Email</a>}
-                    </form>)}
-                </main>
-                <div className={styles.overlay} onClick={this.props.closeEmailForm}></div>
-            </div>
-        )
-    }
+
+                        {selectedTemplate !== '' && <a target="_blank" rel="noopener noreferrer" href={emailHref} className={styles.link}>Open Email</a>}
+                    </form>}
+            </main>
+            <div className={styles.overlay} onClick={closeEmailForm}></div>
+        </div>
+    )
 }
+
+export default SendEmailForm;

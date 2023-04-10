@@ -4,17 +4,16 @@ import LoginForm from '../../components/LoginForm/LoginForm'
 
 import styles from './LoginPage.module.css'
 
-export default class LoginPage extends React.Component {
-
-    render() {
-        return (
-            <div className={styles.main}>
-                <h1 className={styles.title}>Sign in</h1>
-                <div className={styles.container}>
-                    <LoginForm setLoggedIn={this.props.setLoggedIn}  />
-                    <p className={styles.sub}>Don't have an account? <Link to='/register'>Sign up</Link></p>
-                </div>
+const LoginPage = ({ setLoggedIn }) => {
+    return (
+        <div className={styles.main}>
+            <h1 className={styles.title}>Sign in</h1>
+            <div className={styles.container}>
+                <LoginForm setLoggedIn={setLoggedIn} />
+                <p className={styles.sub}>Don't have an account? <Link to='/register'>Sign up</Link></p>
             </div>
-        )
-    }
+        </div>
+    )
 }
+
+export default LoginPage;

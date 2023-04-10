@@ -1,66 +1,56 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
+import { listIcon, checkIcon, chartIcon, emailIcon, userIcon } from '../Utils/Utils';
 
 import styles from './NavBar.module.css';
 
-export default class NavBar extends React.Component {
-    state = {
-        expanded: false
-    }
+const NavBar = () => {
+    const [expanded, setExpanded] = useState(false);
 
-    showMobile() {
-        if (window.innerWidth >= 945) {
-            if (this.state.expanded) {
-                return 'show'
-            } else {
-                return 'hidden'
-            }
-        }
-        return 'show'
-    }
+    return (
+        <div className={styles.navWrap}>
+            <button className={`${expanded ? styles.hide : undefined} ${styles.burger} `} onClick={() => setExpanded(true)}>
+                <i className="fas fa-bars"></i>
+            </button>
+            <nav role="navigation" className={`${styles.nav} ${expanded ? styles.show : undefined}`} >
+                <img src={require("../../images/new-logo.png")} alt="logo" className={styles.logo}></img>
+                <ul className={styles.tabList}>
+                    <NavLink to="/main" className={styles.tab}>
+                        <li className={styles.tabContent}>
+                            {listIcon}
+                            <span className={styles.tabTitle}>List</span>
+                        </li>
+                    </NavLink>
+                    <NavLink to="/completed" className={styles.tab}>
+                        <li className={styles.tabContent}>
+                            {checkIcon}
+                            <span className={styles.tabTitle}>Completed</span>
+                        </li>
+                    </NavLink>
+                    <NavLink to="/dashboard" className={styles.tab}>
+                        <li className={styles.tabContent}>
+                            {chartIcon}
+                            <span className={styles.tabTitle}>Dashboard</span>
+                        </li>
+                    </NavLink>
+                    <NavLink to="/email" className={styles.tab}>
+                        <li className={styles.tabContent}>
+                            {emailIcon}
+                            <span className={styles.tabTitle}>Templates</span>
+                        </li>
+                    </NavLink>
+                    <NavLink to="/account" className={styles.tab}>
+                        <li className={styles.tabContent}>
+                            {userIcon}
+                            <span className={styles.tabTitle}>Account</span>
+                        </li>
+                    </NavLink>
+                </ul>
+            </nav>
+            <div className={`${styles.overlay} ${expanded ? styles.show : styles.hidden}`} onClick={() => setExpanded(false)}></div>
+        </div>
 
-    render() {
-        return (   
-            <div className={styles.navWrap}>
-                <button className={`${this.state.expanded ? styles.hide : ''} ${styles.burger} `} onClick={() => this.setState({ expanded: true })}><i className="fas fa-bars"></i></button>
-                <nav role="navigation" className={`${styles.nav} ${this.state.expanded ? styles.show : ''}`} >
-                    <img src={require("../../images/new-logo.png")} alt="logo" className={styles.logo}></img>
-                    <ul className={styles.tabList}>
-                        <NavLink to="/main" className={styles.tab}>
-                            <li className={styles.tabContent}>
-                                <i className="fas fa-list-alt"></i>
-                                <span className={styles.tabTitle}>List</span>
-                            </li>
-                        </NavLink>
-                        <NavLink to="/completed" className={styles.tab}>
-                            <li className={styles.tabContent}>
-                                <i className="fas fa-check-square"></i>
-                                <span className={styles.tabTitle}>Completed</span>
-                            </li>
-                        </NavLink>                                  
-                        <NavLink to="/dashboard" className={styles.tab}>
-                            <li className={styles.tabContent}>
-                                <i className="fas fa-chart-pie"></i>
-                                <span className={styles.tabTitle}>Dashboard</span>
-                            </li>
-                        </NavLink>
-                        <NavLink to="email" className={styles.tab}>
-                            <li className={styles.tabContent}>                       
-                                <i className="fas fa-envelope"></i>
-                                <span className={styles.tabTitle}>Templates</span>                        
-                            </li>
-                        </NavLink>
-                        <NavLink to="account" className={styles.tab}>
-                            <li className={styles.tabContent}>
-                                <i className="fas fa-user-circle"></i>
-                                <span className={styles.tabTitle}>Account</span>
-                            </li>
-                        </NavLink>
-                    </ul>
-                </nav>
-                <div className={`${styles.overlay} ${this.state.expanded ? styles.show : styles.hidden}` } onClick={() => this.setState({ expanded: false })}></div>
-            </div>   
-            
-        )
-    }
+    )
 }
+
+export default NavBar;

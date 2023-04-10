@@ -1,0 +1,10 @@
+.table {
+    width: 100%;
+    display: table;
+    margin: 0px;
+}
+
+.table a {
+    text-decoration: none;
+    color: #365d75;
+}

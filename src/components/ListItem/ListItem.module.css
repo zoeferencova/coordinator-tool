@@ -1,0 +1,226 @@
+.table {
+    width: 100%;
+    display: table;
+    margin: 0px;
+}
+
+.tableHeader {
+    display: table-header-group;
+    border: 0px;
+    margin-left: 0px;
+}
+
+.tableHeader div {
+    background-color: #f0f4f7;
+    padding: 12px 10px;
+    text-align: left;
+    color: #8193a1;
+    font-weight: 500;
+    font-size: 13.5px;
+    letter-spacing: normal;
+    display: table-cell;
+}
+
+.tableHeader svg {
+    padding-left: 4px;
+    cursor: pointer;
+    font-size: 12px;
+}
+
+.status {
+    width: 13%;
+}
+
+.project {
+    width: 27%;
+    padding-left: 20px !important;
+}
+
+.contact {
+    width: 20%;
+}
+
+.pm {
+    width: 10%;
+}
+
+.notes {
+    width: 10%;
+}
+
+.date {
+    width: 10%;
+}
+
+.actions {
+    width: fit-content;
+}
+
+
+.project,
+.contact,
+.notes,
+.pm {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.notes,
+.contact,
+.project,
+.date,
+.actions,
+.pm {
+    text-align: left;
+}
+
+.status,
+.check {
+    text-align: center;
+}
+
+.tableRow {
+    font-size: 13.5px;
+    display: table-row-group;
+}
+
+.tableRow:hover {
+    background-color: #f7f9fc;
+    transition: 0.3s;
+}
+
+.tableRow svg {
+    font-size: 15px;
+    margin: 0 8px 0px 0px;
+    color: gray;
+}
+
+.tableRow>div {
+    display: table-cell;
+    padding: 5px 10px;
+}
+
+.tableRow button {
+    padding: 2px;
+    background-color: transparent;
+    border: none;
+}
+
+.hideList {
+    display: none;
+}
+
+.showList {
+    display: block;
+}
+
+.srOnly:not(:focus):not(:active) {
+    clip: rect(0 0 0 0);
+    clip-path: inset(100%);
+    height: 1px;
+    overflow: hidden;
+    position: absolute;
+    white-space: nowrap;
+    width: 1px;
+}
+
+.popup {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 50;
+    background-color: white;
+}
+
+.popup p {
+    font-size: 14px;
+}
+
+.popupActions i {
+    padding: 10px;
+    font-size: 18px
+}
+
+.popupActions {
+    margin-top: 50px;
+}
+
+.close {
+    float: right;
+    top: 20px;
+    right: 20px;
+    font-size: 25px !important;
+    padding: 20px;
+}
+
+.heading {
+    font-size: 18px !important;
+    font-weight: bold;
+    color: #9299a8;
+}
+
+.first {
+    margin-top: 15vh;
+}
+
+.info {
+    text-align: left;
+    margin: 0 auto;
+    width: 70%;
+    display: block;
+}
+
+.columnName {
+    font-weight: bold;
+    color: #9299a8;
+    text-transform: uppercase;
+    font-size: 12px;
+    display: inline-block;
+    margin-right: 10px;
+}
+
+
+
+@media only screen and (max-width: 800px) {
+    .hideTablet {
+        display: none;
+    }
+
+    .projectHeader div {
+        padding-left: 15px !important;
+    }
+
+    .project {
+        padding-left: 20px;
+    }
+
+    .actions {
+        width: 100px;
+    }
+}
+
+@media only screen and (max-width: 625px) {
+    .hideMobile {
+        display: none;
+    }
+
+    .hideDesktop {
+        display: table-cell
+    }
+
+    .mobileActions {
+        width: 40px;
+        display: table-cell;
+    }
+
+    .status {
+        min-width: 90px;
+    }
+
+    .contact {
+        min-width: 100px;
+    }
+}

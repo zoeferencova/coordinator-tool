@@ -1,17 +1,17 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import MainListBody from './MainListBody'
+import MainListBody from './ListHeader'
 import { BrowserRouter } from 'react-router-dom'
 
 it('renders without crashing', () => {
   const div = document.createElement('div')
   const props = {
-      renderListItems: () => {}
+    renderListItems: () => { }
   }
-  
+
   ReactDOM.render(
     <BrowserRouter>
-        <MainListBody {...props} />
+      <MainListBody {...props} />
     </BrowserRouter>,
     div
   )

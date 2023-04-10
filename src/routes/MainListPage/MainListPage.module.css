@@ -2,3 +2,34 @@
     height: 50px;
     margin: 30px;
 }
+
+.listContainer {
+    background-color: white;
+    border-radius: 7px;
+    box-shadow: 2px 2px 40px -20px lightgray;
+    padding: 20px 0px;
+    border: 0px;
+}
+
+.scroll {
+    display: none;
+}
+
+@media only screen and (max-width: 450px) {
+    .tableBodyContainer {
+        overflow-x: scroll;
+    }
+
+    .scroll {
+        font-size: 10px;
+        text-transform: uppercase;
+        padding-bottom: 10px;
+        text-align: center;
+        display: block;
+        color: #8193a1;
+    }
+
+    .scroll i {
+        margin-left: 3px;
+    }
+}

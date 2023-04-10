@@ -7,10 +7,6 @@
     padding: 0 20px;
 }
 
-.h1, .text, .h2, .sectionHeader, .button {
-    font-family: 'Eina';
-}
-
 .h1 {
     font-size: 38px;
 
@@ -54,7 +50,8 @@
     color: white;
 }
 
-.section3 .sectionContent, .section3 .dash {
+.section3 .sectionContent,
+.section3 .dash {
     width: 90%;
     text-align: center;
     margin: 0 auto;
@@ -74,7 +71,7 @@
 }
 
 .dashContainer .text {
-    margin-bottom: 50px;    
+    margin-bottom: 50px;
 }
 
 
@@ -156,6 +153,7 @@
     .banner {
         padding: 0px 40px;
     }
+
     .section1 {
         flex-direction: column-reverse;
     }
@@ -172,7 +170,8 @@
         width: 70%;
     }
 
-    .section2, .section4 {
+    .section2,
+    .section4 {
         flex-direction: column;
     }
 }

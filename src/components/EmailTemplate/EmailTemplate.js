@@ -1,18 +1,12 @@
 import React from 'react';
-import AppContext from '../../contexts/contexts'
 import styles from './EmailTemplate.module.css'
 
-export default class EmailTemplate extends React.Component {
-    static contextType = AppContext;
+const EmailTemplate = ({ id, selectTemplate, template_name, current }) => (
+    <div>
+        <div className={`${styles.templateItem} ${current === id ? styles.current : ''}`} onClick={() => selectTemplate(id)}>
+            {template_name}
+        </div>
+    </div>
+)
 
-    render() {
-        return (
-            <div>
-                <div className={`${styles.templateItem} ${this.props.current === this.props.id ? styles.current : ''}`} onClick={() => this.props.selectTemplate(this.props.id)}>
-                    {this.props.template_name}
-                </div>
-            </div>
-            
-        )
-    }
-}
+export default EmailTemplate;

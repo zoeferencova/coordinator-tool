@@ -1,28 +1,10 @@
-@font-face {
-    font-family: 'Eina';
-    font-style: normal;
-    font-weight: 400;
-    src: url('../../components/Utils/fonts/Eina03-Regular.ttf')
-}
-
-@font-face {
-    font-family: 'Eina Light';
-    src: url('../../components/Utils/fonts/Eina03-Light.ttf')
-}
-
-@font-face {
-    font-family: 'Eina Semibold';
-    src: url('../../components/Utils/fonts/Eina01-SemiBold.ttf')
-}
-
 .App {
-    font-family: "Eina";
+    /* font-family: "Eina"; */
     padding-top: 20px;
     padding-bottom: 20px;
     width: 90%;
     margin: 0 auto;
     text-align: center;
-    letter-spacing: 0.02em;
 }
 
 h2 {
@@ -78,4 +60,3 @@ label {
     }
 
 }
-

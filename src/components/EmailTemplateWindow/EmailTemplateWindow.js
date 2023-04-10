@@ -1,21 +1,14 @@
 
 import React from 'react';
-import AppContext from '../../contexts/contexts'
 import styles from './EmailTemplateWindow.module.css'
-import { style } from 'd3';
 
-export default class EmailTemplateWindow extends React.Component {
-    static contextType = AppContext;
+const EmailTemplateWindow = ({ id, template_subject, template_content }) => (
+    <div className={styles.box}>
+        <div className={styles.templateContent} itemkey={id}>
+            <p className={styles.templateSubject}>{template_subject}</p>
+            <p className={styles.templateBody}>{template_content}</p>
+        </div>
+    </div>
+)
 
-    render() {
-        return (
-            <div className={style.box}>
-                <div className={styles.templateContent} itemkey={this.props.id}>
-                    <p className={styles.templateSubject}>{this.props.template_subject}</p>
-                    <p className={styles.templateBody}>{this.props.template_content}</p>
-                </div>
-            </div>
-            
-        )
-    }
-}
+export default EmailTemplateWindow;
