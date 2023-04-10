@@ -1,8 +1,8 @@
 
 import React from 'react';
-import styles from './EmailTemplateWindow.module.css'
+import styles from './TemplateWindow.module.css'
 
-const EmailTemplateWindow = ({ id, template_subject, template_content }) => (
+const TemplateWindow = ({ id, template_subject, template_content }) => (
     <div className={styles.box}>
         <div className={styles.templateContent} itemkey={id}>
             <p className={styles.templateSubject}>{template_subject}</p>
@@ -11,4 +11,4 @@ const EmailTemplateWindow = ({ id, template_subject, template_content }) => (
     </div>
 )
 
-export default EmailTemplateWindow;
+export default TemplateWindow;

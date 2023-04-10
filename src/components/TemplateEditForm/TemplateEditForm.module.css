@@ -1,0 +1,43 @@
+.fieldSection {
+    padding-top: 15px;
+}
+
+.textAreaSection {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+
+.textAreaLabel {
+    margin-right: 5px;
+}
+
+.textArea {
+    min-height: 300px;
+}
+
+
+.input {
+    width: 300px;
+}
+
+@media only screen and (max-width: 850px) {
+    .input {
+        width: 90%;
+    }
+
+    .textArea {
+        width: 100%;
+        margin: 0 5%;
+        min-height: 200px;
+    }
+
+    .textAreaLabel {
+        display: none;
+    }
+
+    .input,
+    .textArea {
+        font-size: 11px;
+    }
+}

@@ -3,11 +3,11 @@ import { useNavigate } from 'react-router-dom';
 import NavBar from '../../components/NavBar/NavBar'
 import Header from '../../components/Header/Header'
 import { Link } from 'react-router-dom'
-import config from '../../config'
 import AppContext from '../../contexts/contexts'
 import { Button, Input, Textarea } from '../../components/Utils/Utils'
 
 import styles from './NewTemplatePage.module.css';
+import TemplateService from '../../services/template-service';
 
 const NewTemplatePage = () => {
     const context = useContext(AppContext);
@@ -22,28 +22,17 @@ const NewTemplatePage = () => {
 
         const template = { template_name, template_subject, template_content }
 
-        try {
-            const res = await fetch(`${config.API_ENDPOINT}/templates`, {
-                method: 'POST',
-                headers: {
-                    'content-type': 'application/json',
-                    'Authorization': `Bearer ${window.sessionStorage.getItem(config.TOKEN_KEY)}`
-                },
-                body: JSON.stringify(template)
-            });
-            const newTemplate = await (
-                (!res.ok)
-                    ? res.json().then(err => Promise.reject(err))
-                    : res.json());
-            return handlePostSuccess(newTemplate);
-        } catch (err) {
-            setError(err.error.message)
-        }
+        TemplateService.addTemplate(template)
+            .then(res => !res.ok ? res.json().then(e => Promise.reject(e)) : res.json())
+            .then(newTemplate => handlePostSuccess(newTemplate))
+            .catch(res => {
+                setError(res.error.message)
+            })
     }
 
     const handlePostSuccess = template => {
         context.addTemplate(template)
-        navigate('/email')
+        navigate('/templates')
     }
 
     return (

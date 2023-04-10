@@ -6,7 +6,7 @@ import DashboardPage from '../../routes/DashboardPage/DashboardPage';
 import AccountPage from '../../routes/AccountPage/AccountPage';
 import AddItemPage from '../../routes/AddItemPage/AddItemPage';
 import NewTemplatePage from '../../routes/NewTemplatePage/NewTemplatePage';
-import EmailPage from '../../routes/EmailPage/EmailPage';
+import TemplatePage from '../../routes/TemplatePage/TemplatePage';
 import NotFoundPage from '../../routes/NotFoundPage/NotFoundPage';
 import EditItemPage from '../../routes/EditItemPage/EditItemPage'
 import UserDataService from '../../services/user-data-service';
@@ -164,7 +164,7 @@ export default class AuthenticatedApp extends Component {
             <Route path={'/add-item'} element={<AddItemPage />} />
             <Route path={`/edit-item/:id`} element={<EditItemPage />} />
             <Route path={'/new-template'} element={<NewTemplatePage />} />
-            <Route path={'/email'} element={<EmailPage />} />
+            <Route path={'/templates'} element={<TemplatePage />} />
             <Route element={<NotFoundPage />} />
           </Routes>
         </main>

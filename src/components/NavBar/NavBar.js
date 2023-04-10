@@ -33,7 +33,7 @@ const NavBar = () => {
                             <span className={styles.tabTitle}>Dashboard</span>
                         </li>
                     </NavLink>
-                    <NavLink to="/email" className={styles.tab}>
+                    <NavLink to="/templates" className={styles.tab}>
                         <li className={styles.tabContent}>
                             {emailIcon}
                             <span className={styles.tabTitle}>Templates</span>

@@ -1,0 +1,50 @@
+.pmList {
+    list-style: none;
+    padding: 0;
+}
+
+.pmItem {
+    display: flex;
+    padding: 0px;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.pmDetails {
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+}
+
+.icon {
+    font-size: 75px;
+    color: #a0a8ba;
+    padding: 20px;
+}
+
+.name {
+    font-size: 14px;
+    font-weight: 500;
+    padding-bottom: 0;
+    color: #464d54;
+}
+
+.email {
+    font-size: 12px;
+    color: #7f8799;
+    margin-top: 5px;
+}
+
+@media only screen and (min-width: 500px) {
+
+    .pmDetails,
+    .pmItem {
+        flex-direction: row;
+    }
+
+    .email {
+        font-size: 14px;
+        margin-left: 10px;
+        margin-top: 0;
+    }
+}

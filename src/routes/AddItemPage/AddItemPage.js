@@ -5,7 +5,7 @@ import Header from '../../components/Header/Header'
 import { Link } from 'react-router-dom'
 import AppContext from '../../contexts/contexts'
 import { Button, Select, Input, Textarea } from '../../components/Utils/Utils'
-import config from '../../config';
+import ListService from '../../services/list-service';
 
 import styles from './AddItemPage.module.css';
 
@@ -54,19 +54,8 @@ const AddItemPage = () => {
 
             const item = { project, project_url, contact, contact_url: fixedContactUrl, pm_id, notes, status: 'none' }
             if (item.contact !== '' && item.project !== '' && item.pm_id !== '') {
-                fetch(`${config.API_ENDPOINT}/list`, {
-                    method: 'POST',
-                    headers: {
-                        'content-type': 'application/json',
-                        'Authorization': `Bearer ${window.sessionStorage.getItem(config.TOKEN_KEY)}`
-                    },
-                    body: JSON.stringify(item)
-                })
-                    .then(res =>
-                        (!res.ok)
-                            ? res.json().then(e => Promise.reject(e))
-                            : res.json()
-                    )
+                ListService.addItem(item)
+                    .then(res => !res.ok ? res.json().then(e => Promise.reject(e)) : res.json())
                     .then(item => {
                         context.addItem(item)
                         navigate('/main')
@@ -84,7 +73,6 @@ const AddItemPage = () => {
 
     return (
         <div className="container">
-
             <main className="content">
                 <Header title='Add Item' />
                 {error && <p>{error}</p>}

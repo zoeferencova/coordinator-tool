@@ -1,0 +1,13 @@
+.accountContainer {
+    background-color: white;
+    padding: 20px 30px;
+    border-radius: 7px;
+    box-shadow: 2px 2px 40px -20px lightgray;
+    margin: 15px;
+}
+
+@media only screen and (min-width: 800px) {
+    .accountInfo {
+        width: 35%;
+    }
+}

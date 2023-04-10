@@ -86,6 +86,26 @@ const ListService = {
                 'Authorization': `Bearer ${window.sessionStorage.getItem(config.TOKEN_KEY)}`
             }
         })
+    },
+    addItem(item) {
+        fetch(`${config.API_ENDPOINT}/list`, {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json',
+                'Authorization': `Bearer ${window.sessionStorage.getItem(config.TOKEN_KEY)}`
+            },
+            body: JSON.stringify(item)
+        })
+    },
+    updateItem(updateValues, id) {
+        return fetch(`${config.API_ENDPOINT}/list/${id}`, {
+            method: 'PATCH',
+            headers: {
+                'content-type': 'application/json',
+                'Authorization': `Bearer ${window.sessionStorage.getItem(config.TOKEN_KEY)}`
+            },
+            body: JSON.stringify(updateValues)
+        })
     }
 }
 

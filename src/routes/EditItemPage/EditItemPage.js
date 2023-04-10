@@ -5,9 +5,9 @@ import Header from '../../components/Header/Header'
 import AppContext from '../../contexts/contexts'
 import { Link } from 'react-router-dom'
 import { Button, Input, Textarea, Select } from '../../components/Utils/Utils'
-import styles from '../AddItemPage/AddItemPage.module.css'
+import ListService from '../../services/list-service';
 
-import config from '../../config'
+import styles from '../AddItemPage/AddItemPage.module.css'
 
 const EditItemPage = () => {
     const context = useContext(AppContext);
@@ -18,22 +18,16 @@ const EditItemPage = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        fetch(`${config.API_ENDPOINT}/list/${id}`, {
-            method: 'GET',
-            headers: {
-                'content-type': 'application/json',
-                'Authorization': `Bearer ${window.sessionStorage.getItem(config.TOKEN_KEY)}`
-            }
-        })
-            .then(res => res.json())
-            .then(resJson => setInputValues(resJson))
-    }, [id])
+        const itemId = +id;
+        setInputValues(context.listItems.find(item => item.id === itemId))
+    }, [context.listItems, id])
 
     const handlePatchItem = e => {
         e.preventDefault()
         const pm = context.pms.find(pm => pm.pm_name === inputValues.pm_name)
         let pmId;
         pm === undefined ? pmId = '' : pmId = pm.id;
+
         const updateValues = { ...inputValues, pm_id: pmId }
         const fixedProjectUrl = (!inputValues.project_url.includes('https://' || 'http://') && inputValues.project_url.length !== 0) ? `https://${inputValues.project_url}` : inputValues.project_url;
         const fixedContactUrl = (!inputValues.contact_url.includes('https://' || 'http://') && inputValues.contact_url.length !== 0) ? `https://${inputValues.contact_url}` : inputValues.contact_url;
@@ -46,27 +40,12 @@ const EditItemPage = () => {
         delete updateValues.pm_email;
 
         if (updateValues.project !== '' && updateValues.contact !== '' && updateValues.pm_id !== '') {
-
-            fetch(`${config.API_ENDPOINT}/list/${id}`, {
-                method: 'PATCH',
-                headers: {
-                    'content-type': 'application/json',
-                    'Authorization': `Bearer ${window.sessionStorage.getItem(config.TOKEN_KEY)}`
-                },
-                body: JSON.stringify(updateValues)
-            })
-                .then(res =>
-                    (!res.ok)
-                        ? res.json().then(e => Promise.reject(e))
-                        : handlePatchSuccess()
-                )
-                .catch(res => {
-                    setError(res.error.message)
-                })
+            ListService.updateItem(updateValues, id)
+                .then(res => !res.ok ? res.json().then(e => Promise.reject(e)) : handlePatchSuccess())
+                .catch(res => setError(res.error.message))
         } else if (updateValues.pm_id === '') {
             setPmError('Please select a PM')
         }
-
     }
 
     const handlePatchSuccess = () => {
