@@ -2,9 +2,8 @@ import React, { useContext, useState } from 'react';
 import AppContext from '../../contexts/contexts'
 import ListTools from '../../components/ListTools/ListTools';
 import ListHeader from '../../components/ListHeader/ListHeader';
-import NavBar from '../../components/NavBar/NavBar'
-import Header from '../../components/Header/Header';
 import SendEmailForm from '../../components/SendEmailForm/SendEmailForm'
+import ListMobileActions from '../../components/ListMobileActions/ListMobileActions'
 import ListBody from '../../components/ListBody/ListBody';
 import { UserGuide } from '../../components/Utils/Utils'
 
@@ -13,6 +12,7 @@ import styles from './MainListPage.module.css'
 const MainListPage = () => {
     const context = useContext(AppContext);
     const [emailFormItem, setEmailFormItem] = useState(null)
+    const [mobileActionItem, setMobileActionItem] = useState(null)
     const [searchQuery, setSearchQuery] = useState('');
     const [sort, setSort] = useState('date-asc');
 
@@ -30,20 +30,18 @@ const MainListPage = () => {
     return (
         <div className="container">
             <main className="content">
-                <Header title="" />
+                <ListTools tab='main' setSearchQuery={setSearchQuery} />
                 <div className={styles.listContainer}>
-                    <ListTools tab='main' setSearchQuery={setSearchQuery} />
-                    <span className={`${styles.scroll}`}>Scroll for more <i className="fas fa-arrow-right"></i></span>
                     <div className={styles.tableBodyContainer}>
                         <ListHeader tab="main" setSort={setSort} currentSort={sort} />
                         {context.loading && <img src={require('../../images/loader.gif')} alt="loader" className={styles.loader}></img>}
                         {!context.loading && renderNoItemMessage()}
-                        <ListBody tab="main" setEmailFormItem={setEmailFormItem} currentSort={sort} searchQuery={searchQuery} />
+                        <ListBody tab="main" setEmailFormItem={setEmailFormItem} setMobileActionItem={setMobileActionItem} currentSort={sort} searchQuery={searchQuery} />
                     </div>
                 </div>
                 {emailFormItem && <SendEmailForm data={emailFormItem} closeEmailForm={() => setEmailFormItem(null)} />}
+                {mobileActionItem && <ListMobileActions data={mobileActionItem} closeMobileActions={() => setMobileActionItem(null)} setEmailFormItem={setEmailFormItem} />}
             </main>
-            <NavBar />
         </div>
 
     )

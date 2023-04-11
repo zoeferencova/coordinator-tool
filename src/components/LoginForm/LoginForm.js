@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import AuthApiService from '../../services/auth-api-service'
 import { Link, useNavigate } from 'react-router-dom';
-import { Button, Input } from '../Utils/Utils'
+import { ButtonDark, ButtonLight, Input } from '../Utils/Utils'
 
 import styles from './LoginForm.module.css'
 
@@ -44,8 +44,8 @@ const LoginForm = ({ setLoggedIn }) => {
                     <label className={styles.label} htmlFor="password">Password</label>
                     <Input className={styles.input} required type="password" name='password' id='login-password' />
                 </div>
-                <Link to='/'><Button type='button' className={`${styles.button} ${styles.cancel}`}>Cancel</Button></Link>
-                <Button type='submit' className={`${styles.button} ${styles.sign}`}>Sign in</Button>
+                <Link to='/'><ButtonLight type='button' className={`${styles.button} ${styles.cancel}`}>Cancel</ButtonLight></Link>
+                <ButtonDark type='submit' className={`${styles.button} ${styles.sign}`}>Sign in</ButtonDark>
             </form>
         </main>
     )

@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import AppContext from '../../contexts/contexts';
-import { Button, Input, Textarea } from '../Utils/Utils';
+import { ButtonLight, ButtonDark, Input, Textarea } from '../Utils/Utils';
 import TemplateService from '../../services/template-service';
 import styles from './TemplateEditForm.module.css'
 
@@ -9,12 +9,12 @@ const TemplateEditForm = ({ currentTemplate, setCurrentTemplate, inputValues, se
 
     const handlePatchTemplate = e => {
         e.preventDefault()
-        TemplateService.updateTemplate(inputValues, inputValues.id)
-            .then(res => context.updateTemplate(inputValues))
+        TemplateService.updateTemplate(inputValues, currentTemplate.id)
             .then(res => {
-                setCurrentTemplate(inputValues)
+                context.updateTemplate(inputValues)
                 closeEdit()
             })
+            .then(res => setCurrentTemplate(inputValues))
     }
 
     const closeEdit = () => {
@@ -37,8 +37,8 @@ const TemplateEditForm = ({ currentTemplate, setCurrentTemplate, inputValues, se
                 <Textarea className={styles.textArea} name="template-body" id="template-body" defaultValue={currentTemplate.template_content} onChange={e => setInputValues({ ...inputValues, template_content: e.target.value })}></Textarea>
             </div>
             <div>
-                <Button onClick={closeEdit}>Cancel</Button>
-                <Button type='submit'>Save</Button>
+                <ButtonLight onClick={closeEdit}>Cancel</ButtonLight>
+                <ButtonDark type='submit'>Save</ButtonDark>
             </div>
         </form>
     )

@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react';
 import AppContext from '../../contexts/contexts';
-import { Button, Input } from '../../components/Utils/Utils'
+import { ButtonDark, Input } from '../../components/Utils/Utils'
 import PmItem from '../../components/PmItem/PmItem';
 
 import styles from './PmSettings.module.css'
@@ -49,7 +49,7 @@ const PmSettings = ({ }) => {
                     <label htmlFor="pm_email"></label>
                     <Input type="text" id="pm_email" placeholder={"Email"}></Input>
                 </div>
-                <Button type="submit" className={styles.addButton}>+ Add PM</Button>
+                <ButtonDark type="submit" className={styles.addButton}>+ Add PM</ButtonDark>
             </form>
         </section>
     )

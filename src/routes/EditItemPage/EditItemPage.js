@@ -1,10 +1,8 @@
 import React, { useContext, useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import NavBar from '../../components/NavBar/NavBar'
-import Header from '../../components/Header/Header'
 import AppContext from '../../contexts/contexts'
 import { Link } from 'react-router-dom'
-import { Button, Input, Textarea, Select } from '../../components/Utils/Utils'
+import { ButtonDark, ButtonLight, Input, Textarea, Select } from '../../components/Utils/Utils'
 import ListService from '../../services/list-service';
 
 import styles from '../AddItemPage/AddItemPage.module.css'
@@ -57,7 +55,6 @@ const EditItemPage = () => {
     return (
         <div className="container">
             <main className="content">
-                <Header title='Edit Item' />
                 {error && <p>{error}</p>}
                 <form onSubmit={e => handlePatchItem(e)}>
                     <div className={styles.formSection}>
@@ -94,13 +91,12 @@ const EditItemPage = () => {
                         <Textarea name="notes" id="notes" className={styles.notes} defaultValue={inputValues.notes} onChange={e => setInputValues({ ...inputValues, notes: e.target.value })}></Textarea>
                     </div>
                     <div>
-                        <Link to='/main'><Button>Cancel</Button></Link>
-                        <Button type='submit'>Save</Button>
+                        <Link to='/main'><ButtonLight>Cancel</ButtonLight></Link>
+                        <ButtonDark type='submit'>Save</ButtonDark>
                     </div>
                 </form>
 
             </main>
-            <NavBar className="nav" />
         </div>
     )
 }

@@ -1,23 +1,29 @@
 .tools {
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    margin: 0px 20px 15px 20px;
+    margin-bottom: 18px;
+    margin-top: 15px;
+}
+
+.buttons {
+    display: flex;
+    width: fit-content;
+    justify-content: flex-end;
 }
 
 .search {
-    width: 230px;
+    flex: 1;
+    margin-right: 15px;
 }
 
-.flex {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
+.searchInput {
+    width: 100%;
+    border-radius: 20px !important;
 }
 
-.select {
-    color: #828282;
-    margin-right: 5px;
+.searchInput {
+    padding: 10px 18px !important;
+    font-size: 15px !important;
 }
 
 a {
@@ -25,17 +31,15 @@ a {
 }
 
 .addButton {
-    background-color: #7fba84;
-    color: white;
-    border: 1px solid #7fba84;
-}
-
-.addButton:hover {
-    background-color: #3e8044;
-    border: 1px solid #3e8044;
+    margin-left: 12px;
 }
 
 .hide {
+    display: none;
+}
+
+.emailButtonMobile,
+.addButtonMobile {
     display: none;
 }
 
@@ -44,19 +48,28 @@ a {
     .tools button {
         width: 100px;
     }
-    
-    .hideMobile {
+
+    .emailButton,
+    .addButton {
         display: none;
     }
 
-}
-
-@media only screen and (max-width: 530px) {
-    .tools {
-        flex-direction: column;
+    .emailButtonMobile,
+    .search {
+        margin-right: 10px;
     }
 
-    .toolButton, .addButton {
-        margin-top: 15px;
+    .emailButtonMobile,
+    .addButtonMobile {
+        display: inline-flex;
+        width: 38px !important;
+        height: 38px !important;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .emailButtonMobile svg,
+    .addButtonMobile svg {
+        font-size: 17px;
     }
 }

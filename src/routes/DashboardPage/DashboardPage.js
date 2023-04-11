@@ -1,6 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import NavBar from '../../components/NavBar/NavBar';
-import Header from '../../components/Header/Header';
 // import ChartWrapper from '../../components/ChartWrapper/ChartWrapper';
 // import PieChartWrapper from '../../components/PieChartWrapper/PieChartWrapper'
 import * as d3 from 'd3';
@@ -43,7 +41,6 @@ const DashboardPage = () => {
     return (
         <div className={`${styles.container} container`}>
             <main className="content">
-                <Header title={'Dashboard'} />
                 <div className={styles.dashboard}>
                     <div className={styles.statSection}>
                         <section className={`${styles.dashboardContainer} ${styles.statContainer}`}>
@@ -94,7 +91,6 @@ const DashboardPage = () => {
                     </div>
                 </div>
             </main>
-            <NavBar className="nav" />
         </div>
     )
 }

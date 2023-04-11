@@ -1,10 +1,9 @@
 .templateItem {
-    padding: 20px 12px;
+    padding: 10px 12px;
     text-align: left;
-    font-size: 13px;
-
-    font-weight: 600;
-    color: gray;
+    font-size: 14px;
+    width: 80%;
+    border-radius: 5px;
 }
 
 .templateItem:hover {
@@ -12,5 +11,6 @@
 }
 
 .current {
-    background-color: #e6ebf5;
+    font-weight: 500;
+    background-color: #F9F9F9;
 }

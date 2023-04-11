@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import AppContext from '../../contexts/contexts';
-import { Button } from '../Utils/Utils';
+import { ButtonLight } from '../Utils/Utils';
 import PmService from '../../services/pm-service';
 
 import styles from './PmItem.module.css'
@@ -23,7 +23,7 @@ const PmItem = ({ pm }) => {
                 <div className={styles.name}>{pm.pm_name}</div>
                 <div className={styles.email}>{pm.pm_email}</div>
             </div>
-            <Button onClick={(e) => handleDeletePm(e)} pmid={pm.id} className={styles.delete}>Delete</Button>
+            <ButtonLight onClick={(e) => handleDeletePm(e)} pmid={pm.id} className={styles.delete}>Delete</ButtonLight>
         </li>
     )
 }

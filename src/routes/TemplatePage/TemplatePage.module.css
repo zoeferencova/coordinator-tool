@@ -1,38 +1,41 @@
 .templateContainer {
     display: flex;
     flex-direction: row;
+    margin-top: 40px;
 }
 
 .templateList {
-    width: 20%;
-    background-color: #f0f4f7;
-    border: 1px solid #f0f4f7;
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.templateList>div {
+    width: 100%;
+}
+
+.templateList a {
+    margin-left: 10px;
+}
+
+.listHeader {
+    text-align: left;
+    font-size: 14px;
+    padding-left: 10px;
+    font-weight: normal;
+    color: #999999;
+    margin-top: 50px;
 }
 
 .templateWindow {
-    width: 80%;
-    border: 1px solid #f0f4f7;
-    border-left: none;
-
+    width: 70%;
+    border: 1px solid #EAEAEA;
+    border-radius: 10px;
 }
 
 .pageContainer {
-    background-color: white;
     padding: 20px;
-    border-radius: 7px;
-    box-shadow: 2px 2px 40px -20px lightgray;
-}
-
-.newButton {
-    background-color: #7fba84;
-    color: white;
-    border: 1px solid #7fba84;
-    margin-top: 20px;
-}
-
-.newButton:hover {
-    background-color: #3e8044;
-    border: 1px solid #3e8044;
 }
 
 .templateSelect {
@@ -45,9 +48,51 @@
     justify-content: space-between;
     height: 50px;
     align-items: center;
-    padding: 0 30px;
+    padding: 10px 20px;
+    border-bottom: 1px solid #EAEAEA;
+}
+
+.templateHeader h3 {
+    font-weight: 500;
+    font-size: 16px;
+    white-space: nowrap;
+    overflow-x: hidden !important;
+    text-overflow: ellipsis;
+    overflow-y: hidden !important;
+}
+
+.templateButtons {
+    min-width: 150px;
+}
+
+.templateHeader button:first-of-type {
+    margin-right: 10px;
+}
+
+.templateHeader button {
+    border: none;
+    background-color: transparent;
+    display: inline-flex;
+    align-items: center;
+    color: #6f7478;
     font-size: 14px;
-    color: #a7aab0;
+}
+
+.templateHeader button:hover {
+    cursor: pointer
+}
+
+.templateHeader button svg {
+    margin-right: 10px;
+    font-size: 15px;
+}
+
+.pageHeader {
+    display: none;
+}
+
+.mobileNewTemplate {
+    display: none;
 }
 
 @media only screen and (max-width: 850px) {
@@ -55,30 +100,57 @@
         display: none;
     }
 
+    .pageHeader {
+        display: block;
+        text-align: left;
+        font-weight: 500;
+        font-size: 22px;
+    }
+
     .templateWindow {
         width: 100%;
-        border-left: 1px solid #f0f4f7;
         min-height: 200px;
     }
 
     .templateSelect {
-        display: block;
+        display: flex;
         margin-bottom: 20px;
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    .templateSelect select {
+        width: 300px;
+        font-size: 15px;
     }
 
     .templateContainer {
         flex-direction: column;
     }
+}
+
+@media only screen and (max-width: 550px) {
+    .desktopNewTemplate {
+        display: none;
+    }
 
     .templateHeader {
-        padding: 10px;
+        padding: 0px 12px;
     }
 
-    .templateHeader h3 {
-        font-size: 13px;
+
+    .mobileNewTemplate {
+        display: inline-flex;
+        margin-left: 15px;
     }
 
-    .templateHeader Button {
-        padding: 7px;
+    .mobileNewTemplate button {
+        height: 35px;
+        width: 35px;
+        padding: 0px;
+    }
+
+    .mobileNewTemplate svg {
+        font-size: 17px;
     }
 }

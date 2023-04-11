@@ -88,7 +88,7 @@ const ListService = {
         })
     },
     addItem(item) {
-        fetch(`${config.API_ENDPOINT}/list`, {
+        return fetch(`${config.API_ENDPOINT}/list`, {
             method: 'POST',
             headers: {
                 'content-type': 'application/json',

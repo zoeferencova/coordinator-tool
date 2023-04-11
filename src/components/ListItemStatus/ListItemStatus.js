@@ -3,12 +3,10 @@ import AppContext from '../../contexts/contexts'
 import ListService from '../../services/list-service';
 import Select from 'react-select'
 
-import styles from './ListItemStatus.module.css';
-
 const options = [
     { value: 'none', label: 'New', color: '#3B2E20', backgroundColor: '#FAF3DE' },
     { value: 'reached', label: 'Contacted', color: '#303C2D', backgroundColor: '#e4f0e4' },
-    { value: 'completed', label: 'Completed', color: '#b5b5b5', backgroundColor: '#e8e8e8' },
+    { value: 'completed', label: 'Completed', color: '#4b4b4b', backgroundColor: '#e8e8e8' },
 ]
 
 const selectStyles = {
@@ -29,6 +27,11 @@ const selectStyles = {
     }),
     option: (baseStyles, state) => ({
         ...baseStyles,
+        backgroundColor: state.isSelected ? "#7dbbc7" : state.isFocused ? "#EDF3F4" : "white",
+        height: "25px",
+        padding: "5px",
+        border: "0px",
+        textAlign: "left",
         '&:hover': {
             cursor: 'pointer'
         }
@@ -36,6 +39,10 @@ const selectStyles = {
     singleValue: (baseStyles, state) => ({
         ...baseStyles,
         color: state.selectProps.value.color,
+    }),
+    container: (baseStyles, state) => ({
+        ...baseStyles,
+        width: "95px",
     })
 }
 

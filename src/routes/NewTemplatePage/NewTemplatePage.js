@@ -1,10 +1,8 @@
 import React, { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
-import NavBar from '../../components/NavBar/NavBar'
-import Header from '../../components/Header/Header'
 import { Link } from 'react-router-dom'
 import AppContext from '../../contexts/contexts'
-import { Button, Input, Textarea } from '../../components/Utils/Utils'
+import { ButtonDark, ButtonLight, Input, Textarea } from '../../components/Utils/Utils'
 
 import styles from './NewTemplatePage.module.css';
 import TemplateService from '../../services/template-service';
@@ -38,7 +36,6 @@ const NewTemplatePage = () => {
     return (
         <div className="container">
             <main className="content">
-                <Header title='New Template' />
                 {error && <p>{error}</p>}
                 <form onSubmit={e => handlePostTemplate(e)}>
                     <div>
@@ -56,13 +53,12 @@ const NewTemplatePage = () => {
                     </div>
                     <p className={styles.instructions}>Note: For template functionality, use [CONTACT] for contact name, [PROJECT] for project name, and [PM] for PM name.</p>
                     <div>
-                        <Link to='/email'><Button>Cancel</Button></Link>
-                        <Button type='submit'>Create Template</Button>
+                        <Link to='/templates'><ButtonLight>Cancel</ButtonLight></Link>
+                        <ButtonDark type='submit'>Create Template</ButtonDark>
                     </div>
                 </form>
 
             </main>
-            <NavBar className="nav" />
         </div>
     )
 }

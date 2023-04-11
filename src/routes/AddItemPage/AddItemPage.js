@@ -1,10 +1,8 @@
 import React, { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import NavBar from '../../components/NavBar/NavBar'
-import Header from '../../components/Header/Header'
 import { Link } from 'react-router-dom'
 import AppContext from '../../contexts/contexts'
-import { Button, Select, Input, Textarea } from '../../components/Utils/Utils'
+import { ButtonLight, ButtonDark, Select, Input, Textarea } from '../../components/Utils/Utils'
 import ListService from '../../services/list-service';
 
 import styles from './AddItemPage.module.css';
@@ -74,7 +72,6 @@ const AddItemPage = () => {
     return (
         <div className="container">
             <main className="content">
-                <Header title='Add Item' />
                 {error && <p>{error}</p>}
                 <form onSubmit={e => handlePostItem(e)}>
                     <div className={styles.formSection}>
@@ -88,7 +85,7 @@ const AddItemPage = () => {
                         </div>
                     </div>
                     {renderContactInputs()}
-                    <Button onClick={e => { e.preventDefault(); setContactInputCount(contactInputCount + 1) }}>+ Additional Contacts</Button>
+                    <ButtonLight onClick={e => { e.preventDefault(); setContactInputCount(contactInputCount + 1) }}>+ Additional Contacts</ButtonLight>
                     <div className={`${styles.pm} ${pmError && styles.pmError}`}>
                         <label htmlFor="pm">Project Manager: </label>
                         <Select name="pm" id="pm" onChange={() => setPmError(null)}>
@@ -104,12 +101,11 @@ const AddItemPage = () => {
                         <Textarea name="notes" id="notes" className={styles.notes}></Textarea>
                     </div>
                     <div>
-                        <Link to='/main'><Button>Cancel</Button></Link>
-                        <Button type='submit'>Add Item</Button>
+                        <Link to='/main'><ButtonLight>Cancel</ButtonLight></Link>
+                        <ButtonDark type='submit'>Add Item</ButtonDark>
                     </div>
                 </form>
             </main>
-            <NavBar className="nav" />
         </div>
     )
 }

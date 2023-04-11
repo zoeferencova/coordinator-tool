@@ -7,17 +7,51 @@ export const listIcon = <FontAwesomeIcon icon={icon({ name: 'list-alt' })} />
 export const checkIcon = <FontAwesomeIcon icon={icon({ name: 'check-square' })} />
 export const chartIcon = <FontAwesomeIcon icon={icon({ name: 'chart-pie' })} />
 export const emailIcon = <FontAwesomeIcon icon={icon({ name: 'envelope' })} />
+export const emailIconLight = <FontAwesomeIcon icon={icon({ name: 'envelope', style: 'regular' })} />
 export const userIcon = <FontAwesomeIcon icon={icon({ name: 'user-circle' })} />
 export const editIcon = <FontAwesomeIcon icon={icon({ name: 'edit' })} />
-export const trashIcon = <FontAwesomeIcon icon={icon({ name: 'trash' })} />
+export const trashIcon = <FontAwesomeIcon icon={icon({ name: 'trash-can', style: 'regular' })} />
 export const ellipsisIcon = <FontAwesomeIcon icon={icon({ name: 'ellipsis-h' })} />
+export const searchIcon = <FontAwesomeIcon icon={icon({ name: 'magnifying-glass' })} />
+export const sortIcon = <FontAwesomeIcon icon={icon({ name: 'sort' })} />
+export const hamburgerIcon = <FontAwesomeIcon icon={icon({ name: 'bars' })} />
+export const plusIcon = <FontAwesomeIcon icon={icon({ name: 'plus' })} />
+export const closeIcon = <FontAwesomeIcon icon={icon({ name: 'times' })} />
+export const toDoNavIcon = <div className={`${styles.bgIcon} ${styles.purpleIcon}`}><FontAwesomeIcon icon={icon({ name: 'list' })} ></FontAwesomeIcon></div>
+export const completedNavIcon = <div className={`${styles.bgIcon} ${styles.greenIcon}`}><FontAwesomeIcon icon={icon({ name: 'check-square', style: 'regular' })} ></FontAwesomeIcon></div>
+export const dashboardNavIcon = <div className={`${styles.bgIcon} ${styles.pinkIcon}`}><FontAwesomeIcon icon={icon({ name: 'chart-simple' })} ></FontAwesomeIcon></div>
+export const templateNavIcon = <div className={`${styles.bgIcon} ${styles.blueIcon}`}><FontAwesomeIcon icon={icon({ name: 'envelope', style: 'regular' })} ></FontAwesomeIcon></div>
+export const spinnerIcon = <FontAwesomeIcon icon={icon({ name: 'spinner' })} spin />
 
-export function Button({ className, ...props }) {
-    return <button className={`${styles.button} ${className}`} {...props} />
+// Assigns a color to the profile picture based on the first letter of the user's name
+export function ProfilePicture({ className, ...props }) {
+    let color;
+    const colorOptions = ["red", "indigo", "green", "teal", "blue", "purple"]
+    const letters = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]
+    const firstLetter = props.full_name.slice(0, 1);
+    const letterIndex = letters.indexOf(firstLetter.toLowerCase());
+    color = colorOptions[Math.floor(letterIndex / colorOptions.length)]
+    return <div style={props.style} className={`${styles.circle} ${color} ${className !== undefined ? className : ""}`} {...props}>{firstLetter.toUpperCase()}</div>
 }
+
+export function ButtonLight({ className, ...props }) {
+    return <button disabled={props.disabled} className={`${styles.button} ${props.large ? styles.large : undefined} ${className !== undefined ? className : ""}`} {...props}>{props.loading === "true" ? spinnerIcon : props.children}</button>
+}
+
+export function ButtonDark({ className, ...props }) {
+    return <button disabled={props.disabled} className={`${styles.buttonDark} ${props.large ? styles.large : undefined} ${className !== undefined ? className : ""}`} {...props}>{props.loading === "true" ? spinnerIcon : props.children}</button>
+}
+
+// export function Button({ className, ...props }) {
+//     return <button className={`${styles.button} ${className}`} {...props} />
+// }
 
 export function Input({ className, ...props }) {
     return <input className={`${styles.input} ${className}`} {...props} />
+}
+
+export function SearchInput({ className, ...props }) {
+    return <div className={styles.searchInput}>{props.search && searchIcon}<input className={`${styles.input} ${className}`} {...props} /></div>
 }
 
 export function Textarea({ className, ...props }) {

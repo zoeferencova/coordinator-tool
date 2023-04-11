@@ -1,6 +1,5 @@
-.table {
-    width: 100%;
-    display: table;
+.tableBody {
+    display: table-row-group;
     margin: 0px;
 }
 

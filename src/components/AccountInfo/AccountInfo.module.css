@@ -1,13 +1,54 @@
 .accountContainer {
-    background-color: white;
-    padding: 20px 30px;
-    border-radius: 7px;
-    box-shadow: 2px 2px 40px -20px lightgray;
+    padding: 10px 30px;
+    border-radius: 10px;
     margin: 15px;
+    border: 1px solid #EAEAEA;
 }
 
-@media only screen and (min-width: 800px) {
-    .accountInfo {
-        width: 35%;
-    }
+.accountContainer h2 {
+    display: block;
+    text-align: left;
+    font-weight: 500;
+    font-size: 18px;
+}
+
+.content {
+    display: flex;
+    justify-content: space-between;
+}
+
+.left,
+.right {
+    display: flex;
+    padding: 10px 0px;
+}
+
+.right {
+    flex-direction: column;
+    justify-content: center;
+}
+
+.right button:first-of-type {
+    margin-bottom: 10px;
+}
+
+.left p {
+    padding: 0px 0px 0px 8px;
+    margin: 0px;
+    text-align: left;
+}
+
+.left {
+    align-items: center;
+}
+
+.name {
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.email {
+    margin-top: 7px !important;
+    font-size: 15px;
+    color: #7f8799;
 }

@@ -1,7 +1,4 @@
 .App {
-    /* font-family: "Eina"; */
-    padding-top: 20px;
-    padding-bottom: 20px;
     width: 90%;
     margin: 0 auto;
     text-align: center;
@@ -17,22 +14,20 @@ p {
 
 label {
     font-size: 13px;
-    color: #636d7d;
 }
 
 .container {
     display: flex;
     flex-direction: row-reverse;
     justify-content: center;
-    margin-left: 240px;
+    margin-left: 270px;
     position: absolute;
     right: 0;
-    top: 0;
     left: 0;
+    top: 50px;
     bottom: 0;
-    background: #F9FBFD;
     padding: 0 15px;
-    overflow-y: scroll;
+    overflow-y: auto;
     height: auto;
 }
 
@@ -51,6 +46,11 @@ label {
 @media only screen and (max-width: 1065px) {
     .container {
         margin-left: 0px;
+        top: 65px;
+    }
+
+    .content {
+        padding-top: 15px;
     }
 }
 

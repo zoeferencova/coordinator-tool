@@ -3,9 +3,7 @@
     flex-direction: column;
 }
 
-.pageContainer h2 {
-    font-size: 17px;
-}
+
 
 .guideContainer {
     top: 0;
@@ -23,11 +21,15 @@
     position: relative;
 }
 
-@media only screen and (min-width: 800px) {
-    .pageContainer {
-        flex-direction: row;
-    }
+.pageContainer>h2 {
+    font-size: 22px;
+    text-align: left;
+    margin-left: 15px;
+    font-weight: 500;
+    display: block;
+}
 
+@media only screen and (min-width: 800px) {
     .guideContainer {
         top: 5%;
         height: 90%;
@@ -35,4 +37,10 @@
         left: 20%;
         border-radius: 10px;
     }
+
+    .pageContainer>h2 {
+        display: none;
+    }
+
+
 }

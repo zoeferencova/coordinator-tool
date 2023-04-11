@@ -3,12 +3,25 @@
 }
 
 .templateSubject {
-    font-weight: bold;
+    font-weight: 500;
+    font-size: 15px;
+
+}
+
+.templateBody {
+    margin-top: 0px;
+    padding-top: 0px;
+    font-size: 15px;
+}
+
+.templateSubject span {
+    color: #999999;
+    font-weight: normal;
 }
 
 .templateContent {
     text-align: left;
-    padding: 0px 30px;
+    padding: 0px 20px;
     font-size: 14px;
 }
 
@@ -20,9 +33,8 @@
     cursor: pointer;
 }
 
-@media only screen and (max-width: 850px) {
+@media only screen and (max-width: 500px) {
     .templateContent {
-        padding: 10px;
-        font-size: 12px;
+        padding: 0px 12px;
     }
 }

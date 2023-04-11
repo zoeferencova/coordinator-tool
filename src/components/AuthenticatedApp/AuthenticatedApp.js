@@ -9,6 +9,8 @@ import NewTemplatePage from '../../routes/NewTemplatePage/NewTemplatePage';
 import TemplatePage from '../../routes/TemplatePage/TemplatePage';
 import NotFoundPage from '../../routes/NotFoundPage/NotFoundPage';
 import EditItemPage from '../../routes/EditItemPage/EditItemPage'
+import NavBar from '../../components/NavBar/NavBar'
+import MobileHeader from '../../components/MobileHeader/MobileHeader';
 import UserDataService from '../../services/user-data-service';
 import ListService from '../../services/list-service';
 import AppContext from '../../contexts/contexts';
@@ -37,7 +39,8 @@ export default class AuthenticatedApp extends Component {
       revertCompleted: this.revertCompleted,
       setInitialState: this.setInitialState,
       setLoggedIn: this.props.setLoggedIn,
-      loading: true
+      loading: true,
+      navOpen: false
     }
   }
 
@@ -102,17 +105,26 @@ export default class AuthenticatedApp extends Component {
   }
 
   updateItemStatus = (updatedItemId, status) => {
-    const item = this.state.listItems.find(item => item.id === updatedItemId)
+    let item;
+    item = this.state.listItems.find(item => item.id === updatedItemId)
+    if (item === undefined) item = this.state.completedListItems.find(item => item.id === updatedItemId)
+    const oldStatus = item.status;
     item.status = status;
 
-    if (status === 'completed') {
-      const newItems = this.state.listItems.filter(item => item.id !== updatedItemId)
-      this.setState({ listItems: newItems })
-      item.date_completed = Date.now();
-      this.setState({ completedListItems: [item, ...this.state.completedListItems] })
-      this.updateDateCompleted(item, Date.now())
+    if (oldStatus === 'completed') {
+      this.setState({ listItems: [item, ...this.state.listItems] })
+      const newCompletedItems = this.state.completedListItems.filter(item => item.id !== updatedItemId);
+      this.setState({ completedListItems: newCompletedItems })
     } else {
-      this.setState({ listItems: this.state.listItems })
+      if (status === 'completed') {
+        const newItems = this.state.listItems.filter(item => item.id !== updatedItemId)
+        this.setState({ listItems: newItems })
+        item.date_completed = Date.now();
+        this.setState({ completedListItems: [item, ...this.state.completedListItems] })
+        this.updateDateCompleted(item, Date.now())
+      } else {
+        this.setState({ listItems: this.state.listItems })
+      }
     }
   }
 
@@ -151,11 +163,15 @@ export default class AuthenticatedApp extends Component {
     this.setState({ pms: newPms })
   }
 
+  setNavOpen = bool => this.setState({ navOpen: bool })
+
   //Setting context values using AuthenticatedApp's states, providing those context values to all children
   render() {
     return (
       <AppContext.Provider value={{ ...this.state }}>
         <main>
+          <NavBar navOpen={this.state.navOpen} setNavOpen={this.setNavOpen} />
+          <MobileHeader navOpen={this.state.navOpen} setNavOpen={this.setNavOpen} />
           <Routes>
             <Route path={'/main'} element={<MainListPage />} />
             <Route path={'/completed'} element={<CompletedListPage />} />

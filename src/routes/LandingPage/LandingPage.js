@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Button } from '../../components/Utils/Utils'
+import { ButtonLight, ButtonDark } from '../../components/Utils/Utils'
 
 import styles from './LandingPage.module.css'
 
@@ -11,7 +11,7 @@ const LandingPage = () => {
                 <nav role="navigation" className={styles.nav}>
                     <img className={styles.logo} src={require('../../images/logo.png')} alt="logo"></img>
                     <div>
-                        <Link to={'/login'}><Button className={styles.button}>Sign In</Button></Link>
+                        <Link to={'/login'}><ButtonLight className={styles.button}>Sign In</ButtonLight></Link>
                     </div>
                 </nav>
             </header>
@@ -19,7 +19,7 @@ const LandingPage = () => {
             <header className={styles.banner} role="banner">
                 <h1 className={styles.h1}>Streamline your coordinator workflow.</h1>
                 <h2 className={styles.h2}>Let the coordinator tool take care of your project tracking, email composition, update emails and more.</h2>
-                <Link to='/register'><Button className={styles.button}>Sign Up</Button></Link>
+                <Link to='/register'><ButtonDark className={styles.button}>Sign Up</ButtonDark></Link>
             </header>
             <section className={`${styles.section} ${styles.section1}`}>
                 <div className={styles.sectionContent}>

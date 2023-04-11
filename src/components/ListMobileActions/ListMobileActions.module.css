@@ -1,0 +1,92 @@
+.content {
+    position: fixed;
+    top: auto;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: white;
+    border-top-right-radius: 20px;
+    border-top-left-radius: 20px;
+    border-top: 1px solid #E6E6E6;
+    border-left: 1px solid #E6E6E6;
+    border-right: 1px solid #E6E6E6;
+    text-align: left;
+}
+
+.mobileActions {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+.overlay {
+    height: 100%;
+    background: black;
+    opacity: 0.2;
+}
+
+.show {
+    display: block;
+}
+
+.hide {
+    display: none;
+}
+
+.info {
+    padding: 0px 25px;
+}
+
+.heading {
+    font-size: 23px;
+    font-weight: 500;
+    border-bottom: 1px solid #E6E6E6;
+    padding: 0px 25px 15px 25px;
+    margin-top: 15px;
+}
+
+.columnName {
+    display: block;
+    color: #949ba2;
+    font-weight: 500;
+    margin-bottom: 10px;
+}
+
+.columnValue {
+    display: block;
+    margin-bottom: 30px;
+    font-size: 18px;
+}
+
+.actions {
+    display: flex;
+    justify-content: space-between;
+    border-top: 1px solid #E6E6E6;
+    padding: 18px 20px;
+
+}
+
+.actions button {
+    border: none;
+    background-color: transparent;
+    display: flex;
+    align-items: center;
+    color: #6f7478;
+}
+
+.actions button:hover {
+    cursor: pointer
+}
+
+.actions button svg {
+    margin-right: 10px;
+    font-size: 18px;
+}
+
+@media only screen and (min-width: 800px) {
+    .mobileActions {
+        display: none;
+    }
+}

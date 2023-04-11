@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import AuthApiService from '../../services/auth-api-service';
 import { Link } from 'react-router-dom';
-import { Button, Input } from '../Utils/Utils'
+import { ButtonLight, ButtonDark, Input } from '../Utils/Utils'
 
 import styles from '../LoginForm/LoginForm.module.css'
 
@@ -48,8 +48,8 @@ const RegistrationForm = ({ onRegistrationSuccess }) => {
                     <label className={styles.label} htmlFor="password">Password</label>
                     <Input className={styles.input} required type="password" name='password' id='password' />
                 </div>
-                <Link to='/'><Button type='button' className={`${styles.button} ${styles.cancel}`}>Cancel</Button></Link>
-                <Button type='submit' className={`${styles.button} ${styles.sign}`}>Create Account</Button>
+                <Link to='/'><ButtonLight type='button' className={`${styles.button} ${styles.cancel}`}>Cancel</ButtonLight></Link>
+                <ButtonDark type='submit' className={`${styles.button} ${styles.sign}`}>Create Account</ButtonDark>
             </form>
         </main>
     )

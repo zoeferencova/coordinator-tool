@@ -1,49 +1,81 @@
 /* Button Styles */
 
 .button {
-    padding: 0px 13px;
-    height: 35px;
-    margin: 4px;
-    border-radius: 5px;
-    cursor: pointer;
-    color: black;
-    border: 1px solid #d8dee3;
-    font-size: 12.5px;
-    background-color: white;
-    transition: 0.5s;
+    padding: 9px 20px;
+    font-size: 14.5px;
+    font-family: inherit;
+    border: none;
+    color: #282C33;
+    border-radius: 50px;
+    background-color: #EAEAEA;
+    transition: 0.2s;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 500;
+    letter-spacing: 0.01rem;
 }
 
-.button:hover {
-    background-color: #f0f3f5;
-    border: 1px solid #afb9bd;
+.large {
+    height: 42px;
 }
 
 .button:disabled {
-    color: #b5b5b5;
-    background-color: #e8e8e8;
-    border-color: white;
+    opacity: 0.5;
 }
 
 .button:disabled:hover {
-    color: #b5b5b5;
-    background-color: #e8e8e8;
-    border-color: white;
+    opacity: 0.5;
+    cursor: not-allowed;
 }
 
-.button a {
-    text-decoration: none;
-    color: black;
+.button:hover {
+    cursor: pointer;
+    opacity: 0.8;
+}
+
+.buttonDark {
+    composes: button;
+    background-color: #282C33;
+    color: white;
+}
+
+.buttonLink:hover {
+    border: none;
+    transition: 0.5s;
+    opacity: 1;
 }
 
 
 /* Input, TextArea, Select Styles */
 
-.input, .textarea, .select {
+.input,
+.textarea,
+.select {
     border: 1px solid #e6e8ed;
     padding: 9px;
     font-size: 13px;
     border-radius: 5px;
     background-color: white;
+}
+
+.searchInput {
+    border-radius: 20px;
+    position: relative;
+    padding: 0px;
+    border: none;
+}
+
+.searchInput input {
+    padding-left: 40px !important;
+}
+
+.searchInput svg {
+    position: absolute;
+    font-size: 14px;
+    color: #888888;
+    top: 33%;
+    left: 15px;
 }
 
 /* .input, .select {
@@ -120,4 +152,77 @@
     .instructions {
         padding: 10px 5px;
     }
+}
+
+.bgIcon {
+    height: 23px;
+    width: 23px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 3px;
+    margin-right: 12px;
+    font-size: 13px;
+}
+
+.greenIcon {
+    background: #E3F1E4;
+    color: #87AE8F;
+}
+
+.pinkIcon {
+    background: #FDE8E8;
+    color: #EC7376;
+}
+
+.yellowIcon {
+    background: #FBF2D6;
+    color: #F7D365;
+}
+
+.blueIcon {
+    background: #EDF3F4;
+    color: #8FB7BF;
+}
+
+.purpleIcon {
+    background: #E2DDFB;
+    color: #8F91D6;
+}
+
+.circle {
+    height: 30px;
+    width: 30px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 18px;
+    color: white;
+    font-weight: 500;
+    font-size: 14px;
+    margin-right: 12px;
+}
+
+:global .red {
+    background-color: #bf5656;
+}
+
+:global .green {
+    background-color: #8cc47a;
+}
+
+:global .indigo {
+    background-color: #7784bf;
+}
+
+:global .purple {
+    background-color: #8878b0;
+}
+
+:global .teal {
+    background-color: #78b09a
+}
+
+:global .blue {
+    background-color: #7bacb3;
 }

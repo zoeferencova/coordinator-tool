@@ -1,6 +1,4 @@
 import React, { useState } from 'react';
-import Header from '../../components/Header/Header'
-import NavBar from '../../components/NavBar/NavBar';
 import AccountInfo from '../../components/AccountInfo/AccountInfo';
 import PmSettings from '../../components/PmSettings/PmSettings';
 import { UserGuide } from '../../components/Utils/Utils'
@@ -14,8 +12,8 @@ const AccountPage = () => {
     return (
         <div className="container">
             <main className="content">
-                <Header title="Account" />
                 <div className={styles.pageContainer}>
+                    <h2>Account</h2>
                     <AccountInfo setUserGuide={setUserGuide} />
                     <PmSettings />
                 </div>
@@ -31,7 +29,6 @@ const AccountPage = () => {
                     <div className={modalStyles.overlay} onClick={() => setUserGuide(false)}></div>
                 </div>}
             </main>
-            <NavBar className="nav" />
         </div>
     )
 }

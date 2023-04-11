@@ -1,0 +1,29 @@
+.mobileHeader {
+    display: none;
+}
+
+.mobileHeader button:hover {
+    cursor: pointer;
+}
+
+@media only screen and (max-width: 1065px) {
+    .mobileHeader {
+        display: flex;
+        justify-content: space-between;
+        padding: 20px 0px;
+    }
+
+    .mobileHeader button {
+        border: none;
+        background: transparent;
+    }
+
+    .mobileHeader button svg {
+        font-size: 22px;
+    }
+
+    .mobileHeader .logo {
+        width: auto;
+        height: 24px;
+    }
+}

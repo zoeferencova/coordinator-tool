@@ -1,53 +1,50 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
+import AppContext from '../../contexts/contexts';
 import { NavLink } from 'react-router-dom';
-import { listIcon, checkIcon, chartIcon, emailIcon, userIcon } from '../Utils/Utils';
+import { ProfilePicture, userIcon, toDoNavIcon, completedNavIcon, dashboardNavIcon, templateNavIcon } from '../Utils/Utils';
 
 import styles from './NavBar.module.css';
 
-const NavBar = () => {
-    const [expanded, setExpanded] = useState(false);
+const NavBar = ({ navOpen, setNavOpen }) => {
+    const context = useContext(AppContext);
 
     return (
         <div className={styles.navWrap}>
-            <button className={`${expanded ? styles.hide : undefined} ${styles.burger} `} onClick={() => setExpanded(true)}>
-                <i className="fas fa-bars"></i>
-            </button>
-            <nav role="navigation" className={`${styles.nav} ${expanded ? styles.show : undefined}`} >
-                <img src={require("../../images/new-logo.png")} alt="logo" className={styles.logo}></img>
+            <nav role="navigation" className={`${styles.nav} ${navOpen ? styles.show : styles.hide}`} >
+                <img src={require("../../images/logo.png")} alt="logo" className={styles.logo}></img>
                 <ul className={styles.tabList}>
-                    <NavLink to="/main" className={styles.tab}>
+                    <NavLink to="/main" className={styles.tab} onClick={() => setNavOpen(false)}>
                         <li className={styles.tabContent}>
-                            {listIcon}
-                            <span className={styles.tabTitle}>List</span>
+                            {toDoNavIcon}
+                            <span className={styles.tabTitle}>To do</span>
                         </li>
                     </NavLink>
-                    <NavLink to="/completed" className={styles.tab}>
+                    <NavLink to="/completed" className={styles.tab} onClick={() => setNavOpen(false)}>
                         <li className={styles.tabContent}>
-                            {checkIcon}
+                            {completedNavIcon}
                             <span className={styles.tabTitle}>Completed</span>
                         </li>
                     </NavLink>
-                    <NavLink to="/dashboard" className={styles.tab}>
+                    <NavLink to="/dashboard" className={styles.tab} onClick={() => setNavOpen(false)}>
                         <li className={styles.tabContent}>
-                            {chartIcon}
+                            {dashboardNavIcon}
                             <span className={styles.tabTitle}>Dashboard</span>
                         </li>
                     </NavLink>
-                    <NavLink to="/templates" className={styles.tab}>
+                    <NavLink to="/templates" className={styles.tab} onClick={() => setNavOpen(false)}>
                         <li className={styles.tabContent}>
-                            {emailIcon}
+                            {templateNavIcon}
                             <span className={styles.tabTitle}>Templates</span>
                         </li>
                     </NavLink>
-                    <NavLink to="/account" className={styles.tab}>
+                    <NavLink to="/account" className={`${styles.tab} ${styles.account}`} onClick={() => setNavOpen(false)}>
                         <li className={styles.tabContent}>
-                            {userIcon}
-                            <span className={styles.tabTitle}>Account</span>
+                            {!context.loading && <ProfilePicture full_name={context.user.full_name} />}
+                            <span className={styles.tabTitle}>{context.user.full_name}</span>
                         </li>
                     </NavLink>
                 </ul>
             </nav>
-            <div className={`${styles.overlay} ${expanded ? styles.show : styles.hidden}`} onClick={() => setExpanded(false)}></div>
         </div>
 
     )

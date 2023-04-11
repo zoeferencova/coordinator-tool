@@ -1,9 +1,14 @@
 .pmSettings {
-    background-color: white;
-    padding: 20px 30px;
-    border-radius: 7px;
-    box-shadow: 2px 2px 40px -20px lightgray;
-    margin: 15px;
+    padding: 10px 30px;
+    border-radius: 10px;
+    margin: 30px 15px 15px 15px;
+    border: 1px solid #EAEAEA;
+}
+
+.pmSettings h2 {
+    text-align: left;
+    font-weight: 500;
+    font-size: 18px;
 }
 
 .addPm {
@@ -12,17 +17,6 @@
     padding: 10px;
     align-items: center;
     justify-content: space-between;
-}
-
-.addButton {
-    background-color: #7fba84;
-    color: white;
-    border: 1px solid #7fba84;
-}
-
-.addButton:hover {
-    background-color: #3e8044;
-    border: 1px solid #3e8044;
 }
 
 .addPm Button {
@@ -34,26 +28,8 @@
 }
 
 .addMessage {
-    background-color: #e0f0df;
-    color: #0c5c07;
     width: 50%;
     margin: 30px auto;
     border-radius: 10px;
     font-size: 14px;
-}
-
-@media only screen and (min-width: 800px) {
-    .pmSettings {
-        width: 65%;
-    }
-
-    .addPm {
-        padding: 10px 30px;
-    }
-}
-
-@media only screen and (min-width: 500px) {
-    .addPm {
-        flex-direction: row;
-    }
 }

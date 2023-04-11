@@ -6,13 +6,13 @@ import ListService from '../../services/list-service';
 import styles from './ListBody.module.css'
 
 
-const ListBody = ({ tab, setEmailFormItem, currentSort, searchQuery }) => {
+const ListBody = ({ tab, setEmailFormItem, setMobileActionItem, currentSort, searchQuery }) => {
     const context = useContext(AppContext);
 
     let list;
 
     if (tab === "main") {
-        list = ListService.sortItems(context.listItems.map(item => <ListItem key={item.id} tab={tab} setEmailFormItem={setEmailFormItem} item={item} />), currentSort)
+        list = ListService.sortItems(context.listItems.map(item => <ListItem key={item.id} tab={tab} setMobileActionItem={setMobileActionItem} setEmailFormItem={setEmailFormItem} item={item} />), currentSort)
     } else {
         list = ListService.sortItems(context.completedListItems.map(item => <ListItem key={item.id} tab={tab} setEmailFormItem={setEmailFormItem} item={item} />), currentSort)
     }
@@ -20,7 +20,7 @@ const ListBody = ({ tab, setEmailFormItem, currentSort, searchQuery }) => {
     if (searchQuery) list = ListService.searchItems(list, searchQuery);
 
     return (
-        <div className={styles.table}>
+        <div className={styles.tableBody}>
             {list}
         </div>
     )
