@@ -27,7 +27,7 @@ const selectStyles = {
     }),
     option: (baseStyles, state) => ({
         ...baseStyles,
-        backgroundColor: state.isSelected ? "#7dbbc7" : state.isFocused ? "#EDF3F4" : "white",
+        // backgroundColor: state.isSelected ? "#7dbbc7" : state.isFocused ? "#EDF3F4" : "white",
         height: "25px",
         padding: "5px",
         border: "0px",

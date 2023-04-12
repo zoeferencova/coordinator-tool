@@ -43,6 +43,69 @@ label {
     display: block;
 }
 
+.form {
+    border: 1px solid #EAEAEA;
+    width: 70%;
+    margin: 30px auto;
+    text-align: left;
+    padding: 0px;
+    border-radius: 10px;
+}
+
+.form h2 {
+    font-weight: 500;
+    padding: 5px 25px 20px 25px;
+    border-bottom: 1px solid #EAEAEA;
+    font-size: 18px;
+}
+
+.form-section {
+    display: flex;
+    width: 100%;
+}
+
+.form-item input,
+.form-item textarea {
+    width: 100%;
+}
+
+.form-item {
+    padding: 10px 25px;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    text-align: left;
+}
+
+.form-item label {
+    padding-bottom: 8px;
+    font-weight: 500;
+}
+
+.form-section .form-item:nth-of-type(2) {
+    padding-left: 0px;
+}
+
+.form .form-buttons {
+    display: flex;
+    padding: 15px 25px;
+    margin-top: 20px;
+    border-top: 1px solid #EAEAEA;
+    width: 100%;
+    justify-content: flex-end;
+    background-color: #F9F9F9;
+}
+
+.form .form-buttons>*:first-child {
+    margin-right: 15px;
+}
+
+.form.no-container {
+    border: none;
+    margin: 0;
+    width: 100%;
+}
+
 @media only screen and (max-width: 1065px) {
     .container {
         margin-left: 0px;
@@ -52,11 +115,31 @@ label {
     .content {
         padding-top: 15px;
     }
+
+    .form {
+        width: 70%;
+    }
 }
 
 @media only screen and (max-width: 810px) {
     .content {
         width: 96%;
+    }
+
+    .form {
+        width: 100%;
+    }
+
+    .form-section {
+        flex-direction: column;
+    }
+
+    .form-section .form-item:nth-of-type(2) {
+        padding-left: 25px;
+    }
+
+    .form .form-buttons {
+        justify-content: space-between;
     }
 
 }

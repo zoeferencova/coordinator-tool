@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react';
 import AppContext from '../../contexts/contexts';
-import { ButtonDark, Input } from '../../components/Utils/Utils'
+import { ButtonDark, Input, plusIcon } from '../../components/Utils/Utils'
 import PmItem from '../../components/PmItem/PmItem';
 
 import styles from './PmSettings.module.css'
@@ -36,20 +36,18 @@ const PmSettings = ({ }) => {
     return (
         <section className={`${styles.pmSettings}`}>
             <h2>PM Settings</h2>
-            {context.pms.length === 0 ? <p className={styles.addMessage}>Add PM's here!</p> : (<ul className={styles.pmList}>
-                {context.pms.map(pm => <PmItem pm={pm} key={pm.id} />)}
-            </ul>)}
+            {context.pms.length === 0 ? <p className={styles.addMessage}>Add PM's here!</p> : (
+                <ul className={styles.pmList}>
+                    {context.pms.map(pm => <PmItem pm={pm} key={pm.id} />)}
+                </ul>)}
             {error && <p>{error}</p>}
             <form onSubmit={e => handlePostPm(e)} className={styles.addPm}>
-                <div>
-                    <label htmlFor="pm_name"></label>
+                <div className={styles.inputs}>
                     <Input type="text" id="pm_name" placeholder={"Name"}></Input>
-                </div>
-                <div>
-                    <label htmlFor="pm_email"></label>
                     <Input type="text" id="pm_email" placeholder={"Email"}></Input>
                 </div>
-                <ButtonDark type="submit" className={styles.addButton}>+ Add PM</ButtonDark>
+                <ButtonDark type="submit" className={styles.addButton}>Add</ButtonDark>
+                <ButtonDark type="submit" className={styles.mobileAddButton}>{plusIcon}</ButtonDark>
             </form>
         </section>
     )

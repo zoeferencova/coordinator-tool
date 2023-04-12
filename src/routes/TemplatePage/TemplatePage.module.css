@@ -46,19 +46,19 @@
     display: flex;
     width: 100%;
     justify-content: space-between;
-    height: 50px;
     align-items: center;
-    padding: 10px 20px;
+    padding: 20px;
     border-bottom: 1px solid #EAEAEA;
 }
 
 .templateHeader h3 {
     font-weight: 500;
-    font-size: 16px;
+    font-size: 18px;
     white-space: nowrap;
     overflow-x: hidden !important;
     text-overflow: ellipsis;
     overflow-y: hidden !important;
+    margin: 0;
 }
 
 .templateButtons {
@@ -67,24 +67,6 @@
 
 .templateHeader button:first-of-type {
     margin-right: 10px;
-}
-
-.templateHeader button {
-    border: none;
-    background-color: transparent;
-    display: inline-flex;
-    align-items: center;
-    color: #6f7478;
-    font-size: 14px;
-}
-
-.templateHeader button:hover {
-    cursor: pointer
-}
-
-.templateHeader button svg {
-    margin-right: 10px;
-    font-size: 15px;
 }
 
 .pageHeader {
@@ -115,13 +97,7 @@
     .templateSelect {
         display: flex;
         margin-bottom: 20px;
-        width: 100%;
         justify-content: space-between;
-    }
-
-    .templateSelect select {
-        width: 300px;
-        font-size: 15px;
     }
 
     .templateContainer {
@@ -135,7 +111,7 @@
     }
 
     .templateHeader {
-        padding: 0px 12px;
+        padding: 20px 15px;
     }
 
 

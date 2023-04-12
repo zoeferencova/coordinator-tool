@@ -3,7 +3,7 @@ import TemplateTab from '../../components/TemplateTab/TemplateTab'
 import TemplateWindow from '../../components/TemplateWindow/TemplateWindow'
 import TemplateEditForm from '../../components/TemplateEditForm/TemplateEditForm'
 import AppContext from '../../contexts/contexts'
-import { ButtonDark, Select, editIcon, trashIcon, plusIcon } from '../../components/Utils/Utils'
+import { ButtonDark, CustomSelect, editIcon, trashIcon, plusIcon, ActionButton } from '../../components/Utils/Utils'
 import { Link } from 'react-router-dom';
 
 import styles from './TemplatePage.module.css'
@@ -14,10 +14,13 @@ const EmailPage = () => {
     const context = useContext(AppContext);
     const [currentTemplate, setCurrentTemplate] = useState(undefined);
     const [edit, setEdit] = useState(false);
-    const [inputValues, setInputValues] = useState({})
+    const [inputValues, setInputValues] = useState(undefined)
 
     useEffect(() => {
-        if (!currentTemplate) setCurrentTemplate(context.templates[0])
+        if (!currentTemplate) {
+            setCurrentTemplate(context.templates[0])
+            setInputValues(context.templates[0])
+        }
     }, [context.templates])
 
     const selectTemplate = id => {
@@ -59,6 +62,8 @@ const EmailPage = () => {
         </div>
     )
 
+    const templateOptions = context.templates.map(template => ({ value: template.id, label: template.template_name }))
+
     return (
         <div className="container">
             <main className="content">
@@ -73,29 +78,31 @@ const EmailPage = () => {
                                 {context.templates.map(template => <TemplateTab key={template.id} template={template} selectTemplate={selectTemplate} current={currentTemplate !== undefined ? currentTemplate.id : undefined} />)}
                             </div>
                             <div className={styles.templateSelect}>
-                                <Select onChange={(e) => handleTemplateSelect(e.target.value)} value={currentTemplate !== undefined ? currentTemplate.id : ''}>
+                                {/* <Select onChange={(e) => handleTemplateSelect(e.target.value)} value={currentTemplate !== undefined ? currentTemplate.id : ''}>
                                     {context.templates.map(template => <option value={template.id} key={template.id}> {template.template_name} </option>)}
-                                </Select>
+                                </Select> */}
+                                <CustomSelect name="pm" id="pm" onChange={(e) => handleTemplateSelect(e.value)} options={templateOptions} value={currentTemplate !== undefined ? currentTemplate.id : null} width="240px" />
+
                                 <Link className={styles.desktopNewTemplate} to='/new-template'><ButtonDark className={styles.newButton}>New Template</ButtonDark></Link>
                                 <Link className={styles.mobileNewTemplate} to='/new-template'><ButtonDark className={styles.newButton}>{plusIcon}</ButtonDark></Link>
                             </div>
-                            <div className={styles.templateWindow}>
-                                {currentTemplate !== undefined && !edit && <>
-                                    <div className={styles.templateHeader}>
-                                        <h3>{currentTemplate.template_name}</h3>
-                                        <div className={styles.templateButtons}>
-                                            <button onClick={() => setEdit(true)}>{editIcon} Edit</button>
-                                            <button onClick={handleDeleteTemplate}>{trashIcon} Delete</button>
-                                        </div>
+
+                            {currentTemplate !== undefined && !edit && <div className={styles.templateWindow}>
+                                <div className={styles.templateHeader}>
+                                    <h3>{currentTemplate.template_name}</h3>
+                                    <div className={styles.templateButtons}>
+                                        <ActionButton action="edit" onClick={() => setEdit(true)}>{editIcon}Edit</ActionButton>
+                                        <ActionButton action="delete" onClick={handleDeleteTemplate}>{trashIcon}Delete</ActionButton>
                                     </div>
-                                    <TemplateWindow
-                                        id={currentTemplate.id}
-                                        template_name={currentTemplate.template_name}
-                                        template_subject={currentTemplate.template_subject}
-                                        template_content={currentTemplate.template_content}
-                                    /></>}
-                                {edit && <TemplateEditForm currentTemplate={currentTemplate} inputValues={inputValues} setInputValues={setInputValues} setEdit={setEdit} setCurrentTemplate={setCurrentTemplate} />}
-                            </div>
+                                </div>
+                                <TemplateWindow
+                                    id={currentTemplate.id}
+                                    template_name={currentTemplate.template_name}
+                                    template_subject={currentTemplate.template_subject}
+                                    template_content={currentTemplate.template_content}
+                                /></div>
+                            }
+                            {edit && <TemplateEditForm currentTemplate={currentTemplate} inputValues={inputValues} setInputValues={setInputValues} setEdit={setEdit} setCurrentTemplate={setCurrentTemplate} />}
                         </div>)}
                 </div>
             </main>

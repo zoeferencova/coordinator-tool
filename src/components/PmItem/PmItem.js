@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import AppContext from '../../contexts/contexts';
-import { ButtonLight } from '../Utils/Utils';
+import { ActionButton } from '../Utils/Utils';
 import PmService from '../../services/pm-service';
 
 import styles from './PmItem.module.css'
@@ -11,7 +11,7 @@ const PmItem = ({ pm }) => {
     const handleDeletePm = e => {
         e.preventDefault();
         if (window.confirm('Are you sure you wish to delete this PM? All list items associated with this PM will also be deleted.')) {
-            const pmId = e.target.getAttribute('pmid')
+            const pmId = e.currentTarget.getAttribute('item')
             PmService.deletePm(pmId)
             context.deletePm(pmId)
         }
@@ -23,7 +23,7 @@ const PmItem = ({ pm }) => {
                 <div className={styles.name}>{pm.pm_name}</div>
                 <div className={styles.email}>{pm.pm_email}</div>
             </div>
-            <ButtonLight onClick={(e) => handleDeletePm(e)} pmid={pm.id} className={styles.delete}>Delete</ButtonLight>
+            <ActionButton onClick={(e) => handleDeletePm(e)} action="delete" item={pm.id} className={styles.delete}>Delete</ActionButton>
         </li>
     )
 }

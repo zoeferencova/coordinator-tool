@@ -2,7 +2,7 @@ import React, { useContext, useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import AppContext from '../../contexts/contexts'
 import { Link } from 'react-router-dom'
-import { ButtonDark, ButtonLight, Input, Textarea, Select } from '../../components/Utils/Utils'
+import { ButtonDark, ButtonLight, Input, Textarea, CustomSelect } from '../../components/Utils/Utils'
 import ListService from '../../services/list-service';
 
 import styles from '../AddItemPage/AddItemPage.module.css'
@@ -52,49 +52,49 @@ const EditItemPage = () => {
         navigate('/main')
     }
 
+    const pmOptions = context.pms.map(pm => ({ value: pm.pm_name, label: pm.pm_name }));
+
     return (
         <div className="container">
             <main className="content">
                 {error && <p>{error}</p>}
-                <form onSubmit={e => handlePatchItem(e)}>
-                    <div className={styles.formSection}>
-                        <div className={styles.formPair}>
+                {inputValues && <form className="form" onSubmit={e => handlePatchItem(e)}>
+                    <h2>Edit Item</h2>
+                    <div className="form-section">
+                        <div className="form-item">
                             <label htmlFor="project">Project Name</label>
                             <Input required type="text" name='project' id='project' defaultValue={inputValues.project} onChange={e => setInputValues({ ...inputValues, project: e.target.value.trim() })}></Input>
                         </div>
-                        <div className={styles.formPair}>
+                        <div className="form-item">
                             <label htmlFor="project_url">Project URL (optional)</label>
                             <Input type="text" name='project_url' id='project_url' defaultValue={inputValues.project_url} onChange={e => setInputValues({ ...inputValues, project_url: e.target.value })}></Input>
                         </div>
                     </div>
-                    <div className={styles.formSection}>
-                        <div className={styles.formPair}>
+                    <div className="form-section">
+                        <div className="form-item">
                             <label htmlFor="adv-name">Contact Name</label>
                             <Input required type="text" name='adv-name' id='adv-name' defaultValue={inputValues.contact} onChange={e => setInputValues({ ...inputValues, contact: e.target.value.trim() })}></Input>
                         </div>
-                        <div className={styles.formPair}>
+                        <div className="form-item">
                             <label htmlFor="adv-url">Contact URL (optional)</label>
                             <Input type="text" name='adv-url' id='adv-url' defaultValue={inputValues.contact_url} onChange={e => setInputValues({ ...inputValues, contact_url: e.target.value })}></Input>
                         </div>
                     </div>
 
-                    <div className={`${styles.pm} ${pmError && styles.pmError}`}>
-                        <label htmlFor="pm">Project Manager: </label>
-                        <Select name="pm" id="pm" value={inputValues.pm_name} onChange={e => { setInputValues({ ...inputValues, pm_name: e.target.value }); setPmError(null) }}>
-                            <option value='none'></option>
-                            {context.pms.map(pm => <option value={pm.pm_name} key={pm.id} >{pm.pm_name}</option>)}
-                        </Select>
+                    <div className={`${styles.pm} ${pmError && styles.pmError} form-item`}>
+                        <label htmlFor="pm">Project Manager</label>
+                        <CustomSelect name="pm" id="pm" onChange={e => { setInputValues({ ...inputValues, pm_name: e.value }); setPmError(null) }} options={pmOptions} required="true" value={inputValues.pm_name} />
                         <div className={styles.pmError}><span>{pmError && pmError}</span></div>
                     </div>
-                    <div className={styles.formSection}>
-                        <label htmlFor="notes" className={styles.notesLabel}>Notes: </label>
+                    <div className="form-item">
+                        <label htmlFor="notes" className={styles.notesLabel}>Notes</label>
                         <Textarea name="notes" id="notes" className={styles.notes} defaultValue={inputValues.notes} onChange={e => setInputValues({ ...inputValues, notes: e.target.value })}></Textarea>
                     </div>
-                    <div>
+                    <div className="form-buttons">
                         <Link to='/main'><ButtonLight>Cancel</ButtonLight></Link>
                         <ButtonDark type='submit'>Save</ButtonDark>
                     </div>
-                </form>
+                </form>}
 
             </main>
         </div>

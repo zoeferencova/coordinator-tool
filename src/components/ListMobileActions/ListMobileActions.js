@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import AppContext from '../../contexts/contexts';
-import { emailIconLight, trashIcon, editIcon } from '../Utils/Utils';
+import { emailIconLight, trashIcon, editIcon, ActionButton } from '../Utils/Utils';
 import ListService from '../../services/list-service';
 
 import styles from '../ListMobileActions/ListMobileActions.module.css'
@@ -45,20 +45,11 @@ const ListMobileActions = ({ data, setEmailFormItem, closeMobileActions }) => {
                     {notes && <div><span className={styles.columnName}>Notes</span> <span className={styles.columnValue}>{notes}</span></div>}
                 </div>
                 <div className={styles.actions}>
-                    <button className={`${styles.icon}`} itemkey={id} onClick={() => setEmailFormItem(data)}>
-                        {emailIconLight}
-                        <span>Send email</span>
-                    </button>
+                    <ActionButton action="email" onClick={() => setEmailFormItem(data)} />
                     <Link to={{ pathname: `/edit-item/${id}`, itemProps: { project, contact, pm_name, notes } }} >
-                        <button className={`${styles.icon}`}>
-                            {editIcon}
-                            <span>Edit</span>
-                        </button>
+                        <ActionButton action="edit" />
                     </Link>
-                    <button className={`${styles.icon}`} itemkey={id} onClick={handleDeleteItem}>
-                        {trashIcon}
-                        <span>Delete</span>
-                    </button>
+                    <ActionButton action="delete" onClick={handleDeleteItem} />
                 </div>
             </div>
 

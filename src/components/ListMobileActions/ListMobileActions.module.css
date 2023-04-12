@@ -40,7 +40,7 @@
 }
 
 .heading {
-    font-size: 23px;
+    font-size: 18px;
     font-weight: 500;
     border-bottom: 1px solid #E6E6E6;
     padding: 0px 25px 15px 25px;
@@ -52,12 +52,13 @@
     color: #949ba2;
     font-weight: 500;
     margin-bottom: 10px;
+    font-size: 13px;
 }
 
 .columnValue {
     display: block;
     margin-bottom: 30px;
-    font-size: 18px;
+    font-size: 15px;
 }
 
 .actions {

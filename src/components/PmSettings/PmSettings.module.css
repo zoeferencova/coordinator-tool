@@ -1,5 +1,4 @@
 .pmSettings {
-    padding: 10px 30px;
     border-radius: 10px;
     margin: 30px 15px 15px 15px;
     border: 1px solid #EAEAEA;
@@ -9,22 +8,32 @@
     text-align: left;
     font-weight: 500;
     font-size: 18px;
+    border-bottom: 1px solid #EAEAEA;
+    padding: 5px 30px 20px 30px;
+}
+
+.pmList {
+    padding: 0px 30px 20px 30px;
+    margin-top: 20px;
+    margin-bottom: 0px;
+    border-bottom: 1px solid #EAEAEA;
 }
 
 .addPm {
     display: flex;
-    flex-direction: column;
-    padding: 10px;
+    padding: 15px 30px;
+    margin: 0px;
     align-items: center;
     justify-content: space-between;
+    background-color: #F9F9F9;
 }
 
 .addPm Button {
     min-width: 90px;
 }
 
-.delete {
-    margin-left: 10px;
+.inputs input:first-child {
+    margin-right: 10px;
 }
 
 .addMessage {
@@ -32,4 +41,61 @@
     margin: 30px auto;
     border-radius: 10px;
     font-size: 14px;
+}
+
+.mobileAddButton {
+    display: none;
+}
+
+@media only screen and (max-width: 550px) {
+    .pmSettings {
+        padding-top: 0px;
+    }
+
+    .pmSettings h2 {
+        padding-left: 15px;
+    }
+
+    .pmList {
+        padding: 0px 15px 10px 15px;
+        margin-top: 10px;
+    }
+
+    .addPm {
+        padding: 10px 15px;
+        margin-left: 0px;
+    }
+
+    .inputs input {
+        width: 100%;
+    }
+
+    .inputs {
+        margin-right: 10px;
+    }
+
+    .inputs input:first-child {
+        margin-right: 0px;
+        margin-bottom: 10px;
+    }
+
+    .mobileAddButton {
+        display: inline-flex;
+        margin-left: 5px;
+    }
+
+    .mobileAddButton {
+        height: 35px;
+        width: 35px;
+        min-width: 35px !important;
+        padding: 0px;
+    }
+
+    .mobileAddButton svg {
+        font-size: 17px;
+    }
+
+    .addButton {
+        display: none;
+    }
 }

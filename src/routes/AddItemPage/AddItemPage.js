@@ -2,7 +2,7 @@ import React, { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom'
 import AppContext from '../../contexts/contexts'
-import { ButtonLight, ButtonDark, Select, Input, Textarea } from '../../components/Utils/Utils'
+import { ButtonLight, ButtonDark, CustomSelect, Input, Textarea, plusIcon } from '../../components/Utils/Utils'
 import ListService from '../../services/list-service';
 
 import styles from './AddItemPage.module.css';
@@ -20,11 +20,11 @@ const AddItemPage = () => {
     const renderContactInputs = () => {
         const arr = []
         for (let i = 0; i < contactInputCount; i++) {
-            arr.push(<div key={i} className={styles.formSection}><div className={styles.formPair}>
+            arr.push(<div key={i} className="form-section"><div className="form-item">
                 <label htmlFor={`contact${i}`}>Contact Name</label>
                 <Input required={i === 0 ? true : false} type="text" name={`contact${i}`} id={`contact${i}`}></Input>
             </div>
-                <div className={styles.formPair}>
+                <div className="form-item">
                     <label htmlFor={`contact${i}_url`}>Contact URL (optional)</label>
                     <Input type="text" name={`contact${i}_url`} id={`contact${i}_url`}></Input>
                 </div></div>)
@@ -69,38 +69,36 @@ const AddItemPage = () => {
         }
     }
 
+    const pmOptions = context.pms.map(pm => ({ value: pm.pm_name, label: pm.pm_name }));
+
     return (
         <div className="container">
             <main className="content">
                 {error && <p>{error}</p>}
-                <form onSubmit={e => handlePostItem(e)}>
-                    <div className={styles.formSection}>
-                        <div className={styles.formPair}>
+                <form className="form" onSubmit={e => handlePostItem(e)}>
+                    <h2>New Item</h2>
+                    <div className="form-section">
+                        <div className="form-item">
                             <label htmlFor="project">Project Name</label>
                             <Input required type="text" name='project' id='project'></Input>
                         </div>
-                        <div className={styles.formPair}>
+                        <div className="form-item">
                             <label htmlFor="project_url">Project URL (optional)</label>
                             <Input type="text" name='project_url' id='project_url'></Input>
                         </div>
                     </div>
                     {renderContactInputs()}
-                    <ButtonLight onClick={e => { e.preventDefault(); setContactInputCount(contactInputCount + 1) }}>+ Additional Contacts</ButtonLight>
-                    <div className={`${styles.pm} ${pmError && styles.pmError}`}>
-                        <label htmlFor="pm">Project Manager: </label>
-                        <Select name="pm" id="pm" onChange={() => setPmError(null)}>
-                            <option value='none'></option>
-                            {context.pms.map(pm =>
-                                <option value={pm.pm_name} key={pm.id} >{pm.pm_name}</option>
-                            )}
-                        </Select>
+                    <button className={styles.addContactButton} onClick={e => { e.preventDefault(); setContactInputCount(contactInputCount + 1) }}>{plusIcon} Add Contact</button>
+                    <div className={`${styles.pm} ${pmError && styles.pmError} form-item`}>
+                        <label htmlFor="pm">Project Manager</label>
+                        <CustomSelect name="pm" id="pm" onChange={() => setPmError(null)} options={pmOptions} required="true" />
                         <div className={styles.pmError}><span>{pmError && pmError}</span></div>
                     </div>
-                    <div className={styles.formSection}>
-                        <label htmlFor="notes" className={styles.notesLabel}>Notes: </label>
+                    <div className="form-item">
+                        <label htmlFor="notes" className={styles.notesLabel}>Notes</label>
                         <Textarea name="notes" id="notes" className={styles.notes}></Textarea>
                     </div>
-                    <div>
+                    <div className="form-buttons">
                         <Link to='/main'><ButtonLight>Cancel</ButtonLight></Link>
                         <ButtonDark type='submit'>Add Item</ButtonDark>
                     </div>

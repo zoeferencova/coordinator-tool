@@ -1,5 +1,3 @@
-
-
 .overlay {
     background: black;
     opacity: 0.3 !important;
@@ -14,22 +12,21 @@
 
 .formContainer {
     background-color: white;
-    padding: 20px 30px;
     border-radius: 7px;
     box-shadow: 2px 2px 40px -20px lightgray;
     display: flex;
-    /* justify-content: center; */
     flex-direction: column;
     width: 50%;
-    /* margin: 100px auto; */
     opacity: 1 !important;
     z-index: 250;
     position: fixed;
-    height: 500px;
-    top: 50%;
+    height: 550px;
+    top: 45%;
     left: 50%;
     margin-top: -250px;
     margin-left: -25%;
+    padding-top: 20px;
+    padding-bottom: 30px;
 }
 
 .header {
@@ -49,65 +46,73 @@
     color: white;
 }
 
+.selectMessage {
+    font-size: 14px;
+    color: #999999;
+}
+
 .xButton {
     background: none;
     border: none;
     cursor: pointer;
+    position: absolute;
+    top: 20px;
+    right: 20px;
 }
 
-.xButton i {
+.xButton svg {
     font-size: 20px;
-    padding: 10px;
+    color: #6f7478;
 }
 
 .templateBody {
     white-space: pre-line;
     text-align: left;
-    font-size: 13px;
+    font-size: 14px;
     line-height: 19px;
-    margin: auto 35px;
+    width: 100%;
+    height: 100%;
 }
 
 .templateContainer {
-    overflow-y: scroll;
-    height: 64%;
+    overflow-y: auto;
     display: flex;
-    margin: auto;
+    flex-direction: column;
+    height: fit-content;
+    width: auto;
+    padding: 10px 25px;
+    margin: 20px 25px;
+    background-color: #f8f8f8;
+    border-radius: 10px;
+
+}
+
+.templateSubject {
+    font-weight: 500;
+    text-align: left;
+    font-size: 14px;
+    margin-bottom: 0;
 }
 
 .doctor {
-    margin: 15px 0px;
+    margin: 0px 2px;
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-direction: row !important;
+    width: fit-content !important;
 }
 
 .doctor label {
-    margin-right: 7px;
+    margin-left: 7px !important;
+    display: inline !important;
+    padding-bottom: 0px !important;
 }
 
-.link {
-    padding: 10px 13px;
-    display: inline-block;
-    border-radius: 5px;
-    cursor: pointer;
-    margin: 20px 0 25px 0;
-    color: black;
-    border: 1px solid #d8dee3;
-    font-size: 13px;
-    background-color: white;
-    transition: 0.5s;
-}
-
-.link:hover {
-    background-color: #f0f3f5;
-    border: 1px solid #afb9bd;
-}
-
-@media only screen and (max-width: 1000px) {
+@media only screen and (max-width: 800px) {
     .formContainer {
-        width: 70%;
-        margin-left: -35%;
+        width: 80%;
+        left: 35%;
     }
 }
 
@@ -119,14 +124,6 @@
         top: 0;
         margin: 0;
         border-radius: 0px;
-        overflow-y: scroll;
-    }
-
-    .templateBody {
-        margin: 20px;
-    }
-
-    .preview {
-        margin-left: 20px;
+        overflow-y: auto;
     }
 }

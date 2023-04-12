@@ -1,38 +1,25 @@
-.formSection {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 18px;
-}
-
-.formPair {
-    display: flex;
-    flex-direction: column;
-    text-align: left;
-    margin: 0px 10px;
-}
-
-.formPair label {
-    margin-bottom: 5px;
-}
-
-.notesLabel {
-    margin-right: 5px;
-}
-
-.notes {
-    width: 300px;
-    height: 100px;
+.addContactButton {
+    margin: 10px 25px 30px 25px;
+    border: none;
+    background-color: #f9f9f9;
+    color: #6f7478;
+    padding: 8px 12px;
+    border-radius: 5px;
     font-size: 13px;
+    font-weight: 500;
 }
 
-.pm {
-    margin-top: 30px;
-    margin-bottom: 20px;
+.addContactButton:hover {
+    cursor: pointer;
+}
+
+.addContactButton svg {
+    margin-right: 5px;
 }
 
 .pmError {
     color: red;
-    
+
 }
 
 .pmError select {

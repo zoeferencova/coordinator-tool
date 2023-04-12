@@ -46,6 +46,24 @@
     opacity: 1;
 }
 
+.actionButton {
+    border: none;
+    background-color: transparent;
+    display: inline-flex;
+    align-items: center;
+    color: #6f7478;
+    font-size: 14px;
+}
+
+.actionButton:hover {
+    cursor: pointer
+}
+
+.actionButton svg {
+    margin-right: 10px;
+    font-size: 15px;
+}
+
 
 /* Input, TextArea, Select Styles */
 
@@ -54,7 +72,7 @@
 .select {
     border: 1px solid #e6e8ed;
     padding: 9px;
-    font-size: 13px;
+    font-size: 15px;
     border-radius: 5px;
     background-color: white;
 }

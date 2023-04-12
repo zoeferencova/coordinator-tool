@@ -1,5 +1,6 @@
 import React from 'react';
 import styles from './Utils.module.css';
+import Select from "react-select";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { icon } from '@fortawesome/fontawesome-svg-core/import.macro';
 
@@ -42,6 +43,14 @@ export function ButtonDark({ className, ...props }) {
     return <button disabled={props.disabled} className={`${styles.buttonDark} ${props.large ? styles.large : undefined} ${className !== undefined ? className : ""}`} {...props}>{props.loading === "true" ? spinnerIcon : props.children}</button>
 }
 
+export function ActionButton({ className, ...props }) {
+    return (<button className={styles.actionButton} onClick={props.onClick} item={props.item}>
+        {props.action === "edit" && <>{editIcon}<span>Edit</span></>}
+        {props.action === "delete" && <>{trashIcon}<span>Delete</span></>}
+        {props.action === "email" && <>{emailIconLight}<span>Send email</span></>}
+    </button>)
+}
+
 // export function Button({ className, ...props }) {
 //     return <button className={`${styles.button} ${className}`} {...props} />
 // }
@@ -58,8 +67,44 @@ export function Textarea({ className, ...props }) {
     return <textarea className={`${styles.textarea} ${className}`} {...props} />
 }
 
-export function Select({ className, ...props }) {
-    return <select className={`${styles.select} ${className}`} {...props} />
+export function CustomSelect({ options, value, required, error, onChange, name, id, width }) {
+    const selectStyles = {
+        option: (styles, state) => ({
+            ...styles,
+            cursor: 'pointer',
+            fontSize: '15px',
+            textAlign: "left",
+            // backgroundColor: state.isSelected ? "#7dbbc7" : state.isFocused ? "#EDF3F4" : state.isClicked ? "#7dbbc7" : "white",
+        }),
+        control: (styles) => ({
+            ...styles,
+            cursor: 'pointer',
+            fontSize: '15px',
+            boxShadow: 'none',
+            border: '1px solid #e6e8ed',
+            '&:hover': {
+                cursor: 'pointer'
+            },
+            width: width || "auto",
+            textAlign: "left"
+        }),
+    };
+
+    const getValue = options.find(opt => opt.value === value)
+
+    return <Select
+        name={name}
+        id={id}
+        onChange={onChange}
+        options={options}
+        placeholder="Select"
+        styles={selectStyles}
+        value={getValue}
+        required={required}
+        className={`basic-single ${error && styles.errorCell} ${styles.customSelect}`}
+        components={{ IndicatorSeparator: () => null }}
+
+    />
 }
 
 export function UserGuide({ className, ...props }) {
