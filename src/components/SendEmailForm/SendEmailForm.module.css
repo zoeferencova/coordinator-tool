@@ -20,13 +20,12 @@
     opacity: 1 !important;
     z-index: 250;
     position: fixed;
-    height: 550px;
+    max-height: 600px;
     top: 45%;
     left: 50%;
     margin-top: -250px;
     margin-left: -25%;
     padding-top: 20px;
-    padding-bottom: 30px;
 }
 
 .header {
@@ -109,6 +108,18 @@
     padding-bottom: 0px !important;
 }
 
+.buttonSection {
+    display: flex;
+    padding: 15px 30px;
+    margin: 15px 0px 0px 0px;
+    align-items: center;
+    justify-content: flex-end;
+    background-color: #F9F9F9;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border-top: 1px solid #EAEAEA;
+}
+
 @media only screen and (max-width: 800px) {
     .formContainer {
         width: 80%;
@@ -120,10 +131,15 @@
     .formContainer {
         width: 100%;
         height: 100%;
+        max-height: none;
         left: 0;
         top: 0;
         margin: 0;
         border-radius: 0px;
         overflow-y: auto;
+    }
+
+    .buttonSection {
+        margin-top: auto;
     }
 }

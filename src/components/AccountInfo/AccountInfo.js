@@ -6,7 +6,7 @@ import TokenService from '../../services/token-service'
 
 import styles from './AccountInfo.module.css'
 
-const AccountInfo = ({ setUserGuide }) => {
+const AccountInfo = ({ openOnboarding }) => {
     const context = useContext(AppContext);
 
     //Clears Auth Token and sets App component's state isLoggedIn to false to render the UnauthenticatedApp component
@@ -27,7 +27,7 @@ const AccountInfo = ({ setUserGuide }) => {
                     </div>
                 </div>
                 <div className={styles.right}>
-                    <ButtonLight onClick={() => setUserGuide(true)}>User Guide</ButtonLight>
+                    <ButtonLight onClick={openOnboarding}>User Guide</ButtonLight>
                     <Link to='/'><ButtonDark onClick={handleLogout}>Log Out</ButtonDark></Link>
                 </div>
             </div>

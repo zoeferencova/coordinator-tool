@@ -26,6 +26,8 @@
     align-items: center;
     justify-content: space-between;
     background-color: #F9F9F9;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
 }
 
 .addPm Button {
@@ -41,6 +43,8 @@
     margin: 30px auto;
     border-radius: 10px;
     font-size: 14px;
+    color: #7f8799;
+    font-weight: 500;
 }
 
 .mobileAddButton {
@@ -50,6 +54,7 @@
 @media only screen and (max-width: 550px) {
     .pmSettings {
         padding-top: 0px;
+        margin: 30px 0px 0px 0px;
     }
 
     .pmSettings h2 {

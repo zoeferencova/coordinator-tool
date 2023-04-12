@@ -69,7 +69,7 @@ const EmailPage = () => {
             <main className="content">
                 <div className={styles.pageContainer}>
                     <h2 className={styles.pageHeader}>Email Templates</h2>
-                    {context.templates.length === 0 ? templateInstructions :
+                    {context.templates.length > 0 &&
                         (<div className={styles.templateContainer}>
 
                             <div className={styles.templateList}>

@@ -56,6 +56,10 @@
 }
 
 @media only screen and (max-width: 550px) {
+    .accountContainer {
+        margin: 15px 0px 0px 0px;
+    }
+
     .content {
         flex-direction: column;
         padding: 0px 15px 5px 15px;

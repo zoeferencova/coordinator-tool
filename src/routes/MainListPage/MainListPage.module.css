@@ -18,6 +18,18 @@
     overflow-y: visible;
 }
 
+.listContainer {
+    -ms-overflow-style: none;
+    /* Internet Explorer 10+ */
+    scrollbar-width: none;
+    /* Firefox */
+}
+
+.listContainer::-webkit-scrollbar {
+    display: none;
+    /* Safari and Chrome */
+}
+
 @media only screen and (max-width: 450px) {
     .tableBodyContainer {
         overflow-x: scroll;

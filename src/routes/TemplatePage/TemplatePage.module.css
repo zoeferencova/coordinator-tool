@@ -82,6 +82,10 @@
         display: none;
     }
 
+    .pageContainer {
+        padding: 0px;
+    }
+
     .pageHeader {
         display: block;
         text-align: left;

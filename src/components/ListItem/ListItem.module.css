@@ -96,6 +96,10 @@
     border-bottom: 1px solid #EAEAEA;
 }
 
+.tableRow a {
+    color: rgb(121, 131, 146);
+}
+
 .tableRow button {
     padding: 2px;
     background-color: transparent;

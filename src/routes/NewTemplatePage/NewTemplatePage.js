@@ -7,7 +7,7 @@ import { ButtonDark, ButtonLight, Input, Textarea } from '../../components/Utils
 import styles from './NewTemplatePage.module.css';
 import TemplateService from '../../services/template-service';
 
-const NewTemplatePage = () => {
+const NewTemplatePage = ({ onboarding }) => {
     const context = useContext(AppContext);
     const [error, setError] = useState(null);
     const navigate = useNavigate();
@@ -34,7 +34,7 @@ const NewTemplatePage = () => {
     }
 
     return (
-        <div className="container">
+        <div className={`container ${onboarding ? styles.onboardingOpen : ""}`}>
             <main className="content">
                 {error && <p>{error}</p>}
                 <form className="form" onSubmit={e => handlePostTemplate(e)}>

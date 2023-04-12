@@ -45,7 +45,9 @@ const SendEmailForm = ({ data, closeEmailForm }) => {
                             {selectedTemplate !== '' && <h2 className={styles.templateSubject}>{currentTemplate.template_subject}</h2>}
                             {selectedTemplate !== '' && <p className={styles.templateBody}>{TemplateService.formatTemplate(currentTemplate.template_content, currentTemplate.template_subject, data, doctor)[0].replace('%26', '&')}</p>}
                         </div>
-                        {selectedTemplate !== '' && <a target="_blank" rel="noopener noreferrer" href={emailHref} className={styles.link}><ButtonDark>Open Email</ButtonDark></a>}
+                        {selectedTemplate !== '' && <div className={styles.buttonSection}><a target="_blank" rel="noopener noreferrer" href={emailHref} className={styles.link}><ButtonDark>Open Email</ButtonDark></a></div>}
+
+
                     </>
                 }
             </main>

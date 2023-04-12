@@ -1,4 +1,5 @@
-import React, { useState, useContext } from 'react';
+import React, { useContext } from 'react';
+import { Link } from 'react-router-dom';
 import AppContext from '../../contexts/contexts';
 import { NavLink } from 'react-router-dom';
 import { ProfilePicture, userIcon, toDoNavIcon, completedNavIcon, dashboardNavIcon, templateNavIcon } from '../Utils/Utils';
@@ -11,7 +12,7 @@ const NavBar = ({ navOpen, setNavOpen }) => {
     return (
         <div className={styles.navWrap}>
             <nav role="navigation" className={`${styles.nav} ${navOpen ? styles.show : styles.hide}`} >
-                <img src={require("../../images/logo.png")} alt="logo" className={styles.logo}></img>
+                <Link to="/main"><img src={require("../../images/logo.png")} alt="logo" className={styles.logo}></img></Link>
                 <ul className={styles.tabList}>
                     <NavLink to="/main" className={styles.tab} onClick={() => setNavOpen(false)}>
                         <li className={styles.tabContent}>

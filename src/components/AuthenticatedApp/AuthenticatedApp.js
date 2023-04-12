@@ -11,9 +11,11 @@ import NotFoundPage from '../../routes/NotFoundPage/NotFoundPage';
 import EditItemPage from '../../routes/EditItemPage/EditItemPage'
 import NavBar from '../../components/NavBar/NavBar'
 import MobileHeader from '../../components/MobileHeader/MobileHeader';
+import OnboardingModal from '../../components/OnboardingModal/OnboardingModal';
 import UserDataService from '../../services/user-data-service';
 import ListService from '../../services/list-service';
 import AppContext from '../../contexts/contexts';
+import styles from './AuthenticatedApp.module.css'
 
 export default class AuthenticatedApp extends Component {
   constructor(props) {
@@ -40,7 +42,8 @@ export default class AuthenticatedApp extends Component {
       setInitialState: this.setInitialState,
       setLoggedIn: this.props.setLoggedIn,
       loading: true,
-      navOpen: false
+      navOpen: false,
+      onboarding: false
     }
   }
 
@@ -59,6 +62,8 @@ export default class AuthenticatedApp extends Component {
       user: data[4],
       loading: false
     })
+
+    if (data[1].length === 0) this.openOnboarding()
   }
 
   //Clears all values in state - used when the user logs out
@@ -165,6 +170,9 @@ export default class AuthenticatedApp extends Component {
 
   setNavOpen = bool => this.setState({ navOpen: bool })
 
+  closeOnboarding = () => this.setState({ onboarding: false })
+  openOnboarding = () => this.setState({ onboarding: true })
+
   //Setting context values using AuthenticatedApp's states, providing those context values to all children
   render() {
     return (
@@ -172,14 +180,15 @@ export default class AuthenticatedApp extends Component {
         <main>
           <NavBar navOpen={this.state.navOpen} setNavOpen={this.setNavOpen} />
           <MobileHeader navOpen={this.state.navOpen} setNavOpen={this.setNavOpen} />
+          {this.state.onboarding && <OnboardingModal onaboarding={this.onaboarding} closeOnboarding={this.closeOnboarding} />}
           <Routes>
             <Route path={'/main'} element={<MainListPage />} />
             <Route path={'/completed'} element={<CompletedListPage />} />
             <Route path={'/dashboard'} element={<DashboardPage />} />
-            <Route path={'/account'} element={<AccountPage />} />
-            <Route path={'/add-item'} element={<AddItemPage />} />
+            <Route path={'/account'} element={<AccountPage openOnboarding={this.openOnboarding} onboarding={this.state.onboarding} />} />
+            <Route path={'/add-item'} element={<AddItemPage onboarding={this.state.onboarding} />} />
             <Route path={`/edit-item/:id`} element={<EditItemPage />} />
-            <Route path={'/new-template'} element={<NewTemplatePage />} />
+            <Route path={'/new-template'} element={<NewTemplatePage onboarding={this.state.onboarding} />} />
             <Route path={'/templates'} element={<TemplatePage />} />
             <Route element={<NotFoundPage />} />
           </Routes>

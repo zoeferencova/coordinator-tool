@@ -36,7 +36,7 @@ const PmSettings = ({ }) => {
     return (
         <section className={`${styles.pmSettings}`}>
             <h2>PM Settings</h2>
-            {context.pms.length === 0 ? <p className={styles.addMessage}>Add PM's here!</p> : (
+            {context.pms.length === 0 && !context.loading ? <p className={styles.addMessage}>No current PMs</p> : (
                 <ul className={styles.pmList}>
                     {context.pms.map(pm => <PmItem pm={pm} key={pm.id} />)}
                 </ul>)}

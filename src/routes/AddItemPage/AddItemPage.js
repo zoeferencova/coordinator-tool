@@ -7,7 +7,7 @@ import ListService from '../../services/list-service';
 
 import styles from './AddItemPage.module.css';
 
-const AddItemPage = () => {
+const AddItemPage = ({ onboarding }) => {
     const context = useContext(AppContext);
     const [contactInputCount, setContactInputCount] = useState(1);
     const [error, setError] = useState('');
@@ -72,7 +72,7 @@ const AddItemPage = () => {
     const pmOptions = context.pms.map(pm => ({ value: pm.pm_name, label: pm.pm_name }));
 
     return (
-        <div className="container">
+        <div className={`container ${onboarding ? styles.onboardingOpen : ""}`}>
             <main className="content">
                 {error && <p>{error}</p>}
                 <form className="form" onSubmit={e => handlePostItem(e)}>
