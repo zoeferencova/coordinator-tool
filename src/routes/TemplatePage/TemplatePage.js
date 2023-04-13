@@ -69,41 +69,40 @@ const EmailPage = () => {
             <main className="content">
                 <div className={styles.pageContainer}>
                     <h2 className={styles.pageHeader}>Email Templates</h2>
-                    {context.templates.length > 0 &&
-                        (<div className={styles.templateContainer}>
+                    <div className={styles.templateContainer}>
 
-                            <div className={styles.templateList}>
-                                <Link to='/new-template'><ButtonDark className={styles.newButton}>New Template</ButtonDark></Link>
-                                <h3 className={styles.listHeader}>My Templates</h3>
-                                {context.templates.map(template => <TemplateTab key={template.id} template={template} selectTemplate={selectTemplate} current={currentTemplate !== undefined ? currentTemplate.id : undefined} />)}
-                            </div>
-                            <div className={styles.templateSelect}>
-                                {/* <Select onChange={(e) => handleTemplateSelect(e.target.value)} value={currentTemplate !== undefined ? currentTemplate.id : ''}>
+                        <div className={styles.templateList}>
+                            <Link to='/new-template'><ButtonDark className={styles.newButton}>New Template</ButtonDark></Link>
+                            <h3 className={styles.listHeader}>My Templates</h3>
+                            {context.templates.map(template => <TemplateTab key={template.id} template={template} selectTemplate={selectTemplate} current={currentTemplate !== undefined ? currentTemplate.id : undefined} />)}
+                        </div>
+                        <div className={styles.templateSelect}>
+                            {/* <Select onChange={(e) => handleTemplateSelect(e.target.value)} value={currentTemplate !== undefined ? currentTemplate.id : ''}>
                                     {context.templates.map(template => <option value={template.id} key={template.id}> {template.template_name} </option>)}
                                 </Select> */}
-                                <CustomSelect name="pm" id="pm" onChange={(e) => handleTemplateSelect(e.value)} options={templateOptions} value={currentTemplate !== undefined ? currentTemplate.id : null} width="240px" />
+                            <CustomSelect name="pm" id="pm" onChange={(e) => handleTemplateSelect(e.value)} options={templateOptions} value={currentTemplate !== undefined ? currentTemplate.id : null} width="240px" />
 
-                                <Link className={styles.desktopNewTemplate} to='/new-template'><ButtonDark className={styles.newButton}>New Template</ButtonDark></Link>
-                                <Link className={styles.mobileNewTemplate} to='/new-template'><ButtonDark className={styles.newButton}>{plusIcon}</ButtonDark></Link>
-                            </div>
+                            <Link className={styles.desktopNewTemplate} to='/new-template'><ButtonDark className={styles.newButton}>New Template</ButtonDark></Link>
+                            <Link className={styles.mobileNewTemplate} to='/new-template'><ButtonDark className={styles.newButton}>{plusIcon}</ButtonDark></Link>
+                        </div>
 
-                            {currentTemplate !== undefined && !edit && <div className={styles.templateWindow}>
-                                <div className={styles.templateHeader}>
-                                    <h3>{currentTemplate.template_name}</h3>
-                                    <div className={styles.templateButtons}>
-                                        <ActionButton action="edit" onClick={() => setEdit(true)}>{editIcon}Edit</ActionButton>
-                                        <ActionButton action="delete" onClick={handleDeleteTemplate}>{trashIcon}Delete</ActionButton>
-                                    </div>
+                        {currentTemplate !== undefined && !edit && <div className={styles.templateWindow}>
+                            <div className={styles.templateHeader}>
+                                <h3>{currentTemplate.template_name}</h3>
+                                <div className={styles.templateButtons}>
+                                    <ActionButton action="edit" onClick={() => setEdit(true)}>{editIcon}Edit</ActionButton>
+                                    <ActionButton action="delete" onClick={handleDeleteTemplate}>{trashIcon}Delete</ActionButton>
                                 </div>
-                                <TemplateWindow
-                                    id={currentTemplate.id}
-                                    template_name={currentTemplate.template_name}
-                                    template_subject={currentTemplate.template_subject}
-                                    template_content={currentTemplate.template_content}
-                                /></div>
-                            }
-                            {edit && <TemplateEditForm currentTemplate={currentTemplate} inputValues={inputValues} setInputValues={setInputValues} setEdit={setEdit} setCurrentTemplate={setCurrentTemplate} />}
-                        </div>)}
+                            </div>
+                            <TemplateWindow
+                                id={currentTemplate.id}
+                                template_name={currentTemplate.template_name}
+                                template_subject={currentTemplate.template_subject}
+                                template_content={currentTemplate.template_content}
+                            /></div>
+                        }
+                        {edit && <TemplateEditForm currentTemplate={currentTemplate} inputValues={inputValues} setInputValues={setInputValues} setEdit={setEdit} setCurrentTemplate={setCurrentTemplate} />}
+                    </div>
                 </div>
             </main>
         </div>

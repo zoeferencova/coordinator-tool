@@ -34,18 +34,21 @@ const LoginForm = ({ setLoggedIn }) => {
 
     return (
         <main>
-            <form className='LoginForm' onSubmit={e => handleSubmitJwtAuth(e)}>
+            <form className='form' onSubmit={e => handleSubmitJwtAuth(e)}>
+                <h2>Log in</h2>
                 <div role='alert'>{error && <p>{error}</p>}</div>
-                <div className={styles.formGroup}>
+                <div className="form-item">
                     <label className={styles.label} htmlFor="email">Email</label>
                     <Input className={styles.input} required type="text" name='email' id='login-email' />
                 </div>
-                <div className={styles.formGroup}>
+                <div className="form-item">
                     <label className={styles.label} htmlFor="password">Password</label>
                     <Input className={styles.input} required type="password" name='password' id='login-password' />
                 </div>
-                <Link to='/'><ButtonLight type='button' className={`${styles.button} ${styles.cancel}`}>Cancel</ButtonLight></Link>
-                <ButtonDark type='submit' className={`${styles.button} ${styles.sign}`}>Sign in</ButtonDark>
+                <div className="form-buttons">
+                    <Link to='/'><ButtonLight type='button'>Cancel</ButtonLight></Link>
+                    <ButtonDark type='submit'>Sign in</ButtonDark>
+                </div>
             </form>
         </main>
     )

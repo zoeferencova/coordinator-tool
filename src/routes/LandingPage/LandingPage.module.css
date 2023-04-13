@@ -15,6 +15,10 @@
     width: 135px;
 }
 
+.mobileLogo {
+    display: none;
+}
+
 .heading {
     font-size: 32px;
     font-weight: 600;
@@ -37,7 +41,7 @@
     right: 0;
     bottom: 0;
     top: 0;
-    overflow: auto;
+    overflow: visible;
 }
 
 .banner {
@@ -107,9 +111,36 @@
     display: flex;
 }
 
-.solution img {
+.solutionDesktop {
     width: 65%;
     height: 100%;
+}
+
+.solution .multiImage,
+.solution .singleImage {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: flex-start;
+    position: relative;
+}
+
+.solution .singleImage img {
+    width: 100%;
+    height: 100%;
+}
+
+.solution .multiImage img:first-child {
+    width: 90%;
+    height: 100%;
+}
+
+.solution .multiImage img:nth-child(2) {
+    width: 45%;
+    height: auto;
+    position: absolute;
+    bottom: -75px;
+    right: 25px;
 }
 
 .solution .featureList {
@@ -118,10 +149,24 @@
     text-align: left;
 }
 
+.solution .featureList>div {
+    opacity: 0.4;
+    transition: 0.3s;
+}
+
 .stickContainer {
-    position: -webkit-sticky !important;
-    position: sticky !important;
-    top: 0;
+    overflow: visible;
+    height: 4000px;
+}
+
+.solution {
+    top: 14vh;
+    position: sticky;
+}
+
+.solution .featureList .focus {
+    opacity: 1 !important;
+    transition: 0.3s;
 }
 
 .featureList h3 {
@@ -157,7 +202,6 @@
     text-align: center;
     padding-bottom: 90px;
     margin-bottom: 10px;
-    margin-top: 1000px;
 }
 
 .last .heading {
@@ -170,8 +214,8 @@
 }
 
 .footer {
-    padding: 15px 45px;
-    background-color: #F7FAFA;
+    padding: 8px 45px;
+    background-color: #F9F9F9;
     display: flex;
     justify-content: space-between;
 }
@@ -200,7 +244,139 @@
     font-weight: 500;
 }
 
-.footer img {
-    height: 70px;
-    width: auto;
+.featureList .multiImage,
+.featureList .singleImage {
+    display: none;
+}
+
+@media only screen and (max-width: 1100px) {
+    .stickContainer {
+        height: auto;
+    }
+
+    .solution .featureList>div {
+        opacity: 1;
+    }
+
+    .solutionDesktop {
+        display: none;
+    }
+
+    .solution .featureList {
+        width: 100%;
+        padding: 0px;
+    }
+
+    .solution {
+        width: 88%;
+        margin: 0 auto;
+    }
+
+    .solution .details {
+        width: 100%;
+    }
+
+    .solution .multiImage,
+    .solution .singleImage {
+        display: block;
+        margin-bottom: 45px;
+    }
+
+    .solution .featureList>div:not(.solution .featureList>div:last-of-type) {
+        margin-bottom: 80px !important;
+    }
+
+    .solution .multiImage img:nth-child(2) {
+        right: 0;
+        bottom: -60px;
+    }
+}
+
+@media only screen and (max-width: 750px) {
+    .bannerMockup {
+        width: 90%;
+    }
+
+    .section {
+        margin: 80px 0px;
+    }
+
+    .problemContainer {
+        border-radius: 10px;
+    }
+
+
+}
+
+@media only screen and (max-width: 500px) {
+    .container {
+        overflow-x: hidden;
+    }
+
+    .logo {
+        display: none;
+    }
+
+    .mobileLogo {
+        display: block;
+        height: 25px;
+    }
+
+    .nav div a:last-of-type {
+        display: none;
+    }
+
+    .nav div a:first-of-type {
+        margin-right: 0px;
+    }
+
+    .banner {
+        padding: 0px 30px;
+        width: 96%;
+        margin: 0 auto 20px auto;
+    }
+
+    .banner .heading {
+        font-size: 22px;
+        margin-bottom: 0px;
+    }
+
+    .banner .subheading {
+        font-size: 14.5px;
+        line-height: 20px;
+    }
+
+    .bannerMockup {
+        width: 145%;
+        margin-left: 30px;
+    }
+
+    .section {
+        margin: 60px auto;
+    }
+
+    .section h2 {
+        font-size: 20px;
+        margin-top: 0px;
+    }
+
+    .section p {
+        font-size: 15px;
+        line-height: 19px;
+        margin-bottom: 0px;
+    }
+
+    .problemContainer {
+        padding: 30px;
+    }
+
+    .last {
+        padding: 50px 60px 20px 60px;
+    }
+
+    .last .heading {
+        text-align: center;
+        font-size: 20px;
+        margin-bottom: 30px;
+    }
 }

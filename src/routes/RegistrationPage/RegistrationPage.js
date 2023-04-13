@@ -9,10 +9,9 @@ const RegistrationPage = () => {
 
     return (
         <div className={styles.main}>
-            <h1 className={styles.title}>Sign up</h1>
             <div className={styles.container}>
-                <RegistrationForm onRegistrationSuccess={navigate('/login')} />
-                <p className={styles.sub}>Already have an account? <Link to='/login'>Sign in</Link></p>
+                <RegistrationForm onRegistrationSuccess={() => navigate('/login')} />
+                <p className={styles.sub}>Already have an account? <Link to='/login'>Log in</Link></p>
             </div>
         </div>
     )

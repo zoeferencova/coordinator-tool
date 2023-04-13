@@ -8,7 +8,7 @@ import NotFoundPage from '../../routes/NotFoundPage/NotFoundPage';
 const UnauthenticatedApp = ({ setLoggedIn }) => (
   <main className='App'>
     <Routes>
-      <Route exact path={'/'} element={<LandingPage />} />
+      <Route exact path={'/'} element={<LandingPage setLoggedIn={setLoggedIn} />} />
       <Route path={'/login'} element={<LoginPage setLoggedIn={setLoggedIn} />} />
       <Route path={'/register'} element={<RegistrationPage />} />
       <Route element={NotFoundPage} />

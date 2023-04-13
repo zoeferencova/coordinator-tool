@@ -32,24 +32,27 @@ const RegistrationForm = ({ onRegistrationSuccess }) => {
 
     return (
         <main>
-            <form onSubmit={e => handleSubmit(e)}>
+            <form className="form" onSubmit={e => handleSubmit(e)}>
+                <h2>Sign up</h2>
                 <div role="alert">
                     {error && <p>{error}</p>}
                 </div>
-                <div className={styles.formGroup}>
+                <div className="form-item">
                     <label className={styles.label} htmlFor="full_name">Full name</label>
                     <Input className={styles.input} required type="text" name='full_name' id='full_name' />
                 </div>
-                <div className={styles.formGroup}>
+                <div className="form-item">
                     <label className={styles.label} htmlFor="email">Email</label>
                     <Input className={styles.input} required type="text" name='email' id='email' />
                 </div>
-                <div className={styles.formGroup}>
+                <div className="form-item">
                     <label className={styles.label} htmlFor="password">Password</label>
                     <Input className={styles.input} required type="password" name='password' id='password' />
                 </div>
-                <Link to='/'><ButtonLight type='button' className={`${styles.button} ${styles.cancel}`}>Cancel</ButtonLight></Link>
-                <ButtonDark type='submit' className={`${styles.button} ${styles.sign}`}>Create Account</ButtonDark>
+                <div className="form-buttons">
+                    <Link to='/'><ButtonLight type='button'>Cancel</ButtonLight></Link>
+                    <ButtonDark type='submit'>Create Account</ButtonDark>
+                </div>
             </form>
         </main>
     )

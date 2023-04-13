@@ -7,7 +7,6 @@ import styles from './LoginPage.module.css'
 const LoginPage = ({ setLoggedIn }) => {
     return (
         <div className={styles.main}>
-            <h1 className={styles.title}>Sign in</h1>
             <div className={styles.container}>
                 <LoginForm setLoggedIn={setLoggedIn} />
                 <p className={styles.sub}>Don't have an account? <Link to='/register'>Sign up</Link></p>
