@@ -23,6 +23,8 @@ export const chevronUpIcon = <FontAwesomeIcon icon={icon({ name: 'chevron-up' })
 export const chevronDownIcon = <FontAwesomeIcon icon={icon({ name: 'chevron-down' })} />
 export const githubIcon = <FontAwesomeIcon icon={icon({ name: 'github', style: 'brands' })} />
 export const linkedinIcon = <FontAwesomeIcon icon={icon({ name: 'linkedin', style: 'brands' })} />
+export const errorIcon = <FontAwesomeIcon icon={icon({ name: 'exclamation-circle' })} />
+export const successIcon = <FontAwesomeIcon icon={icon({ name: 'check-circle' })} />
 export const toDoNavIcon = <div className={`${styles.bgIcon} ${styles.purpleIcon}`}><FontAwesomeIcon icon={icon({ name: 'list' })} ></FontAwesomeIcon></div>
 export const completedNavIcon = <div className={`${styles.bgIcon} ${styles.greenIcon}`}><FontAwesomeIcon icon={icon({ name: 'check-square', style: 'regular' })} ></FontAwesomeIcon></div>
 export const dashboardNavIcon = <div className={`${styles.bgIcon} ${styles.pinkIcon}`}><FontAwesomeIcon icon={icon({ name: 'chart-simple' })} ></FontAwesomeIcon></div>
@@ -54,6 +56,10 @@ export function ActionButton({ className, ...props }) {
         {props.action === "delete" && <>{trashIcon}<span>Delete</span></>}
         {props.action === "email" && <>{emailIconLight}<span>Send email</span></>}
     </button>)
+}
+
+export function Error({ error, style }) {
+    return <div role="alert" style={style} className={styles.error}>{<span>{errorIcon} {error}</span>}</div>
 }
 
 // export function Button({ className, ...props }) {

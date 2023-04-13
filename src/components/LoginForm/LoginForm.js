@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import AuthApiService from '../../services/auth-api-service'
 import { Link, useNavigate } from 'react-router-dom';
-import { ButtonDark, ButtonLight, Input } from '../Utils/Utils'
+import { ButtonDark, ButtonLight, Input, Error } from '../Utils/Utils'
 
 import styles from './LoginForm.module.css'
 
@@ -28,7 +28,7 @@ const LoginForm = ({ setLoggedIn }) => {
                 navigate('/main')
             })
             .catch(res => {
-                setError(res.error.message)
+                setError(res.error)
             })
     }
 
@@ -36,7 +36,7 @@ const LoginForm = ({ setLoggedIn }) => {
         <main>
             <form className='form' onSubmit={e => handleSubmitJwtAuth(e)}>
                 <h2>Log in</h2>
-                <div role='alert'>{error && <p>{error}</p>}</div>
+                {error && <Error style={{ marginRight: "25px", marginLeft: "25px" }} error={error} />}
                 <div className="form-item">
                     <label className={styles.label} htmlFor="email">Email</label>
                     <Input className={styles.input} required type="text" name='email' id='login-email' />

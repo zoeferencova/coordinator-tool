@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import AuthApiService from '../../services/auth-api-service';
 import { Link } from 'react-router-dom';
-import { ButtonLight, ButtonDark, Input } from '../Utils/Utils'
+import { ButtonLight, ButtonDark, Input, Error } from '../Utils/Utils'
 
 import styles from '../LoginForm/LoginForm.module.css'
 
@@ -34,9 +34,7 @@ const RegistrationForm = ({ onRegistrationSuccess }) => {
         <main>
             <form className="form" onSubmit={e => handleSubmit(e)}>
                 <h2>Sign up</h2>
-                <div role="alert">
-                    {error && <p>{error}</p>}
-                </div>
+                {error && <Error error={error} style={{ marginRight: "25px", marginLeft: "25px" }} />}
                 <div className="form-item">
                     <label className={styles.label} htmlFor="full_name">Full name</label>
                     <Input className={styles.input} required type="text" name='full_name' id='full_name' />

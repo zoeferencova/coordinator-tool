@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react';
 import AppContext from '../../contexts/contexts';
-import { ButtonDark, Input, plusIcon } from '../../components/Utils/Utils'
+import { ButtonDark, Input, plusIcon, Error } from '../../components/Utils/Utils'
 import PmItem from '../../components/PmItem/PmItem';
 
 import styles from './PmSettings.module.css'
@@ -23,7 +23,7 @@ const PmSettings = ({ }) => {
             .then(newPm => {
                 handlePostSuccess(newPm)
             })
-            .catch(res => setError(res.error.message))
+            .catch(res => res.error.message === "Missing 'pm_name' in request body" ? setError("Missing PM name") : setError("Missing PM email"))
     }
 
     const handlePostSuccess = pm => {
@@ -40,9 +40,12 @@ const PmSettings = ({ }) => {
                 <ul className={styles.pmList}>
                     {context.pms.map(pm => <PmItem pm={pm} key={pm.id} />)}
                 </ul>)}
-            {error && <p>{error}</p>}
+
             <form onSubmit={e => handlePostPm(e)} className={styles.addPm}>
+
                 <div className={styles.inputs}>
+                    {error && <Error error={error} />}
+
                     <Input type="text" id="pm_name" placeholder={"Name"}></Input>
                     <Input type="text" id="pm_email" placeholder={"Email"}></Input>
                 </div>

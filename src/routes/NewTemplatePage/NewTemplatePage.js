@@ -2,7 +2,7 @@ import React, { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom'
 import AppContext from '../../contexts/contexts'
-import { ButtonDark, ButtonLight, Input, Textarea } from '../../components/Utils/Utils'
+import { ButtonDark, ButtonLight, Input, Textarea, Error } from '../../components/Utils/Utils'
 
 import styles from './NewTemplatePage.module.css';
 import TemplateService from '../../services/template-service';
@@ -24,7 +24,15 @@ const NewTemplatePage = ({ onboarding }) => {
             .then(res => !res.ok ? res.json().then(e => Promise.reject(e)) : res.json())
             .then(newTemplate => handlePostSuccess(newTemplate))
             .catch(res => {
-                setError(res.error.message)
+                if (res.error.message === "Missing 'template_name' in request body") {
+                    setError("Missing template name")
+                } else if (res.error.message === "Missing 'template_subject' in request body") {
+                    setError("Missing template subject")
+                } else if (res.error.message === "Missing 'template_content' in request body") {
+                    setError("Missing template body")
+                } else {
+                    setError(res.error.message)
+                }
             })
     }
 
@@ -36,9 +44,10 @@ const NewTemplatePage = ({ onboarding }) => {
     return (
         <div className={`container ${onboarding ? styles.onboardingOpen : ""}`}>
             <main className="content">
-                {error && <p>{error}</p>}
                 <form className="form" onSubmit={e => handlePostTemplate(e)}>
                     <h2>New Template</h2>
+                    {error && <Error style={{ marginRight: "25px", marginLeft: "25px" }} error={error} />}
+
                     <div className="form-item">
                         <label htmlFor="template_name">Name</label>
                         <Input type="text" name='template_name' id='template_name'></Input>
