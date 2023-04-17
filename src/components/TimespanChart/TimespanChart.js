@@ -88,7 +88,7 @@ const TimespanChart = ({ data }) => {
                 .attr("x", d => x(d.span))
                 .attr("width", x.bandwidth)
                 .attr("y", height)
-                .attr("fill", "#add1b5")
+                .attr("fill", "#BFCAD2")
                 .transition().duration(500)
                 .attr("y", d => y(d.count))
                 .attr("height", d => height - y(d.count))

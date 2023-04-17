@@ -9,7 +9,7 @@ const innerRadius = 60;
 
 const legendCircleRadius = 6;
 
-const chartColors = ['#98C0DD', '#EC7376', '#8F91D6', '#FDE38D', '#90D1A1']
+const chartColors = ['#C8BCFA', '#A7D5AF', '#AECAFA', '#F9E498', '#F58E8F']
 
 const PieChart = ({ data }) => {
     const d3svg = useRef(null)
