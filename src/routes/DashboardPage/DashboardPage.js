@@ -1,41 +1,62 @@
-import React, { useState, useEffect } from 'react';
-// import ChartWrapper from '../../components/ChartWrapper/ChartWrapper';
-// import PieChartWrapper from '../../components/PieChartWrapper/PieChartWrapper'
-import * as d3 from 'd3';
-import config from '../../config'
+import React, { useState, useEffect, useContext, useRef } from 'react';
 import DashboardService from '../../services/dashboard-service'
 
 import styles from './DashboardPage.module.css'
-// import TimespanChart from '../../components/TimespanChart/TimespanChart';
-// import PieChart from '../../components/PieChart/PieChart';
+import { listIconLight, checkSquareLight, clockIcon, userIcon, plusCircleIcon, checkIconLight } from '../../components/Utils/Utils';
+import TimespanChartData from '../../components/TimespanChart/TimespanChartData';
+import PieChartData from '../../components/PieChart/PieChartData';
+import AppContext from '../../contexts/contexts';
 
 const DashboardPage = () => {
+    const context = useContext(AppContext)
+
     const [span, setSpan] = useState('days');
     const [type, setType] = useState('created');
-    const [completionTime, setCompletionTime] = useState({});
-    const [pendingCount, setPendingCount] = useState('');
-    const [completedPct, setCompletedPct] = useState('');
+    const [completionTime, setCompletionTime] = useState(null);
+    const [pendingCount, setPendingCount] = useState(null);
+    const [completedPct, setCompletedPct] = useState(null);
+    const [timespanChartData, setTimespanChartData] = useState(null);
+    const [pieChartData, setPieChartData] = useState(null);
 
     useEffect(() => {
-        d3.json(`${config.API_ENDPOINT}/data/time-completed-data`, { headers: { "Authorization": `Bearer ${window.sessionStorage.getItem(config.TOKEN_KEY)}` } })
-            .then(res => res[0].length === 0 ? setCompletionTime({ hour: "--", minute: "--" }) : DashboardService.getHourMinute(res[0].map(item => DashboardService.getMinutes(item)).reduce((acc, el) => acc + el) / res[0].length))
-            .then(item => item !== undefined ? setCompletionTime(item) : item)
+        if (context.dashboardData.length) {
+            setTimespanChartData(context.dashboardData[0])
+            setPieChartData(context.dashboardData[1])
 
-        d3.json(`${config.API_ENDPOINT}/data/dashboard-data`, { headers: { "Authorization": `Bearer ${window.sessionStorage.getItem(config.TOKEN_KEY)}` } })
-            .then(res => setData(res))
-    }, [])
+            const completionTime = context.dashboardData[2]
+            if (completionTime[0].length === 0) {
+                setCompletionTime({ hour: "— ", minute: "— " })
+            } else {
+                const formattedTime = DashboardService.getHourMinute(completionTime[0].map(item => DashboardService.getMinutes(item)).reduce((acc, el) => acc + el) / completionTime[0].length)
+                setCompletionTime(formattedTime)
+            }
 
-    const setData = data => {
-        setPendingCount(+data[0][0].pending)
+            setPendingCount(+context.dashboardData[3][0][0].pending)
 
-        const completed = +data[2][0].completed;
+            const completed = +context.dashboardData[3][2][0].completed;
 
-        if (completed === 0) {
-            setCompletedPct(0)
-        } else {
-            const percentage = (completed * 100) / +data[1][0].created;
-            setCompletedPct(percentage)
+            if (completed === 0) {
+                setCompletedPct("0")
+            } else {
+                const percentage = (completed * 100) / +context.dashboardData[3][1][0].created;
+                setCompletedPct(Math.round(percentage))
+            }
         }
+    }, [context.dashboardData])
+
+    const handleSpanChange = val => {
+        setSpan(val)
+        updateTimespanChart(type, val)
+    }
+
+    const handleTypeChange = val => {
+        setType(val)
+        updateTimespanChart(val, span)
+    }
+
+    const updateTimespanChart = (type, span) => {
+        DashboardService.getTimespanData(type, span)
+            .then(res => setTimespanChartData(res))
     }
 
     return (
@@ -44,49 +65,49 @@ const DashboardPage = () => {
                 <div className={styles.dashboard}>
                     <div className={styles.statSection}>
                         <section className={`${styles.dashboardContainer} ${styles.statContainer}`}>
-                            <p className={styles.statName}>Current pending requests</p>
-                            <p className={styles.stat}>{pendingCount}</p>
+                            <h3>{listIconLight}Pending requests</h3>
+                            {pendingCount && <p className={styles.stat}>{pendingCount}</p>}
                         </section>
                         <section className={`${styles.dashboardContainer} ${styles.statContainer}`}>
-                            <p className={styles.statName}>Completion rate of new requests</p>
-                            <p className={styles.stat}>{completedPct}%</p>
+                            <h3>{checkIconLight}Completion rate today</h3>
+                            {completedPct && <p className={styles.stat}>{completedPct}%</p>}
                         </section>
                         <section className={`${styles.dashboardContainer} ${styles.statContainer}`}>
-                            <p className={styles.statName}>Average request completion time</p>
+                            <h3>{clockIcon}Average completion time</h3>
                             <p className={styles.stat}>
-                                {completionTime.hour}<span className={styles.time}>Hours</span>
-                                {completionTime.minute}<span className={styles.time}>Minutes</span>
+                                {completionTime && `${completionTime.hour}h ${completionTime.minute}m`}
                             </p>
                         </section>
                     </div>
                     <div className={styles.chartSection}>
                         <section className={`${styles.dashboardContainer} ${styles.chartContainer}`}>
-                            <h2>Requests by PM</h2>
-                            {/* <PieChart /> */}
-                            Pie chart
+                            <h3>{userIcon}Requests by PM</h3>
+                            <div className={styles.pieChartContainer}>
+                                {pieChartData && <PieChartData data={pieChartData} />}
+                            </div>
                         </section>
                         <section className={`${styles.dashboardContainer} ${styles.chartContainer}`}>
-                            <h2>{`${type} Requests`}</h2>
+                            <h3><span className={styles.capitalize}>{type === "created" ? plusCircleIcon : checkSquareLight}{type}</span> requests</h3>
                             <div className={styles.radioContainer}>
                                 <form className={styles.typeRadio}>
-                                    <input className={styles.radioButton} type="radio" name="type" id="created" value="created" defaultChecked="checked" onChange={e => setType(e.target.value)}></input>
+                                    <input className={styles.radioButton} type="radio" name="type" id="created" value="created" defaultChecked="checked" onChange={e => handleTypeChange(e.target.value)}></input>
                                     <label className={`${styles.radioLabel} ${styles.first}`} htmlFor="created"> Created</label>
-                                    <input className={styles.radioButton} type="radio" name="type" id="completed" value="completed" onChange={e => setType(e.target.value)}></input>
+                                    <input className={styles.radioButton} type="radio" name="type" id="completed" value="completed" onChange={e => handleTypeChange(e.target.value)}></input>
                                     <label className={`${styles.radioLabel} ${styles.last}`} htmlFor="completed"> Completed</label>
                                 </form>
                                 <form className={styles.spanRadio}>
-                                    <input className={styles.radioButton} type="radio" name="span" id="days" value="days" defaultChecked="checked" onChange={e => setSpan(e.target.value)}></input>
+                                    <input className={styles.radioButton} type="radio" name="span" id="days" value="days" defaultChecked="checked" onChange={e => handleSpanChange(e.target.value)}></input>
                                     <label className={`${styles.radioLabel} ${styles.first}`} htmlFor="days"> Day</label>
-                                    <input className={styles.radioButton} type="radio" name="span" id="weeks" value="weeks" onChange={e => setSpan(e.target.value)}></input>
+                                    <input className={styles.radioButton} type="radio" name="span" id="weeks" value="weeks" onChange={e => handleSpanChange(e.target.value)}></input>
                                     <label className={`${styles.radioLabel} ${styles.middle}`} htmlFor="weeks"> Week</label>
-                                    <input className={styles.radioButton} type="radio" name="span" id="months" value="months" onChange={e => setSpan(e.target.value)}></input>
+                                    <input className={styles.radioButton} type="radio" name="span" id="months" value="months" onChange={e => handleSpanChange(e.target.value)}></input>
                                     <label className={`${styles.radioLabel} ${styles.last}`} htmlFor="months"> Month</label>
                                 </form>
 
                             </div>
-                            Timespan chart
-                            {/* <TimespanChart /> */}
-                            {/* <ChartWrapper dataType={this.state.dataType} color={"blue"} /> */}
+                            <div className={styles.timespanChartContainer}>
+                                {timespanChartData && <TimespanChartData data={timespanChartData} />}
+                            </div>
                         </section>
                     </div>
                 </div>

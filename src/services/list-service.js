@@ -79,7 +79,7 @@ const ListService = {
         })
     },
     deleteItem(id) {
-        fetch(`${config.API_ENDPOINT}/list/${id}`, {
+        return fetch(`${config.API_ENDPOINT}/list/${id}`, {
             method: 'DELETE',
             headers: {
                 'content-type': 'application/json',

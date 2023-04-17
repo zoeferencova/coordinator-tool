@@ -5,12 +5,15 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { icon } from '@fortawesome/fontawesome-svg-core/import.macro';
 
 export const listIcon = <FontAwesomeIcon icon={icon({ name: 'list-alt' })} />
+export const listIconLight = <FontAwesomeIcon icon={icon({ name: 'list' })} />
 export const checkIcon = <FontAwesomeIcon icon={icon({ name: 'check-square' })} />
 export const checkIconLight = <FontAwesomeIcon icon={icon({ name: 'check' })} />
+export const checkSquareLight = <FontAwesomeIcon icon={icon({ name: 'check-square', style: 'regular' })} />
 export const chartIcon = <FontAwesomeIcon icon={icon({ name: 'chart-pie' })} />
+export const clockIcon = <FontAwesomeIcon icon={icon({ name: 'clock', style: 'regular' })} />
 export const emailIcon = <FontAwesomeIcon icon={icon({ name: 'envelope' })} />
 export const emailIconLight = <FontAwesomeIcon icon={icon({ name: 'envelope', style: 'regular' })} />
-export const userIcon = <FontAwesomeIcon icon={icon({ name: 'user-circle' })} />
+export const userIcon = <FontAwesomeIcon icon={icon({ name: 'user-circle', style: 'regular' })} />
 export const editIcon = <FontAwesomeIcon icon={icon({ name: 'edit' })} />
 export const trashIcon = <FontAwesomeIcon icon={icon({ name: 'trash-can', style: 'regular' })} />
 export const ellipsisIcon = <FontAwesomeIcon icon={icon({ name: 'ellipsis-h' })} />
@@ -18,6 +21,7 @@ export const searchIcon = <FontAwesomeIcon icon={icon({ name: 'magnifying-glass'
 export const sortIcon = <FontAwesomeIcon icon={icon({ name: 'sort' })} />
 export const hamburgerIcon = <FontAwesomeIcon icon={icon({ name: 'bars' })} />
 export const plusIcon = <FontAwesomeIcon icon={icon({ name: 'plus' })} />
+export const plusCircleIcon = <FontAwesomeIcon icon={icon({ name: 'square-plus', style: 'regular' })} />
 export const closeIcon = <FontAwesomeIcon icon={icon({ name: 'times' })} />
 export const chevronUpIcon = <FontAwesomeIcon icon={icon({ name: 'chevron-up' })} />
 export const chevronDownIcon = <FontAwesomeIcon icon={icon({ name: 'chevron-down' })} />
@@ -25,8 +29,8 @@ export const githubIcon = <FontAwesomeIcon icon={icon({ name: 'github', style: '
 export const linkedinIcon = <FontAwesomeIcon icon={icon({ name: 'linkedin', style: 'brands' })} />
 export const errorIcon = <FontAwesomeIcon icon={icon({ name: 'exclamation-circle' })} />
 export const successIcon = <FontAwesomeIcon icon={icon({ name: 'check-circle' })} />
-export const toDoNavIcon = <div className={`${styles.bgIcon} ${styles.purpleIcon}`}><FontAwesomeIcon icon={icon({ name: 'list' })} ></FontAwesomeIcon></div>
-export const completedNavIcon = <div className={`${styles.bgIcon} ${styles.greenIcon}`}><FontAwesomeIcon icon={icon({ name: 'check-square', style: 'regular' })} ></FontAwesomeIcon></div>
+export const toDoNavIcon = <div className={`${styles.bgIcon} ${styles.purpleIcon}`}>{listIconLight}</div>
+export const completedNavIcon = <div className={`${styles.bgIcon} ${styles.greenIcon}`}>{checkSquareLight}</div>
 export const dashboardNavIcon = <div className={`${styles.bgIcon} ${styles.pinkIcon}`}><FontAwesomeIcon icon={icon({ name: 'chart-simple' })} ></FontAwesomeIcon></div>
 export const templateNavIcon = <div className={`${styles.bgIcon} ${styles.blueIcon}`}><FontAwesomeIcon icon={icon({ name: 'envelope', style: 'regular' })} ></FontAwesomeIcon></div>
 export const spinnerIcon = <FontAwesomeIcon icon={icon({ name: 'spinner' })} spin />

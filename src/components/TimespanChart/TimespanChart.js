@@ -1,149 +1,78 @@
-import * as d3 from 'd3';
-import config from '../../config'
+import { useRef, useEffect } from 'react';
+import { select, scaleBand, scaleLinear, max, axisBottom, axisLeft } from 'd3';
 
-const MARGIN = { TOP: 10, RIGHT: 10, BOTTOM: 70, LEFT: 70 }
-const WIDTH = 550 - MARGIN.LEFT - MARGIN.RIGHT;
-const HEIGHT = 350 - MARGIN.TOP - MARGIN.BOTTOM;
+const margin = { top: 0, right: 10, bottom: 40, left: 35 }
+const width = 550 - margin.left - margin.right;
+const height = 350 - margin.top - margin.bottom;
 
-export default class TimespanChart {
-    //Formats timespan data 
-    //Groups data in to separate arrays for days, weeks and months and returns objects with arrays for each
-    fixTimeSpanData = (data) => {
-        const fixed = data.map(d => d[0])
-        const keys = fixed.map(d => Object.keys(d))
-        fixed.map((d, i) => {
-            const key = keys[i][0]
-            d.count = d[key]
-            return delete d[key]
-        })
-        fixed.map((d, i) => d.span = keys[i][0]) 
-        const days = []
-        const weeks = []
-        const months = []
-        fixed.forEach(d => {
-            if (d.span.includes("days")) {
-                d.span = d.span.slice(5)
-                days.push(d)
-            } else if (d.span.includes("weeks")) {
-                d.span = d.span.slice(6)
-                weeks.push(d)
-            } else if (d.span.includes("months")) {
-                d.span = d.span.slice(7)
-                months.push(d)
-            }
-        })
-        days[1].span = 'Yesterday'
-        const obj = {}
-        obj.days = days;
-        obj.weeks = weeks;
-        obj.months = months;
-        return obj;
-    }
+const TimespanChart = ({ data }) => {
+    const d3svg = useRef(null)
 
-    constructor(element) {
-        const vis = this;
-        vis.svg = d3.select(element)
-            .append("svg")
-                .attr("viewBox", `0, 0, ${WIDTH + MARGIN.LEFT + MARGIN.RIGHT}, ${HEIGHT + MARGIN.TOP + MARGIN.BOTTOM}`)
-            .append("g")
-                .attr("transform", `translate(${MARGIN.LEFT}, ${MARGIN.TOP})`)
-            
-        vis.yLabel = vis.svg.append("text")
-            .attr("x", -HEIGHT/2)
-            .attr("y", -50)
-            .attr("text-anchor", "middle")
-            .attr("transform", "rotate(-90)")
+    useEffect(() => {
+        if (data && d3svg.current) {
+            select(d3svg.current).selectAll("*").remove()
 
-        vis.xLabel = vis.svg.append("text")
-            .attr("x", WIDTH/2)
-            .attr("y", HEIGHT + 50)
-            .attr("text-anchor", "middle")
+            let svg = select(d3svg.current)
+                .append("svg")
+                .attr("id", "main")
+                .attr("viewBox", `0, 0, ${width + margin.left + margin.right}, ${height + margin.top + margin.bottom}`)
+                .append("g")
+                .attr("transform", `translate(${margin.left}, ${margin.top})`)
 
-        vis.xAxisGroup = vis.svg.append("g")
-            .attr("transform", `translate(0, ${HEIGHT})`)
+            const xAxisGroup = svg.append("g")
+                .attr("transform", `translate(0, ${height})`)
 
-        vis.yAxisGroup = vis.svg.append("g")
+            const yAxisGroup = svg.append("g")
 
-        Promise.all([
-            d3.json(`${config.API_ENDPOINT}/data/completed-timespan-data`, { headers: { "Authorization": `Bearer ${window.sessionStorage.getItem(config.TOKEN_KEY)}` } })
-                .then(res => this.fixTimeSpanData(res, 'completed')),
+            const y = scaleLinear()
+                .domain([0, max(data, d => d.count)])
+                .range([height, 0])
 
-            d3.json(`${config.API_ENDPOINT}/data/created-timespan-data`, { headers: { "Authorization": `Bearer ${window.sessionStorage.getItem(config.TOKEN_KEY)}` } })
-                .then(res => this.fixTimeSpanData(res, 'created'))
-        ]).then(datasets => {
-            vis.completedDays = datasets[0].days;
-            vis.completedWeeks = datasets[0].weeks;
-            vis.completedMonths = datasets[0].months;
-            vis.createdDays = datasets[1].days;
-            vis.createdWeeks = datasets[1].weeks;
-            vis.createdMonths = datasets[1].months;
-            vis.update("created_days")
-        })
-        
-    }
+            const x = scaleBand()
+                .domain(data.map(d => d.span))
+                .range([width, 0])
+                .padding(0.2)
 
-    //Updates values based on user input dataType passed in from DashboardPage component through the ChartWrapper component
-    update(dataType) {
-        const vis = this;
-        if (dataType === 'created_days') {
-            vis.data = vis.createdDays
-            vis.xLabel.text('Days')
-            vis.yLabel.text('Number of created requests')
-        } else if (dataType === 'created_weeks') {
-            vis.data = vis.createdWeeks
-            vis.xLabel.text('Weeks')
-            vis.yLabel.text('Number of created requests')
-        } else if (dataType === 'created_months') {
-            vis.data = vis.createdMonths
-            vis.xLabel.text('Months')
-            vis.yLabel.text('Number of created requests')
-        } else if (dataType === 'completed_days') {
-            vis.data = vis.completedDays
-            vis.xLabel.text('Days')
-            vis.yLabel.text('Number of completed requests')
-        } else if (dataType === 'completed_weeks') {
-            vis.data = vis.completedWeeks
-            vis.xLabel.text('Weeks')
-            vis.yLabel.text('Number of completed requests')
-        } else if (dataType === 'completed_months') {
-            vis.data = vis.completedMonths
-            vis.xLabel.text('Months')
-            vis.yLabel.text('Number of completed requests')
-        } 
-        
-        if (vis.data !== undefined) {
-            const y = d3.scaleLinear()
-                .domain([0, d3.max(vis.data, d => Number(d.count))])
-                .range([HEIGHT, 0])
+            const yAxisGrid = axisLeft(y).tickSize(-width).tickFormat("").ticks(6)
+            const grid = svg.append('g')
+                .classed("y-axis-grid", true)
+                .call(yAxisGrid)
+                .attr("color", "#EAEAEA")
+                .select(".domain")
+                .attr("stroke", "white")
 
-            const x = d3.scaleBand()
-                .domain(vis.data.map(d => d.span))
-                .range([WIDTH, 0])
-                .padding(0.4)
-
-            const xAxisCall = d3.axisBottom(x)
-            vis.xAxisGroup
+            const xAxisCall = axisBottom(x).tickSize(0).tickPadding(12)
+            xAxisGroup
+                .style("font-size", "16px")
+                .style("font-family", "inherit")
                 .transition()
                 .duration(500)
                 .call(xAxisCall)
-            
-            const yAxisCall = d3.axisLeft(y)
-            vis.yAxisGroup
+                .select(".domain")
+                .attr("stroke", "#949ba2")
+
+            const yAxisCall = axisLeft(y).tickSize(0).tickPadding(10).ticks(6)
+            yAxisGroup
+                .style("font-size", "16px")
+                .style("color", "#949ba2")
+                .style("font-family", "inherit")
                 .transition()
                 .duration(500)
                 .call(yAxisCall)
+                .select(".domain")
+                .attr("stroke", "white")
 
             //Data Join
-            const rects = vis.svg.selectAll("rect")
-                .data(vis.data)
+            const rects = svg.selectAll("rect")
+                .data(data)
 
             //Exit
             rects
                 .exit()
                 .transition().duration(500)
-                    .attr("height", 0)
-                    .attr("y", HEIGHT)
-                    .remove()
+                .attr("height", 0)
+                .attr("y", height)
+                .remove()
 
             //Update
             rects
@@ -151,19 +80,64 @@ export default class TimespanChart {
                 .attr("x", d => x(d.span))
                 .attr("y", d => y(d.count))
                 .attr("width", x.bandwidth)
-                .attr("height", d => HEIGHT - y(d.count))
+                .attr("height", d => height - y(d.count))
 
             //Enter
             rects.enter()
                 .append("rect")
-                    .attr("x", d => x(d.span))
-                    .attr("width", x.bandwidth)
-                    .attr("y", HEIGHT)
-                    .attr("fill", "#7db0c9")
-                    .transition().duration(500)
-                        .attr("y", d => y(d.count))
-                        .attr("height", d => HEIGHT - y(d.count))
+                .attr("x", d => x(d.span))
+                .attr("width", x.bandwidth)
+                .attr("y", height)
+                .attr("fill", "#add1b5")
+                .transition().duration(500)
+                .attr("y", d => y(d.count))
+                .attr("height", d => height - y(d.count))
+        }
+    }, [data])
 
-        } 
-    }
+    return (
+        <svg
+            // className={styles.container}
+            width={width + margin.left + margin.right}
+            height={height + margin.top + margin.bottom}
+            role="img"
+            ref={d3svg}
+        ></svg>
+    )
+
+    //Updates values based on user input dataType passed in from DashboardPage component through the ChartWrapper component
+    // const update = (dataType) => {
+    //     let currentData;
+    //     if (dataType === 'created_days') {
+    //         currentData = vis.createdDays
+    //         xLabel.text('Days')
+    //         yLabel.text('Number of created requests')
+    //     } else if (dataType === 'created_weeks') {
+    //         vis.data = vis.createdWeeks
+    //         vis.xLabel.text('Weeks')
+    //         vis.yLabel.text('Number of created requests')
+    //     } else if (dataType === 'created_months') {
+    //         vis.data = vis.createdMonths
+    //         vis.xLabel.text('Months')
+    //         vis.yLabel.text('Number of created requests')
+    //     } else if (dataType === 'completed_days') {
+    //         vis.data = vis.completedDays
+    //         vis.xLabel.text('Days')
+    //         vis.yLabel.text('Number of completed requests')
+    //     } else if (dataType === 'completed_weeks') {
+    //         vis.data = vis.completedWeeks
+    //         vis.xLabel.text('Weeks')
+    //         vis.yLabel.text('Number of completed requests')
+    //     } else if (dataType === 'completed_months') {
+    //         vis.data = vis.completedMonths
+    //         vis.xLabel.text('Months')
+    //         vis.yLabel.text('Number of completed requests')
+    //     }
+
+    // if (vis.data !== undefined) {
+
+
+    // }
 }
+
+export default TimespanChart;

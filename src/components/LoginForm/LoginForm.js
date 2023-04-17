@@ -47,7 +47,7 @@ const LoginForm = ({ setLoggedIn }) => {
                 </div>
                 <div className="form-buttons">
                     <Link to='/'><ButtonLight type='button'>Cancel</ButtonLight></Link>
-                    <ButtonDark type='submit'>Sign in</ButtonDark>
+                    <ButtonDark type='submit'>Log in</ButtonDark>
                 </div>
             </form>
         </main>

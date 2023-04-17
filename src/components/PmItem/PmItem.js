@@ -13,7 +13,7 @@ const PmItem = ({ pm }) => {
         if (window.confirm('Are you sure you wish to delete this PM? All list items associated with this PM will also be deleted.')) {
             const pmId = e.currentTarget.getAttribute('item')
             PmService.deletePm(pmId)
-            context.deletePm(pmId)
+                .then(res => context.deletePm(pmId))
         }
     }
 

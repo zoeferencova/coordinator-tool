@@ -16,6 +16,7 @@ import UserDataService from '../../services/user-data-service';
 import ListService from '../../services/list-service';
 import AppContext from '../../contexts/contexts';
 import styles from './AuthenticatedApp.module.css'
+import DashboardService from '../../services/dashboard-service';
 
 export default class AuthenticatedApp extends Component {
   constructor(props) {
@@ -41,6 +42,7 @@ export default class AuthenticatedApp extends Component {
       revertCompleted: this.revertCompleted,
       setInitialState: this.setInitialState,
       setLoggedIn: this.props.setLoggedIn,
+      dashboardData: [],
       loading: true,
       navOpen: false,
       onboarding: false
@@ -51,6 +53,9 @@ export default class AuthenticatedApp extends Component {
   componentDidMount() {
     UserDataService.getUserData()
       .then(res => this.setUserData(res))
+
+    DashboardService.getDashboardData()
+      .then(res => this.setDashboardData(res))
   }
 
   setUserData = data => {
@@ -64,6 +69,10 @@ export default class AuthenticatedApp extends Component {
     })
 
     if (data[1].length === 0) this.openOnboarding()
+  }
+
+  setDashboardData = data => {
+    this.setState({ dashboardData: data })
   }
 
   //Clears all values in state - used when the user logs out
@@ -81,16 +90,25 @@ export default class AuthenticatedApp extends Component {
   //Used through context in child components to update values after fetch calls
   addItem = item => {
     this.setState({ listItems: [...this.state.listItems, item] })
+
+    DashboardService.getDashboardData()
+      .then(res => this.setDashboardData(res))
   }
 
   addItemById = itemId => {
     const item = this.state.listItems.find(item => item.id === itemId)
     this.setState({ listItems: [...this.state.listItems, item] })
+
+    DashboardService.getDashboardData()
+      .then(res => this.setDashboardData(res))
   }
 
   deleteItem = itemId => {
     const newItems = this.state.listItems.filter(listItem => +listItem.id !== +itemId)
     this.setState({ listItems: newItems })
+
+    DashboardService.getDashboardData()
+      .then(res => this.setDashboardData(res))
   }
 
   updateItem = (updatedItem) => {
@@ -100,6 +118,9 @@ export default class AuthenticatedApp extends Component {
         : item
     )
     this.setState({ listItems: newItems })
+
+    DashboardService.getDashboardData()
+      .then(res => this.setDashboardData(res))
   }
 
   updateDateCompleted = (updatedItem, date) => {
@@ -131,6 +152,9 @@ export default class AuthenticatedApp extends Component {
         this.setState({ listItems: this.state.listItems })
       }
     }
+
+    DashboardService.getDashboardData()
+      .then(res => this.setDashboardData(res))
   }
 
   revertCompleted = itemId => {
@@ -164,8 +188,13 @@ export default class AuthenticatedApp extends Component {
   }
 
   deletePm = pmId => {
-    const newPms = this.state.pms.filter(pm => Number(pm.id) !== Number(pmId))
+    const pmToRemove = this.state.pms.find(pm => +pm.id === +pmId)
+    const newPms = this.state.pms.filter(pm => +pm.id !== +pmId)
     this.setState({ pms: newPms })
+    this.setState({ listItems: this.state.listItems.filter(item => item.pm_email !== pmToRemove.pm_email) })
+    this.setState({ completedListItems: this.state.completedListItems.filter(item => item.pm_email !== pmToRemove.pm_email) })
+    DashboardService.getDashboardData()
+      .then(res => this.setDashboardData(res))
   }
 
   setNavOpen = bool => this.setState({ navOpen: bool })

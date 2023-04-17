@@ -8,14 +8,13 @@ import styles from '../ListItem/ListItem.module.css'
 
 const ListItemActions = ({ item, tab, setEmailFormItem }) => {
     const context = useContext(AppContext);
-    const [showMobileActions, setShowMobileActions] = useState(false)
 
-    const { id, project, contact, pm_name, notes, pm_email, project_url, contact_url, date_created } = item;
+    const { id, project, contact, pm_name, notes } = item;
 
     const handleDeleteItem = () => {
         if (window.confirm('Are you sure you want to delete this item?')) {
             ListService.deleteItem(id)
-            context.deleteItem(id)
+                .then(context.deleteItem(id))
         }
     }
 

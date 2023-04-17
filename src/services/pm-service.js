@@ -2,7 +2,7 @@ import config from '../config';
 
 const PmService = {
     deletePm(id) {
-        fetch(`${config.API_ENDPOINT}/pms/${id}`, {
+        return fetch(`${config.API_ENDPOINT}/pms/${id}`, {
             method: 'DELETE',
             headers: {
                 'content-type': 'application/json',
