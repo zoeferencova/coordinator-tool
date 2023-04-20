@@ -104,40 +104,6 @@ const TimespanChart = ({ data }) => {
             ref={d3svg}
         ></svg>
     )
-
-    //Updates values based on user input dataType passed in from DashboardPage component through the ChartWrapper component
-    // const update = (dataType) => {
-    //     let currentData;
-    //     if (dataType === 'created_days') {
-    //         currentData = vis.createdDays
-    //         xLabel.text('Days')
-    //         yLabel.text('Number of created requests')
-    //     } else if (dataType === 'created_weeks') {
-    //         vis.data = vis.createdWeeks
-    //         vis.xLabel.text('Weeks')
-    //         vis.yLabel.text('Number of created requests')
-    //     } else if (dataType === 'created_months') {
-    //         vis.data = vis.createdMonths
-    //         vis.xLabel.text('Months')
-    //         vis.yLabel.text('Number of created requests')
-    //     } else if (dataType === 'completed_days') {
-    //         vis.data = vis.completedDays
-    //         vis.xLabel.text('Days')
-    //         vis.yLabel.text('Number of completed requests')
-    //     } else if (dataType === 'completed_weeks') {
-    //         vis.data = vis.completedWeeks
-    //         vis.xLabel.text('Weeks')
-    //         vis.yLabel.text('Number of completed requests')
-    //     } else if (dataType === 'completed_months') {
-    //         vis.data = vis.completedMonths
-    //         vis.xLabel.text('Months')
-    //         vis.yLabel.text('Number of completed requests')
-    //     }
-
-    // if (vis.data !== undefined) {
-
-
-    // }
 }
 
 export default TimespanChart;
