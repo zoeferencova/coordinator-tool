@@ -41,7 +41,7 @@ const SendEmailForm = ({ data, closeEmailForm }) => {
                             </div>
                         </form>
                         <div className={styles.templateContainer}>
-                            {!selectedTemplate && <span className={styles.selectMessage}>Select a template</span>}
+                            {selectedTemplate === '' && <span className={styles.selectMessage}>Select a template</span>}
                             {selectedTemplate !== '' && <h2 className={styles.templateSubject}>{currentTemplate.template_subject}</h2>}
                             {selectedTemplate !== '' && <p className={styles.templateBody}>{TemplateService.formatTemplate(currentTemplate.template_content, currentTemplate.template_subject, data, doctor)[0].replace('%26', '&')}</p>}
                         </div>
