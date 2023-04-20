@@ -15,7 +15,6 @@ import OnboardingModal from '../../components/OnboardingModal/OnboardingModal';
 import UserDataService from '../../services/user-data-service';
 import ListService from '../../services/list-service';
 import AppContext from '../../contexts/contexts';
-import styles from './AuthenticatedApp.module.css'
 import DashboardService from '../../services/dashboard-service';
 
 export default class AuthenticatedApp extends Component {

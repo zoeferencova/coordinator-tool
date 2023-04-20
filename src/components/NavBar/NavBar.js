@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import AppContext from '../../contexts/contexts';
 import { NavLink } from 'react-router-dom';
-import { ProfilePicture, userIcon, toDoNavIcon, completedNavIcon, dashboardNavIcon, templateNavIcon } from '../Utils/Utils';
+import { ProfilePicture, toDoNavIcon, completedNavIcon, dashboardNavIcon, templateNavIcon } from '../Utils/Utils';
 
 import styles from './NavBar.module.css';
 

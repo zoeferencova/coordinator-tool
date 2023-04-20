@@ -43,25 +43,6 @@ const EmailPage = () => {
         setInputValues(foundTemplate)
     }
 
-    //Instructions for how to get started with templates
-    //Rendered if no templates are currently saved for user
-    const templateInstructions = (
-        <div className={listStyles.instructions}>
-            <p>To add a new template:</p>
-            <ul>
-                <li>Click the <span className={listStyles.addButtonStyle}>+ New Template</span> button to open the new template form.</li>
-                <li>Use [CONTACT], [PM] and [PROJECT] to indicate the respective values in your template. These values will then be templated in when you use the email functionality in the main list.</li>
-            </ul>
-            <p>To use the templates:</p>
-            <ul>
-                <li>Click the <i className={`${listStyles.tabStyle} fas fa-envelope`}></i> button on any list item in the main list page.</li>
-                <li>Select the template that you want from the dropdown. You will then see a preview of the email populated with the contact and project values.</li>
-                <li>Click the <span className={listStyles.buttonStyle}>Open Email</span> button to open the email using your default email application</li>
-            </ul>
-            <p>Note: You must have a defualt email application set for the email and PM update features to work.</p>
-        </div>
-    )
-
     const templateOptions = context.templates.map(template => ({ value: template.id, label: template.template_name }))
 
     return (

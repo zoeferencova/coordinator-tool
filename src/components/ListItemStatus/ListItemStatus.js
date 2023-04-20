@@ -15,7 +15,6 @@ const selectStyles = {
         border: 'none',
         background: state.selectProps.value.backgroundColor,
         color: state.selectProps.value.color,
-        padding: '0px',
         minHeight: 'fit-content',
         width: 'fit-content',
         padding: '2.5px 0px',

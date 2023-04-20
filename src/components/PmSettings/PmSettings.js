@@ -6,7 +6,7 @@ import PmItem from '../../components/PmItem/PmItem';
 import styles from './PmSettings.module.css'
 import PmService from '../../services/pm-service';
 
-const PmSettings = ({ }) => {
+const PmSettings = () => {
     const context = useContext(AppContext);
 
     const [error, setError] = useState(null);

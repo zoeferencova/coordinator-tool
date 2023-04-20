@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import AppContext from '../../contexts/contexts';
-import { ButtonLight, ButtonDark, userIcon, ProfilePicture } from '../Utils/Utils';
+import { ButtonLight, ButtonDark, ProfilePicture } from '../Utils/Utils';
 import TokenService from '../../services/token-service'
 
 import styles from './AccountInfo.module.css'

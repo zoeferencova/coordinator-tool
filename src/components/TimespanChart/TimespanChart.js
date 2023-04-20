@@ -34,7 +34,7 @@ const TimespanChart = ({ data }) => {
                 .padding(0.2)
 
             const yAxisGrid = axisLeft(y).tickSize(-width).tickFormat("").ticks(6)
-            const grid = svg.append('g')
+            svg.append('g')
                 .classed("y-axis-grid", true)
                 .call(yAxisGrid)
                 .attr("color", "#EAEAEA")

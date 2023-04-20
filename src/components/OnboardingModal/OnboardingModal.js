@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import styles from './OnboardingModal.module.css';
-import { closeIcon, chevronDownIcon, chevronUpIcon, emailIconLight, plusIcon, checkIconLight } from '../Utils/Utils';
+import { closeIcon, chevronDownIcon, chevronUpIcon, plusIcon, checkIconLight } from '../Utils/Utils';
 
 const onboardingItems = [
     {

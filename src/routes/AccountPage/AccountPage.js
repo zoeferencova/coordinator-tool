@@ -1,10 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 import AccountInfo from '../../components/AccountInfo/AccountInfo';
 import PmSettings from '../../components/PmSettings/PmSettings';
-import { UserGuide } from '../../components/Utils/Utils'
 
 import styles from './AccountPage.module.css'
-import modalStyles from '../../components/SendEmailForm/SendEmailForm.module.css'
 
 const AccountPage = ({ onboarding, openOnboarding }) => {
     return (

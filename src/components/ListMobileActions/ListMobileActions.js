@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import AppContext from '../../contexts/contexts';
-import { emailIconLight, trashIcon, editIcon, ActionButton } from '../Utils/Utils';
+import { ActionButton } from '../Utils/Utils';
 import ListService from '../../services/list-service';
 
 import styles from '../ListMobileActions/ListMobileActions.module.css'
