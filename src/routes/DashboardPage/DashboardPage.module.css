@@ -100,12 +100,16 @@
 
 @media only screen and (min-width: 850px) {
 
+    .dashboard {
+        margin-top: 30px;
+    }
+
     .statContainer {
         width: 30%;
     }
 
     .chartContainer {
-        width: 50%;
+        width: 46.5%;
         padding: 20px 30px;
     }
 
